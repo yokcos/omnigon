@@ -11,11 +11,15 @@ var prev_gravity: float = 0
 var climb_speed: float = 150
 var vertical_margin: float = -8
 var extra_margin: float = 8
+var lean: float = 0
+var lean_speed: float = 8
+var max_lean: float = 8
 
 
 func _enter():
 	prev_gravity = father.gravity
 	father.gravity = 0
+	lean = 0
 	ladder.add_exception(father)
 	._enter()
 
@@ -38,9 +42,20 @@ func _step(delta: float):
 		if Input.is_action_pressed("move_down"):
 			descendation += 1
 		
-		father.velocity.y = descendation * climb_speed
+		var leaning: bool = false
+		if Input.is_action_pressed("move_left"):
+			leaning = true
+			lean -= lean_speed * delta * 2
+		if Input.is_action_pressed("move_right"):
+			leaning = true
+			lean += lean_speed * delta * 2
+		lean = lerp(lean, 0, 0.3*delta if leaning else 4*delta)
+		if abs(lean) > max_lean:
+			set_state(exit_state)
+			father.air_time = 0
 		
-		father.global_position.x = ladder.global_position.x
+		father.velocity.y = descendation * climb_speed
+		father.global_position.x = ladder.global_position.x + lean
 		
 		limit_height()
 		do_animation()
@@ -51,10 +66,6 @@ func _handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		set_state(exit_state)
 		father.jump(0.75)
-	
-	if event.is_action_pressed("move_left") or event.is_action_pressed("move_right"):
-		set_state(exit_state)
-		father.air_time = 0
 
 
 func limit_height():
