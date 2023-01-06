@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/controls/control_list.tscn" type="PackedScene" id=1]
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=2]
+[ext_resource path="res://ui/controls/controls.gd" type="Script" id=3]
+
+[node name="controls" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="list" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_right = -16.0
+alignment = 1
+
+[node name="up" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 116.0
+margin_right = 480.0
+margin_bottom = 116.0
+action = "move_up"
+
+[node name="down" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 120.0
+margin_right = 480.0
+margin_bottom = 120.0
+action = "move_down"
+
+[node name="left" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 124.0
+margin_right = 480.0
+margin_bottom = 124.0
+action = "move_left"
+
+[node name="right" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 128.0
+margin_right = 480.0
+margin_bottom = 128.0
+focus_neighbour_bottom = NodePath("../jump")
+focus_next = NodePath("../jump")
+action = "move_right"
+
+[node name="divider" type="HSeparator" parent="list"]
+margin_top = 132.0
+margin_right = 480.0
+margin_bottom = 136.0
+
+[node name="jump" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 140.0
+margin_right = 480.0
+margin_bottom = 140.0
+focus_neighbour_top = NodePath("../right")
+focus_previous = NodePath("../right")
+action = "jump"
+
+[node name="punch" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 144.0
+margin_right = 480.0
+margin_bottom = 144.0
+action = "attack"
+
+[node name="interact" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 148.0
+margin_right = 480.0
+margin_bottom = 148.0
+action = "interact"
+
+[node name="special" parent="list" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 152.0
+margin_right = 480.0
+margin_bottom = 152.0
+action = "shift"
+
+[node name="egress" type="Button" parent="list"]
+margin_left = 217.0
+margin_top = 156.0
+margin_right = 262.0
+margin_bottom = 172.0
+size_flags_horizontal = 4
+text = "Egress"
+
+[node name="tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="list/egress" to="." method="_on_egress_pressed"]

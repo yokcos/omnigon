@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://props/interactables/sign.gd" type="Script" id=1]
+[ext_resource path="res://props/interactables/sign.png" type="Texture" id=2]
+[ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="sign" type="Node2D"]
+script = ExtResource( 1 )
+verb = "Read"
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+
+[node name="shift_detector" parent="." instance=ExtResource( 3 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="shift_detector"]
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
+
+[connection signal="shifted" from="shift_detector" to="." method="_on_shift"]

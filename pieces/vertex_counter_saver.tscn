@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://pieces/vertex_counter_saver.gd" type="Script" id=1]
+
+[node name="vertex_counter_saver" type="Node2D"]
+script = ExtResource( 1 )

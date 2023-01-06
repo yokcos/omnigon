@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc1/the_first_disc_ends.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc1/0009_disc1ends.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "the_first_disc_ends"
+title = "The First Disc Ends"
+lore = "Please insert The Second Disc, thank you."
+audio = ExtResource( 2 )
+icon = ExtResource( 3 )

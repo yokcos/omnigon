@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://projectiles/shockwave.gd" type="Script" id=1]
+[ext_resource path="res://pieces/auto_sprite.gd" type="Script" id=2]
+[ext_resource path="res://projectiles/shockwave.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 20 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 20 )
+
+[node name="shockwave" type="Area2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource( 1 )
+knockback = Vector2( 64, -64 )
+active = true
+penetrations = 1000
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( -16, -32 )
+texture = ExtResource( 3 )
+hframes = 4
+script = ExtResource( 2 )
+animation_speed = 20.0
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 4, -20 )
+shape = SubResource( 1 )
+
+[node name="wall_detector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="wall_detector"]
+position = Vector2( 12, -28 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="wall_detector" to="." method="_on_wall_detector_body_entered"]

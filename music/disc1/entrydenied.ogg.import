@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/entrydenied.ogg-054154b6b86195f4376f69861895c1e8.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/entrydenied.ogg"
+dest_files=[ "res://.import/entrydenied.ogg-054154b6b86195f4376f69861895c1e8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

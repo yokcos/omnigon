@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fx/fx_transient.gd" type="Script" id=1]
+
+[node name="fx_transient" type="Sprite"]
+script = ExtResource( 1 )

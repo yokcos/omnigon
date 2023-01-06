@@ -1,0 +1,240 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://misc/fnt_tiny_outline.tres" type="DynamicFont" id=2]
+[ext_resource path="res://misc/highlight_panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui/options/options.gd" type="Script" id=4]
+[ext_resource path="res://ui/options/fulcrum.gd" type="Script" id=5]
+[ext_resource path="res://ui/options/bar_volume.gd" type="Script" id=6]
+[ext_resource path="res://ui/diagonoverlay.tscn" type="PackedScene" id=7]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.890196, 0.901961, 1, 1 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "saved"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("saved:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("saved")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "show"
+}, {
+"args": [  ],
+"method": "hide"
+} ]
+}
+
+[node name="options" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="diagonoverlay" parent="." instance=ExtResource( 7 )]
+
+[node name="icon" type="TextureRect" parent="."]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="fulcra" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="title" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+selectable = false
+
+[node name="area" type="Control" parent="fulcra/title"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+
+[node name="bac" type="Panel" parent="fulcra/title/area"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 3 )
+
+[node name="text" type="Label" parent="fulcra/title/area"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+text = "PAUSE
+"
+align = 1
+valign = 1
+
+[node name="continue" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("button")
+
+[node name="button" type="Button" parent="fulcra/continue"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+text = "Continue"
+
+[node name="volume_music" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("area/bar")
+
+[node name="area" type="Control" parent="fulcra/volume_music"]
+margin_left = -192.0
+margin_top = -16.0
+margin_right = -64.0
+margin_bottom = 8.0
+
+[node name="bar" type="HSlider" parent="fulcra/volume_music/area"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+step = 5.0
+value = 50.0
+script = ExtResource( 6 )
+
+[node name="text" type="Label" parent="fulcra/volume_music/area"]
+anchor_right = 1.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_colors/font_outline_modulate = Color( 0.890196, 0.901961, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Music Volume"
+valign = 2
+
+[node name="volume_sfx" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("area/bar")
+
+[node name="area" type="Control" parent="fulcra/volume_sfx"]
+margin_left = -192.0
+margin_top = -16.0
+margin_right = -64.0
+margin_bottom = 8.0
+
+[node name="bar" type="HSlider" parent="fulcra/volume_sfx/area"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+step = 5.0
+value = 50.0
+script = ExtResource( 6 )
+
+[node name="text" type="Label" parent="fulcra/volume_sfx/area"]
+anchor_right = 1.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_colors/font_outline_modulate = Color( 0.890196, 0.901961, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "SFX Volume"
+valign = 2
+
+[node name="controls" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("button")
+
+[node name="button" type="Button" parent="fulcra/controls"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+text = "Controls"
+
+[node name="unsave" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("button")
+
+[node name="button" type="Button" parent="fulcra/unsave"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+text = "Delete Save"
+
+[node name="details" type="Label" parent="fulcra/unsave"]
+margin_left = -200.0
+margin_top = 8.0
+margin_right = -56.0
+margin_bottom = 16.0
+custom_colors/font_outline_modulate = Color( 0.890196, 0.901961, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Will also close the game"
+align = 1
+valign = 2
+
+[node name="egress" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("button")
+
+[node name="button" type="Button" parent="fulcra/egress"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+text = "End Game"
+
+[node name="saved" type="Label" parent="."]
+visible = false
+margin_right = 512.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0.47451, 0.227451, 0.501961, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Videogame has been saved!"
+align = 1
+percent_visible = 0.0
+
+[node name="tween" type="Tween" parent="."]
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/saved = SubResource( 1 )
+
+[connection signal="pressed" from="fulcra/continue/button" to="." method="_on_continue_pressed"]
+[connection signal="value_changed" from="fulcra/volume_music/area/bar" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="fulcra/volume_sfx/area/bar" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="fulcra/controls/button" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="fulcra/unsave/button" to="." method="_on_unsave_pressed"]
+[connection signal="pressed" from="fulcra/egress/button" to="." method="_on_egress_pressed"]

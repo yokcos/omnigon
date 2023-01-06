@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc1/entrydenied.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc1/0004_entrydenied.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "entrydenied"
+title = "Entry Denied"
+lore = "This 'Bouncer' is an odd one, whomst appears to have no legs but instead springs. Body modification like this is common across the empaire of course, but it's one thing to read of a thing on screens and paper, and much more strange to witness it in person."
+audio = ExtResource( 2 )
+icon = ExtResource( 3 )

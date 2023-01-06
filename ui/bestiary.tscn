@@ -1,0 +1,174 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://ui/enemy_entry.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/bestiary.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.47451, 0.227451, 0.501961, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.25098, 0.2, 0.32549, 1 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "arrive"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.84, 0.84 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -30.0, -6.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "depart"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.84, 0.84 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 6.0, 30.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="bestiary" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 256, 144 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="listscroller" type="ScrollContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 280.0
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="list" type="VBoxContainer" parent="listscroller"]
+margin_right = 192.0
+margin_bottom = 272.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="enemy_entry" parent="." instance=ExtResource( 2 )]
+margin_left = 208.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -32.0
+
+[node name="underbuttons" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 208.0
+margin_top = 264.0
+margin_right = -8.0
+margin_bottom = -8.0
+alignment = 1
+
+[node name="egress" type="Button" parent="underbuttons"]
+margin_left = 125.0
+margin_right = 170.0
+margin_bottom = 16.0
+text = "Egress"
+
+[node name="nothing" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "This panel is empty for the moment :("
+align = 1
+valign = 1
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/arrive = SubResource( 3 )
+anims/depart = SubResource( 4 )
+
+[connection signal="pressed" from="underbuttons/egress" to="." method="_on_egress_pressed"]

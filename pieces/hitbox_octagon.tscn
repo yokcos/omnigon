@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="hitbox" type="CollisionPolygon2D"]
+polygon = PoolVector2Array( -4, 8, 4, 8, 8, 4, 8, -4, 4, -8, -4, -8, -8, -4, -8, 4 )

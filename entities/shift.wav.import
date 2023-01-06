@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shift.wav-0fff3ccee335f27b298bc685f59fc895.sample"
+
+[deps]
+
+source_file="res://entities/shift.wav"
+dest_files=[ "res://.import/shift.wav-0fff3ccee335f27b298bc685f59fc895.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

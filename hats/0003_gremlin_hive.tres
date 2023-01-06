@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0003_gremlin_hive.png" type="Texture" id=2]
+[ext_resource path="res://hats/0003_gremlin_hive_large.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "gremlin_hive"
+sprite = ExtResource( 2 )
+large_sprite = ExtResource( 3 )
+name = "Gremlin Hive"
+description = "A hat infested with dozens of Mattress Gremlins.
+You can feel them crawling on your scalp."
+height = 8.0

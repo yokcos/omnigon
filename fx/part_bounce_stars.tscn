@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fx/transient_particles.gd" type="Script" id=1]
+[ext_resource path="res://fx/part_star.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.790909 ), 0.0, 1.70657, 0, 0, Vector2( 1, 0 ), -2.22449, 0.0, 0, 0 ]
+
+[node name="part_bounce_stars" type="CPUParticles2D"]
+material = SubResource( 1 )
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.6
+texture = ExtResource( 2 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.4
+damping = 80.0
+damping_random = 0.2
+angle = 360.0
+angle_random = 1.0
+scale_amount = 1.2
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 2 )
+anim_speed = 8.0
+anim_speed_random = 0.1
+script = ExtResource( 1 )

@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 aa_colour: hint_color;
+uniform float base_step = 0.3;
+uniform float aa_step = 0.5;
+
+void fragment() {
+	float base_alpha = texture(TEXTURE, UV).a;
+	float alpha = 1.0 - step(base_alpha, base_step);
+	COLOR.a = alpha;
+	
+	float factor = base_alpha;
+	factor = step(factor, aa_step);
+	COLOR.rgb = mix( COLOR.rgb, aa_colour.rgb, factor );
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/aa_colour = Color( 0.47451, 0.227451, 0.501961, 1 )
+shader_param/base_step = 0.3
+shader_param/aa_step = 0.5

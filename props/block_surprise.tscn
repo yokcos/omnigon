@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://props/block_surprise.png" type="Texture" id=1]
+[ext_resource path="res://props/block_surprise.gd" type="Script" id=2]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 64.4981
+
+[node name="block_surprise" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="entity_detector" parent="." instance=ExtResource( 3 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
+visible = false
+shape = SubResource( 2 )
+
+[connection signal="activated" from="entity_detector" to="." method="_on_entity_detector_activated"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/spikes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/spike_wall.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2, 52 )
+
+[node name="spike_wall" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="spikes0" parent="." instance=ExtResource( 1 )]
+rotation = 1.57079
+
+[node name="spikes1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+rotation = 1.57079
+
+[node name="spikes2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -32 )
+rotation = 1.57079
+
+[node name="spikes3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -48 )
+rotation = 1.57079
+
+[node name="spikes4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -64 )
+rotation = 1.57079
+
+[node name="spikes5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -80 )
+rotation = 1.57079
+
+[node name="spikes6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -96 )
+rotation = 1.57079
+
+[node name="spikes7" parent="." instance=ExtResource( 1 )]
+rotation = -1.5708
+
+[node name="spikes8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+rotation = -1.5708
+
+[node name="spikes9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -32 )
+rotation = -1.5708
+
+[node name="spikes10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -48 )
+rotation = -1.5708
+
+[node name="spikes11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -64 )
+rotation = -1.5708
+
+[node name="spikes12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -80 )
+rotation = -1.5708
+
+[node name="spikes13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -96 )
+rotation = -1.5708
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -48 )
+shape = SubResource( 1 )

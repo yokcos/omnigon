@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://entities/enemies/crushenator.png" type="Texture" id=1]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
+[ext_resource path="res://props/interactables/sign.gd" type="Script" id=3]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=4]
+[ext_resource path="res://entities/enemies/crushenator.gd" type="Script" id=5]
+[ext_resource path="res://entities/enemies/data/crushenator.tres" type="Resource" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 15.5 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "dead"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="crushenator" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 5 )
+gravity_active = false
+can_be_bounced = false
+can_bounce = false
+enemy_data = ExtResource( 6 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="textor" type="Node2D" parent="."]
+script = ExtResource( 3 )
+highlight_distance = 64.0
+description = "Crushenator"
+verb = "Listen"
+title = "Sayeth Crushenator"
+text = "I was supposed to crush intruders like you, to death.
+But the price of bytes is up 300% in the last two years, and our boss is refusing to increase our wage to match.
+So I'm not doing it, feel free to intrude all you want."
+egress = "Oh thanks"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/dead = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 2 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "idle"
+
+[node name="fallen" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "dead"
+
+[connection signal="entered" from="fsm/fallen" to="." method="_on_fallen_entered"]

@@ -1,0 +1,146 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=3]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fsm/states/patrol_air.gd" type="Script" id=5]
+[ext_resource path="res://entities/enemies/floater.gd" type="Script" id=6]
+[ext_resource path="res://entities/enemies/floater.png" type="Texture" id=7]
+[ext_resource path="res://entities/enemies/data/floater.tres" type="Resource" id=8]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 256.0
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 48.0
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "attacc"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 1, 1.2, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "postattacc"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
+}
+
+[node name="floater" type="KinematicBody2D"]
+script = ExtResource( 6 )
+flip_path = NodePath("flippable")
+gravity_active = false
+enemy_data = ExtResource( 8 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+texture = ExtResource( 7 )
+hframes = 8
+vframes = 3
+
+[node name="hurtbox" parent="flippable" instance=ExtResource( 1 )]
+knockback = Vector2( 100, -45 )
+
+[node name="hitbox" type="CollisionPolygon2D" parent="flippable/hurtbox"]
+visible = false
+polygon = PoolVector2Array( -48, -16, -40, -32, -24, -48, 0, -56, 24, -48, 40, -32, 48, -8, 40, 24, 32, 40, 8, -16, 16, -24, 8, -32, -8, -32, -24, -24, -40, -8, -40, 16 )
+
+[node name="entity_detector" parent="flippable" instance=ExtResource( 4 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/entity_detector"]
+visible = false
+shape = SubResource( 9 )
+
+[node name="player_detector" parent="flippable" instance=ExtResource( 4 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/player_detector"]
+shape = SubResource( 10 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/attacc = SubResource( 2 )
+anims/idle = SubResource( 7 )
+anims/postattacc = SubResource( 4 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 2 )
+animator_path = NodePath("../animator")
+
+[node name="patrol" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+animation = "idle"
+speed = 50.0
+
+[node name="attacc" type="Node" parent="fsm"]
+script = ExtResource( 3 )
+animation = "attacc"
+auto_proceed = "patrol"
+recover_animation = "postattacc"
+acceleration = 3.0
+
+[connection signal="updated" from="flippable/entity_detector" to="." method="_on_entity_detector_updated"]
+[connection signal="updated" from="flippable/player_detector" to="." method="_on_player_detector_updated"]
+[connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ingressment.ogg-a0b153fccf550006733c98a26eea9892.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/ingressment.ogg"
+dest_files=[ "res://.import/ingressment.ogg-a0b153fccf550006733c98a26eea9892.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

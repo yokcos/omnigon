@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sneeze2.wav-22231a1ee569855f97f04018df3f319f.sample"
+
+[deps]
+
+source_file="res://sfx/sneeze2.wav"
+dest_files=[ "res://.import/sneeze2.wav-22231a1ee569855f97f04018df3f319f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

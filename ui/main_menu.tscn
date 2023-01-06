@@ -1,0 +1,303 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://ui/title.png" type="Texture" id=2]
+[ext_resource path="res://ui/main_menu.gd" type="Script" id=3]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/link.gd" type="Script" id=5]
+[ext_resource path="res://ui/icon_patreon.png" type="Texture" id=6]
+[ext_resource path="res://ui/icon_discord.png" type="Texture" id=7]
+[ext_resource path="res://ui/icon_yokcos.png" type="Texture" id=8]
+[ext_resource path="res://ui/icon_twitter.png" type="Texture" id=9]
+[ext_resource path="res://ui/icon_youtube.png" type="Texture" id=10]
+[ext_resource path="res://ui/icon_discord_highlihghted.png" type="Texture" id=11]
+[ext_resource path="res://ui/icon_yokcos_highlihghted.png" type="Texture" id=12]
+[ext_resource path="res://ui/icon_patreon_highlihghted.png" type="Texture" id=13]
+[ext_resource path="res://ui/icon_twitter_highlihghted.png" type="Texture" id=14]
+[ext_resource path="res://ui/icon_youtube_highlihghted.png" type="Texture" id=15]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("bar1:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 352, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bar0:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 209, -97 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("column:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("column:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 128, 224 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("bar1:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 352, 16 ), Vector2( 352, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bar0:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 209, -97 ), Vector2( 208, -112 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("column:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 56, 32 ), Vector2( 72, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("column:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 128, 224 ) ]
+}
+
+[node name="main_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="bar0" type="ColorRect" parent="."]
+margin_left = 209.0
+margin_top = -97.0
+margin_right = 328.999
+margin_bottom = 351.0
+rect_rotation = 45.0
+color = Color( 0.72549, 0.74902, 0.984314, 1 )
+
+[node name="bar1" type="ColorRect" parent="."]
+margin_left = 352.0
+margin_top = 32.0
+margin_right = 472.0
+margin_bottom = 480.0
+rect_rotation = 45.0
+color = Color( 0.72549, 0.74902, 0.984314, 1 )
+
+[node name="version" type="Label" parent="."]
+margin_left = 120.0
+margin_top = 264.0
+margin_right = 256.0
+margin_bottom = 280.0
+custom_colors/font_color = Color( 0.890196, 0.901961, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Demo v0001e"
+align = 1
+valign = 1
+
+[node name="domain" type="Label" parent="."]
+margin_left = 120.0
+margin_top = 272.0
+margin_right = 256.0
+margin_bottom = 288.0
+custom_colors/font_color = Color( 0.890196, 0.901961, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Omnigon is in the public domain"
+align = 1
+valign = 1
+
+[node name="author" type="Label" parent="."]
+margin_right = 96.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0.72549, 0.74902, 0.984314, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Made by Yokcos"
+align = 1
+valign = 1
+
+[node name="column" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = -32.0
+alignment = 1
+
+[node name="title" type="TextureRect" parent="column"]
+margin_top = 484.0
+margin_right = 128.0
+margin_bottom = 516.0
+texture = ExtResource( 2 )
+
+[node name="begin" type="Button" parent="column"]
+margin_top = 520.0
+margin_right = 128.0
+margin_bottom = 536.0
+text = "PLAY THE GAME"
+
+[node name="options" type="Button" parent="column"]
+margin_top = 540.0
+margin_right = 128.0
+margin_bottom = 556.0
+text = "CONFIGURATE"
+
+[node name="quit" type="Button" parent="column"]
+margin_top = 560.0
+margin_right = 128.0
+margin_bottom = 576.0
+text = "EGRESS"
+
+[node name="divider" type="HSeparator" parent="column"]
+margin_top = 580.0
+margin_right = 128.0
+margin_bottom = 584.0
+
+[node name="links" type="HBoxContainer" parent="column"]
+margin_top = 588.0
+margin_right = 128.0
+margin_bottom = 604.0
+
+[node name="link_yokcos" type="TextureButton" parent="column/links"]
+margin_right = 16.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 12 )
+texture_disabled = ExtResource( 8 )
+texture_focused = ExtResource( 12 )
+script = ExtResource( 5 )
+
+[node name="link_patreon" type="TextureButton" parent="column/links"]
+margin_left = 24.0
+margin_right = 40.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 13 )
+script = ExtResource( 5 )
+url = "https://www.patreon.com/yokcos"
+
+[node name="link_discord" type="TextureButton" parent="column/links"]
+margin_left = 48.0
+margin_right = 64.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
+texture_disabled = ExtResource( 7 )
+texture_focused = ExtResource( 11 )
+script = ExtResource( 5 )
+url = "https://discord.gg/6cXD2Qt"
+
+[node name="link_youtube" type="TextureButton" parent="column/links"]
+margin_left = 72.0
+margin_right = 88.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 15 )
+texture_disabled = ExtResource( 10 )
+texture_focused = ExtResource( 15 )
+script = ExtResource( 5 )
+url = "https://www.youtube.com/channel/UCsWzrsWYbhL4petjlBxz_KQ"
+
+[node name="link_twitter" type="TextureButton" parent="column/links"]
+margin_left = 96.0
+margin_right = 112.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 14 )
+texture_disabled = ExtResource( 9 )
+texture_focused = ExtResource( 14 )
+script = ExtResource( 5 )
+url = "https://twitter.com/yokcos700"
+
+[node name="right_half" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+
+[node name="panel" type="Panel" parent="right_half"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="overlay" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[connection signal="pressed" from="column/begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="column/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="column/quit" to="." method="_on_quit_pressed"]

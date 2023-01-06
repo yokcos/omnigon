@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/googlyspring.png" type="Texture" id=2]
+[ext_resource path="res://props/googlyspring.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 24 )
+
+[node name="googlyspring" type="KinematicBody2D"]
+script = ExtResource( 3 )
+flip_path = NodePath("flippable")
+title = "Googly The Invincible"
+max_hp = 1e+06
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
+
+[node name="flippable" type="Node2D" parent="."]
+
+[node name="auto_sprite" parent="flippable" instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+hframes = 6

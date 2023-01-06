@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://ui/popup.gd" type="Script" id=2]
+[ext_resource path="res://misc/fnt_raleway_tiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://misc/mat_opacifier_double.tres" type="Material" id=4]
+
+[node name="popup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="stuff" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 128.0
+margin_top = 24.0
+margin_right = -128.0
+margin_bottom = -24.0
+
+[node name="bac" type="Panel" parent="stuff"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="undertitle" type="ColorRect" parent="stuff"]
+anchor_right = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = 33.0
+color = Color( 0.47451, 0.227451, 0.501961, 1 )
+
+[node name="title" type="Label" parent="stuff"]
+anchor_right = 1.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "TITLE"
+align = 1
+valign = 1
+
+[node name="divider0" type="HSeparator" parent="stuff"]
+anchor_right = 1.0
+margin_top = 32.0
+margin_bottom = 36.0
+
+[node name="text" type="Label" parent="stuff"]
+material = ExtResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 48.0
+margin_right = -16.0
+margin_bottom = -48.0
+custom_fonts/font = ExtResource( 3 )
+text = "ERROR: Herein lies some text which must be read in order to be understood"
+valign = 1
+autowrap = true
+
+[node name="divider1" type="HSeparator" parent="stuff"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_bottom = -36.0
+
+[node name="egress" type="Button" parent="stuff"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -8.0
+text = "Alrighty then"
+
+[node name="tween" type="Tween" parent="."]
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="stuff/egress" to="." method="_on_egress_pressed"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

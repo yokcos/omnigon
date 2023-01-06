@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc1/behold.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc1/0005_beholdartisticcreation.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "behold"
+title = "Behold Artistic Creation"
+lore = "While our great Kingdom of Bones is an eternal and peerless hub of artistry and technology, sometimes one does have to admit that worthwhile pieces have been made by people currently outside of our borders. To sit and enjoy these foreign works shall no doubt be good for the soul."
+audio = ExtResource( 2 )
+icon = ExtResource( 3 )

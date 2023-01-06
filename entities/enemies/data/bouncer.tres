@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://entities/enemies/data/enemy.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/bouncer.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 48 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+id = "bouncer"
+name = "The Bouncer"
+desc = "A guardian who has sawed off its own legs, and replaced them with springs in order to bounce higher"
+lore = "The most formidable guard that this facility has to offer so far, and the first to give more than a token defense.
+What kind of culture do they have up here in this fetid northern Empaire, where people decide voluntarily to un-leg themselves?"
+frames = SubResource( 5 )
+sprite_rect = Rect2( 8, 0, 48, 48 )

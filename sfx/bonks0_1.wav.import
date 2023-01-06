@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bonks0_1.wav-91253da837074ee79901c969ab49447a.sample"
+
+[deps]
+
+source_file="res://sfx/bonks0_1.wav"
+dest_files=[ "res://.import/bonks0_1.wav-91253da837074ee79901c969ab49447a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

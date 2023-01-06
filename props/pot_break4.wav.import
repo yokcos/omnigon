@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pot_break4.wav-1018a6e3da8acc1f80ba3ecc5f94214e.sample"
+
+[deps]
+
+source_file="res://props/pot_break4.wav"
+dest_files=[ "res://.import/pot_break4.wav-1018a6e3da8acc1f80ba3ecc5f94214e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

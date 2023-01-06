@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/interactables/pipe.png" type="Texture" id=1]
+[ext_resource path="res://props/interactables/pipe_vertices.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 10 )
+
+[node name="pipe" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="body" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="sprite" type="Sprite" parent="body"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="hitbox" type="CollisionShape2D" parent="body"]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )

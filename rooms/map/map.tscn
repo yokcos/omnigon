@@ -1,0 +1,133 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
+[ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/start.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rooms/shapeshifter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://rooms/deathbutton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/pitfall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rooms/do_not_feed.tscn" type="PackedScene" id=7]
+[ext_resource path="res://rooms/adepts.tscn" type="PackedScene" id=8]
+[ext_resource path="res://rooms/warning.tscn" type="PackedScene" id=9]
+[ext_resource path="res://rooms/spikefloor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://rooms/eye_room.tscn" type="PackedScene" id=11]
+[ext_resource path="res://rooms/aghastor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://rooms/nofloor.tscn" type="PackedScene" id=13]
+[ext_resource path="res://rooms/overstart.tscn" type="PackedScene" id=14]
+[ext_resource path="res://rooms/megaladder.tscn" type="PackedScene" id=15]
+[ext_resource path="res://rooms/corners.tscn" type="PackedScene" id=16]
+[ext_resource path="res://rooms/junction0.tscn" type="PackedScene" id=17]
+[ext_resource path="res://rooms/overstartB.tscn" type="PackedScene" id=18]
+[ext_resource path="res://rooms/arena.tscn" type="PackedScene" id=19]
+[ext_resource path="res://rooms/map/map.gd" type="Script" id=20]
+[ext_resource path="res://rooms/overmegaladder.tscn" type="PackedScene" id=21]
+[ext_resource path="res://rooms/over_aghastor.tscn" type="PackedScene" id=22]
+[ext_resource path="res://rooms/s.tscn" type="PackedScene" id=23]
+[ext_resource path="res://rooms/deathfromabove.tscn" type="PackedScene" id=24]
+[ext_resource path="res://rooms/breakthrough.tscn" type="PackedScene" id=25]
+[ext_resource path="res://rooms/disposal.tscn" type="PackedScene" id=26]
+[ext_resource path="res://rooms/adversary.tscn" type="PackedScene" id=27]
+[ext_resource path="res://rooms/division.tscn" type="PackedScene" id=28]
+[ext_resource path="res://rooms/detonation.tscn" type="PackedScene" id=29]
+[ext_resource path="res://rooms/prebouncer.tscn" type="PackedScene" id=30]
+[ext_resource path="res://rooms/bouncer.tscn" type="PackedScene" id=31]
+[ext_resource path="res://rooms/postbouncer.tscn" type="PackedScene" id=32]
+[ext_resource path="res://rooms/bouncycastle.tscn" type="PackedScene" id=33]
+
+[node name="map" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="start" parent="." instance=ExtResource( 3 )]
+
+[node name="second" parent="." instance=ExtResource( 1 )]
+position = Vector2( 512, 0 )
+
+[node name="junction1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1024, -256 )
+
+[node name="junction0" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1024, -512 )
+
+[node name="pitfall" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1536, 0 )
+
+[node name="shapeshifter" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1536, 256 )
+
+[node name="do_not_feed" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1536, 512 )
+
+[node name="adepts" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2048, -256 )
+
+[node name="deathbutton" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2560, 0 )
+
+[node name="corners" parent="." instance=ExtResource( 16 )]
+position = Vector2( 2048, -512 )
+
+[node name="overstartB" parent="." instance=ExtResource( 18 )]
+position = Vector2( 0, -256 )
+
+[node name="overstart" parent="." instance=ExtResource( 14 )]
+position = Vector2( 0, -512 )
+
+[node name="spikefloor" parent="." instance=ExtResource( 10 )]
+position = Vector2( 512, -512 )
+
+[node name="nofloor" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1536, -512 )
+
+[node name="warning" parent="." instance=ExtResource( 9 )]
+position = Vector2( -1024, 0 )
+
+[node name="eye_room" parent="." instance=ExtResource( 11 )]
+position = Vector2( -1536, 0 )
+
+[node name="aghastor" parent="." instance=ExtResource( 12 )]
+position = Vector2( -2048, 0 )
+
+[node name="sawhead" parent="." instance=ExtResource( 19 )]
+position = Vector2( -2560, 0 )
+
+[node name="megaladder" parent="." instance=ExtResource( 15 )]
+position = Vector2( -3072, -256 )
+
+[node name="overmegaladder" parent="." instance=ExtResource( 21 )]
+position = Vector2( -3072, -512 )
+
+[node name="over_aghastor" parent="." instance=ExtResource( 22 )]
+position = Vector2( -2560, -512 )
+
+[node name="s" parent="." instance=ExtResource( 23 )]
+position = Vector2( -1536, -768 )
+
+[node name="deathfromabove" parent="." instance=ExtResource( 24 )]
+position = Vector2( -1024, -768 )
+
+[node name="disposal" parent="." instance=ExtResource( 26 )]
+position = Vector2( -1024, -512 )
+
+[node name="breakthrough" parent="." instance=ExtResource( 25 )]
+position = Vector2( -1536, -256 )
+
+[node name="adversary" parent="." instance=ExtResource( 27 )]
+position = Vector2( 0, -768 )
+
+[node name="division" parent="." instance=ExtResource( 28 )]
+position = Vector2( 1024, -768 )
+
+[node name="detonation" parent="." instance=ExtResource( 29 )]
+position = Vector2( 1536, -768 )
+
+[node name="prebouncer" parent="." instance=ExtResource( 30 )]
+position = Vector2( 1024, -1024 )
+
+[node name="bouncer" parent="." instance=ExtResource( 31 )]
+position = Vector2( 2048, -1280 )
+
+[node name="postbouncer" parent="." instance=ExtResource( 32 )]
+position = Vector2( 3072, -1024 )
+
+[node name="bouncycastle" parent="." instance=ExtResource( 33 )]
+position = Vector2( -3584, -512 )

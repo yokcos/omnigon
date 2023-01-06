@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fx/transient_particles.gd" type="Script" id=1]
+[ext_resource path="res://fx/part_orangegreen.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.30389, 0.0, 0, 0 ]
+
+[node name="part_orangegreen_slam" type="CPUParticles2D"]
+material = SubResource( 1 )
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 0.95
+lifetime_randomness = 0.8
+texture = ExtResource( 2 )
+spread = 90.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 1.0
+damping = 100.0
+angle = 360.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 2 )
+anim_speed = 1.0
+anim_speed_random = 0.6
+script = ExtResource( 1 )

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc1/ingressment.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc1/0008_ingressment.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "ingressment"
+title = "Ingressment"
+lore = "There is, it would appear, more to this empaire than first meets the eyeballholes. For all the charlatans and knaves up here, I am not drowning in them, thirsty for even a single reasonable individual. No, there are decent people aplenty here. Perhaps this day will not be one of heroically espionagifying villains most vile, but of righteously requisitioning the machinations of reasonable individuals who for some reason have joined the side of evil in this conflict. Where's all their time research anyway?"
+audio = ExtResource( 2 )
+icon = ExtResource( 3 )

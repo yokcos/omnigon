@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bouncer_bounce.wav-180f2e5ce3c35bedcf44c18893f64841.sample"
+
+[deps]
+
+source_file="res://entities/enemies/bouncer_bounce.wav"
+dest_files=[ "res://.import/bouncer_bounce.wav-180f2e5ce3c35bedcf44c18893f64841.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

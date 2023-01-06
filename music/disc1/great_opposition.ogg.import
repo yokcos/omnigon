@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/great_opposition.ogg-c08f089939a63730f252f9213c1d70fb.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/great_opposition.ogg"
+dest_files=[ "res://.import/great_opposition.ogg-c08f089939a63730f252f9213c1d70fb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

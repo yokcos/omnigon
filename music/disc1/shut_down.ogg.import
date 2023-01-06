@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shut_down.ogg-917f9c11aa058ef714ac42013159ff68.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/shut_down.ogg"
+dest_files=[ "res://.import/shut_down.ogg-917f9c11aa058ef714ac42013159ff68.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

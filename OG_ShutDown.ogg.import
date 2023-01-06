@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OG_ShutDown.ogg-8bd2cd4369db048ee69369d7ff95cb6b.oggstr"
+
+[deps]
+
+source_file="res://OG_ShutDown.ogg"
+dest_files=[ "res://.import/OG_ShutDown.ogg-8bd2cd4369db048ee69369d7ff95cb6b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

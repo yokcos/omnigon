@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://entities/enemies/airhead.png" type="Texture" id=1]
+[ext_resource path="res://entities/enemies/data/airhead.tres" type="Resource" id=2]
+[ext_resource path="res://entities/enemies/airhead.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8, 4 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "ascend"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="airhead" type="KinematicBody2D"]
+script = ExtResource( 4 )
+gravity_active = false
+enemy_data = ExtResource( 2 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="ceiling_detector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="ceiling_detector"]
+position = Vector2( 0, -4 )
+shape = SubResource( 10 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+position = Vector2( 0, 8 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 2
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/ascend = SubResource( 9 )
+anims/idle = SubResource( 7 )
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="ceiling_detector" to="." method="_on_ceiling_detector_body_entered"]
+[connection signal="timeout" from="timer" to="." method="ascend"]

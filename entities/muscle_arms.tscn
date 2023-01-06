@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/upgrade.gd" type="Script" id=1]
+[ext_resource path="res://entities/muscle_arms.png" type="Texture" id=2]
+
+[node name="muscle_arms" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( 1 )
+upgrade_id = "blademaster_recover"
+upgrade_name = "Workout Routine"
+upgrade_desc = "Blademasters will now be able to get back up after falling down."
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

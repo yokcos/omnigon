@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0001_vitality.png" type="Texture" id=2]
+[ext_resource path="res://hats/0001_vitality_large.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "vitality"
+sprite = ExtResource( 2 )
+large_sprite = ExtResource( 3 )
+name = "Vitality Topper"
+description = "Gives you the boon of ONE (1) extra hit point"
+height = 8.0

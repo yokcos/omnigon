@@ -1,0 +1,707 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://entities/player.gd" type="Script" id=1]
+[ext_resource path="res://entities/player.png" type="Texture" id=2]
+[ext_resource path="res://fsm/state_revealer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=4]
+[ext_resource path="res://fsm/states/normal.gd" type="Script" id=5]
+[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=6]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=7]
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fsm/states/force_move.gd" type="Script" id=9]
+[ext_resource path="res://fsm/states/player_climb.gd" type="Script" id=10]
+[ext_resource path="res://entities/cam.gd" type="Script" id=11]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=12]
+[ext_resource path="res://fsm/states/player_sitting.gd" type="Script" id=13]
+
+[sub_resource type="RectangleShape2D" id=104]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="RectangleShape2D" id=105]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=108]
+extents = Vector2( 12, 8 )
+
+[sub_resource type="Animation" id=116]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=117]
+resource_name = "attacc"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -15 ), Vector2( -8, -14 ), Vector2( -7, -14 ), Vector2( -5, -14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=118]
+resource_name = "climb"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -15 ), Vector2( 0, -14 ), Vector2( 0, -15 ), Vector2( 0, -16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=119]
+resource_name = "climb_down"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 38, 37, 36, 35, 34, 33, 32 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, -15 ), Vector2( 0, -15 ), Vector2( -1, -15 ), Vector2( -2, -15 ), Vector2( -1, -15 ), Vector2( 0, -15 ), Vector2( 1, -15 ), Vector2( 2, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5.0, 0.0, -5.0, -10.0, -5.0, 0.0, 5.0, 10.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "climb_sfx"
+}, {
+"args": [  ],
+"method": "climb_sfx"
+} ]
+}
+
+[sub_resource type="Animation" id=120]
+resource_name = "climb_up"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, -15 ), Vector2( 1, -15 ), Vector2( 0, -15 ), Vector2( -1, -15 ), Vector2( -2, -15 ), Vector2( -1, -15 ), Vector2( 0, -15 ), Vector2( 1, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10.0, 5.0, 0.0, -5.0, -10.0, -5.0, 0.0, 5.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "climb_sfx"
+}, {
+"args": [  ],
+"method": "climb_sfx"
+} ]
+}
+
+[sub_resource type="Animation" id=121]
+resource_name = "idle"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.6, 0.8, 0.9, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -14 ), Vector2( 0, -16 ), Vector2( 0, -15 ), Vector2( 0, -14 ), Vector2( 0, -13 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=122]
+resource_name = "postattacc"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 4, -15 ), Vector2( 3, -15 ), Vector2( 1, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=123]
+resource_name = "postshift"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -18 ), Vector2( 0, -17 ), Vector2( 0, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=124]
+resource_name = "run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -12 ), Vector2( 0, -12 ), Vector2( 1, -12 ), Vector2( 0, -12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -10.0, 0.0, 10.0, 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
+
+[sub_resource type="Animation" id=125]
+resource_name = "shift"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -15 ), Vector2( 0, -14 ), Vector2( 0, -12 ), Vector2( 0, -9 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=126]
+resource_name = "sit"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43, 44, 45, 46 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -15 ), Vector2( 0, -14 ), Vector2( 0, -10 ), Vector2( 0, -8 ), Vector2( 0, -7 ), Vector2( 0, -4 ), Vector2( 0, -3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_sitting"
+} ]
+}
+
+[sub_resource type="Animation" id=127]
+resource_name = "unsit"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 46, 45, 44, 43, 42, 41, 40 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -3 ), Vector2( 0, -4 ), Vector2( 0, -7 ), Vector2( 0, -8 ), Vector2( 0, -10 ), Vector2( 0, -14 ), Vector2( 0, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="player" type="KinematicBody2D" groups=["players"]]
+collision_mask = 7
+script = ExtResource( 1 )
+can_flip_by_default = false
+flip_path = NodePath("flippable")
+team = 0
+acceleration = 2000.0
+speed = 200.0
+jump_speed = 450.0
+saving_enabled = false
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 104 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="shiftbox" type="Area2D" parent="flippable"]
+collision_layer = 8
+collision_mask = 15
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/shiftbox"]
+modulate = Color( 0.768627, 0.25098, 0.713726, 1 )
+position = Vector2( 24, 0 )
+shape = SubResource( 105 )
+
+[node name="fistbox" parent="flippable" instance=ExtResource( 8 )]
+position = Vector2( 20, 0 )
+target_teams = [ 1 ]
+knockback = Vector2( 100, -45 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/fistbox"]
+shape = SubResource( 108 )
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 6
+frame = 9
+
+[node name="hats" type="Node2D" parent="flippable"]
+position = Vector2( 0, -12 )
+
+[node name="cam" type="Camera2D" parent="."]
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+script = ExtResource( 11 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 4 )
+animator_path = NodePath("../animator")
+
+[node name="normal" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+
+[node name="stunned" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "idle"
+auto_proceed = "normal"
+duration = 0.2
+
+[node name="attacc" type="Node" parent="fsm"]
+script = ExtResource( 7 )
+animation = "attacc"
+auto_proceed = "normal"
+recover_animation = "postattacc"
+
+[node name="shift" type="Node" parent="fsm"]
+script = ExtResource( 7 )
+animation = "shift"
+auto_proceed = "normal"
+recover_animation = "postshift"
+
+[node name="force_move" type="Node" parent="fsm"]
+script = ExtResource( 9 )
+auto_proceed = "stunned"
+direction_to_face = 1
+
+[node name="climb" type="Node" parent="fsm"]
+script = ExtResource( 10 )
+animation = "climb"
+
+[node name="sitting" type="Node" parent="fsm"]
+script = ExtResource( 13 )
+animation = "sit"
+
+[node name="unsitting" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+animation = "unsit"
+auto_proceed = "normal"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 116 )
+anims/attacc = SubResource( 117 )
+anims/climb = SubResource( 118 )
+anims/climb_down = SubResource( 119 )
+anims/climb_up = SubResource( 120 )
+anims/idle = SubResource( 121 )
+anims/postattacc = SubResource( 122 )
+anims/postshift = SubResource( 123 )
+anims/run = SubResource( 124 )
+anims/shift = SubResource( 125 )
+anims/sit = SubResource( 126 )
+anims/unsit = SubResource( 127 )
+
+[node name="state_revealer" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = -64.0
+margin_top = -80.0
+margin_right = 64.0
+margin_bottom = -64.0
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+fsm_path = NodePath("../fsm")
+
+[node name="debug" type="Label" parent="."]
+margin_left = -64.0
+margin_top = 24.0
+margin_right = 64.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+align = 1
+valign = 2
+
+[connection signal="damage_taken" from="." to="fsm/climb" method="_on_damage_taken"]
+[connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="activated" from="fsm/shift" to="." method="_on_shift_activated"]

@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/enemies/chandeloser.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/chandeloser_anchor.png" type="Texture" id=3]
+[ext_resource path="res://entities/enemies/chandeloser.gd" type="Script" id=4]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=5]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=6]
+[ext_resource path="res://entities/enemies/data/chandeloser.tres" type="Resource" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 8 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "dead"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="chandeloser" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 4 )
+gravity_active = false
+can_be_bounced = false
+can_bounce = false
+enemy_data = ExtResource( 7 )
+
+[node name="sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 8
+
+[node name="anchor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -40 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 8 )
+hframes = 4
+
+[node name="anchorfinder" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -256 )
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="floorfinder" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 512 )
+collision_mask = 4
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/dead = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 5 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "idle"
+
+[node name="fallen" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "dead"
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="entered" from="fsm/fallen" to="." method="_on_fallen_entered"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

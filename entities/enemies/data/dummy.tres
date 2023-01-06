@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://entities/enemies/data/enemy.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/dummy.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+id = "dummy"
+name = "Target Dummy"
+desc = "Does not yet know how to attack you back"
+lore = "People who are unable or unwilling to retaliate once they find themselves in a fight. Certainly a very easy kill."
+frames = SubResource( 2 )
+sprite_rect = Rect2( 0, 0, 0, 0 )

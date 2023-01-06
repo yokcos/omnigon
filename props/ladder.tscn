@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/ladder.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 16, 20 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 4 )
+
+[node name="ladder" type="Area2D"]
+z_index = -10
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="top" type="StaticBody2D" parent="."]
+position = Vector2( 0, -8 )
+
+[node name="hitbox" type="CollisionShape2D" parent="top"]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
+one_way_collision = true

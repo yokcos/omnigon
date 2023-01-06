@@ -1,0 +1,56 @@
+extends Control
+
+
+var active: bool = true
+
+const obj_hats = preload("res://ui/hats.tscn")
+
+signal quit
+
+
+func _ready() -> void:
+	seize_focus()
+	connect_list()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack") and active:
+		egress()
+
+
+func connect_list():
+	var buttons = $buttons.get_children()
+	var first: Button = buttons[0]
+	var last: Button = buttons[buttons.size() - 1]
+	
+	var f2l: NodePath = first.get_path_to(last)
+	var l2f: NodePath = last.get_path_to(first)
+	
+	first.focus_neighbour_top = f2l
+	last.focus_neighbour_bottom = l2f
+	
+	first.focus_previous = f2l
+	last.focus_next = l2f
+
+func seize_focus():
+	$buttons.get_children()[0].grab_focus()
+	active = true
+
+func egress():
+	emit_signal("quit")
+
+
+func _on_hats_pressed() -> void:
+	var new_hats = obj_hats.instance()
+	new_hats.connect("quit", self, "_on_overlayer_quit")
+	new_hats.pause_mode = PAUSE_MODE_PROCESS
+	Game.deploy_ui_instance(new_hats, Vector2())
+	
+	get_parent().hide()
+	active = false
+
+func _on_egress_pressed() -> void:
+	egress()
+
+func _on_overlayer_quit():
+	get_parent().show()
+	seize_focus()

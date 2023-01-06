@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/eyesaac_shoot2.wav-7db9ff23bfdf05460413c7c3bad0d573.sample"
+
+[deps]
+
+source_file="res://entities/enemies/eyesaac_shoot2.wav"
+dest_files=[ "res://.import/eyesaac_shoot2.wav-7db9ff23bfdf05460413c7c3bad0d573.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

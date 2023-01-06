@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://pieces/wall_changer.gd" type="Script" id=1]
+
+[node name="wall_changer" type="Node2D"]
+script = ExtResource( 1 )
+target_tiles = null
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="ul" type="Line2D" parent="visuals"]
+position = Vector2( -16, -16 )
+points = PoolVector2Array( 0, 16, 0, 0, 16, 0 )
+width = 2.0
+default_color = Color( 0.141176, 0.623529, 0.870588, 1 )
+
+[node name="ur" type="Line2D" parent="visuals"]
+position = Vector2( 16, -16 )
+points = PoolVector2Array( 0, 16, 0, 0, -16, 0 )
+width = 2.0
+default_color = Color( 0.141176, 0.623529, 0.870588, 1 )
+
+[node name="bl" type="Line2D" parent="visuals"]
+position = Vector2( -16, 16 )
+points = PoolVector2Array( 0, -16, 0, 0, 16, 0 )
+width = 2.0
+default_color = Color( 0.141176, 0.623529, 0.870588, 1 )
+
+[node name="br" type="Line2D" parent="visuals"]
+position = Vector2( 16, 16 )
+points = PoolVector2Array( 0, -16, 0, 0, -16, 0 )
+width = 2.0
+default_color = Color( 0.141176, 0.623529, 0.870588, 1 )

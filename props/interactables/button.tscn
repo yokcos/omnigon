@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://props/interactables/button.png" type="Texture" id=1]
+[ext_resource path="res://props/interactables/button.gd" type="Script" id=2]
+[ext_resource path="res://props/interactables/interactable.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 12 )
+
+[node name="button" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="interactable" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="sprite" type="Sprite" parent="interactable"]
+texture = ExtResource( 1 )
+
+[connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/artwork/artwork_menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/keyable_button.gd" type="Script" id=2]
+
+[node name="menu" type="Control"]
+margin_right = 200.0
+margin_bottom = 96.0
+script = ExtResource( 1 )
+
+[node name="buttons" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="hats" type="Button" parent="buttons"]
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 46.0
+text = "HATS"
+script = ExtResource( 2 )
+
+[node name="egress" type="Button" parent="buttons"]
+margin_top = 50.0
+margin_right = 200.0
+margin_bottom = 70.0
+text = "EGRESS"
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="buttons/hats" to="." method="_on_hats_pressed"]
+[connection signal="pressed" from="buttons/egress" to="." method="_on_egress_pressed"]

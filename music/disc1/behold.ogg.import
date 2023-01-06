@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/behold.ogg-38546b865c57ddd6a90860e6b1082481.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/behold.ogg"
+dest_files=[ "res://.import/behold.ogg-38546b865c57ddd6a90860e6b1082481.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
