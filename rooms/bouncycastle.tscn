@@ -52,9 +52,7 @@ position = Vector2( 256, 168 )
 [node name="sign" parent="." instance=ExtResource( 2 )]
 position = Vector2( 352, 176 )
 description = "Sign of Text"
-text = "Thank you for playing the Omnigon demo!
-Please enjoy your reward: Unlimited access to this bouncy castle, and a question:
-What is the name that we shall bless this protagonist with?"
+text = "And so our great protagonist Pbot successfully reached the end of the Omnigon demo, and was able to claim the ultimate reward: Unlimited access to this bouncy castle!"
 
 [node name="stats" type="Control" parent="."]
 margin_left = 16.0

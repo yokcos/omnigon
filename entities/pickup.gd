@@ -4,6 +4,7 @@ extends RigidBody2D
 var highlight_distance = 80
 var can_be_collected: bool = false
 var thru_walls: bool = true
+var announcement: String = ""
 
 var tex_fx = preload("res://fx/hat_collect.png")
 var current_tooltip: Node2D = null
@@ -12,6 +13,7 @@ var active: bool = true
 
 const obj_hitbox = preload("res://pieces/hitbox_octagon.tscn")
 const obj_detector = preload("res://pieces/entity_detector.tscn")
+const obj_announcement = preload("res://entities/announcement_text.tscn")
 var obj_tooltip: PackedScene
 
 
@@ -62,6 +64,10 @@ func destroy_tooltip():
 func activate():
 	Game.deploy_fx(tex_fx, global_position, 8)
 	destroy_tooltip()
+	if announcement != "":
+		var new_announcement = obj_announcement.instance()
+		new_announcement.text = announcement
+		Game.deploy_ui_instance(new_announcement, global_position - new_announcement.rect_size/2 + Vector2(0, -16))
 	queue_free()
 
 

@@ -10,6 +10,7 @@ var source_position: Vector2 = Vector2()
 
 func _ready() -> void:
 	obj_tooltip = preload("res://ui/lighter_announcement.tscn")
+	announcement = "Lighter Acquired!"
 
 
 func deploy_tooltip():

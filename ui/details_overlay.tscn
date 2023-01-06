@@ -149,7 +149,7 @@ margin_bottom = 16.0
 rect_rotation = -89.9999
 align = 1
 script = ExtResource( 2 )
-base_text = "{shift} to shapeshift"
+base_text = "{shift} to shapeshift the screen"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
