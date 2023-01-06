@@ -38,7 +38,7 @@ var texts = [
 	"Thanks aggy daggy!",
 ]
 var current_texts = {}
-var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which you mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"
+var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which I mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"
 
 const obj_text = preload("res://ui/mainmenu_text.tscn")
 const obj_options = preload("res://ui/options/options.tscn")

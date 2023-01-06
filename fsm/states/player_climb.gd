@@ -51,6 +51,10 @@ func _handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		set_state(exit_state)
 		father.jump(0.75)
+	
+	if event.is_action_pressed("move_left") or event.is_action_pressed("move_right"):
+		set_state(exit_state)
+		father.air_time = 0
 
 
 func limit_height():

@@ -152,23 +152,25 @@ func resolve_extra_data():
 	
 	PlayerStats.extra_data = []
 
-func cling_to_ladder():
-	var ladder = get_overlapping_ladder()
+func cling_to_ladder(up: bool = false):
+	var ladder = get_overlapping_ladder(up)
 	if ladder:
 		$fsm.states["climb"].ladder = ladder
 		$fsm.set_state_string("climb")
 
-func get_overlapping_ladder() -> Area2D:
+func get_overlapping_ladder(up: bool = false) -> Area2D:
 	var best_offset: float = 1000000
 	var best_ladder: Area2D = null
+	var upper_margin: float = 32
 	
 	for ladder in get_tree().get_nodes_in_group("ladders"):
 		if ladder is Area2D:
 			if ladder.get_overlapping_bodies().has(self):
-				var this_offset: float = abs(ladder.global_position.x - global_position.x)
-				if this_offset < best_offset:
-					best_offset = this_offset
-					best_ladder = ladder
+				if !up or ladder.global_position.y <= global_position.y + upper_margin:
+					var this_offset: float = abs(ladder.global_position.x - global_position.x)
+					if this_offset < best_offset:
+						best_offset = this_offset
+						best_ladder = ladder
 	
 	return best_ladder
 

@@ -12,6 +12,11 @@ func _step(delta: float) -> void:
 	._step(delta)
 	
 	move_normally(delta)
+	
+	if Input.is_action_pressed("move_up"):
+		father.cling_to_ladder(true)
+	if Input.is_action_pressed("move_down"):
+		father.cling_to_ladder(false)
 
 func _handle_input(event: InputEvent) -> void:
 	if father.is_controlled:
@@ -34,13 +39,6 @@ func _handle_input(event: InputEvent) -> void:
 			else:
 				if PlayerStats.eyes == PlayerStats.EYES_SHAPESHIFTER:
 					set_state("shift")
-		
-		if event.is_action_pressed("move_up") or event.is_action_pressed("move_down"):
-			#var ladder = father.get_overlapping_ladder()
-			#if ladder:
-			#	get_parent().states["climb"].ladder = ladder
-			#	set_state("climb")
-			father.cling_to_ladder()
 
 
 func move_normally(delta: float):
