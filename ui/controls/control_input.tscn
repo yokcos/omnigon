@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/controls/control_input.gd" type="Script" id=1]
+[ext_resource path="res://misc/fnt_tiny_outline.tres" type="DynamicFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.47451, 0.227451, 0.501961, 1 )
@@ -26,3 +27,25 @@ margin_top = 5.0
 margin_right = 30.0
 margin_bottom = 19.0
 focus_mode = 1
+
+[node name="cover" type="Control" parent="."]
+visible = false
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 30.0
+margin_bottom = 22.0
+
+[node name="guide" type="Label" parent="cover"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -88.0
+margin_top = -18.0
+margin_right = 80.0
+margin_bottom = -2.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_colors/font_outline_modulate = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "ESC to cancel, BACKSPACE to remove"
+align = 1
+valign = 1

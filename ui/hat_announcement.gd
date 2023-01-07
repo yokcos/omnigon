@@ -5,7 +5,7 @@ var hat: Hat = null
 
 
 func _ready():
-	$panel/bac/instruction.text = "You may switch hats in\ntimes of rejuvination\nPress '%s' to grab" % Game.get_input_string("interact")
+	$panel/bac/instruction.text = "You may switch hats in\ntimes of rejuvenation\nPress '%s' to grab" % Game.get_input_string("interact")
 
 func set_hat(what: Hat):
 	hat = what

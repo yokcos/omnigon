@@ -2,6 +2,7 @@ extends Control
 
 
 var animation_duration = 0.5
+var items = []
 
 
 func _ready() -> void:
@@ -9,11 +10,25 @@ func _ready() -> void:
 	
 	connect_buttons()
 	arrive_animation()
+	catalogue_controls()
+	
+	for i in $list.get_children():
+		if i is HBoxContainer:
+			i.connect("list_changed", self, "_on_list_changed")
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		depart_animation()
 
+
+func catalogue_controls():
+	items = []
+	
+	for list in $list.get_children():
+		if list is HBoxContainer:
+			for item in list.get_children():
+				if item is PanelContainer:
+					items.append(item)
 
 func get_connectable(what: Control):
 	if what is HBoxContainer:
@@ -35,13 +50,26 @@ func connect_buttons():
 		var prev_control: Control = controllses[prev_index]
 		
 		if this_control is HBoxContainer:
+			var these_items: Array = []
+			
 			for this_item in this_control.get_children():
 				if this_item is PanelContainer:
-					this_item.focus_neighbour_bottom = this_item.get_path_to(get_connectable(next_control))
-					this_item.focus_next = this_item.get_path_to(get_connectable(next_control))
-					
-					this_item.focus_neighbour_top = this_item.get_path_to(get_connectable(prev_control))
-					this_item.focus_previous = this_item.get_path_to(get_connectable(prev_control))
+					these_items.append(this_item)
+			
+			for j in range( these_items.size() ):
+				var this_item: PanelContainer = these_items[j]
+				var next_item: PanelContainer = these_items[posmod(j+1, these_items.size())]
+				var prev_item: PanelContainer = these_items[posmod(j-1, these_items.size())]
+				
+				this_item.focus_neighbour_bottom = this_item.get_path_to(get_connectable(next_control))
+				this_item.focus_next = this_item.get_path_to(get_connectable(next_control))
+				
+				this_item.focus_neighbour_top = this_item.get_path_to(get_connectable(prev_control))
+				this_item.focus_previous = this_item.get_path_to(get_connectable(prev_control))
+				
+				this_item.focus_neighbour_right = this_item.get_path_to(next_item)
+				this_item.focus_neighbour_left  = this_item.get_path_to(prev_item)
+		
 		if this_control is Button:
 			this_control.focus_neighbour_bottom = this_control.get_path_to(get_connectable(next_control))
 			this_control.focus_next = this_control.get_path_to(get_connectable(next_control))
@@ -72,3 +100,7 @@ func _on_egress_pressed() -> void:
 
 func _on_depart_animation_concluded():
 	queue_free()
+
+func _on_list_changed():
+	connect_buttons()
+	catalogue_controls()
