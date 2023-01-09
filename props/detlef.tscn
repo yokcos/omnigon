@@ -64,7 +64,10 @@ verb = "Listen"
 thru_walls = true
 title = "sayeth Detlef Fishlass"
 text = "Tiny one. Go not further.
-Game beyond has not been made."
+Game beyond has not been made.
+
+Speak to me. What should be in next rooms?"
+egress = "I'll come back later"
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
