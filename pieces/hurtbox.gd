@@ -73,7 +73,7 @@ func activate():
 	reset()
 	active = true
 
-func pulse(duration: float):
+func pulse(duration: float = 0.1):
 	activate()
 	$deactivator.start(duration)
 

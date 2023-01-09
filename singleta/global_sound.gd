@@ -113,7 +113,26 @@ var musics: Dictionary = {
 	"shut_down": preload("res://music/disc1/shut_down.ogg"),
 	"ingressment": preload("res://music/disc1/ingressment.ogg"),
 	"the_first_disc_ends": preload("res://music/disc1/the_first_disc_ends.ogg"),
+	
+	"facilitymechanism": preload("res://music/disc2/0001_facilitymechanism.ogg"),
 }
+var discs = [
+	[
+		"the_first_disc_begins",
+		"prelude",
+		"ingress",
+		"notweird",
+		"entrydenied",
+		"behold",
+		"great_opposition",
+		"shut_down",
+		"ingressment",
+		"the_first_disc_ends",
+	],
+	[
+		"facility_mechanism",
+	]
+]
 
 
 func _ready() -> void:
@@ -132,6 +151,8 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc1/shut_down.tres"))
 	add_music_entry(preload("res://music/disc1/ingressment.tres"))
 	add_music_entry(preload("res://music/disc1/the_first_disc_ends.tres"))
+	
+	add_music_entry(preload("res://music/disc2/0001_facilitymechanism.tres"))
 
 
 func add_music_entry(what: Music):
@@ -159,6 +180,8 @@ func silence_music():
 		current_music.fade_out()
 
 func play_music(what: String, roomish = true):
+	cut_temp_music()
+	
 	if is_instance_valid(current_music):
 		if current_music.title == what:
 			return false

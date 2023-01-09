@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://props/detlef.gd" type="Script" id=1]
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://props/detlef.png" type="Texture" id=3]
+[ext_resource path="res://props/interactables/text_interactable.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 32 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "attacc"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="detlef" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="text" type="Node2D" parent="."]
+script = ExtResource( 4 )
+description = "Detlef"
+verb = "Listen"
+thru_walls = true
+title = "sayeth Detlef Fishlass"
+text = "Tiny one. Go not further.
+Game beyond has not been made."
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 6
+frame = 2
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -4, 0 )
+shape = SubResource( 1 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 2 )]
+damage = 1e+06
+
+[node name="hitbox" type="CollisionPolygon2D" parent="hurtbox"]
+visible = false
+polygon = PoolVector2Array( 0, -24, 40, -24, 48, -16, 56, 0, 64, 24, 0, 8 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/attacc = SubResource( 2 )
+anims/idle = SubResource( 3 )
+next/attacc = "idle"

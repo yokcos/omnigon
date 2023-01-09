@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0001_facilitymechanism.ogg-5b8f7d51e8cacb7ab1be584daf2c30cf.oggstr"
+
+[deps]
+
+source_file="res://music/disc2/0001_facilitymechanism.ogg"
+dest_files=[ "res://.import/0001_facilitymechanism.ogg-5b8f7d51e8cacb7ab1be584daf2c30cf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

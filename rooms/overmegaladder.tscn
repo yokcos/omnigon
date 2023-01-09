@@ -18,6 +18,7 @@ extents = Vector2( 80, 8 )
 [node name="overmegaladder" type="Node2D"]
 script = ExtResource( 4 )
 title = "Default Room Name"
+music = "ingress"
 temp_music = "behold"
 map_image = ExtResource( 11 )
 

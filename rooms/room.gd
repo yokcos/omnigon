@@ -16,13 +16,13 @@ func _ready():
 	add_child(new_borders)
 	load_tile_changes()
 	
-	if music != "":
-		GlobalSound.play_music(music)
 	if temp_music != "":
 		GlobalSound.play_temp_music(temp_music)
 	else:
 		if music == "":
 			GlobalSound.resume_music()
+		else:
+			GlobalSound.play_music(music)
 	
 	WorldSaver.load_all_beings()
 	WorldSaver.load_misc()
