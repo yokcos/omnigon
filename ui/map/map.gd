@@ -1,7 +1,7 @@
 extends Control
 
 
-var map: Resource = preload("res://rooms/map/main_map.tres")
+var map: Resource = load("res://rooms/map/main_map.tres")
 var default_image: Texture = preload("res://ui/map/images/base.png")
 var image_size: Vector2 = Vector2(32, 16)
 var borders: Rect2 = Rect2()

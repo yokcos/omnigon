@@ -39,10 +39,16 @@ position = Vector2( 256, 0 )
 [node name="hitbox" type="CollisionShape2D" parent="ceiling"]
 shape = SubResource( 1 )
 
-[node name="wall" type="StaticBody2D" parent="."]
+[node name="wall0" type="StaticBody2D" parent="."]
 position = Vector2( 0, 56 )
 
-[node name="hitbox" type="CollisionShape2D" parent="wall"]
+[node name="hitbox" type="CollisionShape2D" parent="wall0"]
+shape = SubResource( 2 )
+
+[node name="wall1" type="StaticBody2D" parent="."]
+position = Vector2( 512, 56 )
+
+[node name="hitbox" type="CollisionShape2D" parent="wall1"]
 shape = SubResource( 2 )
 
 [node name="bouncycastle" parent="." instance=ExtResource( 3 )]
@@ -51,7 +57,7 @@ position = Vector2( 256, 168 )
 [node name="sign" parent="." instance=ExtResource( 2 )]
 position = Vector2( 352, 176 )
 description = "Sign of Text"
-text = "And so our great protagonist Pbot successfully reached the end of the Omnigon demo, and was able to claim the ultimate reward: Unlimited access to this bouncy castle!"
+text = "And so our great protagonist Pbot successfully reached where the end of the Omnigon demo was, and was able to claim the ultimate reward: Unlimited access to this bouncy castle!"
 
 [node name="stats" type="Control" parent="."]
 margin_left = 16.0

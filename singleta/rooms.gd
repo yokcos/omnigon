@@ -55,6 +55,7 @@ func enter_game():
 func load_rooms():
 	rooms = {}
 	
+	var dir = Directory.new()
 	map = load("res://rooms/map/main_map.tres")
 	for i in map.map:
 		var this_room = map.map[i]
@@ -69,6 +70,15 @@ func load_rooms():
 			room_data[i]["title"] = new_room.title
 			room_data[i]["image"] = new_room.map_image
 			new_room.queue_free()
+
+func apply_fresh_map():
+	var fresh_path: String = "res://rooms/map/fresh_map.tres"
+	
+	var dir = Directory.new()
+	if dir.file_exists(fresh_path):
+		var fresh_map = load(fresh_path)
+		ResourceSaver.save( "res://rooms/map/main_map.tres", fresh_map )
+		dir.remove(fresh_path)
 
 func print_rooms():
 	var dict = {}
