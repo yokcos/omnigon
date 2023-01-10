@@ -24,29 +24,52 @@ func _ready() -> void:
 	cycle_time = rotate_time + pause_time
 	previous_angle = rotation_degrees
 	current_angle = rotation_degrees
+	
 	register_pieces()
+	calculate_current_angle()
+	rotate_pieces()
+	hide_kinematic_bodies()
+	yield( get_tree().create_timer(0.05), "timeout" )
+	call_deferred("show_hidden_objects")
 
 func _process(delta: float) -> void:
 	if !Engine.editor_hint and active:
 		phase += delta
 		
-		if phase < rotate_time:
-			current_angle = previous_angle + (phase * angle / rotate_time)
-			$sprite.rotation_degrees = current_angle
-		else:
-			current_angle = previous_angle + angle
-			$sprite.rotation_degrees = current_angle
-		
-		while phase > cycle_time:
-			phase -= cycle_time
-			previous_angle = fposmod(previous_angle + angle, 360)
-		
+		calculate_current_angle()
 		rotate_pieces()
 
 
-func rotate_pieces():
+func hide_kinematic_bodies():
 	for dict in pieces:
-		dict["thing"].position = dict["position"].rotated( deg2rad(current_angle) )
+		var thing = dict["thing"]
+		if thing is KinematicBody2D:
+			dict["visible"] = thing.visible
+			thing.hide()
+
+func show_hidden_objects():
+	for dict in pieces:
+		var thing = dict["thing"]
+		if dict.has("visible"):
+			thing.visible = dict["visible"]
+
+func calculate_current_angle():
+	while phase > cycle_time:
+		phase -= cycle_time
+		previous_angle = fposmod(previous_angle + angle, 360)
+	
+	if phase < rotate_time:
+		current_angle = previous_angle + (phase * angle / rotate_time)
+		$sprite.rotation_degrees = current_angle
+	else:
+		current_angle = previous_angle + angle
+		$sprite.rotation_degrees = current_angle
+
+func rotate_pieces():
+	if !Engine.editor_hint and active:
+		for dict in pieces:
+			var thing = dict["thing"]
+			thing.position = dict["position"].rotated( deg2rad(current_angle) )
 
 func register_pieces():
 	active = true

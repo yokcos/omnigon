@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/detlef.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/platform_clockwork.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/room.gd" type="Script" id=4]
 [ext_resource path="res://props/rotator.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/map/images/overmegaladder.png" type="Texture" id=11]
+[ext_resource path="res://ui/map/images/legendary_trial.png" type="Texture" id=6]
+[ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=7]
 
 [node name="legendary_trial" type="Node2D"]
 script = ExtResource( 4 )
 title = "Legendary Trial"
-map_image = ExtResource( 11 )
+map_image = ExtResource( 6 )
 
 [node name="props" type="Node2D" parent="."]
 
@@ -25,14 +26,15 @@ position = Vector2( 160, 144 )
 angle = -90.0
 
 [node name="platform0" parent="rotator0" instance=ExtResource( 3 )]
+position = Vector2( -1.74846e-06, 40 )
 
 [node name="platform1" parent="rotator0" instance=ExtResource( 3 )]
-position = Vector2( 0, -40 )
+position = Vector2( -1.74846e-06, -40 )
 
 [node name="rotator1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 280, 160 )
-rotation = 1.5708
 angle = -90.0
+phase = 1.0
 
 [node name="platform0" parent="rotator1" instance=ExtResource( 3 )]
 
@@ -42,8 +44,13 @@ position = Vector2( 0, -40 )
 [node name="rotator2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 392, 176 )
 angle = -90.0
+phase = 2.0
 
 [node name="platform0" parent="rotator2" instance=ExtResource( 3 )]
 
 [node name="platform1" parent="rotator2" instance=ExtResource( 3 )]
 position = Vector2( 0, -40 )
+
+[node name="pipe" parent="." instance=ExtResource( 7 )]
+position = Vector2( 472, 56 )
+rotation = -1.57079

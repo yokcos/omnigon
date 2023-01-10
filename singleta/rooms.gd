@@ -53,6 +53,8 @@ func enter_game():
 	Game.in_game = true
 
 func load_rooms():
+	apply_fresh_map()
+	
 	rooms = {}
 	
 	var dir = Directory.new()
