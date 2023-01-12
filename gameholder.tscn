@@ -14,10 +14,28 @@ margin_bottom = 272.0
 [node name="viewport" type="Viewport" parent="beholder"]
 size = Vector2( 512, 256 )
 handle_input_locally = false
+usage = 0
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
 [node name="world" type="Node2D" parent="beholder/viewport"]
 
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="ui" parent="ui" instance=ExtResource( 2 )]
+
+[node name="testure_bac" type="Panel" parent="ui/ui"]
+visible = false
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 328.0
+margin_bottom = 200.0
+
+[node name="testure" type="TextureRect" parent="ui/ui"]
+visible = false
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 320.0
+margin_bottom = 192.0
+expand = true
+flip_v = true

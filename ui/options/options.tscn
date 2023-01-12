@@ -178,6 +178,20 @@ margin_right = -64.0
 margin_bottom = 8.0
 text = "Controls"
 
+[node name="fullscreeno" type="Control" parent="fulcra"]
+margin_right = 40.0
+margin_bottom = 40.0
+focus_mode = 2
+script = ExtResource( 5 )
+focus_target = NodePath("button")
+
+[node name="button" type="Button" parent="fulcra/fullscreeno"]
+margin_left = -192.0
+margin_top = -8.0
+margin_right = -64.0
+margin_bottom = 8.0
+text = "Fullscreen"
+
 [node name="unsave" type="Control" parent="fulcra"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -236,5 +250,6 @@ anims/saved = SubResource( 1 )
 [connection signal="value_changed" from="fulcra/volume_music/area/bar" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="fulcra/volume_sfx/area/bar" to="." method="_on_sfx_value_changed"]
 [connection signal="pressed" from="fulcra/controls/button" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="fulcra/fullscreeno/button" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="fulcra/unsave/button" to="." method="_on_unsave_pressed"]
 [connection signal="pressed" from="fulcra/egress/button" to="." method="_on_egress_pressed"]

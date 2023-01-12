@@ -14,6 +14,7 @@ var icons: Array = [
 	preload("res://ui/options/pause_icons1.png"),
 	preload("res://ui/options/pause_icons2.png"),
 	preload("res://ui/options/pause_icons3.png"),
+	preload("res://ui/options/pause_icons7.png"),
 	preload("res://ui/options/pause_icons6.png"),
 	preload("res://ui/options/pause_icons5.png"),
 ]
@@ -141,6 +142,8 @@ func _on_controls_pressed() -> void:
 func _on_continue_pressed() -> void:
 	depart_animation()
 
+func _on_fullscreen_pressed() -> void:
+	OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_unsave_pressed() -> void:
 	var dir = Directory.new()
@@ -163,6 +166,8 @@ func _on_controls_slain():
 func _on_depart_animation_concluded():
 	remove_effects()
 	queue_free()
+
+
 
 
 

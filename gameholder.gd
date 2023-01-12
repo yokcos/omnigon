@@ -3,6 +3,9 @@ extends Node2D
 
 var popup_queue: Array = []
 var current_popup: Control = null
+var tex: ViewportTexture
+var screen_scale: float = 1 setget set_screen_scale
+var base_screen_size: Vector2
 
 var upper_border: float = 16
 var lower_border: float = 16
@@ -12,16 +15,31 @@ const obj_options = preload("res://ui/options/options.tscn")
 const obj_overlay = preload("res://ui/details_overlay.tscn")
 
 
+signal screen_scale_changed
+
+
 func _ready() -> void:
+	var bssx = ProjectSettings.get_setting("display/window/size/width")
+	var bssy = ProjectSettings.get_setting("display/window/size/height")
+	base_screen_size = Vector2(bssx, bssy)
 	Game.gameholder = self
 	PlayerStats.connect("eyes_changed", self, "_on_eyes_changed")
 	calculate_border_size()
+	
+	tex = $beholder/viewport.get_texture()
+	tex.flags = 0
+	
+	$ui/ui/testure.texture = tex
+	
+	calculate_screen_size()
 
 func _process(delta: float) -> void:
 	if popup_queue.size() > 0 and !current_popup:
 		var dict = popup_queue.pop_front()
 		
 		deploy_popup(dict)
+	
+	calculate_screen_size()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -34,6 +52,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		var new_overlay = obj_overlay.instance()
 		$ui/ui.add_child(new_overlay)
 
+
+func calculate_screen_size():
+	var ratio = OS.window_size / base_screen_size
+	var new_scale = ratio.x if ratio.x < ratio.y else ratio.y
+	if new_scale != screen_scale:
+		set_screen_scale(new_scale)
+
+func set_screen_scale(what: float):
+	what = max(what, 0.1)
+	
+	var base_size: Vector2 = Vector2(512, 256)
+	
+	screen_scale = what
+	$beholder/viewport.size = base_size * what
+	$beholder.rect_scale = Vector2(1/what, 1/what)
+	
+	emit_signal("screen_scale_changed", screen_scale)
 
 func calculate_border_size():
 	upper_border = $beholder/viewport/world.position.y
