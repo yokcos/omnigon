@@ -13,6 +13,7 @@ script = ExtResource( 4 )
 title = "Clockwork Foyer"
 music = "facilitymechanism"
 map_image = ExtResource( 2 )
+background_colour = Color( 0.894118, 0.823529, 0.666667, 1 )
 
 [node name="props" type="Node2D" parent="."]
 

@@ -21,7 +21,7 @@ func _ready() -> void:
 	Game.camera = $cam
 	
 	is_controlled = true
-	fall_multiplier = 1.5
+	fall_multiplier = 1
 	gravity = base_gravity if Input.is_action_pressed("jump") else base_gravity*gravity_multiplier
 	
 	max_hp = PlayerStats.max_hp

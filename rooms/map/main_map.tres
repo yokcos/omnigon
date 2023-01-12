@@ -11,6 +11,10 @@ export (Dictionary) var map = {}
 [resource]
 script = SubResource( 1 )
 map = {
+Vector2( -11, -2 ): "res://rooms/hub.tscn",
+Vector2( -11, -1 ): Vector2( -11, -2 ),
+Vector2( -10, -2 ): Vector2( -11, -2 ),
+Vector2( -10, -1 ): Vector2( -11, -2 ),
 Vector2( -9, -2 ): "res://rooms/legendary_trial.tscn",
 Vector2( -8, -2 ): "res://rooms/clockwork.tscn",
 Vector2( -7, -2 ): "res://rooms/bouncycastle.tscn",

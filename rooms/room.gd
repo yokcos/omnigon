@@ -6,6 +6,7 @@ export (Vector2) var room_size = Vector2(1, 1)
 export (String) var music = ""
 export (String) var temp_music = ""
 export (Texture) var map_image = null
+export (Color) var background_colour = Color("e3e6ff")
 
 const obj_borders = preload("res://pieces/room_borders.tscn")
 
@@ -26,6 +27,9 @@ func _ready():
 	
 	WorldSaver.load_all_beings()
 	WorldSaver.load_misc()
+	
+	VisualServer.set_default_clear_color(background_colour)
+	Game.background_colour = background_colour
 
 
 func load_tile_changes():

@@ -21,6 +21,7 @@ script = ExtResource( 4 )
 title = "End of Demo"
 temp_music = "notweird"
 map_image = ExtResource( 5 )
+background_colour = Color( 0.545098, 0.576471, 0.686275, 1 )
 
 [node name="props" type="Node2D" parent="."]
 
@@ -72,34 +73,34 @@ anchor_bottom = 1.0
 
 [node name="vertices" type="Label" parent="stats/list"]
 margin_right = 184.0
-margin_bottom = 7.0
+margin_bottom = 9.0
 custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
 custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
 custom_fonts/font = ExtResource( 6 )
 percent_visible = 0.0
 
 [node name="rooms" type="Label" parent="stats/list"]
-margin_top = 11.0
+margin_top = 13.0
 margin_right = 184.0
-margin_bottom = 18.0
+margin_bottom = 22.0
 custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
 custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
 custom_fonts/font = ExtResource( 6 )
 percent_visible = 0.0
 
 [node name="time" type="Label" parent="stats/list"]
-margin_top = 22.0
+margin_top = 26.0
 margin_right = 184.0
-margin_bottom = 29.0
+margin_bottom = 35.0
 custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
 custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
 custom_fonts/font = ExtResource( 6 )
 percent_visible = 0.0
 
 [node name="hats" type="Label" parent="stats/list"]
-margin_top = 33.0
+margin_top = 39.0
 margin_right = 184.0
-margin_bottom = 40.0
+margin_bottom = 48.0
 custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
 custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
 custom_fonts/font = ExtResource( 6 )
