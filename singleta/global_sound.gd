@@ -100,6 +100,10 @@ const sfx_pot_break_b = [
 	preload("res://props/pot_break4.wav"),
 	preload("res://props/pot_break5.wav"),
 ]
+const sfx_automaton_recharge = [preload("res://entities/enemies/automaton_recharge.wav")]
+const sfx_automaton_turn = [preload("res://entities/enemies/automaton_turn.wav")]
+
+const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
 
 var musics: Dictionary = {

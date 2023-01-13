@@ -1,0 +1,177 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://entities/enemies/automaton.gd" type="Script" id=1]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
+[ext_resource path="res://fsm/states/patrol.gd" type="Script" id=3]
+[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=4]
+[ext_resource path="res://entities/enemies/data/automaton.tres" type="Resource" id=5]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=6]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pieces/walledge_detector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/enemies/automaton.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "attacc"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "recover"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[node name="automaton" type="KinematicBody2D"]
+script = ExtResource( 1 )
+flip_path = NodePath("flippable")
+enemy_data = ExtResource( 5 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 6 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, 8 )
+
+[node name="walledge_detector" parent="flippable" instance=ExtResource( 8 )]
+position = Vector2( 16, 0 )
+
+[node name="entity_detector" parent="flippable" instance=ExtResource( 7 )]
+position = Vector2( 32, -16 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/entity_detector"]
+shape = SubResource( 8 )
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+position = Vector2( 0, -16 )
+texture = ExtResource( 9 )
+hframes = 8
+vframes = 3
+
+[node name="barrel" type="Position2D" parent="flippable"]
+position = Vector2( 10, -18 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/attacc = SubResource( 2 )
+anims/idle = SubResource( 7 )
+anims/recover = SubResource( 9 )
+anims/walk = SubResource( 5 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 2 )
+animator_path = NodePath("../animator")
+
+[node name="patrol" type="Node" parent="fsm"]
+script = ExtResource( 3 )
+run_animation = "walk"
+
+[node name="attacc" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "attacc"
+auto_proceed = "recover"
+
+[node name="recover" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "recover"
+auto_proceed = "patrol"
+duration = 2.0
+
+[connection signal="updated" from="flippable/walledge_detector" to="fsm/patrol" method="_on_walledge_detector_updated"]
+[connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
+[connection signal="entered" from="fsm/recover" to="." method="_on_recover_entered"]

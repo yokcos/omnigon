@@ -43,7 +43,8 @@ func _handle_input(event: InputEvent) -> void:
 	pass
 
 func set_state(what: String) -> void:
-	get_parent().set_state_string(what)
+	if active:
+		get_parent().set_state_string(what)
 
 func get_animator() -> AnimationPlayer:
 	return get_parent().animator

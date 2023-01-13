@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://rooms/clockwork.tscn" type="PackedScene" id=34]
 [ext_resource path="res://rooms/legendary_trial.tscn" type="PackedScene" id=35]
 [ext_resource path="res://rooms/hub.tscn" type="PackedScene" id=36]
+[ext_resource path="res://rooms/automated_defense.tscn" type="PackedScene" id=37]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -144,3 +145,6 @@ position = Vector2( -4608, -512 )
 
 [node name="hub" parent="." instance=ExtResource( 36 )]
 position = Vector2( -5632, -512 )
+
+[node name="automated_defense" parent="." instance=ExtResource( 37 )]
+position = Vector2( -6144, -512 )

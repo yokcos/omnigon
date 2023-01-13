@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://entities/enemies/turret.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/turret.png" type="Texture" id=2]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=3]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=4]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/enemies/data/turret.tres" type="Resource" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 60, 24 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "shoot"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "turn"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="turret" type="KinematicBody2D"]
+script = ExtResource( 1 )
+flip_path = NodePath("flippable")
+enemy_data = ExtResource( 6 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="entity_detector" parent="flippable" instance=ExtResource( 5 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/entity_detector"]
+visible = false
+position = Vector2( -68, -16 )
+shape = SubResource( 2 )
+
+[node name="barrel" type="Position2D" parent="flippable"]
+position = Vector2( 14, -14 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 3 )
+animator_path = NodePath("../animator")
+
+[node name="normal" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="turn" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "turn"
+auto_proceed = "normal"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/idle = SubResource( 3 )
+anims/shoot = SubResource( 6 )
+anims/turn = SubResource( 4 )
+next/shoot = "idle"
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
+[connection signal="entered" from="fsm/normal" to="." method="_on_normal_entered"]
+[connection signal="exited" from="fsm/normal" to="." method="_on_normal_exited"]
+[connection signal="entered" from="fsm/turn" to="." method="_on_turn_entered"]
+[connection signal="exited" from="fsm/turn" to="." method="_on_turn_exited"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

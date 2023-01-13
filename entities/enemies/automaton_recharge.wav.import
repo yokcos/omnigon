@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/automaton_recharge.wav-9af0c0560dfcefe946f6981b98f68dc0.sample"
+
+[deps]
+
+source_file="res://entities/enemies/automaton_recharge.wav"
+dest_files=[ "res://.import/automaton_recharge.wav-9af0c0560dfcefe946f6981b98f68dc0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
