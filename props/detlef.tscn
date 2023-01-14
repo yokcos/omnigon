@@ -77,7 +77,6 @@ hframes = 6
 frame = 2
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -4, 0 )
 shape = SubResource( 1 )
 
