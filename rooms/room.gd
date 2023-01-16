@@ -19,6 +19,8 @@ func _ready():
 	
 	if temp_music != "":
 		GlobalSound.play_temp_music(temp_music)
+		if music != "":
+			PlayerStats.main_music = music
 	else:
 		if music == "":
 			GlobalSound.resume_music()
