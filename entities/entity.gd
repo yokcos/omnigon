@@ -7,6 +7,8 @@ enum teams {
 	ENEMIES,
 }
 
+var coyote_time: float = 0.1
+var coyote_enabled: bool = true
 var velocity: Vector2 = Vector2()
 var recent_downyness: float = 0
 var friction: float = 10
@@ -108,7 +110,8 @@ func bounce_against_mattress(downyness: float = recent_downyness):
 			velocity.y = downyness * -0.5
 
 func land():
-	pass
+	air_time = 0
+	coyote_enabled = true
 
 func frictutate(delta: float):
 	velocity.x -= velocity.x * friction * delta
@@ -118,6 +121,9 @@ func gravitate(delta: float):
 		velocity.y += gravity * delta * fall_multiplier
 	else:
 		velocity.y += gravity * delta
+
+func is_grounded() -> bool:
+	return air_time < coyote_time and coyote_enabled
 
 
 func reset_flippability():

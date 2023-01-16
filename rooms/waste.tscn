@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/map/images/waste.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://props/rotator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/bin_brown.png" type="Texture" id=6]
 [ext_resource path="res://props/waste.png" type="Texture" id=7]
-[ext_resource path="res://props/detlef.tscn" type="PackedScene" id=8]
 
 [node name="waste" type="Node2D"]
 script = ExtResource( 4 )
@@ -66,7 +65,3 @@ tile_data = PoolIntArray( -1, 5, 131072, -65536, 5, 327682, -65535, 5, 327682, -
 
 [node name="blademaster" parent="." instance=ExtResource( 3 )]
 position = Vector2( 288, 184 )
-
-[node name="detlef" parent="." instance=ExtResource( 8 )]
-position = Vector2( 56, 224 )
-rotation = -0.445982

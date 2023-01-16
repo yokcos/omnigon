@@ -18,7 +18,8 @@ func _process(delta: float) -> void:
 
 
 func get_actual_position() -> Vector2:
-	var halfsize = get_viewport().size/2
+	var gh = Game.gameholder
+	var halfsize = get_viewport().size/2/gh.screen_scale
 	var pos = get_camera_position()
 	
 	pos.x = max(pos.x, get_limit(MARGIN_LEFT ) + halfsize.x)
@@ -28,6 +29,14 @@ func get_actual_position() -> Vector2:
 	pos.y = min(pos.y, get_limit(MARGIN_BOTTOM) - halfsize.y)
 	
 	return pos
+
+func get_visible_rect():
+	var gh: Node2D = Game.gameholder
+	var vp: Viewport = get_viewport()
+	
+	if gh:
+		var actual_size = vp.size / gh.screen_scale
+		return Rect2(get_actual_position() - actual_size/2, actual_size)
 
 
 func _on_screen_scale_changed(what: float):

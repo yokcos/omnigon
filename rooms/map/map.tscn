@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -38,10 +38,10 @@
 [ext_resource path="res://rooms/hub.tscn" type="PackedScene" id=36]
 [ext_resource path="res://rooms/automated_defense.tscn" type="PackedScene" id=37]
 [ext_resource path="res://rooms/waste.tscn" type="PackedScene" id=38]
+[ext_resource path="res://rooms/rubbish.tscn" type="PackedScene" id=39]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
-map_name = "fresh_map"
 
 [node name="start" parent="." instance=ExtResource( 3 )]
 
@@ -152,3 +152,6 @@ position = Vector2( -6144, -512 )
 
 [node name="waste" parent="." instance=ExtResource( 38 )]
 position = Vector2( -6656, -256 )
+
+[node name="rubbish" parent="." instance=ExtResource( 39 )]
+position = Vector2( -6656, 0 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0002_suddenmimic.ogg-8c08cd29cd63b12119cc262fbc563fc8.oggstr"
+
+[deps]
+
+source_file="res://music/disc2/0002_suddenmimic.ogg"
+dest_files=[ "res://.import/0002_suddenmimic.ogg-8c08cd29cd63b12119cc262fbc563fc8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

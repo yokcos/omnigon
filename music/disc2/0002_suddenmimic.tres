@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc2/0002_suddenmimic.ogg" type="AudioStream" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "suddenmimic"
+title = "Sudden Mimic"
+lore = "???"
+audio = ExtResource( 2 )

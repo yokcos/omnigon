@@ -2,7 +2,7 @@ tool
 extends Node2D
 
 
-export (String) var map_name = "main_map"
+export (String) var map_name = "fresh_map"
 export (Vector2) var room_size = Vector2(512, 256)
 export (bool) var activate = false setget set_activate
 

@@ -1,9 +1,6 @@
 extends Being
 
 
-var coyote_time: float = 0.1
-var coyote_enabled: bool = true
-
 var base_gravity: float = 1250
 var gravity_multiplier: float = 1.5
 
@@ -125,9 +122,6 @@ func die():
 	Game.deploy_instance(camera, global_position)
 	
 	GlobalSound.play_random_sfx(GlobalSound.sfx_player_death)
-
-func is_grounded() -> bool:
-	return air_time < coyote_time and coyote_enabled
 
 func land():
 	.land()
