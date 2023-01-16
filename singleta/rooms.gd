@@ -46,7 +46,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if !Engine.editor_hint and event.is_action_pressed("test") and Game.in_game:
 		#player_enter_room(Vector2(256, 128))
-		player_enter_room(Vector2(-3500, -400))
+		player_enter_room(Vector2(-2700, -400))
 
 
 func enter_game():

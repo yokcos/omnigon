@@ -3,6 +3,7 @@ extends Being
 
 var base_gravity: float = 1250
 var gravity_multiplier: float = 1.5
+var base_animation_speed: float = 1
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
 const tex_shift = preload("res://fx/shift.png")
@@ -228,8 +229,18 @@ func _on_attacc_activated() -> void:
 		if thing.has_method("get_punched"):
 			thing.get_punched()
 
+func _on_attacc_entered() -> void:
+	# Apply hat Fury Fist
+	if PlayerStats.has_hat("furyfist"):
+		$animator.playback_speed = 2
+
+func _on_attacc_exited() -> void:
+	$animator.playback_speed = base_animation_speed
+
 func _on_shift_activated() -> void:
 	shift()
 
 func _on_hats_changed(new_hats: Array):
 	apply_hats()
+
+

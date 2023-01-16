@@ -705,4 +705,6 @@ valign = 2
 
 [connection signal="damage_taken" from="." to="fsm/climb" method="_on_damage_taken"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="entered" from="fsm/attacc" to="." method="_on_attacc_entered"]
+[connection signal="exited" from="fsm/attacc" to="." method="_on_attacc_exited"]
 [connection signal="activated" from="fsm/shift" to="." method="_on_shift_activated"]

@@ -74,7 +74,6 @@ egress = "I'll come back later"
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 6
-frame = 2
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 0 )

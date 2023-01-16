@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0004_furyfist.png" type="Texture" id=2]
+[ext_resource path="res://hats/0004_furyfist_large.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "furyfist"
+sprite = ExtResource( 2 )
+large_sprite = ExtResource( 3 )
+name = "Fury Fist"
+description = "Gain the ability to punch faster than ever before"
+height = 8.0

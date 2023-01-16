@@ -12,10 +12,10 @@ func _process(delta: float) -> void:
 			var rect: Rect2 = cam.get_visible_rect()
 			var margins: Array = []
 			
-			margins.append( global_position.x - rect.position.x )
-			margins.append( global_position.y - rect.position.y )
-			margins.append( rect.end.x - global_position.x )
-			margins.append( rect.end.y - global_position.y )
+			margins.append( abs(global_position.x - rect.position.x) )
+			margins.append( abs(global_position.y - rect.position.y) )
+			margins.append( abs(rect.end.x - global_position.x) )
+			margins.append( abs(rect.end.y - global_position.y) )
 			
 			var least_margin = margins.min()
 			if least_margin < 32:
