@@ -37,6 +37,15 @@ func perform_attacc0():
 func perform_attacc1() -> void:
 	$flippable/hurtbox1.pulse()
 
+func get_shifted():
+	if $fsm.state_name == "hidden":
+		GlobalSound.play_temp_music("suddenmimic")
+		$fsm.set_state_string("chase")
+	else:
+		GlobalSound.cut_temp_music()
+		$fsm.set_state_string("hidden")
+
+
 func _on_entity_detector0_activated() -> void:
 	$fsm/chase.set_state("attacc0")
 

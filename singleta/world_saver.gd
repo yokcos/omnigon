@@ -106,17 +106,18 @@ func load_all_beings():
 				load_being(i)
 
 func load_being(what: Dictionary):
-	var type = what["filename"]
-	var new_being: Being = load(type).instance()
-	
-	if !(new_being is Being):
-		print("WorldSaver error! Loaded being is not in fact a Being!")
-		get_tree().quit()
-	
-	Game.deploy_instance_instant(new_being, what["position"])
-	new_being.hp = what["hp"]
-	if new_being.has_node("fsm") and what.has("state"):
-		new_being.get_node("fsm").set_state_string(what["state"])
+	if what["hp"] > 0:
+		var type = what["filename"]
+		var new_being: Being = load(type).instance()
+		
+		if !(new_being is Being):
+			print("WorldSaver error! Loaded being is not in fact a Being!")
+			get_tree().quit()
+		
+		Game.deploy_instance_instant(new_being, what["position"])
+		new_being.hp = what["hp"]
+		if new_being.has_node("fsm") and what.has("state"):
+			new_being.get_node("fsm").set_state_string(what["state"])
 
 func load_misc():
 	if data.has(Rooms.current_room):

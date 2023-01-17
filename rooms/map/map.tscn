@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://rooms/waste.tscn" type="PackedScene" id=38]
 [ext_resource path="res://rooms/rubbish.tscn" type="PackedScene" id=39]
 [ext_resource path="res://rooms/diode.tscn" type="PackedScene" id=40]
+[ext_resource path="res://rooms/ultimate_foe.tscn" type="PackedScene" id=41]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -159,3 +160,6 @@ position = Vector2( -6656, 0 )
 
 [node name="diode" parent="." instance=ExtResource( 40 )]
 position = Vector2( -5632, 0 )
+
+[node name="diode2" parent="." instance=ExtResource( 41 )]
+position = Vector2( -5120, 0 )

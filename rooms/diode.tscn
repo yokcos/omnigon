@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/map/images/diode.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://props/interactables/button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://props/interactables/pipe_hat.gd" type="Script" id=10]
 [ext_resource path="res://hats/0004_furyfist.tres" type="Resource" id=11]
-[ext_resource path="res://props/detlef.tscn" type="PackedScene" id=12]
 
 [node name="diode" type="Node2D"]
 script = ExtResource( 4 )
@@ -52,9 +51,5 @@ script = ExtResource( 10 )
 description = "Pipe"
 verb = "Unseal"
 hat = ExtResource( 11 )
-
-[node name="detlef" parent="." instance=ExtResource( 12 )]
-position = Vector2( 496, 96 )
-scale = Vector2( -1, 1 )
 
 [connection signal="activated" from="button" to="gate_vertical" method="activate"]

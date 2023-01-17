@@ -28,7 +28,7 @@ var texts = [
 	"The Day of the Demos!",
 	"Breakable pots!",
 	"Don't read me!",
-	"100% mimic-free",
+	"99% mimic-free",
 	"Escaping certain demise",
 	"Stealing secrets",
 	"Do your homework",
@@ -36,6 +36,9 @@ var texts = [
 	"Has a Patreon",
 	"Survivor of Demo Day",
 	"Thanks aggy daggy!",
+	"Gears and clockwork",
+	"Punchable pots",
+	"Shifting shapes",
 ]
 var current_texts = {}
 var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which I mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"

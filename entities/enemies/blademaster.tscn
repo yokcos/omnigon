@@ -167,6 +167,8 @@ tracks/0/keys = {
 [node name="blademaster" type="KinematicBody2D"]
 script = ExtResource( 5 )
 flip_path = NodePath("flippable")
+title = "Blade Master"
+boss_theme = "great_opposition"
 enemy_data = ExtResource( 12 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

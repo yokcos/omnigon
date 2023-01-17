@@ -18,10 +18,10 @@ background_colour = Color( 0.894118, 0.823529, 0.666667, 1 )
 [node name="props" type="Node2D" parent="."]
 
 [node name="platform0" parent="props" instance=ExtResource( 3 )]
-position = Vector2( 200, 296 )
+position = Vector2( 168, 296 )
 
 [node name="platform1" parent="props" instance=ExtResource( 3 )]
-position = Vector2( 424, 168 )
+position = Vector2( 456, 168 )
 
 [node name="status0" type="Sprite" parent="props"]
 position = Vector2( 392, 320 )
