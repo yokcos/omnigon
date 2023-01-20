@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://rooms/diode.tscn" type="PackedScene" id=40]
 [ext_resource path="res://rooms/ultimate_foe.tscn" type="PackedScene" id=41]
 [ext_resource path="res://rooms/splitscreen.tscn" type="PackedScene" id=42]
+[ext_resource path="res://rooms/dual_ladders.tscn" type="PackedScene" id=43]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -167,3 +168,6 @@ position = Vector2( -5120, 0 )
 
 [node name="ultimate_foe" parent="." instance=ExtResource( 42 )]
 position = Vector2( -4608, 0 )
+
+[node name="splitscreen" parent="." instance=ExtResource( 43 )]
+position = Vector2( -4608, 256 )

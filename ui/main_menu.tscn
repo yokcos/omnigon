@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://ui/title.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://ui/icon_patreon_highlihghted.png" type="Texture" id=13]
 [ext_resource path="res://ui/icon_twitter_highlihghted.png" type="Texture" id=14]
 [ext_resource path="res://ui/icon_youtube_highlihghted.png" type="Texture" id=15]
+[ext_resource path="res://ui/icon_github_highlighted.png" type="Texture" id=16]
+[ext_resource path="res://ui/icon_github.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -149,7 +151,7 @@ margin_right = 256.0
 margin_bottom = 280.0
 custom_colors/font_color = Color( 0.890196, 0.901961, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "Demo v0008a"
+text = "Demo v0010a"
 align = 1
 valign = 1
 
@@ -177,42 +179,42 @@ valign = 1
 anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 32.0
-margin_right = 192.0
+margin_right = 200.0
 margin_bottom = -32.0
 alignment = 1
 
 [node name="title" type="TextureRect" parent="column"]
 margin_top = 52.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 84.0
 texture = ExtResource( 2 )
 
 [node name="begin" type="Button" parent="column"]
 margin_top = 88.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 104.0
 text = "PLAY THE GAME"
 
 [node name="options" type="Button" parent="column"]
 margin_top = 108.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 124.0
 text = "CONFIGURATE"
 
 [node name="quit" type="Button" parent="column"]
 margin_top = 128.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 144.0
 text = "EGRESS"
 
 [node name="divider" type="HSeparator" parent="column"]
 margin_top = 148.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 152.0
 
 [node name="links" type="HBoxContainer" parent="column"]
 margin_top = 156.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 172.0
 
 [node name="link_yokcos" type="TextureButton" parent="column/links"]
@@ -277,6 +279,19 @@ texture_disabled = ExtResource( 9 )
 texture_focused = ExtResource( 14 )
 script = ExtResource( 5 )
 url = "https://twitter.com/yokcos700"
+
+[node name="link_github" type="TextureButton" parent="column/links"]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 16.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 16 )
+texture_disabled = ExtResource( 17 )
+texture_focused = ExtResource( 16 )
+script = ExtResource( 5 )
+url = "https://github.com/yokcos/omnigon"
 
 [node name="right_half" type="Control" parent="."]
 anchor_left = 0.5
