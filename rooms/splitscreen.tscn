@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://props/statue0005.png" type="Texture" id=6]
 [ext_resource path="res://props/statue0004.png" type="Texture" id=7]
 [ext_resource path="res://ui/map/images/splitscreen.png" type="Texture" id=8]
-[ext_resource path="res://props/detlef.tscn" type="PackedScene" id=9]
 
 [node name="splitscreen" type="Node2D"]
 script = ExtResource( 2 )
@@ -53,7 +52,3 @@ length = 10
 
 [node name="pipe" parent="." instance=ExtResource( 3 )]
 position = Vector2( 448, 216 )
-
-[node name="detlef" parent="." instance=ExtResource( 9 )]
-position = Vector2( 320, 16 )
-rotation = 1.57079

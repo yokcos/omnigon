@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://ui/artwork/sunrise.png" type="Texture" id=2]
+[ext_resource path="res://misc/mat_opacifier.tres" type="Material" id=3]
+[ext_resource path="res://misc/fnt_raleway_tiny.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/artwork/artwork_menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/artwork/artwork.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.133333, 0.109804, 0.101961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.87451, 0.243137, 0.137255, 1 )
+
+[node name="continents" type="Control"]
+margin_right = 512.0
+margin_bottom = 288.0
+theme = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="title" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 296.0
+margin_top = 16.0
+margin_right = -8.0
+margin_bottom = 32.0
+text = "\"Sunrise\""
+align = 1
+valign = 1
+
+[node name="desc" type="Label" parent="."]
+material = ExtResource( 3 )
+anchor_right = 1.0
+margin_left = 296.0
+margin_top = 40.0
+margin_right = -8.0
+margin_bottom = 176.0
+custom_fonts/font = ExtResource( 4 )
+text = "Here we see the bright and overwhelming visage of the erupting sun, scattering its Solar Winds to bring daylight to every corner and crevasse of the world.
+A new day is always welcome, but never more so than after a particularly long, dark and painful night.
+If sunrises were to arrive regularly like gears and clockwork, that would truly be a wonderful existence."
+align = 1
+autowrap = true
+
+[node name="image_bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 8.0
+margin_right = -216.0
+margin_bottom = -8.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="image" type="TextureRect" parent="."]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 288.0
+margin_bottom = 272.0
+texture = ExtResource( 2 )
+
+[node name="menu" parent="." instance=ExtResource( 5 )]
+margin_left = 304.0
+margin_top = 184.0
+margin_right = 504.0
+margin_bottom = 280.0
+
+[connection signal="quit" from="menu" to="." method="_on_quit"]
