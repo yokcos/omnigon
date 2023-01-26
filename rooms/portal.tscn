@@ -26,9 +26,6 @@ tile_data = PoolIntArray( -1, 5, 131072, -65536, 5, 327682, -65535, 5, 327682, -
 position = Vector2( 496, 192 )
 scale = Vector2( -1, 1 )
 
-[node name="detlef1" parent="." instance=ExtResource( 12 )]
-position = Vector2( 16, 192 )
-
 [node name="ladder0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 192, -32 )
 length = 7

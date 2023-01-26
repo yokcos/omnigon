@@ -19,6 +19,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	actual_length = float(length)
+	update_sprites()
 
 func _process(delta: float) -> void:
 	if !Engine.editor_hint:
@@ -53,6 +54,9 @@ func add_sprites():
 			new_sprite.texture = tex_mid
 
 func adjust_hitbox():
+	var width = $hitbox.shape.extents.x
+	$hitbox.shape = RectangleShape2D.new()
+	$hitbox.shape.extents.x = width
 	$hitbox.shape.extents.y = spacing*length/2 + upper_border
 	$hitbox.position.y = spacing * (length-1) / 2 - upper_border
 
