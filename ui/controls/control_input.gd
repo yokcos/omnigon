@@ -100,7 +100,7 @@ func set_input(what: InputEvent):
 	if what == null:
 		set_text("+")
 	elif what is InputEventKey:
-		set_text( OS.get_scancode_string(what.scancode) )
+		set_text( OS.get_scancode_string(what.physical_scancode) )
 
 func _on_focus_grabbed():
 	add_stylebox_override("panel", pan_selected)
