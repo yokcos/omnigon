@@ -3,7 +3,7 @@ extends Projectile
 
 const obj_ladder: PackedScene = preload("res://props/ladder.tscn")
 
-var max_length: int = 3
+var max_length: int = 4
 
 
 func _ready() -> void:
@@ -25,6 +25,7 @@ func _on_body_entered(body):
 		var langth = get_length()
 		var new_ladder = obj_ladder.instance()
 		var pos = global_position
+		pos.y += 8
 		pos = (pos/16).round() * 16
 		new_ladder.length = langth
 		new_ladder.decay_rate = 1
