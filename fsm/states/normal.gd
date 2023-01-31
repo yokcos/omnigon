@@ -4,6 +4,8 @@ extends State
 export (String) var still_animation = "idle"
 export (String) var run_animation = "run"
 
+var has_ladder: bool = true
+
 
 func _enter() -> void:
 	._enter()
@@ -20,6 +22,9 @@ func _step(delta: float) -> void:
 
 func _handle_input(event: InputEvent) -> void:
 	if father.is_controlled:
+		if father.is_grounded():
+			has_ladder = true
+		
 		if event.is_action_pressed("jump") and father.is_grounded():
 			father.coyote_enabled = false
 			father.velocity.x *= 1.35
@@ -32,10 +37,12 @@ func _handle_input(event: InputEvent) -> void:
 			set_state("attacc")
 		
 		if event.is_action_pressed("shift"):
-			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder"):
+			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder") and has_ladder:
 				var arrow: Projectile = load("res://projectiles/arrow_ladder.tscn").instance()
 				arrow.exceptions.append(father)
 				Game.deploy_instance(arrow, father.global_position)
+				father.velocity.y = min(father.velocity.y, 0)
+				has_ladder = false
 			else:
 				if PlayerStats.eyes == PlayerStats.EYES_SHAPESHIFTER:
 					set_state("shift")

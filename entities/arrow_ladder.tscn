@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/arrow_ladder.gd" type="Script" id=1]
+[ext_resource path="res://entities/arrow_ladder.png" type="Texture" id=2]
+
+[node name="arrow_ladder" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( 1 )
+upgrade_id = "arrow_ladder"
+upgrade_name = "Arrow of Ladders"
+upgrade_desc = "uhh you can shoot arrows that make ladders now, once you grab this."
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

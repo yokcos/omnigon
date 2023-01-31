@@ -32,7 +32,7 @@ func reposition():
 	if player and cam:
 		var centre: Vector2 = cam.get_actual_position()
 		var relative: Vector2 = player.global_position - centre
-		var screen_size: Rect2 = cam.get_viewport_rect()
+		var screen_size: Rect2 = cam.get_visible_rect()
 		
 		relative = relative.normalized()
 		relative *= 600

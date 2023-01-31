@@ -13,6 +13,7 @@ script = SubResource( 1 )
 map = {
 Vector2( -13, -1 ): "res://rooms/waste.tscn",
 Vector2( -13, 0 ): "res://rooms/rubbish.tscn",
+Vector2( -13, 2 ): "res://rooms/climb_lord.tscn",
 Vector2( -12, -2 ): "res://rooms/automated_defense.tscn",
 Vector2( -12, -1 ): Vector2( -12, -2 ),
 Vector2( -12, 0 ): Vector2( -13, 0 ),
