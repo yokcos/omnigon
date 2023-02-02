@@ -117,4 +117,3 @@ anims/introduce = SubResource( 1 )
 
 [node name="soundifier" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "SFX"

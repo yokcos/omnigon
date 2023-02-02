@@ -89,7 +89,7 @@ func register_pieces():
 			pieces.append(dict)
 
 func set_size(what: int):
-	what = clamp(what, 0, 1)
+	what = int(clamp(what, 0, 1))
 	$sprite.texture = textures[what]
 	
 	size = what

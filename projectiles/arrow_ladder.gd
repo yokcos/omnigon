@@ -12,9 +12,13 @@ func _ready() -> void:
 
 func get_length() -> int:
 	var spacing: float = 32
-	var length: int = ($ray.get_collision_point() - global_position).y
-	length = int(length / spacing)
-	length = min(length, max_length)
+	var length: int
+	if $ray.is_colliding():
+		length = ($ray.get_collision_point() - global_position).y
+		length = int(length / spacing)
+		length = int( min(length, max_length) )
+	else:
+		length = max_length
 	return length
 
 
@@ -24,8 +28,7 @@ func _on_body_entered(body):
 	if !body in exceptions:
 		var langth = get_length()
 		var new_ladder = obj_ladder.instance()
-		var pos = global_position
-		pos.y += 8
+		var pos = $ray.global_position
 		pos = (pos/16).round() * 16
 		new_ladder.length = langth
 		new_ladder.decay_rate = 1
