@@ -182,6 +182,12 @@ func summon_popup(title: String, text: String, egress: String = "Alrighty", anch
 	if gameholder:
 		gameholder.add_popup(title, text, egress, anchor)
 
+func summon_popup_world(this_world: PackedScene):
+	if gameholder:
+		return gameholder.deploy_popup_world(this_world)
+	else:
+		return null
+
 func popup_exists() -> bool:
 	return gameholder and gameholder.count_popups() > 0
 

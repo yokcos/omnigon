@@ -11,6 +11,7 @@ var upper_border: float = 16
 var lower_border: float = 16
 
 const obj_popup = preload("res://ui/popup.tscn")
+const obj_popup_world = preload("res://ui/popup_world.tscn")
 const obj_options = preload("res://ui/options/options.tscn")
 const obj_overlay = preload("res://ui/details_overlay.tscn")
 
@@ -102,6 +103,13 @@ func deploy_popup(data: Dictionary):
 	$ui/ui.add_child(new_popup)
 	
 	Game.emit_signal("popup_arisen", data)
+
+func deploy_popup_world(what: PackedScene):
+	var new_popup = obj_popup_world.instance()
+	$ui/ui.add_child(new_popup)
+	new_popup.popup_centered()
+	new_popup.apply_world(what)
+	return new_popup
 
 func count_popups() -> int:
 	var total: int = popup_queue.size()

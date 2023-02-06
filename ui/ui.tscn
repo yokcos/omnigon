@@ -72,15 +72,14 @@ margin_bottom = 16.0
 alignment = 1
 
 [node name="left" type="TextureRect" parent="bar_bottom/eyes"]
-margin_left = 2.0
-margin_right = 14.0
+margin_right = 12.0
 margin_bottom = 16.0
 texture = ExtResource( 5 )
 stretch_mode = 4
 
 [node name="right" type="TextureRect" parent="bar_bottom/eyes"]
-margin_left = 18.0
-margin_right = 30.0
+margin_left = 20.0
+margin_right = 32.0
 margin_bottom = 16.0
 texture = ExtResource( 5 )
 stretch_mode = 4
