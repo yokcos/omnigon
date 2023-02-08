@@ -6,12 +6,12 @@
 [ext_resource path="res://entities/enemies/adept.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemies/automaton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/detlef.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/map/images/artistry.png" type="Texture" id=8]
+[ext_resource path="res://ui/map/images/detention.png" type="Texture" id=7]
 
 [node name="detention" type="Node2D"]
 script = ExtResource( 2 )
 title = "Detention"
-map_image = ExtResource( 8 )
+map_image = ExtResource( 7 )
 background_colour = Color( 0.894118, 0.823529, 0.666667, 1 )
 
 [node name="props" type="Node2D" parent="."]
