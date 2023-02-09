@@ -9,6 +9,8 @@ signal tile_changed
 func _ready() -> void:
 	get_randomisers()
 	randomise_tiles()
+	
+	set_collision_mask_bit(1, false)
 
 
 func get_randomisers():

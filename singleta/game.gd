@@ -25,6 +25,7 @@ signal popup_arisen
 
 
 func _ready() -> void:
+	AudioServer.set_bus_layout(load("res://bussingsworth.tres"))
 	var base_width: int = ProjectSettings.get_setting("display/window/size/width")
 	var base_height: int = ProjectSettings.get_setting("display/window/size/height")
 	var base_size: Vector2 = Vector2( base_width, base_height )

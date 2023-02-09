@@ -120,6 +120,10 @@ config/name="omnigon"
 run/main_scene="res://ui/intro.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://bussingsworth.tres"
+
 [autoload]
 
 Game="*res://singleta/game.gd"

@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
 [ext_resource path="res://entities/enemies/blademaster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/enemies/adept.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemies/automaton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://props/detlef.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/map/images/detention.png" type="Texture" id=7]
 
 [node name="detention" type="Node2D"]
@@ -36,6 +35,3 @@ position = Vector2( 256, 40 )
 
 [node name="automaton" parent="." instance=ExtResource( 5 )]
 position = Vector2( 48, 88 )
-
-[node name="detlef" parent="." instance=ExtResource( 6 )]
-position = Vector2( 416, 272 )
