@@ -101,6 +101,8 @@ Vector2( 4, 0 ): Vector2( 4, -1 ),
 Vector2( 4, 1 ): Vector2( 4, -1 ),
 Vector2( 5, -5 ): Vector2( 4, -5 ),
 Vector2( 5, -4 ): Vector2( 4, -5 ),
+Vector2( 5, -2 ): "res://rooms/vast_chasm.tscn",
 Vector2( 5, 0 ): "res://rooms/deathbutton.tscn",
-Vector2( 6, -4 ): "res://rooms/postbouncer.tscn"
+Vector2( 6, -4 ): "res://rooms/postbouncer.tscn",
+Vector2( 6, -2 ): Vector2( 5, -2 )
 }

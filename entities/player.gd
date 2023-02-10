@@ -11,6 +11,7 @@ const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 
 const base_hitbox_height: float = 12.0
 const base_hitbox_position: float = 4.0
+const base_shiftbox_size: Vector2 = Vector2(15, 15)
 
 
 signal sitting_complete
@@ -89,9 +90,15 @@ func shift():
 		if thing.has_method("get_shifted"):
 			thing.get_shifted()
 	
-	Game.deploy_fx(tex_shift, $flippable/shiftbox/hitbox.global_position, 8)
+	var fx = Game.deploy_fx(tex_shift, $flippable/shiftbox/hitbox.global_position, 8)
 	var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_shift)
-	new_sfx.randomise_pitch(0.8, 1.2)
+	var base_pitch = 0.8
+	
+	if PlayerStats.has_hat("electromonocle"):
+		base_pitch -= 0.2
+		fx.scale = Vector2(1.25, 1.25)
+	
+	new_sfx.randomise_pitch(base_pitch, base_pitch + 0.4)
 	new_sfx.relative_volume = 0.6
 
 func take_damage(what: float, from: Being = null) -> float:
@@ -199,6 +206,10 @@ func apply_hats():
 	
 	$hitbox.shape.extents.y += total_height/2
 	$hitbox.position.y -= total_height/2
+	
+	$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size
+	if PlayerStats.has_hat("electromonocle"):
+		$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size * 1.25
 
 func finish_sitting():
 	emit_signal("sitting_complete")

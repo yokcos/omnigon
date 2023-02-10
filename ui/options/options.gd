@@ -147,7 +147,7 @@ func _on_fullscreen_pressed() -> void:
 
 func _on_unsave_pressed() -> void:
 	var dir = Directory.new()
-	dir.remove("user://world.sav")
+	dir.remove(Game.save_file)
 	get_tree().quit()
 
 func _on_egress_pressed() -> void:

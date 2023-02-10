@@ -11,6 +11,6 @@ sprite = ExtResource( 2 )
 large_sprite = ExtResource( 3 )
 name = "Electro-monocle"
 description = "Battery powered monocle that enlarges the area of your Special Ability"
-height = 8.0
+height = 4.0
 small_frames = 8
 large_frames = 8

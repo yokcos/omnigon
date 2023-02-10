@@ -34,6 +34,8 @@ func _ready() -> void:
 	new_cs.shape = new_shape
 	
 	add_to_group("tooltipables")
+	
+	set_collision_mask_bit(2, true)
 
 func _process(delta: float) -> void:
 	is_closest = Game.closest_tooltipable == self

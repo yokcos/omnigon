@@ -1,6 +1,58 @@
 extends Node
 
 
+var default_controls: Dictionary = {
+	"jump":     [KEY_Z, KEY_X],
+	"attack":   [KEY_C, KEY_V],
+	"shift":    [KEY_A, KEY_S],
+	"interact": [KEY_D, KEY_F],
+}
+var save_file = "user://world.sav"
+var keyboard_layouts = {
+	"QWERTY": {
+		"Z": "Z", "X": "X",
+		"C": "C", "V": "V",
+		"A": "A", "S": "S",
+		"D": "D", "F": "F",
+	},
+	"AZERTY": {
+		"Z": "W", "X": "X",
+		"C": "C", "V": "V",
+		"A": "Q", "S": "S",
+		"D": "D", "F": "F",
+	},
+	"QZERTY": {
+		"Z": "W", "X": "X",
+		"C": "C", "V": "V",
+		"A": "A", "S": "S",
+		"D": "D", "F": "F",
+	},
+	"DVORAK": {
+		"Z": ";", "X": "Q",
+		"C": "J", "V": "K",
+		"A": "A", "S": "O",
+		"D": "E", "F": "U",
+	},
+	"NEO": {
+		"Z": "Ü", "X": "Ö",
+		"C": "Ä", "V": "P",
+		"A": "U", "S": "I",
+		"D": "A", "F": "E",
+	},
+	"COLEMAK": {
+		"Z": "Z", "X": "X",
+		"C": "C", "V": "V",
+		"A": "A", "S": "R",
+		"D": "S", "F": "T",
+	},
+	"ERROR": {
+		"Z": "Z", "X": "X",
+		"C": "C", "V": "V",
+		"A": "A", "S": "S",
+		"D": "D", "F": "F",
+	},
+}
+
 var gameholder: Node2D = null
 var world: Node2D = null
 var camera: Camera2D = null
@@ -33,8 +85,9 @@ func _ready() -> void:
 	OS.window_size = base_size*screen_scale
 	OS.window_position = OS.get_screen_size()/2 - OS.window_size/2
 	
-	if OS.get_name() != "HTML5" or true:
-		call_deferred("load_game")
+	apply_default_controls()
+	
+	call_deferred("load_game")
 
 func _process(delta: float) -> void:
 	closest_tooltipable = get_closest_tooltipable()
@@ -45,6 +98,25 @@ func _process(delta: float) -> void:
 			
 			GlobalSound.resume_music()
 
+
+func apply_default_controls():
+	var file = File.new()
+	var layout = OS.get_latin_keyboard_variant()
+	
+	if !file.file_exists(save_file):
+		for action in default_controls:
+			for key in default_controls[action]:
+				var new_event = InputEventKey.new()
+				var txt = OS.get_scancode_string(key)
+				print(txt)
+				
+				new_event.physical_scancode = key
+				var this_layout = keyboard_layouts[layout]
+				if this_layout.has(txt):
+					new_event.scancode = OS.find_scancode_from_string( keyboard_layouts[layout][txt] )
+				else:
+					new_event.scancode = OS.find_scancode_from_string( txt )
+				InputMap.action_add_event(action, new_event)
 
 func set_world(what: Node2D):
 	world = what
@@ -118,7 +190,7 @@ func get_input_string(action: String):
 	for this_action in actions:
 		if this_action is InputEventKey:
 			return OS.get_scancode_string(this_action.scancode)
-	return ""
+	return "??"
 
 func replace_input_string(text: String):
 	var full_text = text
@@ -141,7 +213,7 @@ func replace_input_string(text: String):
 func save_game():
 	PlayerStats.update_position()
 	var file = File.new()
-	file.open("user://world.sav", File.WRITE)
+	file.open(save_file, File.WRITE)
 	var data = {
 		"world": WorldSaver.data,
 		"player": PlayerStats.compress_data(),
@@ -154,7 +226,7 @@ func save_game():
 
 func load_game():
 	var file = File.new()
-	file.open("user://world.sav", File.READ)
+	file.open(save_file, File.READ)
 	if file.is_open():
 		var file_start = file.get_position()
 		var data = file.get_var(true)
