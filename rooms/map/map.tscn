@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://rooms/scope.tscn" type="PackedScene" id=55]
 [ext_resource path="res://rooms/detention.tscn" type="PackedScene" id=56]
 [ext_resource path="res://rooms/obvious_ambush.tscn" type="PackedScene" id=57]
+[ext_resource path="res://rooms/vast_chasm.tscn" type="PackedScene" id=58]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -227,3 +228,6 @@ position = Vector2( -7168, -512 )
 
 [node name="obvious_ambush" parent="." instance=ExtResource( 57 )]
 position = Vector2( -7168, -256 )
+
+[node name="vast_chasm" parent="." instance=ExtResource( 58 )]
+position = Vector2( 2560, -512 )

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/spikes_large.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 1 )
+
+[node name="spikes" type="Node2D"]
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 1 )]
+target_teams = [ 0, 1 ]
+damage = 1e+06
+hit_rate = 2.0
+knockback = Vector2( 0, -300 )
+active = true
+
+[node name="hitbox" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )

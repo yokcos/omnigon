@@ -34,6 +34,15 @@ func connect_list():
 func seize_focus():
 	$buttons.get_children()[0].grab_focus()
 	active = true
+	enable_buttons()
+
+func enable_buttons():
+	for i in $buttons.get_children():
+		i.disabled = false
+
+func disable_buttons():
+	for i in $buttons.get_children():
+		i.disabled = true
 
 func egress():
 	emit_signal("quit")
@@ -53,4 +62,5 @@ func _on_egress_pressed() -> void:
 
 func _on_overlayer_quit():
 	get_parent().show()
-	seize_focus()
+	disable_buttons()
+	call_deferred("seize_focus")

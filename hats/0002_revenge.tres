@@ -13,3 +13,5 @@ name = "Spiky Hat"
 description = "Those who attack you will recieve EXTREMELY PAINFUL CUTS from this very sharp hat.
 Be careful when donning this hat, lest you meet the same gruesome fate."
 height = 8.0
+small_frames = 1
+large_frames = 1

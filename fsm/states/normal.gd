@@ -16,9 +16,11 @@ func _step(delta: float) -> void:
 	move_normally(delta)
 	
 	if Input.is_action_pressed("move_up"):
-		father.cling_to_ladder(true)
+		if father.cling_to_ladder(true):
+			has_ladder = true
 	if Input.is_action_pressed("move_down"):
-		father.cling_to_ladder(false)
+		if father.cling_to_ladder(false):
+			has_ladder = true
 
 func _handle_input(event: InputEvent) -> void:
 	if father.is_controlled:

@@ -53,6 +53,11 @@ position = Vector2( 856, 432 )
 size = Vector2( 3, 6 )
 target_tiles = NodePath("../../tilemap")
 
+[node name="wall_changer4" parent="changers" instance=ExtResource( 3 )]
+position = Vector2( 1032, 432 )
+size = Vector2( 3, 6 )
+target_tiles = NodePath("../../tilemap")
+
 [node name="bombs" type="Node2D" parent="."]
 position = Vector2( 944, 176 )
 
@@ -118,3 +123,4 @@ position = Vector2( 656, 160 )
 [connection signal="activated" from="button" to="changers/wall_changer2" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer3" method="activate"]
 [connection signal="activated" from="button" to="bombs/bomb8" method="activate"]
+[connection signal="activated" from="button" to="changers/wall_changer4" method="activate"]

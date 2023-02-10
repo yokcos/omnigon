@@ -7,6 +7,7 @@ var base_animation_speed: float = 1
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
 const tex_shift = preload("res://fx/shift.png")
+const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 
 const base_hitbox_height: float = 12.0
 const base_hitbox_position: float = 4.0
@@ -152,6 +153,8 @@ func cling_to_ladder(up: bool = false):
 	if ladder:
 		$fsm.states["climb"].ladder = ladder
 		$fsm.set_state_string("climb")
+		return true
+	return false
 
 func get_overlapping_ladder(up: bool = false) -> Area2D:
 	var best_offset: float = 1000000
@@ -187,6 +190,8 @@ func apply_hats():
 		
 		var new_sprite = Sprite.new()
 		new_sprite.texture = hat.sprite
+		new_sprite.hframes = hat.small_frames
+		new_sprite.set_script(scr_auto_sprite)
 		$flippable/hats.add_child(new_sprite)
 		new_sprite.position.y = -total_height
 		

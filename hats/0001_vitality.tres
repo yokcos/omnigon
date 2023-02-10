@@ -12,3 +12,5 @@ large_sprite = ExtResource( 3 )
 name = "Vitality Topper"
 description = "Gives you the boon of ONE (1) extra hit point"
 height = 8.0
+small_frames = 1
+large_frames = 1

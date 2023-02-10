@@ -25,4 +25,5 @@ func set_hat(what: Hat):
 	hat = what
 	
 	$sprite.texture = what.sprite
+	$sprite.hframes = what.small_frames
 
