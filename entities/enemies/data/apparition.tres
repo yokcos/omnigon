@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://entities/enemies/data/enemy.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/apparition.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+id = "apparition"
+name = "Apparition"
+desc = "Ghostly spectre that ignores the existence of walls"
+lore = "It is unknown to us what gives these apparitions the power of flight, and through-wall movement. But it seems they are also given the power of Cowardice, since even a stern glare will have them quaking in fear."
+frames = SubResource( 5 )
+sprite_rect = Rect2( 0, 0, 32, 32 )

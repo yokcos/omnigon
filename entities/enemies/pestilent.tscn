@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/enemies/pestilent.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/pestilent.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/data/pestilent.tres" type="Resource" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -29,6 +30,7 @@ flip_path = NodePath("flippable")
 gravity_active = false
 acceleration = 0.0
 speed = 30.0
+enemy_data = ExtResource( 3 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
