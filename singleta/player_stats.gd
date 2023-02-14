@@ -34,6 +34,7 @@ var available_hats: Array = [
 ]
 var hats: Array = []
 var kills: Dictionary = {}
+var secrets: Array = []
 
 
 signal eyes_changed
@@ -120,6 +121,10 @@ func get_kills(what: EnemyData):
 	else:
 		return 0
 
+func add_secret(what: String):
+	if !secrets.has(what):
+		secrets.append(what)
+
 func update_position():
 	var player = Game.get_player()
 	if is_instance_valid(player):
@@ -155,6 +160,7 @@ func compress_data() -> Dictionary:
 		"main_music": main_music,
 		"time": time,
 		"kills": kills,
+		"secrets": secrets,
 	}
 	
 	return data
@@ -182,6 +188,9 @@ func uncompress_data(data: Dictionary):
 	available_hats = []
 	for this_hat in available_hat_ids:
 		available_hats.append(load(this_hat))
+	
+	if data.has("secrets"):
+		secrets = data["secrets"]
 
 
 func _on_vertex_collected(quantity: float):

@@ -261,6 +261,12 @@ func summon_popup_world(this_world: PackedScene):
 	else:
 		return null
 
+func summon_popup_secret(what: Secret):
+	if gameholder:
+		return gameholder.deploy_popup_secret(what)
+	else:
+		return null
+
 func popup_exists() -> bool:
 	return gameholder and gameholder.count_popups() > 0
 

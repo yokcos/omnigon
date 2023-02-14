@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -60,6 +60,7 @@
 [ext_resource path="res://rooms/vast_chasm.tscn" type="PackedScene" id=58]
 [ext_resource path="res://rooms/cubicles.tscn" type="PackedScene" id=59]
 [ext_resource path="res://rooms/offshoot.tscn" type="PackedScene" id=60]
+[ext_resource path="res://rooms/clockwork_server.tscn" type="PackedScene" id=61]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -239,3 +240,6 @@ position = Vector2( -5632, 768 )
 
 [node name="offshoot" parent="." instance=ExtResource( 60 )]
 position = Vector2( -7168, 256 )
+
+[node name="clockwork_server" parent="." instance=ExtResource( 61 )]
+position = Vector2( -6656, 256 )

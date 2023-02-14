@@ -151,7 +151,7 @@ margin_right = 256.0
 margin_bottom = 280.0
 custom_colors/font_color = Color( 0.890196, 0.901961, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "Demo v0025a"
+text = "Demo v0027a"
 align = 1
 valign = 1
 

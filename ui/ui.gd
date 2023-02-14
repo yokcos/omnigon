@@ -64,6 +64,9 @@ func deploy_level_name(what: String):
 	lower_component.text = what
 	lower_component.percent_visible = 0
 
+func add_popup(what: Control):
+	$popups.add_child(what)
+
 
 func _on_eyes_changed(what: int):
 	var this_texture = eye_textures[what]

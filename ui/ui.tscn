@@ -86,7 +86,7 @@ stretch_mode = 4
 
 [node name="level_name" parent="bar_bottom" instance=ExtResource( 7 )]
 
-[node name="popups" type="Control" parent="."]
+[node name="popups" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 

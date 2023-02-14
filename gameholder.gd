@@ -12,6 +12,7 @@ var lower_border: float = 16
 
 const obj_popup = preload("res://ui/popup.tscn")
 const obj_popup_world = preload("res://ui/popup_world.tscn")
+const obj_popup_secret = preload("res://ui/popup_secret.tscn")
 const obj_options = preload("res://ui/options/options.tscn")
 const obj_overlay = preload("res://ui/details_overlay.tscn")
 
@@ -100,15 +101,22 @@ func deploy_popup(data: Dictionary):
 	
 	current_popup = new_popup
 	
-	$ui/ui.add_child(new_popup)
+	$ui/ui.add_popup(new_popup)
 	
 	Game.emit_signal("popup_arisen", data)
 
 func deploy_popup_world(what: PackedScene):
 	var new_popup = obj_popup_world.instance()
-	$ui/ui.add_child(new_popup)
+	$ui/ui.add_popup(new_popup)
 	new_popup.popup_centered()
 	new_popup.apply_world(what)
+	return new_popup
+
+func deploy_popup_secret(what: Secret):
+	var new_popup = obj_popup_secret.instance()
+	$ui/ui.add_popup(new_popup)
+	new_popup.popup_centered()
+	new_popup.secret = what
 	return new_popup
 
 func count_popups() -> int:
