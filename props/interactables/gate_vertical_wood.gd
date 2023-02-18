@@ -2,6 +2,7 @@ extends StaticBody2D
 
 
 var woodmode: bool = true
+var burning: bool = false
 var spawn_position: Vector2 = Vector2()
 
 const obj_particulation = preload("res://fx/part_flame_barricade.tscn")
@@ -18,6 +19,7 @@ func ignite():
 	new_particulation.connect("stopped", self, "_on_particulation_stopped")
 	Game.deploy_instance(new_particulation, global_position)
 	WorldSaver.save_data(spawn_position, true)
+	burning = true
 
 func die():
 	for i in [-1, 0, 1]:
@@ -27,13 +29,14 @@ func die():
 
 
 func get_shifted():
-	woodmode = !woodmode
-	$interactable.active = woodmode
-	
-	if woodmode:
-		$animator.play("wood")
-	else:
-		$animator.play("metal")
+	if !burning:
+		woodmode = !woodmode
+		$interactable.active = woodmode
+		
+		if woodmode:
+			$animator.play("wood")
+		else:
+			$animator.play("metal")
 
 func _on_interactable_activated() -> void:
 	var result = PlayerStats.consume_lighter(PlayerStats.LIGHTER_PLAIN)
