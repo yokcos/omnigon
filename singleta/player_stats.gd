@@ -8,6 +8,7 @@ enum {
 
 enum {
 	LIGHTER_PLAIN,
+	LIGHTER_SOPHISTICATED,
 }
 
 var base_max_hp: float = 3
