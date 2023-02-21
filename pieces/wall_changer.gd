@@ -133,3 +133,4 @@ func update_corners():
 func set_size(what: Vector2):
 	size = what
 	update_corners()
+
