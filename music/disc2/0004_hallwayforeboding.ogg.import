@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0004_hallwayforeboding.ogg-0a00f53c6beb0246b214ed13b32b7804.oggstr"
+
+[deps]
+
+source_file="res://music/disc2/0004_hallwayforeboding.ogg"
+dest_files=[ "res://.import/0004_hallwayforeboding.ogg-0a00f53c6beb0246b214ed13b32b7804.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
