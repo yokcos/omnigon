@@ -39,9 +39,12 @@ var texts = [
 	"Gears and clockwork",
 	"Punchable pots",
 	"Shifting shapes",
+	"Gears and Clockwork",
 ]
 var current_texts = {}
 var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which I mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"
+
+var background_colour = Color("e3e6ff")
 
 const obj_text = preload("res://ui/mainmenu_text.tscn")
 const obj_options = preload("res://ui/options/options.tscn")
@@ -58,6 +61,9 @@ func _ready() -> void:
 	
 	for i in range(6):
 		deploy_text(randf() * $right_half.rect_size.x)
+	
+	VisualServer.set_default_clear_color(background_colour)
+	Game.background_colour = background_colour
 
 func _process(delta: float) -> void:
 	if randf()*120 < 1:

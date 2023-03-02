@@ -39,13 +39,13 @@ length = 3
 script = ExtResource( 5 )
 
 [node name="apparition0" parent="apparition_activator" instance=ExtResource( 4 )]
-position = Vector2( 168, 280 )
+position = Vector2( 232, 104 )
 
 [node name="apparition1" parent="apparition_activator" instance=ExtResource( 4 )]
-position = Vector2( 272, 96 )
+position = Vector2( 176, 232 )
 
 [node name="apparition2" parent="apparition_activator" instance=ExtResource( 4 )]
-position = Vector2( 48, 72 )
+position = Vector2( 168, 288 )
 
 [node name="timer" type="Timer" parent="apparition_activator"]
 wait_time = 0.1

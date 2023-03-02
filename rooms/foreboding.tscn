@@ -31,6 +31,7 @@ length = 6
 [node name="pipe" parent="." instance=ExtResource( 4 )]
 position = Vector2( 952, 72 )
 rotation = -1.57079
+highlight_distance = 0.0
 
 [node name="button" parent="." instance=ExtResource( 5 )]
 position = Vector2( 336, 176 )

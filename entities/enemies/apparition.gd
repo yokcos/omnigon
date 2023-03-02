@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 		if targets[0].flipped == behind_target:
 			$fsm/patrol.set_state("hide")
 		else:
-			$fsm/hide.set_state("patrol")
+			if $fsm/hide.set_state("patrol"):
+				$fsm/patrol.attack_time = rand_range(0.5, 1.5)
 
 
 func activate():

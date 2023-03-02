@@ -9,7 +9,7 @@
 [node name="already_known" type="Node2D"]
 script = ExtResource( 4 )
 title = "Already Known"
-temp_music = "notweird"
+temp_music = "imperialsecrets"
 map_image = ExtResource( 5 )
 
 [node name="props" type="Node2D" parent="."]

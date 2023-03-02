@@ -42,9 +42,11 @@ func _step(delta: float) -> void:
 func _handle_input(event: InputEvent) -> void:
 	pass
 
-func set_state(what: String) -> void:
+func set_state(what: String) -> bool:
 	if active:
 		get_parent().set_state_string(what)
+		return true
+	return false
 
 func get_animator() -> AnimationPlayer:
 	return get_parent().animator
