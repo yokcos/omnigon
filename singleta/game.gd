@@ -108,7 +108,6 @@ func apply_default_controls():
 			for key in default_controls[action]:
 				var new_event = InputEventKey.new()
 				var txt = OS.get_scancode_string(key)
-				print(txt)
 				
 				new_event.physical_scancode = key
 				var this_layout = keyboard_layouts[layout]

@@ -7,6 +7,9 @@ export (float) var duration = 5
 var sfx: SFX2D = null
 
 
+func _ready() -> void:
+	connect("tree_exiting", self, "_on_slain")
+
 func _enter():
 	._enter()
 	
@@ -48,6 +51,11 @@ func _exit():
 	father.following_player = true
 	father.flashing_pupil = false
 	
+	if sfx:
+		sfx.queue_free()
+		sfx = null
+
+func _on_slain():
 	if sfx:
 		sfx.queue_free()
 		sfx = null
