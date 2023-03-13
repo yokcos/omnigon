@@ -12,7 +12,7 @@ var climb_speed: float = 150
 var vertical_margin: float = -8
 var extra_margin: float = 8
 var lean: float = 0
-var lean_speed: float = 8
+var lean_speed: float = 24
 var max_lean: float = 8
 
 
@@ -76,6 +76,7 @@ func limit_height():
 	var current_pos = father.global_position.y
 	
 	if current_pos < upper_limit and !PlayerStats.check_upgrade("endless_climbing"):
+		father.land()
 		set_state("normal")
 	if current_pos > lower_limit: father.velocity.y = min(father.velocity.y, 0)
 	

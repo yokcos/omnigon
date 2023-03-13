@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://pieces/wall_detector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/enemies/grandchildcrook.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/grandchilddrook.gd" type="Script" id=3]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=4]
+[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=5]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=6]
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 16 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "post_attacc"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 15 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "pre_attacc"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="grandchildcrook" type="KinematicBody2D"]
+script = ExtResource( 3 )
+flip_path = NodePath("flippable")
+max_hp = 1.0
+saving_enabled = false
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+position = Vector2( 0, -24 )
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 2
+
+[node name="hurtbox" parent="flippable" instance=ExtResource( 7 )]
+knockback = Vector2( 400, -300 )
+
+[node name="hitbox" type="CollisionPolygon2D" parent="flippable/hurtbox"]
+visible = false
+polygon = PoolVector2Array( 0, -56, 16, -56, 32, -48, 48, -32, 56, -8, 56, 8, 8, 8, 8, -48 )
+
+[node name="wall_detector" parent="flippable" instance=ExtResource( 1 )]
+position = Vector2( 8, 0 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/wall_detector"]
+visible = false
+position = Vector2( 0, -4 )
+shape = SubResource( 6 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 4 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+animation = "walk"
+auto_proceed = "attacc"
+duration = 3.2
+
+[node name="attacc" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "pre_attacc"
+auto_proceed = "idle"
+recover_animation = "post_attacc"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "walk"
+anims/RESET = SubResource( 2 )
+anims/post_attacc = SubResource( 3 )
+anims/pre_attacc = SubResource( 4 )
+anims/walk = SubResource( 5 )
+
+[node name="destructor" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+autostart = true
+
+[connection signal="activated" from="flippable/wall_detector" to="." method="_on_wall_detector_activated"]
+[connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="timeout" from="destructor" to="." method="_on_destructor_timeout"]

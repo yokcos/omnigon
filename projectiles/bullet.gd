@@ -7,6 +7,7 @@ export (bool) var thru_walls = false
 export (Texture) var death_particles = null
 export (int) var death_particle_frames = 8
 
+var duration: float = 12
 var velocity: Vector2 = Vector2()
 var acceleration: Vector2 = Vector2()
 
@@ -17,6 +18,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += velocity * delta
 	velocity += acceleration * delta
+	duration -= delta
+	if duration <= 0:
+		queue_free()
 
 
 func hit_enemy(what: Being):

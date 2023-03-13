@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://entities/player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://entities/cam.gd" type="Script" id=11]
 [ext_resource path="res://fsm/states/state.gd" type="Script" id=12]
 [ext_resource path="res://fsm/states/player_sitting.gd" type="Script" id=13]
+[ext_resource path="res://fsm/states/charge_airmove.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=104]
 extents = Vector2( 8, 12 )
@@ -641,10 +642,11 @@ auto_proceed = "normal"
 duration = 0.2
 
 [node name="attacc" type="Node" parent="fsm"]
-script = ExtResource( 7 )
+script = ExtResource( 14 )
 animation = "attacc"
 auto_proceed = "normal"
 recover_animation = "postattacc"
+air_speed = 0.75
 
 [node name="shift" type="Node" parent="fsm"]
 script = ExtResource( 7 )

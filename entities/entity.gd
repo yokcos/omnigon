@@ -19,6 +19,9 @@ var air_time: float = 0
 var spawn_position: Vector2 = Vector2()
 var extra_data: Dictionary = {}
 var age: float = 0
+var pre_freeze_velocity: Vector2 = Vector2()
+var timefreeze: float = 0
+var timefreeze_fx = null
 
 
 export (bool) var can_flip_by_default = true
@@ -64,37 +67,42 @@ func _process(delta: float) -> void:
 	age += delta
 
 func _physics_process(delta: float) -> void:
-	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, PI/4, false)
-	
-	call_deferred("bounce_against_mattress")
-	
-	for i in get_slide_count():
-		var hit = get_slide_collision(i)
-		collide_against(hit)
+	if timefreeze <= 0:
+		velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, PI/4, false)
 		
-		if hit.collider is RigidBody2D:
-			hit.collider.apply_impulse( hit.position - hit.collider.position, -hit.normal * inertia )
+		call_deferred("bounce_against_mattress")
 		
-		if hit.normal.y < 0:
-			if hit.collider.is_in_group("entities"):
-				# Bounce on stuff
-				var other_thing = hit.collider
-				if other_thing.can_be_bounced and can_bounce:
-					if velocity.y >= 0:
-						velocity.y = -bounce_speed
-						
-						var new_part = obj_part_bounce_stars.instance()
-						Game.deploy_instance(new_part, hit.position)
+		for i in get_slide_count():
+			var hit = get_slide_collision(i)
+			collide_against(hit)
 			
-			if air_time > 0:
-				land()
-			air_time = 0
+			if hit.collider is RigidBody2D:
+				hit.collider.apply_impulse( hit.position - hit.collider.position, -hit.normal * inertia )
+			
+			if hit.normal.y < 0:
+				if hit.collider.is_in_group("entities"):
+					# Bounce on stuff
+					var other_thing = hit.collider
+					if other_thing.can_be_bounced and can_bounce:
+						if velocity.y >= 0:
+							velocity.y = -bounce_speed
+							
+							var new_part = obj_part_bounce_stars.instance()
+							Game.deploy_instance(new_part, hit.position)
+				
+				if air_time > 0:
+					land()
+				air_time = 0
+			
+			bounce_against(hit)
 		
-		bounce_against(hit)
-	
-	frictutate(delta)
-	if gravity_active:
-		gravitate(delta)
+		frictutate(delta)
+		if gravity_active:
+			gravitate(delta)
+	else:
+		timefreeze -= delta
+		if timefreeze <= 0:
+			velocity = pre_freeze_velocity
 
 func collide_against(hit: KinematicCollision2D):
 	pass
@@ -124,6 +132,10 @@ func gravitate(delta: float):
 
 func is_grounded() -> bool:
 	return air_time < coyote_time and coyote_enabled
+
+func time_freeze(duration: float):
+	timefreeze = duration
+	pre_freeze_velocity = velocity
 
 
 func reset_flippability():

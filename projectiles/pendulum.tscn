@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://projectiles/pendulum.gd" type="Script" id=1]
+[ext_resource path="res://projectiles/pendulum.png" type="Texture" id=2]
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.0
+
+[node name="pendulum" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+active = true
+thru_walls = true
+
+[node name="auto_sprite" parent="." instance=ExtResource( 3 )]
+texture = ExtResource( 2 )
+hframes = 8
+animation_speed = 20.0
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="wall_detector" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="wall_detector"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="wall_detector" to="." method="_on_wall_detector_body_entered"]

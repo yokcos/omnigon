@@ -1,0 +1,344 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
+[ext_resource path="res://entities/enemies/grandfathercrook.gd" type="Script" id=3]
+[ext_resource path="res://entities/enemies/grandfathercrook.png" type="Texture" id=4]
+[ext_resource path="res://fsm/states/approach_target.gd" type="Script" id=5]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=6]
+[ext_resource path="res://pieces/wall_detector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/enemies/gfc_jump.gd" type="Script" id=8]
+[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=9]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=11]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8, 30 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 16, 32 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 128, 64 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 8, 128 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "jump"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "pendulum"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "post_bong"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14, 15 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reposition"
+} ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "post_child"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 18, 19, 20, 21, 22, 23 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "post_jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 31, 30, 29, 28 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "pre_bong"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "pre_child"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 16, 17 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "pre_jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "walk"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[node name="grandfathercrook" type="KinematicBody2D"]
+script = ExtResource( 3 )
+flip_path = NodePath("flippable")
+title = "Grandfather Crook"
+max_hp = 30.0
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -14 )
+shape = SubResource( 6 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+position = Vector2( 0, -48 )
+texture = ExtResource( 4 )
+hframes = 8
+vframes = 5
+
+[node name="hurtbox0" parent="flippable" instance=ExtResource( 1 )]
+knockback = Vector2( 400, -300 )
+
+[node name="hitbox" type="CollisionPolygon2D" parent="flippable/hurtbox0"]
+visible = false
+polygon = PoolVector2Array( 16, -64, 48, -64, 64, -56, 80, -40, 88, -16, 88, 8, 24, 8, 40, -16, 40, -56 )
+
+[node name="entity_detector" parent="flippable" instance=ExtResource( 14 )]
+position = Vector2( 40, -24 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/entity_detector"]
+visible = false
+shape = SubResource( 30 )
+
+[node name="wall_detector" parent="flippable" instance=ExtResource( 7 )]
+position = Vector2( 24, -16 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/wall_detector"]
+visible = false
+shape = SubResource( 31 )
+
+[node name="spawnpoint" type="Position2D" parent="flippable"]
+position = Vector2( 8, -8 )
+
+[node name="entity_detector" parent="." instance=ExtResource( 14 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
+visible = false
+shape = SubResource( 21 )
+
+[node name="underhurtbox" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 136 )
+
+[node name="hitbox" type="CollisionShape2D" parent="underhurtbox"]
+shape = SubResource( 33 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 8 )
+anims/jump = SubResource( 22 )
+anims/pendulum = SubResource( 23 )
+anims/post_bong = SubResource( 24 )
+anims/post_child = SubResource( 25 )
+anims/post_jump = SubResource( 32 )
+anims/pre_bong = SubResource( 26 )
+anims/pre_child = SubResource( 27 )
+anims/pre_jump = SubResource( 28 )
+anims/walk = SubResource( 29 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 2 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+idle_animation = "idle"
+walk_animation = "walk"
+
+[node name="bong" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "pre_bong"
+auto_proceed = "idle"
+recover_animation = "post_bong"
+
+[node name="child" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "pre_child"
+auto_proceed = "idle"
+recover_animation = "post_child"
+
+[node name="pre_jump" type="Node" parent="fsm"]
+script = ExtResource( 11 )
+animation = "pre_jump"
+auto_proceed = "jump"
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 8 )
+animation = "jump"
+auto_proceed = "post_jump"
+
+[node name="post_jump" type="Node" parent="fsm"]
+script = ExtResource( 11 )
+animation = "post_jump"
+auto_proceed = "idle"
+
+[node name="pendulum" type="Node" parent="fsm"]
+script = ExtResource( 9 )
+animation = "pendulum"
+auto_proceed = "idle"
+duration = 1.6
+
+[node name="move_timer" type="Timer" parent="."]
+wait_time = 2.1
+autostart = true
+
+[connection signal="activated" from="flippable/entity_detector" to="." method="_on_front_detector_activated"]
+[connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
+[connection signal="activated" from="fsm/bong" to="." method="_on_bong_activated"]
+[connection signal="activated" from="fsm/child" to="." method="_on_child_activated"]
+[connection signal="entered" from="fsm/post_jump" to="." method="_on_post_jump_entered"]
+[connection signal="timeout" from="move_timer" to="." method="_on_move_timer_timeout"]

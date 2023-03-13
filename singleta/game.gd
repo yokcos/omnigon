@@ -57,6 +57,7 @@ var gameholder: Node2D = null
 var world: Node2D = null
 var camera: Camera2D = null
 var background_colour: Color = Color("e3e6ff")
+var current_popup: Popup = null
 
 var closest_tooltipable: Node2D = null
 var current_boss: Being = null setget set_boss
@@ -255,14 +256,18 @@ func summon_popup(title: String, text: String, egress: String = "Alrighty", anch
 		gameholder.add_popup(title, text, egress, anchor)
 
 func summon_popup_world(this_world: PackedScene):
-	if gameholder:
-		return gameholder.deploy_popup_world(this_world)
+	if gameholder and !current_popup:
+		current_popup = gameholder.deploy_popup_world(this_world)
+		current_popup.connect("tree_exiting", self, "_on_popup_slain")
+		return current_popup
 	else:
 		return null
 
 func summon_popup_secret(what: Secret):
-	if gameholder:
-		return gameholder.deploy_popup_secret(what)
+	if gameholder and !current_popup:
+		current_popup = gameholder.deploy_popup_secret(what)
+		current_popup.connect("tree_exiting", self, "_on_popup_slain")
+		return current_popup
 	else:
 		return null
 
@@ -317,3 +322,7 @@ func deploy_ui_instance(what: Control, where: Vector2):
 	if is_instance_valid(gameholder):
 		gameholder.get_node("ui/ui").add_child(what)
 		what.rect_position = where
+
+
+func _on_popup_slain():
+	current_popup = null
