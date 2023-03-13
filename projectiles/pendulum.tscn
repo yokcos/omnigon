@@ -17,6 +17,11 @@ script = ExtResource( 1 )
 active = true
 thru_walls = true
 
+[node name="line" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, -96 )
+width = 4.0
+default_color = Color( 0.25098, 0.2, 0.32549, 1 )
+
 [node name="auto_sprite" parent="." instance=ExtResource( 3 )]
 texture = ExtResource( 2 )
 hframes = 8

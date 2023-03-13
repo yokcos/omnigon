@@ -43,6 +43,7 @@ export (bool) var can_bounce = true
 export (String) var title = ""
 
 const obj_part_bounce_stars = preload("res://fx/part_bounce_stars.tscn")
+const fx_clock = preload("res://fx/clock.tscn")
 
 
 func _ready() -> void:
@@ -103,6 +104,9 @@ func _physics_process(delta: float) -> void:
 		timefreeze -= delta
 		if timefreeze <= 0:
 			velocity = pre_freeze_velocity
+			if is_instance_valid(timefreeze_fx):
+				timefreeze_fx.queue_free()
+				timefreeze_fx = null
 
 func collide_against(hit: KinematicCollision2D):
 	pass
@@ -136,6 +140,10 @@ func is_grounded() -> bool:
 func time_freeze(duration: float):
 	timefreeze = duration
 	pre_freeze_velocity = velocity
+	
+	var new_clock = fx_clock.instance()
+	add_child(new_clock)
+	timefreeze_fx = new_clock
 
 
 func reset_flippability():

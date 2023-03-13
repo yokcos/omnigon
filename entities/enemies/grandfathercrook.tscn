@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://fsm/states/approach_target.gd" type="Script" id=5]
 [ext_resource path="res://fsm/states/charge.gd" type="Script" id=6]
 [ext_resource path="res://pieces/wall_detector.tscn" type="PackedScene" id=7]
-[ext_resource path="res://entities/enemies/gfc_jump.gd" type="Script" id=8]
-[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=9]
+[ext_resource path="res://fsm/states/gfc_jump.gd" type="Script" id=8]
+[ext_resource path="res://fsm/states/gfc_pendulum.gd" type="Script" id=9]
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=10]
 [ext_resource path="res://fsm/states/state.gd" type="Script" id=11]
 [ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=14]
 
@@ -125,7 +126,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=25]
 resource_name = "post_child"
-length = 0.6
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("flippable/sprite:frame")
 tracks/0/interp = 1
@@ -133,10 +134,34 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.8, 1.2, 1.5, 1.7, 1.8, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 18, 19, 20, 21, 22, 23 ]
+"values": [ 18, 19, 20, 21, 22, 23, 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/sprite:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.6, 1.7, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -15.0, -15.0, -18.0, -12.75, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/sprite:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.6, 1.7, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -16, -48 ), Vector2( -16, -48 ), Vector2( -19, -48 ), Vector2( -13.6, -48 ), Vector2( 0, -48 ) ]
 }
 
 [sub_resource type="Animation" id=32]
@@ -277,6 +302,8 @@ position = Vector2( 0, 136 )
 [node name="hitbox" type="CollisionShape2D" parent="underhurtbox"]
 shape = SubResource( 33 )
 
+[node name="target" parent="." instance=ExtResource( 10 )]
+
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 8 )
@@ -339,6 +366,9 @@ autostart = true
 [connection signal="activated" from="flippable/entity_detector" to="." method="_on_front_detector_activated"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="activated" from="fsm/bong" to="." method="_on_bong_activated"]
+[connection signal="exited" from="fsm/bong" to="." method="_on_bong_exited"]
 [connection signal="activated" from="fsm/child" to="." method="_on_child_activated"]
 [connection signal="entered" from="fsm/post_jump" to="." method="_on_post_jump_entered"]
+[connection signal="entered" from="fsm/pendulum" to="." method="_on_pendulum_entered"]
+[connection signal="exited" from="fsm/pendulum" to="." method="_on_pendulum_exited"]
 [connection signal="timeout" from="move_timer" to="." method="_on_move_timer_timeout"]
