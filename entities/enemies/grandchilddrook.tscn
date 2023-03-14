@@ -81,7 +81,7 @@ tracks/0/keys = {
 [node name="grandchildcrook" type="KinematicBody2D"]
 script = ExtResource( 3 )
 flip_path = NodePath("flippable")
-max_hp = 1.0
+max_hp = 2.0
 saving_enabled = false
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

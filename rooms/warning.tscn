@@ -6,7 +6,7 @@
 [ext_resource path="res://props/anguish.png" type="Texture" id=4]
 [ext_resource path="res://props/statue0001.png" type="Texture" id=5]
 [ext_resource path="res://ui/map/images/warning.png" type="Texture" id=6]
-[ext_resource path="res://entities/enemies/grandfathercrook.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/enemies/alarmcrook.tscn" type="PackedScene" id=7]
 
 [node name="warning" type="Node2D"]
 script = ExtResource( 1 )
@@ -46,5 +46,5 @@ text = "Before you stands the Room of the Eye.
 Your only objective shall be to not die."
 egress = "Holy shit"
 
-[node name="grandfathercrook" parent="." instance=ExtResource( 7 )]
-position = Vector2( 296, 208 )
+[node name="alarmcrook" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 208 )
