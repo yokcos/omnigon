@@ -4,6 +4,8 @@ extends Enemy
 var target: Node2D = null
 var pendulum_target: Vector2 = Vector2()
 
+
+var obj_alarm = load("res://entities/enemies/alarmcrook.tscn")
 const obj_child = preload("res://entities/enemies/grandchilddrook.tscn")
 const obj_pendulum = preload("res://projectiles/pendulum.tscn")
 const target_sprites = [
@@ -20,6 +22,11 @@ func _process(delta: float) -> void:
 		if is_instance_valid(target):
 			$fsm/idle.target = target
 
+
+func get_shifted():
+	var new_alarm = obj_alarm.instance()
+	new_alarm.hp = hp
+	Game.replace_instance(self, new_alarm)
 
 func deploy_child():
 	var new_child = obj_child.instance()

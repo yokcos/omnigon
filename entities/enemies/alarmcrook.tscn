@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://entities/enemies/alarmcrook.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/alarmcrook.png" type="Texture" id=2]
@@ -7,12 +7,24 @@
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fsm/states/charge.gd" type="Script" id=6]
 [ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=8]
+[ext_resource path="res://fsm/states/ac_ring.gd" type="Script" id=9]
+[ext_resource path="res://fsm/states/stunned.gd" type="Script" id=10]
+[ext_resource path="res://pieces/wall_detector.tscn" type="PackedScene" id=11]
+[ext_resource path="res://fsm/states/ac_charge.gd" type="Script" id=12]
+[ext_resource path="res://fsm/states/ac_jump.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 14.5 )
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 4, 16 )
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 64.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -207,8 +219,10 @@ position = Vector2( 0, 1.5 )
 shape = SubResource( 1 )
 
 [node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
 
 [node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
 texture = ExtResource( 2 )
 offset = Vector2( 0, -32 )
 hframes = 8
@@ -227,6 +241,26 @@ position = Vector2( 32, -16 )
 [node name="hitbox" type="CollisionShape2D" parent="flippable/entity_detector"]
 visible = false
 shape = SubResource( 13 )
+
+[node name="chargebox" parent="flippable" instance=ExtResource( 5 )]
+knockback = Vector2( 600, 200 )
+
+[node name="hitbox" type="CollisionPolygon2D" parent="flippable/chargebox"]
+visible = false
+polygon = PoolVector2Array( 8, -8, 24, 0, 8, 8 )
+
+[node name="wall_detector" parent="flippable" instance=ExtResource( 11 )]
+position = Vector2( 8, 0 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/wall_detector"]
+visible = false
+shape = SubResource( 15 )
+
+[node name="ringbox" parent="." instance=ExtResource( 5 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="ringbox"]
+visible = false
+shape = SubResource( 14 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -258,5 +292,50 @@ animation = "pre_attacc"
 auto_proceed = "idle"
 recover_animation = "post_attacc"
 
+[node name="pre_ring" type="Node" parent="fsm"]
+script = ExtResource( 8 )
+animation = "pre_ring"
+auto_proceed = "ring"
+
+[node name="ring" type="Node" parent="fsm"]
+script = ExtResource( 9 )
+animation = "ring"
+auto_proceed = "post_ring"
+duration = 2.0
+
+[node name="post_ring" type="Node" parent="fsm"]
+script = ExtResource( 8 )
+animation = "post_ring"
+auto_proceed = "idle"
+
+[node name="charge" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+animation = "charge"
+auto_proceed = "dazed"
+
+[node name="dazed" type="Node" parent="fsm"]
+script = ExtResource( 10 )
+animation = "dazed"
+auto_proceed = "idle"
+duration = 1.2
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 13 )
+animation = "jump"
+auto_proceed = "idle"
+
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
+[connection signal="activated" from="flippable/wall_detector" to="." method="_on_wall_detector_activated"]
+[connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="entered" from="fsm/ring" to="." method="_on_ring_entered"]
+[connection signal="exited" from="fsm/ring" to="." method="_on_ring_exited"]
+[connection signal="entered" from="fsm/charge" to="." method="_on_charge_entered"]
+[connection signal="exited" from="fsm/charge" to="." method="_on_charge_exited"]
+[connection signal="entered" from="fsm/dazed" to="." method="_on_dazed_entered"]
+[connection signal="entered" from="fsm/jump" to="." method="_on_jump_entered"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
