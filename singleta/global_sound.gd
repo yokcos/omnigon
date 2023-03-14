@@ -102,6 +102,20 @@ const sfx_pot_break_b = [
 ]
 const sfx_automaton_recharge = [preload("res://entities/enemies/automaton_recharge.wav")]
 const sfx_automaton_turn = [preload("res://entities/enemies/automaton_turn.wav")]
+const sfx_tick = [
+	preload("res://sfx/tick0.wav"),
+	preload("res://sfx/tick1.wav"),
+	preload("res://sfx/tick2.wav"),
+]
+const sfx_tock = [
+	preload("res://sfx/tock0.wav"),
+	preload("res://sfx/tock1.wav"),
+	preload("res://sfx/tock2.wav"),
+]
+const sfx_bong = [preload("res://entities/enemies/bong.wav")]
+const sfx_ring = [preload("res://entities/enemies/ring.wav")]
+const sfx_target = [preload("res://entities/enemies/target.wav")]
+const sfx_whomp = [preload("res://sfx/whomp.wav")]
 
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]

@@ -332,6 +332,7 @@ one_shot = true
 [connection signal="activated" from="flippable/wall_detector" to="." method="_on_wall_detector_activated"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="entered" from="fsm/attacc" to="." method="_on_attacc_entered"]
 [connection signal="entered" from="fsm/ring" to="." method="_on_ring_entered"]
 [connection signal="exited" from="fsm/ring" to="." method="_on_ring_exited"]
 [connection signal="entered" from="fsm/charge" to="." method="_on_charge_entered"]

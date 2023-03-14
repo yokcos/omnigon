@@ -18,6 +18,8 @@ func _on_wall_detector_activated() -> void:
 
 func _on_attacc_activated() -> void:
 	$flippable/hurtbox.pulse()
+	var new_sfx = GlobalSound.play_random_sfx_2d(GlobalSound.sfx_tick, global_position)
+	new_sfx.randomise_pitch(0.4, 0.6)
 
 
 func _on_destructor_timeout() -> void:

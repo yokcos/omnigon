@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tick0.wav-8b9ad80fe4e14eae92654fc6a77c8b10.sample"
+
+[deps]
+
+source_file="res://sfx/tick0.wav"
+dest_files=[ "res://.import/tick0.wav-8b9ad80fe4e14eae92654fc6a77c8b10.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

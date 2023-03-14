@@ -31,7 +31,10 @@ func explode():
 	$flippable/sprite.hide()
 	$timer.start()
 	
-	for i in range(6):
+	var new_sfx = GlobalSound.play_random_sfx_2d(GlobalSound.sfx_bong, global_position)
+	new_sfx.relative_volume = 0.5
+	
+	for i in range(8):
 		var new_zapfront = fx_zapfront.instance()
 		new_zapfront.rotation = randf() * 2*PI
 		var size = rand_range(1, 1.2)

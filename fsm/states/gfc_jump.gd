@@ -22,6 +22,7 @@ func _step(delta: float):
 		if !frozen and age >= freeze_time:
 			frozen = true
 			father.target.time_freeze(duration - freeze_time)
+			GlobalSound.play_random_sfx_2d(GlobalSound.sfx_tock, father.target.global_position)
 		
 		var endpoint = 0.5 * (freeze_time + duration)
 		var ratio = 1 - (age / endpoint)

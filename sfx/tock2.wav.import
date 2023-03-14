@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tock2.wav-105b1a368086072dcb1aad6e14aa48fa.sample"
+
+[deps]
+
+source_file="res://sfx/tock2.wav"
+dest_files=[ "res://.import/tock2.wav-105b1a368086072dcb1aad6e14aa48fa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

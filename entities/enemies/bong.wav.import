@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bong.wav-1e24025f66eea0044d2b970f4d553950.sample"
+
+[deps]
+
+source_file="res://entities/enemies/bong.wav"
+dest_files=[ "res://.import/bong.wav-1e24025f66eea0044d2b970f4d553950.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
