@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0005_timeforbattle.ogg-52f502dbc973d94b9c4c52e6a7ee9cb0.oggstr"
+
+[deps]
+
+source_file="res://music/disc2/0005_timeforbattle.ogg"
+dest_files=[ "res://.import/0005_timeforbattle.ogg-52f502dbc973d94b9c4c52e6a7ee9cb0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

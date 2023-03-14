@@ -136,6 +136,7 @@ var musics: Dictionary = {
 	"suddenmimic": preload("res://music/disc2/0002_suddenmimic.ogg"),
 	"imperialsecrets": preload("res://music/disc2/0003_imperialsecrets.ogg"),
 	"hallwayforeboding": preload("res://music/disc2/0004_hallwayforeboding.ogg"),
+	"timeforbattle": preload("res://music/disc2/0005_timeforbattle.ogg"),
 }
 var discs = [
 	[
@@ -178,6 +179,7 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0002_suddenmimic.tres"))
 	add_music_entry(preload("res://music/disc2/0003_imperialsecrets.tres"))
 	add_music_entry(preload("res://music/disc2/0004_hallwayforeboding.tres"))
+	add_music_entry(preload("res://music/disc2/0005_timeforbattle.tres"))
 
 
 func add_music_entry(what: Music):

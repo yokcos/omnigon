@@ -27,9 +27,13 @@ func _process(delta: float) -> void:
 			$fsm/idle.target = target
 
 
+func arrive():
+	$fsm.set_state_string("post_jump")
+
 func get_shifted():
 	var new_alarm = obj_alarm.instance()
 	new_alarm.hp = hp
+	Game.set_boss(new_alarm)
 	Game.replace_instance(self, new_alarm)
 
 func deploy_child():

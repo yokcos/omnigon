@@ -46,7 +46,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if !Engine.editor_hint and event.is_action_pressed("test") and Game.in_game:
 		#player_enter_room(Vector2(256, 128))
-		player_enter_room(Vector2(-5000, 100))
+		player_enter_room(Vector2(-7100, 800))
+		PlayerStats.eyes = PlayerStats.EYES_SHAPESHIFTER
 
 
 func enter_game():

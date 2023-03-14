@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 func get_shifted():
 	var new_gfc = obj_gfc.instance()
 	new_gfc.hp = hp
+	Game.set_boss(new_gfc)
 	Game.replace_instance(self, new_gfc)
 
 func cull_sfx():

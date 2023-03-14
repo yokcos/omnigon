@@ -250,6 +250,8 @@ script = ExtResource( 3 )
 flip_path = NodePath("flippable")
 title = "Grandfather Crook"
 max_hp = 20.0
+saving_enabled = false
+boss_theme = "timeforbattle"
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -14 )
