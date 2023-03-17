@@ -12,6 +12,7 @@ extents = Vector2( 80, 16 )
 script = ExtResource( 2 )
 title = "Mind Your Step"
 room_size = Vector2( 1, 2 )
+music = "facilitymechanism"
 map_image = ExtResource( 4 )
 background_colour = Color( 0.894118, 0.823529, 0.666667, 1 )
 

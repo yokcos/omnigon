@@ -16,6 +16,7 @@ const tex_right = preload("res://props/conveyer_clockwork_right.png")
 
 func _ready() -> void:
 	if !Engine.editor_hint:
+		adjust_speed()
 		adjust_hitbox()
 		update_sprites()
 
@@ -34,7 +35,7 @@ func add_sprites():
 		$sprites.add_child(new_sprite)
 		new_sprite.position.x = i*tile_size - (length-1)*tile_size/2
 		new_sprite.hframes = 4
-		new_sprite.animation_speed = speed/20
+		new_sprite.animation_speed = speed/2
 		
 		if i == 0:
 			new_sprite.texture = tex_left
@@ -46,8 +47,11 @@ func add_sprites():
 func adjust_hitbox():
 	var height: float = $hitbox.shape.extents.y
 	$hitbox.shape = RectangleShape2D.new()
-	$hitbox.shape.extents.x = length * tile_size
+	$hitbox.shape.extents.x = length * tile_size / 2
 	$hitbox.shape.extents.y = height
+
+func adjust_speed():
+	constant_linear_velocity.x = speed
 
 
 func set_length(what: int):
@@ -60,6 +64,5 @@ func set_length(what: int):
 func set_speed(what: float):
 	speed = what
 	
-	constant_linear_velocity.x = speed
-	
+	adjust_speed()
 	update_sprites()

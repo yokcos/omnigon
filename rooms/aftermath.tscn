@@ -59,7 +59,8 @@ tracks/1/keys = {
 
 [node name="aftermath" type="Node2D"]
 script = ExtResource( 4 )
-title = "Do Not Feed"
+title = "Aftermath"
+music = "ingress"
 map_image = ExtResource( 3 )
 
 [node name="tilemap" parent="." instance=ExtResource( 1 )]
@@ -99,6 +100,7 @@ stream = ExtResource( 5 )
 [node name="wall_changer" parent="." instance=ExtResource( 8 )]
 position = Vector2( 512, 64 )
 size = Vector2( 2, 6 )
+target_tiles = NodePath("../tilemap")
 
 [node name="button" parent="." instance=ExtResource( 9 )]
 position = Vector2( 448, 160 )

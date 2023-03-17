@@ -138,6 +138,7 @@ var musics: Dictionary = {
 	"imperialsecrets": preload("res://music/disc2/0003_imperialsecrets.ogg"),
 	"hallwayforeboding": preload("res://music/disc2/0004_hallwayforeboding.ogg"),
 	"timeforbattle": preload("res://music/disc2/0005_timeforbattle.ogg"),
+	"calamitymarch": preload("res://music/disc2/0006_calamitymarch.ogg"),
 }
 var discs = [
 	[
@@ -181,6 +182,7 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0003_imperialsecrets.tres"))
 	add_music_entry(preload("res://music/disc2/0004_hallwayforeboding.tres"))
 	add_music_entry(preload("res://music/disc2/0005_timeforbattle.tres"))
+	add_music_entry(preload("res://music/disc2/0006_calamitymarch.tres"))
 
 
 func add_music_entry(what: Music):
@@ -208,6 +210,10 @@ func silence_music():
 		current_music.fade_out()
 
 func play_music(what: String, roomish = true):
+	if what == "433":
+		silence_music()
+		return false
+	
 	cut_temp_music()
 	
 	if is_instance_valid(current_music):
