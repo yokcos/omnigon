@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	actual_frame += animation_speed * delta
-	if actual_frame >= hframes*vframes:
+	if actual_frame >= hframes*vframes or actual_frame < 0:
 		emit_signal("finished")
 	actual_frame = fposmod(actual_frame, hframes*vframes)
 	frame = int(actual_frame)

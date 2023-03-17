@@ -20,7 +20,7 @@ var velocity: Vector2 = Vector2()
 var eyes: int = EYES_BASIC setget set_eyes
 var check_pos: Vector2 = Vector2()
 var extra_data: Array = []
-var lighters: Array = [0]
+var lighters: Array = [0, 0]
 var main_music: String = "ingress"
 var time: float = 0
 

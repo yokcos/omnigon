@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://entities/enemies/data/enemy.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/bell.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+id = "bell"
+name = "Bell"
+desc = "Annoying traps usually deployed against those who dare to attempt to remain in bed even a single second past their recommended awakening-time."
+lore = "In my homeland we are far more lax about letting people awaken at times that suit them. Certainly the idea of injuring people who try to stay in bed would be met with some controversy."
+frames = SubResource( 2 )
+sprite_rect = Rect2( 0, 0, 32, 32 )

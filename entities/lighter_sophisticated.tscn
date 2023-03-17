@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/lighter_sophisticated.png" type="Texture" id=1]
+[ext_resource path="res://entities/lighter.gd" type="Script" id=2]
+
+[node name="lighter_sophisticated" type="RigidBody2D"]
+script = ExtResource( 2 )
+type = 1
+lighter_name = "Sophisticated Lighter"
+lighter_desc = "The tool of the refined and enlightened arsonist"
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

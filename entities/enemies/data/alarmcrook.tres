@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://entities/enemies/data/enemy.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/alarmcrook.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 128, 96 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 128, 96 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 128, 96 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 384, 0, 128, 96 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+id = "alarmcrook"
+name = "Alarm Crook"
+desc = "Strong believer in the idea that folks should be physically attacked in order to wake them up on time"
+lore = "Never have I heard a sound as terrible and grotesque as the one produced by this harrowing robotic clock. I will be happy if I never again have to see another copy of this abomination."
+frames = SubResource( 5 )
+sprite_rect = Rect2( 48, 64, 32, 32 )

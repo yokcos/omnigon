@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://entities/enemies/alarmcrook.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/alarmcrook.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://pieces/wall_detector.tscn" type="PackedScene" id=11]
 [ext_resource path="res://fsm/states/ac_charge.gd" type="Script" id=12]
 [ext_resource path="res://fsm/states/ac_jump.gd" type="Script" id=13]
+[ext_resource path="res://entities/enemies/data/alarmcrook.tres" type="Resource" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 14.5 )
@@ -216,6 +217,7 @@ speed = 150.0
 max_hp = 20.0
 saving_enabled = false
 boss_theme = "timeforbattle"
+enemy_data = ExtResource( 14 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )

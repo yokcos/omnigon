@@ -114,6 +114,7 @@ const sfx_tock = [
 ]
 const sfx_bong = [preload("res://entities/enemies/bong.wav")]
 const sfx_ring = [preload("res://entities/enemies/ring.wav")]
+const sfx_ring_end = [preload("res://entities/enemies/ring_end.wav")]
 const sfx_target = [preload("res://entities/enemies/target.wav")]
 const sfx_whomp = [preload("res://sfx/whomp.wav")]
 

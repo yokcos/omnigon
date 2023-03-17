@@ -11,7 +11,7 @@ export (float) var jump_speed = 300
 export (float) var knockback_resistance = 1
 
 export (float) var max_hp = 3
-onready var hp = max_hp setget set_hp
+var hp: float = -1 setget set_hp
 
 var invuln: float = 0
 export (float) var invuln_duration = 0.2
@@ -34,6 +34,9 @@ signal hp_changed
 
 
 func _ready() -> void:
+	if hp < 0:
+		hp = max_hp
+	
 	add_to_group("beings")
 	set_collision_layer_bit(0, false)
 	set_collision_layer_bit(1, true)

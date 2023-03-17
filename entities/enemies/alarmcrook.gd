@@ -64,6 +64,7 @@ func _on_ring_entered() -> void:
 func _on_ring_exited() -> void:
 	$ringbox.active = false
 	cull_sfx()
+	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_ring_end, global_position)
 
 func _on_charge_entered() -> void:
 	$flippable/chargebox.activate()

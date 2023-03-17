@@ -5,6 +5,7 @@ export (int) var type = 0
 
 const lighters = [
 	preload("res://entities/lighter_basic.tscn"),
+	preload("res://entities/lighter_sophisticated.tscn"),
 ]
 
 
