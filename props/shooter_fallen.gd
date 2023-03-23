@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 
 export (float) var shot_speed = 200
@@ -8,7 +8,7 @@ export (float, 0, 1) var phase = 0
 var spawn_position: Vector2 = Vector2()
 var rtime = interval
 
-var obj_shooter = load("res://props/shooter_fallen.tscn")
+var obj_shooter = load("res://props/shooter.tscn")
 
 const obj_bullet = preload("res://projectiles/bullet.tscn")
 
@@ -39,11 +39,6 @@ func shoot():
 func get_shifted():
 	var new_shooter = obj_shooter.instance()
 	Game.replace_instance(self, new_shooter)
-
-func disable_shiftbox():
-	$shift_detector/hitbox.disabled = true
-	$timer.start()
+	new_shooter.disable_shiftbox()
 
 
-func _on_timer_timeout() -> void:
-	$shift_detector/hitbox.disabled = false

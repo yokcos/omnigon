@@ -289,6 +289,7 @@ func switch_room(which: PackedScene):
 
 func replace_instance(old_thing: Node2D, new_thing: Node2D):
 	var thing_position = old_thing.global_position
+	var thing_rotation = old_thing.global_rotation
 	var thing_index = old_thing.get_position_in_parent()
 	var father = old_thing.get_parent()
 	
@@ -296,7 +297,8 @@ func replace_instance(old_thing: Node2D, new_thing: Node2D):
 	
 	father.add_child(new_thing)
 	father.move_child(new_thing, thing_index)
-	new_thing.position = thing_position
+	new_thing.global_position = thing_position
+	new_thing.global_rotation = thing_rotation
 
 func deploy_fx(sprite: Texture, where: Vector2, frames: int = 8):
 	var new_fx = obj_fx.instance()

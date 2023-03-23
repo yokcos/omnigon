@@ -9,7 +9,7 @@ var announcement: String = ""
 var tex_fx = preload("res://fx/hat_collect.png")
 var current_tooltip: Node2D = null
 var is_closest: bool = false
-var active: bool = true
+var active: bool = false
 
 const obj_hitbox = preload("res://pieces/hitbox_octagon.tscn")
 const obj_detector = preload("res://pieces/entity_detector.tscn")
@@ -36,10 +36,13 @@ func _ready() -> void:
 	add_to_group("tooltipables")
 	
 	set_collision_mask_bit(2, true)
+	
+	var timer = get_tree().create_timer(.5)
+	timer.connect("timeout", self, "_on_active_timeout")
 
 func _process(delta: float) -> void:
 	is_closest = Game.closest_tooltipable == self
-	if is_closest and !is_instance_valid(current_tooltip):
+	if is_closest and !is_instance_valid(current_tooltip) and active:
 		deploy_tooltip()
 	if !is_closest and is_instance_valid(current_tooltip):
 		destroy_tooltip()
@@ -78,3 +81,6 @@ func _on_entity_detector_activated() -> void:
 
 func _on_tooltip_slain():
 	current_tooltip = null
+
+func _on_active_timeout():
+	active = true
