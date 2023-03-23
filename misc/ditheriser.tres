@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+
+uniform float factor = 0.0;
+
+
+void fragment() {
+	vec2 pos = UV / TEXTURE_PIXEL_SIZE;
+	pos *= 0.5;
+	pos = fract(pos);
+	pos.x = step(pos.x, 0.5);
+	pos.y = step(pos.y, 0.5);
+	float this_target = mod(2.0*pos.x + 3.0*pos.y, 4.0) / 4.0;
+	this_target += 0.25;
+	
+	COLOR = texture(TEXTURE, UV) * COLOR;
+	COLOR.a *= step(this_target, factor);
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/factor = 0.0

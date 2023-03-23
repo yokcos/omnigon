@@ -11,5 +11,5 @@ dest_files=[ "res://.import/0006_calamitymarch.ogg-c3782a311721fbdbeb188ee76fe3b
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

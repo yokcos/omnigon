@@ -1,14 +1,60 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/telescope.png" type="Texture" id=2]
+[ext_resource path="res://ui/wall.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.47451, 0.227451, 0.501961, 1 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("vignette:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "arrive"
+tracks/0/type = "value"
+tracks/0/path = NodePath("vignette:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.4, 1.4 ), Vector2( 1.04, 1.04 ), Vector2( 1, 1 ) ]
+}
 
 [node name="wall" type="Panel"]
 margin_right = 268.0
 margin_bottom = 220.0
 custom_styles/panel = SubResource( 1 )
+
+[node name="wall" type="TextureRect" parent="."]
+margin_right = 268.0
+margin_bottom = 220.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+
+[node name="vignette" type="TextureRect" parent="."]
+margin_right = 268.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 134, 110 )
+texture = ExtResource( 2 )
+expand = true
 
 [node name="text" type="Label" parent="."]
 anchor_top = 1.0
@@ -24,3 +70,8 @@ align = 1
 anchor_mode = 0
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "arrive"
+anims/RESET = SubResource( 2 )
+anims/arrive = SubResource( 3 )

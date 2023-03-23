@@ -140,6 +140,13 @@ func force_move(where: Vector2):
 	$fsm/force_move.target_position = where
 	$fsm.set_state($fsm/force_move)
 
+func long_stun():
+	set_stun_duration(1000000)
+	set_state("stunned")
+
+func set_stun_duration(what: float):
+	$fsm/stunned.duration = what
+
 func resolve_extra_data():
 	var data = PlayerStats.extra_data
 	

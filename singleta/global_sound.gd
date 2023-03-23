@@ -248,6 +248,10 @@ func cut_temp_music():
 func play_temp_music(what):
 	silence_music()
 	
+	if what == "433":
+		cut_temp_music()
+		return false
+	
 	if temp_music:
 		if temp_music.title == what:
 			return false

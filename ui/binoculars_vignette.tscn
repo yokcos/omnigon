@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://misc/fnt_main.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/binoculars.png" type="Texture" id=2]
+[ext_resource path="res://pieces/controls_label.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "await"
+length = 6.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "flash"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("image/text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="binoculars_vignette" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="image" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -128.0
+margin_right = 256.0
+margin_bottom = 128.0
+texture = ExtResource( 2 )
+
+[node name="text" type="Label" parent="image"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+script = ExtResource( 3 )
+base_text = "Please press '{interact}' if you want to return"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "await"
+anims/await = SubResource( 1 )
+anims/flash = SubResource( 2 )
+next/await = "flash"

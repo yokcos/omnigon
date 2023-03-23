@@ -9,7 +9,7 @@ const obj_wall = preload("res://ui/wall.tscn")
 func activate():
 	.activate()
 	
-	var new_popup = Game.summon_popup_world(obj_wall)
+	var new_popup = Game.summon_popup_world(obj_wall, "Witness a wall")
 	if new_popup:
 		new_popup.anchor = self
 

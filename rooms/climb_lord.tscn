@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -6,6 +6,65 @@
 [ext_resource path="res://ui/map/images/climb_lord.png" type="Texture" id=4]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/arrow_ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=7]
+[ext_resource path="res://pieces/controls_label.gd" type="Script" id=8]
+[ext_resource path="res://rooms/animation_activator.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("instruction:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("instruction:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "play"
+length = 16.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("instruction:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 14, 15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("instruction:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 15, 16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
 
 [node name="climb_lord" type="Node2D"]
 script = ExtResource( 2 )
@@ -28,3 +87,28 @@ rotation = -6.28318
 script = ExtResource( 3 )
 object = ExtResource( 6 )
 upgrade = "arrow_ladder"
+
+[node name="instruction" type="Label" parent="."]
+visible = false
+margin_left = 168.0
+margin_top = 144.0
+margin_right = 304.0
+margin_bottom = 192.0
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "You may use
+{move_up} + {shift} to ascend"
+align = 2
+percent_visible = 0.0
+script = ExtResource( 8 )
+base_text = "You may use
+{move_up} + {shift} to ascend"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/play = SubResource( 2 )
+
+[node name="animation_activator" type="Node" parent="animator"]
+script = ExtResource( 9 )
+
+[connection signal="activated" from="pipe1" to="animator/animation_activator" method="activate"]

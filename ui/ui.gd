@@ -14,6 +14,10 @@ const eye_textures = [
 	preload("res://ui/eyes1.png"),
 	preload("res://ui/eyes2.png"),
 ]
+const lighter_textures = [
+	preload("res://entities/lighter_basic.png"),
+	preload("res://entities/lighter_sophisticated.png"),
+]
 
 const obj_level_name = preload("res://ui/level_name.tscn")
 const obj_boss_bar = preload("res://ui/boss_bar.tscn")
@@ -21,8 +25,10 @@ const obj_boss_bar = preload("res://ui/boss_bar.tscn")
 
 func _ready() -> void:
 	PlayerStats.connect("eyes_changed", self, "_on_eyes_changed")
+	PlayerStats.connect("lighters_changed", self, "_on_lighters_changed")
 	Game.connect("world_changed", self, "_on_world_changed")
 	Game.connect("boss_changed", self, "_on_boss_changed")
+	update_lighters()
 
 func _process(delta: float) -> void:
 	if Game.camera and is_instance_valid(Game.camera) and false:
@@ -30,10 +36,10 @@ func _process(delta: float) -> void:
 
 
 func blind():
-	$blindness.show()
+	$animator.play("blinding")
 
 func unblind():
-	$blindness.hide()
+	$animator.play("envision")
 
 
 func cull_lower_component():
@@ -67,6 +73,19 @@ func deploy_level_name(what: String):
 func add_popup(what: Control):
 	$popups.add_child(what)
 
+func update_lighters():
+	for i in $bar_bottom/lighters.get_children():
+		i.queue_free()
+	
+	for i in range(PlayerStats.lighters.size()):
+		var this_count = PlayerStats.lighters[i]
+		for j in range(this_count):
+			var new_rect = TextureRect.new()
+			new_rect.texture = lighter_textures[i]
+			new_rect.expand = true
+			new_rect.rect_min_size = Vector2(16, 16)
+			$bar_bottom/lighters.add_child(new_rect)
+
 
 func _on_eyes_changed(what: int):
 	var this_texture = eye_textures[what]
@@ -82,3 +101,6 @@ func _on_boss_changed(what: Being):
 			deploy_level_name(Game.world.title)
 	else:
 		deploy_boss_bar(what)
+
+func _on_lighters_changed():
+	update_lighters()

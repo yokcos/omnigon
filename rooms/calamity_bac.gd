@@ -2,7 +2,7 @@ extends Node2D
 
 
 var motion_scales: Array = [0, 0.02, 0.04, 0.06, 0.08, 0.10]
-var sizes: Array = [1, 0.88, 0.91, 0.94, 0.97, 1]
+var sizes: Array = [1, 0.6, 0.7, 0.8, 0.9, 1]
 var room_centre: float = 2176
 
 

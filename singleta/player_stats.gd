@@ -43,6 +43,7 @@ signal hp_changed
 signal vertices_changed
 signal vertices_collected
 signal hats_changed
+signal lighters_changed
 
 
 func _process(delta: float) -> void:
@@ -101,10 +102,14 @@ func gain_lighter(what: int):
 		lighters[what] += 1
 	else:
 		lighters[what] = 1
+	
+	emit_signal("lighters_changed")
 
 func consume_lighter(what: int) -> bool:
 	if lighters.size() > what and lighters[what] > 0:
 		lighters[what] -= 1
+		
+		emit_signal("lighters_changed")
 		return true
 	return false
 
