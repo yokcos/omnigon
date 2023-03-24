@@ -1,7 +1,12 @@
 extends Node2D
 
 
+export (NodePath) var animation_thing
+
 var active: bool = false
+
+
+signal activated
 
 
 func _ready() -> void:
@@ -11,6 +16,9 @@ func activate():
 	active = true
 	$interactable.active = false
 	$animator.play("activate")
+	WorldSaver.save_data("has_megalift", true)
+	WorldSaver.save_global_data("megalift_active", true)
+	Events.emit_signal("megalift_created")
 
 func get_saved():
 	return {

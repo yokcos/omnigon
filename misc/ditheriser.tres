@@ -23,4 +23,4 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/factor = 0.0
+shader_param/factor = 1.0

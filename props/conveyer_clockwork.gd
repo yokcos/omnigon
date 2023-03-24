@@ -55,7 +55,7 @@ func adjust_speed():
 
 
 func set_length(what: int):
-	what = max(what, 2)
+	what = int(max(what, 2))
 	length = what
 	
 	adjust_hitbox()

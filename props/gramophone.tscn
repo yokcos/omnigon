@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://props/radio.png" type="Texture" id=1]
+[ext_resource path="res://props/gramophone.png" type="Texture" id=1]
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=2]
 [ext_resource path="res://misc/fnt_tiny_outline.tres" type="DynamicFont" id=3]
-[ext_resource path="res://props/radio.gd" type="Script" id=4]
+[ext_resource path="res://props/gramophone.gd" type="Script" id=4]
 [ext_resource path="res://music/disc1/0000_disc1.png" type="Texture" id=5]
 [ext_resource path="res://props/interactables/interactable.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 24, 16 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "calm"
-length = 0.8
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
@@ -36,15 +36,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "calmer"
-length = 1.6
+length = 0.8
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -54,15 +54,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "frantic"
-length = 0.8
+length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -72,15 +72,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "gustoful"
-length = 0.8
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
@@ -89,16 +89,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+"values": [ 4, 5, 6, 7 ]
 }
 
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("list:rect_position")
+tracks/0/path = NodePath("list/upperbar/icon:rect_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -107,10 +107,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("list/upperbar/icon:rect_scale")
+tracks/1/path = NodePath("list/lore:percent_visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -119,10 +119,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("list/lore:percent_visible")
+tracks/2/path = NodePath("list/upperbar/title:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -133,24 +133,12 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 1.0 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("list/upperbar/title:percent_visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "arrive"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("list:rect_position")
+tracks/0/path = NodePath("list/upperbar/icon:rect_scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -159,10 +147,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -16 ), Vector2( 0, -3.2 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.82, 0.82 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("list/upperbar/icon:rect_scale")
+tracks/1/path = NodePath("list/lore:percent_visible")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -171,10 +159,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.82, 0.82 ), Vector2( 1, 1 ) ]
+"values": [ 0.0, 0.8, 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("list/lore:percent_visible")
+tracks/2/path = NodePath("list/upperbar/title:percent_visible")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -185,20 +173,8 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0, 0.8, 1.0 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("list/upperbar/title:percent_visible")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.8, 1.0 ]
-}
 
-[node name="radio" type="Area2D"]
+[node name="gramophone" type="Area2D"]
 script = ExtResource( 4 )
 
 [node name="interactable" type="Node2D" parent="."]
@@ -207,14 +183,15 @@ description = "Radio of Music"
 verb = "Configure"
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -8 )
+position = Vector2( 0, -16 )
 shape = SubResource( 8 )
 
 [node name="sprite" type="Sprite" parent="."]
-position = Vector2( 0, -24 )
+use_parent_material = true
+position = Vector2( 0, -16 )
 texture = ExtResource( 1 )
 hframes = 8
-vframes = 3
+vframes = 2
 frame = 1
 
 [node name="animator" type="AnimationPlayer" parent="."]
@@ -226,42 +203,48 @@ anims/frantic = SubResource( 3 )
 anims/gustoful = SubResource( 4 )
 
 [node name="deets" type="Control" parent="."]
-margin_left = -24.0
-margin_top = -168.0
-margin_right = 296.0
-margin_bottom = -48.0
+use_parent_material = true
+margin_left = 32.0
+margin_top = -190.0
+margin_right = 160.0
+margin_bottom = 66.0
 theme = ExtResource( 2 )
 
 [node name="list" type="VBoxContainer" parent="deets"]
+use_parent_material = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="upperbar" type="HBoxContainer" parent="deets/list"]
-margin_right = 320.0
+use_parent_material = true
+margin_right = 128.0
 margin_bottom = 32.0
 alignment = 1
 
 [node name="icon" type="TextureRect" parent="deets/list/upperbar"]
-margin_left = 70.0
-margin_right = 102.0
+use_parent_material = true
+margin_right = 32.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( 16, 16 )
 texture = ExtResource( 5 )
 
 [node name="title" type="Label" parent="deets/list/upperbar"]
-margin_left = 110.0
-margin_top = 9.0
-margin_right = 250.0
-margin_bottom = 23.0
-custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+use_parent_material = true
+margin_left = 40.0
+margin_right = 128.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.72549, 0.74902, 0.984314, 1 )
 text = "The First Disc Begins"
+autowrap = true
 
 [node name="lore" type="Label" parent="deets/list"]
+use_parent_material = true
 margin_top = 36.0
-margin_right = 320.0
-margin_bottom = 105.0
-custom_colors/font_color = Color( 0.47451, 0.227451, 0.501961, 1 )
-custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
+margin_right = 128.0
+margin_bottom = 213.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_colors/font_outline_modulate = Color( 0.25098, 0.2, 0.32549, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "There is, it would appear, more to this empaire than first meets the eyeballholes. For all the charlatans and knaves up here, I am not drowning in them, thirsty for even a single reasonable individual. No, there are decent people aplenty here. Perhaps this day will not be one of heroically espionagifying villains most vile, but of righteously requisitioning the machinations of reasonable individuals who for some reason have joined the side of evil in this conflict. Where's all their time research anyway?"
 autowrap = true

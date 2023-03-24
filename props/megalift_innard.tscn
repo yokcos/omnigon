@@ -1,0 +1,285 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://misc/ditheriser.tres" type="Material" id=1]
+[ext_resource path="res://pieces/destroyer.gd" type="Script" id=2]
+[ext_resource path="res://props/megalift_innards.png" type="Texture" id=3]
+[ext_resource path="res://props/gramophone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://props/megalift_innard.gd" type="Script" id=5]
+[ext_resource path="res://props/interactables/interactable.gd" type="Script" id=6]
+[ext_resource path="res://props/interactables/button_sink.png" type="Texture" id=7]
+[ext_resource path="res://props/interactables/button_rise.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 120, 24 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24, 132 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 132 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 120, 24 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 20, 16 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 20, 16 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("darkness:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.25098, 0.2, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("darkness:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "arrive"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/factor")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("darkness:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01, 0.05, 0.09, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.545098, 0.576471, 0.686275, 1 ), Color( 0.427451, 0.458824, 0.552941, 1 ), Color( 0.556863, 0.321569, 0.321569, 1 ), Color( 0.47451, 0.227451, 0.501961, 1 ), Color( 0.25098, 0.2, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("darkness:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "depart"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/factor")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("darkness:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01, 0.05, 0.09, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.25098, 0.2, 0.32549, 1 ), Color( 0.47451, 0.227451, 0.501961, 1 ), Color( 0.556863, 0.321569, 0.321569, 1 ), Color( 0.427451, 0.458824, 0.552941, 1 ), Color( 0.545098, 0.576471, 0.686275, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("darkness:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("destroyer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "instant_arrive"
+length = 0.001
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/factor")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("darkness:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Color( 0.25098, 0.2, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("darkness:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="innard" type="Node2D"]
+material = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="destroyer" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 3 )
+
+[node name="darkness" type="Polygon2D" parent="."]
+visible = false
+color = Color( 0.25098, 0.2, 0.32549, 1 )
+invert_enable = true
+invert_border = 1000.0
+polygon = PoolVector2Array( -120, -40, 120, -40, 120, 128, -120, 128 )
+
+[node name="walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="hitbox0" type="CollisionShape2D" parent="walls"]
+position = Vector2( 0, -64 )
+shape = SubResource( 4 )
+
+[node name="hitbox1" type="CollisionShape2D" parent="walls"]
+position = Vector2( -144, 44 )
+shape = SubResource( 5 )
+
+[node name="hitbox2" type="CollisionShape2D" parent="walls"]
+position = Vector2( 144, 44 )
+shape = SubResource( 6 )
+
+[node name="hitbox3" type="CollisionShape2D" parent="walls"]
+position = Vector2( 0, 152 )
+shape = SubResource( 7 )
+
+[node name="hitbox4" type="CollisionShape2D" parent="walls"]
+position = Vector2( 100, 112 )
+shape = SubResource( 8 )
+
+[node name="hitbox5" type="CollisionShape2D" parent="walls"]
+position = Vector2( -100, 112 )
+shape = SubResource( 9 )
+
+[node name="gramophone" parent="." instance=ExtResource( 4 )]
+use_parent_material = true
+position = Vector2( 96, 96 )
+
+[node name="button_rise" type="Node2D" parent="."]
+position = Vector2( -96, 80 )
+script = ExtResource( 6 )
+highlight_distance = 64.0
+description = "Button of Rising"
+verb = "Press"
+thru_walls = true
+
+[node name="sprite" type="Sprite" parent="button_rise"]
+texture = ExtResource( 8 )
+
+[node name="button_sink" type="Node2D" parent="."]
+position = Vector2( -72, 80 )
+script = ExtResource( 6 )
+highlight_distance = 64.0
+description = "Button of Sinking"
+verb = "Press"
+thru_walls = true
+
+[node name="sprite" type="Sprite" parent="button_sink"]
+texture = ExtResource( 7 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 10 )
+anims/arrive = SubResource( 11 )
+anims/depart = SubResource( 12 )
+anims/instant_arrive = SubResource( 13 )
+
+[connection signal="activated" from="button_rise" to="." method="_on_button_rise_activated"]
+[connection signal="activated" from="button_sink" to="." method="_on_button_sink_activated"]

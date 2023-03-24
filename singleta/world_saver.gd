@@ -12,6 +12,11 @@ func save_room_data(key, value, room: Vector2):
 func save_data(key, value):
 	save_room_data(key, value, Rooms.current_room)
 
+func save_global_data(key, value):
+	if !data.has("global"):
+		data["global"] = {}
+	data["global"][key] = value
+
 func add_data(key, value):
 	if !data.has(Rooms.current_room):
 		data[Rooms.current_room] = {}
@@ -23,6 +28,12 @@ func add_data(key, value):
 
 func load_data(key):
 	return load_data_at(Rooms.current_room, key)
+
+func load_global_data(key):
+	if data.has("global"):
+		if data["global"].has(key):
+			return data["global"][key]
+	return null
 
 func load_data_at(where: Vector2, key):
 	if data.has(where):

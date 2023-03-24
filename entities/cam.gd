@@ -1,6 +1,7 @@
 extends Camera2D
 
 
+var target_offset: Vector2 = Vector2()
 var target_pos: Vector2 = Vector2()
 var previous_pos: Vector2 = Vector2()
 var max_speed: float = 800
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 		
 		if (position - target_pos).length_squared() < 1:
 			position = target_pos
+		
+		
+		offset = offset.linear_interpolate(target_offset, delta*2)
 
 
 func get_actual_position() -> Vector2:

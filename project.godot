@@ -144,6 +144,7 @@ WorldSaver="*res://singleta/world_saver.gd"
 Rooms="*res://singleta/rooms.gd"
 GlobalSound="*res://singleta/global_sound.gd"
 Settings="*res://singleta/settings.gd"
+Events="*res://singleta/events.gd"
 
 [debug]
 
