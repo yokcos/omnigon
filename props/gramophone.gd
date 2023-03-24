@@ -19,14 +19,31 @@ var current_music = 0
 
 
 func _ready() -> void:
-	play_music(0)
+	if !match_music():
+		play_music(0)
 	
 	$deets.rect_global_position.x = max($deets.rect_global_position.x, 8)
 
 
+func match_music():
+	var global_music: BGM = GlobalSound.current_music
+	
+	if !is_instance_valid(global_music):
+		return false
+	
+	var id = global_music.title
+	
+	for i in range(musics.size()):
+		var this_music = musics[i]
+		if this_music["music"]["id"] == id:
+			current_music = i
+			play_music(current_music)
+			return true
+	return false
+
 func play_music(what: int):
 	var music = musics[what]["music"]
-	GlobalSound.play_temp_music(music["id"])
+	GlobalSound.play_music(music["id"])
 	$deets/list/upperbar/title.text = music["title"]
 	$deets/list/upperbar/icon.texture = music["icon"]
 	$deets/list/lore.text = music["lore"]
@@ -37,8 +54,7 @@ func play_music(what: int):
 	$deets/animator.play("arrive")
 
 func get_shifted():
-	var new_castle = load("res://props/bouncycastle.tscn").instance()
-	Game.replace_instance(self, new_castle)
+	pass
 
 
 func _on_interactable_activated() -> void:

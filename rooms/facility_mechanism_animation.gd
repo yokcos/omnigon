@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func activate():
-	WorldSaver.save_data("has_megalift", true)
+	WorldSaver.save_global_data("megalift_room", Rooms.current_room)
 	var new_megalift = obj_megalift.instance()
 	new_megalift.disable_interactable()
 	$megalift_holder.add_child(new_megalift)

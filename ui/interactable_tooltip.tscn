@@ -267,6 +267,7 @@ tracks/12/keys = {
 }
 
 [node name="interactable_tooltip" type="Node2D"]
+z_index = 20
 script = ExtResource( 3 )
 
 [node name="control" type="Control" parent="."]

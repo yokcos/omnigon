@@ -16,7 +16,7 @@ func activate():
 	active = true
 	$interactable.active = false
 	$animator.play("activate")
-	WorldSaver.save_data("has_megalift", true)
+	WorldSaver.save_global_data("megalift_room", Rooms.current_room)
 	WorldSaver.save_global_data("megalift_active", true)
 	Events.emit_signal("megalift_created")
 
@@ -29,6 +29,7 @@ func get_loaded(data: Dictionary):
 	active = data["active"]
 	if active:
 		$animator.play("spin")
+		$interactable.active = false
 
 
 func _on_interactable_activated() -> void:

@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://misc/fnt_tiny_outline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/stats.gd" type="Script" id=2]
+
+[node name="stats" type="Control"]
+margin_left = 16.0
+margin_top = 192.0
+margin_right = 200.0
+margin_bottom = 272.0
+script = ExtResource( 2 )
+
+[node name="list" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="vertices" type="Label" parent="list"]
+margin_right = 184.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
+custom_fonts/font = ExtResource( 1 )
+autowrap = true
+percent_visible = 0.0
+
+[node name="rooms" type="Label" parent="list"]
+margin_top = 13.0
+margin_right = 184.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
+custom_fonts/font = ExtResource( 1 )
+autowrap = true
+percent_visible = 0.0
+
+[node name="time" type="Label" parent="list"]
+margin_top = 26.0
+margin_right = 184.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
+custom_fonts/font = ExtResource( 1 )
+autowrap = true
+percent_visible = 0.0
+
+[node name="hats" type="Label" parent="list"]
+margin_top = 39.0
+margin_right = 184.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
+custom_fonts/font = ExtResource( 1 )
+autowrap = true
+percent_visible = 0.0

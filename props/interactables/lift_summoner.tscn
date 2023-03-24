@@ -57,10 +57,12 @@ script = ExtResource( 4 )
 script = ExtResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0, 96 )
 texture = ExtResource( 3 )
 hframes = 8
 
 [node name="interactable" type="Node2D" parent="."]
+position = Vector2( 0, 96 )
 script = ExtResource( 2 )
 description = "Lift Summoner"
 verb = "Activate"

@@ -179,7 +179,7 @@ script = ExtResource( 4 )
 
 [node name="interactable" type="Node2D" parent="."]
 script = ExtResource( 6 )
-description = "Radio of Music"
+description = "Gramophone of Music"
 verb = "Configure"
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/interactables/sign.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/bouncycastle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/room.gd" type="Script" id=4]
 [ext_resource path="res://ui/map/images/bouncycastle.png" type="Texture" id=5]
-[ext_resource path="res://misc/fnt_tiny_outline.tres" type="DynamicFont" id=6]
-[ext_resource path="res://ui/stats.gd" type="Script" id=7]
 [ext_resource path="res://props/megalift.tscn" type="PackedScene" id=8]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=9]
+[ext_resource path="res://pieces/music_changer.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 272, 8 )
@@ -18,10 +18,12 @@ extents = Vector2( 8, 56 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24, 32 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 32 )
+
 [node name="bouncycastle" type="Node2D"]
 script = ExtResource( 4 )
 title = "Castle of Bouncing"
-temp_music = "433"
 map_image = ExtResource( 5 )
 background_colour = Color( 0.545098, 0.576471, 0.686275, 1 )
 
@@ -76,49 +78,22 @@ description = "Sign of Text"
 text = "And so our great protagonist Pbot successfully reached the end of the first area in Omnigon, and was able to claim the ultimate reward: Unlimited access to this bouncy castle!"
 
 [node name="megalift" parent="." instance=ExtResource( 8 )]
+position = Vector2( 256, 112 )
 
-[node name="stats" type="Control" parent="."]
-margin_left = 16.0
-margin_top = 192.0
-margin_right = 200.0
-margin_bottom = 272.0
-script = ExtResource( 7 )
+[node name="entity_detector0" parent="." instance=ExtResource( 9 )]
+position = Vector2( 16, 144 )
 
-[node name="list" type="VBoxContainer" parent="stats"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector0"]
+shape = SubResource( 4 )
 
-[node name="vertices" type="Label" parent="stats/list"]
-margin_right = 184.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
-custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
-custom_fonts/font = ExtResource( 6 )
-percent_visible = 0.0
+[node name="entity_detector1" parent="." instance=ExtResource( 9 )]
+position = Vector2( 496, 144 )
 
-[node name="rooms" type="Label" parent="stats/list"]
-margin_top = 13.0
-margin_right = 184.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
-custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
-custom_fonts/font = ExtResource( 6 )
-percent_visible = 0.0
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector1"]
+shape = SubResource( 4 )
 
-[node name="time" type="Label" parent="stats/list"]
-margin_top = 26.0
-margin_right = 184.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
-custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
-custom_fonts/font = ExtResource( 6 )
-percent_visible = 0.0
+[node name="music_changer" parent="." instance=ExtResource( 10 )]
+music = "433"
 
-[node name="hats" type="Label" parent="stats/list"]
-margin_top = 39.0
-margin_right = 184.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
-custom_colors/font_outline_modulate = Color( 0.545098, 0.576471, 0.686275, 1 )
-custom_fonts/font = ExtResource( 6 )
-percent_visible = 0.0
+[connection signal="activated" from="entity_detector0" to="music_changer" method="activate"]
+[connection signal="activated" from="entity_detector1" to="music_changer" method="activate"]

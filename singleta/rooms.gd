@@ -48,6 +48,7 @@ func _input(event: InputEvent) -> void:
 		#player_enter_room(Vector2(256, 128))
 		player_enter_room(Vector2(-7100, 800))
 		PlayerStats.eyes = PlayerStats.EYES_SHAPESHIFTER
+		PlayerStats.gain_lighter(1)
 
 
 func enter_game():

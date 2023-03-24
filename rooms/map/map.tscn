@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -73,6 +73,8 @@
 [ext_resource path="res://rooms/return.tscn" type="PackedScene" id=71]
 [ext_resource path="res://rooms/sophistication.tscn" type="PackedScene" id=72]
 [ext_resource path="res://rooms/calamity.tscn" type="PackedScene" id=73]
+[ext_resource path="res://rooms/inaccessible.tscn" type="PackedScene" id=74]
+[ext_resource path="res://rooms/final_lab.tscn" type="PackedScene" id=75]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -291,3 +293,9 @@ position = Vector2( -8704, 512 )
 
 [node name="calamity" parent="." instance=ExtResource( 73 )]
 position = Vector2( -3072, 768 )
+
+[node name="inaccessible" parent="." instance=ExtResource( 74 )]
+position = Vector2( -4096, -256 )
+
+[node name="final_lab" parent="." instance=ExtResource( 75 )]
+position = Vector2( -3584, 1024 )

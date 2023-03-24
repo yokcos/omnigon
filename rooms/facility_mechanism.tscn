@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://ui/map/images/facility_mechanism.png" type="Texture" id=4]
 [ext_resource path="res://props/interactables/lift_activator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://rooms/facility_mechanism_animation.gd" type="Script" id=6]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pieces/music_changer.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 272, 16 )
@@ -55,11 +57,13 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 112 )
+
 [node name="facility_mechanism" type="Node2D"]
 script = ExtResource( 2 )
 title = "Facility Mechanism"
 room_size = Vector2( 1, 2 )
-temp_music = "433"
 map_image = ExtResource( 4 )
 background_colour = Color( 0.545098, 0.576471, 0.686275, 1 )
 
@@ -69,7 +73,7 @@ position = Vector2( 256, 368 )
 [node name="props" type="Node2D" parent="."]
 
 [node name="lift_activator" parent="props" instance=ExtResource( 5 )]
-position = Vector2( 368, 480 )
+position = Vector2( 408, 480 )
 animation_thing = NodePath("../../megalift_animation")
 
 [node name="tilemap" parent="." instance=ExtResource( 1 )]
@@ -90,3 +94,14 @@ position = Vector2( 256, 368 )
 [node name="animator" type="AnimationPlayer" parent="megalift_animation"]
 anims/RESET = SubResource( 2 )
 anims/arrive = SubResource( 3 )
+
+[node name="entity_detector" parent="." instance=ExtResource( 7 )]
+position = Vector2( 16, 384 )
+
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
+shape = SubResource( 4 )
+
+[node name="music_changer" parent="." instance=ExtResource( 8 )]
+music = "433"
+
+[connection signal="activated" from="entity_detector" to="music_changer" method="activate"]

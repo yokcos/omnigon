@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://misc/ditheriser.tres" type="Material" id=1]
 [ext_resource path="res://pieces/destroyer.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://props/interactables/interactable.gd" type="Script" id=6]
 [ext_resource path="res://props/interactables/button_sink.png" type="Texture" id=7]
 [ext_resource path="res://props/interactables/button_rise.png" type="Texture" id=8]
+[ext_resource path="res://ui/stats.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 120, 24 )
@@ -216,6 +217,7 @@ texture = ExtResource( 3 )
 
 [node name="darkness" type="Polygon2D" parent="."]
 visible = false
+z_index = 20
 color = Color( 0.25098, 0.2, 0.32549, 1 )
 invert_enable = true
 invert_border = 1000.0
@@ -252,6 +254,7 @@ shape = SubResource( 9 )
 [node name="gramophone" parent="." instance=ExtResource( 4 )]
 use_parent_material = true
 position = Vector2( 96, 96 )
+z_index = 20
 
 [node name="button_rise" type="Node2D" parent="."]
 position = Vector2( -96, 80 )
@@ -274,6 +277,15 @@ thru_walls = true
 
 [node name="sprite" type="Sprite" parent="button_sink"]
 texture = ExtResource( 7 )
+
+[node name="fore" type="Node2D" parent="."]
+z_index = 20
+
+[node name="stats" parent="fore" instance=ExtResource( 9 )]
+margin_left = -248.0
+margin_top = -56.0
+margin_right = -128.0
+margin_bottom = 128.0
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 10 )

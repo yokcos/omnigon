@@ -6,10 +6,14 @@ var current_floor: int = -1
 
 const rooms: Array = [
 	Vector2(-7, -2),
+	Vector2(-8, -1),
 	Vector2(-7, 2),
+	Vector2(-7, 4),
 ]
 const positions: PoolVector2Array = PoolVector2Array([
 	Vector2(256, 112),
+	Vector2(768, 624),
+	Vector2(256, 368),
 	Vector2(256, 368),
 ])
 
@@ -30,8 +34,7 @@ func go_to_floor(index: int):
 			var target_room_pos: Vector2 = rooms[index] * Rooms.room_size
 			var lift_pos: Vector2 = positions[index]
 			
-			WorldSaver.save_data("has_megalift", false)
-			WorldSaver.save_room_data("has_megalift", true, rooms[index])
+			WorldSaver.save_global_data("megalift_room", rooms[index])
 			
 			Rooms.player_enter_room( target_room_pos + lift_pos + relative )
 			
