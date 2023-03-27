@@ -46,6 +46,7 @@ func set_room_size(what: Vector2):
 
 func transition(player: Entity):
 	PlayerStats.velocity = player.velocity
+	PlayerStats.flipped = player.flipped
 	
 	var global_pos: Vector2 = player.global_position + Rooms.current_room*Rooms.room_size
 	var target_subroom: Vector2 = Rooms.get_subroom_at(global_pos)

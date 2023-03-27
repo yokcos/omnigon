@@ -7,6 +7,8 @@ var active: bool = false
 
 var list_tpos: float = 0
 var preview_spacing: float = 40
+var full_height: float = 0
+
 onready var list: HBoxContainer = $list_holder/sprites
 onready var preview: Control = $preview
 onready var buttons: VBoxContainer = $underthings/buttons
@@ -61,6 +63,8 @@ func clear_preview():
 	for i in range(1, images.size()):
 		images[i].queue_free()
 		preview.remove_child(images[i])
+	
+	full_height = 0
 
 func apply_preview():
 	clear_preview()
@@ -77,7 +81,9 @@ func create_preview_hat(what: Hat):
 	new_tex.set_script(scr_auto_sprite)
 	
 	preview.add_child(new_tex)
-	new_tex.position.y = -preview_spacing * slots
+	
+	full_height += preview_spacing * (what.height / 8)
+	new_tex.position.y = -full_height + 10
 
 func get_selected_hat() -> Hat:
 	return hats[selected_slot]

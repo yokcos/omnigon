@@ -9,7 +9,7 @@
 [ext_resource path="res://entities/enemies/adept.tscn" type="PackedScene" id=7]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://props/interactables/pipe_hat.gd" type="Script" id=9]
-[ext_resource path="res://hats/0003_gremlin_hive.tres" type="Resource" id=10]
+[ext_resource path="res://hats/0006_jetfist.tres" type="Resource" id=10]
 [ext_resource path="res://ui/map/images/detonation.png" type="Texture" id=11]
 [ext_resource path="res://props/pot.tscn" type="PackedScene" id=12]
 
@@ -122,5 +122,5 @@ position = Vector2( 656, 160 )
 [connection signal="activated" from="button" to="changers/wall_changer1" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer2" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer3" method="activate"]
-[connection signal="activated" from="button" to="bombs/bomb8" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer4" method="activate"]
+[connection signal="activated" from="button" to="bombs/bomb8" method="activate"]

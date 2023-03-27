@@ -4,6 +4,7 @@ extends Being
 var base_gravity: float = 1250
 var gravity_multiplier: float = 1.5
 var base_animation_speed: float = 1
+var jet_power: float = 0
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
 const tex_shift = preload("res://fx/shift.png")
@@ -27,6 +28,7 @@ func _ready() -> void:
 	max_hp = PlayerStats.max_hp
 	hp = PlayerStats.hp
 	velocity = PlayerStats.velocity
+	set_flip(PlayerStats.flipped)
 	
 	if PlayerStats.check_pos == Vector2():
 		PlayerStats.check_pos = global_position
@@ -229,7 +231,7 @@ func sit_at_art(what: Node2D):
 	$fsm/sitting.flipped = what.global_position.x < global_position.x
 
 func step():
-	if is_on_floor():
+	if is_grounded():
 		var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_step)
 		new_sfx.relative_volume = 0.8
 		new_sfx.randomise_pitch(0.8, 1.2)
@@ -256,9 +258,22 @@ func _on_attacc_entered() -> void:
 	# Apply hat Fury Fist
 	if PlayerStats.has_hat("furyfist"):
 		$animator.playback_speed = 2
+	
+	# Apply hat Jetfist
+	if PlayerStats.has_hat("jetfist"):
+		var jet_speed: float = 400
+		var jet_impulse: float = 400
+		
+		$fsm/attacc.target_velocity.x = jet_speed * flip_int
+		$fsm/attacc.acceleration = acceleration
+		velocity.x += jet_impulse * flip_int
+	else:
+		$fsm/attacc.target_velocity.x = 0
+		$fsm/attacc.acceleration = 0
 
 func _on_attacc_exited() -> void:
 	$animator.playback_speed = base_animation_speed
+	calculate_friction()
 
 func _on_shift_activated() -> void:
 	shift()

@@ -23,6 +23,7 @@ var extra_data: Array = []
 var lighters: Array = [0, 0]
 var main_music: String = "ingress"
 var time: float = 0
+var flipped: bool = false
 
 var upgrades: Dictionary = {
 	"blademaster_recover": false,
@@ -69,6 +70,9 @@ func fill_hp():
 	# Apply hat Vitality
 	if has_hat("vitality"):
 		max_hp += 1
+	# Apply hat Constitution
+	if has_hat("constitution"):
+		max_hp += 2
 	
 	set_hp(max_hp)
 

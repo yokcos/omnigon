@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://pieces/music_changer.gd" type="Script" id=10]
 [ext_resource path="res://props/conveyer_clockwork.tscn" type="PackedScene" id=11]
 [ext_resource path="res://hats/0003_gremlin_hive.tres" type="Resource" id=12]
+[ext_resource path="res://entities/enemies/sawhead.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 528, 8 )
@@ -104,6 +105,9 @@ position = Vector2( 224, 248 )
 position = Vector2( 224, 104 )
 script = ExtResource( 9 )
 hat = ExtResource( 12 )
+
+[node name="sawhead" parent="." instance=ExtResource( 13 )]
+position = Vector2( 256, 440 )
 
 [connection signal="activated" from="entity_detector0" to="musicaliser0" method="activate"]
 [connection signal="activated" from="entity_detector1" to="musicaliser1" method="activate"]

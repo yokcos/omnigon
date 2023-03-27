@@ -57,6 +57,7 @@ func _on_overlay_slain():
 	$animator.play("depart")
 	var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_bleh)
 	new_sfx.pitch_scale = 0.7
+	get_tree().paused = false
 
 func _on_switch_complete():
 	deploy_overlay(current_overlay)

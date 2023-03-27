@@ -33,7 +33,7 @@ func count_rooms() -> int:
 	var count: int = 0
 	
 	for i in WorldSaver.data:
-		if i is Vector2:
+		if i is Vector2 and WorldSaver.data[i].has("visits"):
 			if WorldSaver.data[i]["visits"] > 0:
 				count += 1
 	

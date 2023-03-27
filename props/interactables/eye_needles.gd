@@ -10,6 +10,7 @@ func activate():
 	
 	current_popup = Game.summon_popup_world(animation, "Witness the eye needles")
 	if is_instance_valid(current_popup):
+		current_popup.anchor = self
 		current_popup.connect("world_slain", self, "_on_popup_slain")
 	
 	#$animator.play("stab")

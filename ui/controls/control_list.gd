@@ -49,7 +49,7 @@ func populate_list():
 	
 	for i in range(actioncount):
 		var current_input = actions[i]
-		if current_input is InputEventKey:
+		if current_input is InputEventKey or current_input is InputEventJoypadButton:
 			var new_button = obj_button.instance()
 			
 			new_button.action = action

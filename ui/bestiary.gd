@@ -11,6 +11,9 @@ onready var scroller = $listscroller
 onready var list = $listscroller/list
 
 
+signal slain
+
+
 func _ready() -> void:
 	populate_list()
 	if all_enemies.size() == 0:
@@ -87,6 +90,7 @@ func egress():
 
 func die():
 	$animator.play("depart")
+	emit_signal("slain")
 
 
 func _on_egress_pressed() -> void:

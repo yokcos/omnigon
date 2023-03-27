@@ -66,6 +66,9 @@ func _process(delta: float) -> void:
 	else:
 		if $pupil.texture != tex_pupil_normal:
 			$pupil.texture = tex_pupil_normal
+	
+	if is_instance_valid(current_laser):
+		current_laser.global_position = $barrel.global_position.round()
 
 
 func look_at_player(delta: float):
@@ -131,7 +134,7 @@ func shoot_laser():
 	var new_laser = obj_laser.instance()
 	new_laser.rotation = PI/2
 	add_child(new_laser)
-	new_laser.global_position = $barrel.global_position
+	new_laser.global_position = $barrel.global_position.round()
 	
 	current_laser = new_laser
 

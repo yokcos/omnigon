@@ -15,6 +15,9 @@ const scr_map_image = preload("res://ui/map/map_image.gd")
 const tex_icon = preload("res://ui/map/map_icon.png")
 
 
+signal slain
+
+
 func _ready() -> void:
 	arrive_animation()
 	deploy_images()
@@ -31,6 +34,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("map"):
 		depart_animation()
+		emit_signal("slain")
 
 
 func tractutate(delta: float):

@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://misc/ditheriser.tres" type="Material" id=1]
+[ext_resource path="res://fx/glow.png" type="Texture" id=2]
+[ext_resource path="res://fx/glow_dark.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "tada"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite0:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0, 0.0, -90.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -45.0, 315.0, 675.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bacsprite:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 225.0, 135.0 ]
+}
+
+[node name="glow" type="Node2D"]
+
+[node name="bacsprite" type="Sprite" parent="."]
+material = ExtResource( 1 )
+rotation = 3.69569
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 3 )
+
+[node name="sprite0" type="Sprite" parent="."]
+rotation = -0.747296
+texture = ExtResource( 3 )
+
+[node name="sprite1" type="Sprite" parent="."]
+rotation = 10.261
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "tada"
+anims/tada = SubResource( 1 )

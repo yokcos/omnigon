@@ -7,10 +7,11 @@ export (float) var air_speed = 0.5
 func _step(delta: float):
 	if air_speed > 0 and !father.is_grounded():
 		var dir = get_move_direction()
-		var this_target: float = dir * father.speed * air_speed
-		
-		var relative_velocity = this_target - father.velocity.x
-		father.accelerate(sign(relative_velocity), delta)
+		if dir != 0:
+			var this_target: float = dir * father.speed * air_speed
+			
+			var relative_velocity = this_target - father.velocity.x
+			father.accelerate(sign(relative_velocity), delta)
 	
 	._step(delta)
 

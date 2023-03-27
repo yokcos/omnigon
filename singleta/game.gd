@@ -58,6 +58,7 @@ var world: Node2D = null
 var camera: Camera2D = null
 var background_colour: Color = Color("e3e6ff")
 var current_popup: Popup = null
+var controllering: bool = false
 
 var closest_tooltipable: Node2D = null
 var current_boss: Being = null setget set_boss

@@ -49,3 +49,11 @@ custom_fonts/font = ExtResource( 2 )
 text = "ESC to cancel, BACKSPACE to remove"
 align = 1
 valign = 1
+
+[node name="icon" type="TextureRect" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 30.0
+margin_bottom = 22.0
+expand = true
+stretch_mode = 4

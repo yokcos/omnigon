@@ -34,7 +34,7 @@ func _step(delta: float):
 	
 	if acceleration > 0:
 		var relative_velocity = target_velocity - father.velocity
-		father.velocity += relative_velocity * delta * acceleration
+		father.velocity.x += sign(relative_velocity.x) * delta * acceleration
 
 
 func reset():

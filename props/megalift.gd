@@ -31,6 +31,11 @@ func _process(delta: float) -> void:
 	if to_exclusivify and is_inside_tree():
 		to_exclusivify = false
 		cull_other_megalifts()
+	
+	var cam: Camera2D = Game.camera
+	if is_instance_valid(cam) and inside:
+		if cam.limit_left < global_position.x - 256:
+			limit_camera()
 
 
 func instant_ingress():
@@ -39,7 +44,6 @@ func instant_ingress():
 	new_innard.instant_arrive()
 	current_innard = new_innard
 	inside = true
-	limit_camera()
 	update_interactable()
 
 func ingress():
@@ -48,7 +52,6 @@ func ingress():
 	new_innard.arrive()
 	current_innard = new_innard
 	inside = true
-	limit_camera()
 	update_interactable()
 
 func egress():

@@ -24,10 +24,6 @@ func _on_attacc_activated() -> void:
 
 func _on_entity_detector_activated() -> void:
 	$fsm/patrol.perform_action("attacc")
-	
-	var mattress_position: Vector2 = Vector2(16, 8)
-	mattress_position.x *= flip_int
-	Game.summon_mattress_gremlin(global_position + mattress_position)
 
 func _on_recover_entered() -> void:
 	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_automaton_recharge, global_position)

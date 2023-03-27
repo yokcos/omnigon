@@ -13,6 +13,25 @@ var pan_unselected = preload("res://misc/unselected_panel.tres")
 var txt_normal = "ESC to cancel, BACKSPACE to remove"
 var txt_limited = "ESC to cancel"
 
+const sprites_xbox = [
+	preload("res://ui/controls/icons/controls_xbox1.png"),
+	preload("res://ui/controls/icons/controls_xbox2.png"),
+	preload("res://ui/controls/icons/controls_xbox3.png"),
+	preload("res://ui/controls/icons/controls_xbox4.png"),
+	preload("res://ui/controls/icons/controls_xbox5.png"),
+	preload("res://ui/controls/icons/controls_xbox6.png"),
+	preload("res://ui/controls/icons/controls_xbox7.png"),
+	preload("res://ui/controls/icons/controls_xbox8.png"),
+	preload("res://ui/controls/icons/controls_xbox9.png"),
+	preload("res://ui/controls/icons/controls_xbox10.png"),
+	preload("res://ui/controls/icons/controls_xbox11.png"),
+	preload("res://ui/controls/icons/controls_xbox12.png"),
+	preload("res://ui/controls/icons/controls_xbox13.png"),
+	preload("res://ui/controls/icons/controls_xbox14.png"),
+	preload("res://ui/controls/icons/controls_xbox15.png"),
+	preload("res://ui/controls/icons/controls_xbox16.png"),
+]
+
 
 signal created
 
@@ -29,7 +48,7 @@ func _gui_input(event: InputEvent) -> void:
 			elif event.is_action_pressed("ui_backspace") and input and count_inputs() > 1:
 				inject_into_action(null)
 				queue_free()
-			elif event is InputEventKey and event.pressed:
+			elif (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:
 				if input == null:
 					emit_signal("created")
 				inject_into_action(event)
@@ -82,6 +101,11 @@ func select():
 
 func set_text(what: String):
 	$text.text = what
+	$icon.texture = null
+
+func set_icon(what: int):
+	$icon.texture = sprites_xbox[what]
+	$text.text = ""
 
 func get_text():
 	return $text.text
@@ -100,7 +124,12 @@ func set_input(what: InputEvent):
 	if what == null:
 		set_text("+")
 	elif what is InputEventKey:
-		set_text( OS.get_scancode_string(what.physical_scancode) )
+		var this_scancode: String = OS.get_scancode_string(what.physical_scancode)
+		if this_scancode == "":
+			this_scancode = OS.get_scancode_string(what.scancode)
+		set_text( this_scancode )
+	elif what is InputEventJoypadButton:
+		set_icon( what.button_index )
 
 func _on_focus_grabbed():
 	add_stylebox_override("panel", pan_selected)

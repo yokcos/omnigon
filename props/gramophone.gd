@@ -2,16 +2,12 @@ extends Area2D
 
 
 var musics = [
-	{"music": GlobalSound.musics["the_first_disc_begins"], "animation": 0},
-	{"music": GlobalSound.musics["prelude"], "animation": 0},
-	{"music": GlobalSound.musics["ingress"], "animation": 1},
-	{"music": GlobalSound.musics["notweird"], "animation": 0},
-	{"music": GlobalSound.musics["entrydenied"], "animation": 2},
-	{"music": GlobalSound.musics["behold"], "animation": 3},
-	{"music": GlobalSound.musics["great_opposition"], "animation": 2},
-	{"music": GlobalSound.musics["shut_down"], "animation": 0},
-	{"music": GlobalSound.musics["ingressment"], "animation": 1},
-	{"music": GlobalSound.musics["the_first_disc_ends"], "animation": 0},
+	{"music": GlobalSound.musics["facilitymechanism"], "animation": 1},
+	{"music": GlobalSound.musics["suddenmimic"], "animation": 0},
+	{"music": GlobalSound.musics["imperialsecrets"], "animation": 1},
+	{"music": GlobalSound.musics["hallwayforeboding"], "animation": 0},
+	{"music": GlobalSound.musics["timeforbattle"], "animation": 2},
+	{"music": GlobalSound.musics["calamitymarch"], "animation": 2},
 ]
 var animations = ["calm", "gustoful", "frantic", "calmer"]
 
