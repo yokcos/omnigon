@@ -3,6 +3,7 @@ extends Node2D
 
 var popup_queue: Array = []
 var current_popup: Control = null
+var current_pause_block: Control = null
 var tex: ViewportTexture
 var screen_scale: float = 1 setget set_screen_scale
 var base_screen_size: Vector2
@@ -15,6 +16,7 @@ const obj_popup_world = preload("res://ui/popup_world.tscn")
 const obj_popup_secret = preload("res://ui/popup_secret.tscn")
 const obj_options = preload("res://ui/options/options.tscn")
 const obj_overlay = preload("res://ui/details_overlay.tscn")
+const obj_pause_block = preload("res://ui/pause_blocked.tscn")
 
 
 signal screen_scale_changed
@@ -45,14 +47,16 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		var new_options = obj_options.instance()
-		$ui/ui.add_child(new_options)
-		new_options.rect_position = Vector2(448, 136)
-		new_options.show_save()
+		if !check_for_pause_blockers():
+			var new_options = obj_options.instance()
+			$ui/ui.add_child(new_options)
+			new_options.rect_position = Vector2(448, 136)
+			new_options.show_save()
 	
 	if event.is_action_pressed("map"):
-		var new_overlay = obj_overlay.instance()
-		$ui/ui.add_child(new_overlay)
+		if !check_for_pause_blockers():
+			var new_overlay = obj_overlay.instance()
+			$ui/ui.add_child(new_overlay)
 
 
 func calculate_screen_size():
@@ -124,6 +128,17 @@ func count_popups() -> int:
 	if current_popup:
 		total += 1
 	return total
+
+func check_for_pause_blockers():
+	var blockers = get_tree().get_nodes_in_group("pause_blockers")
+	if blockers.size() > 0:
+		if !is_instance_valid(current_pause_block):
+			var new_blocker = obj_pause_block.instance()
+			Game.deploy_ui_instance(new_blocker, Vector2())
+			current_pause_block = new_blocker
+		
+		return true
+	return false
 
 
 func _on_eyes_changed(what: int):

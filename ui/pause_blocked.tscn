@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://misc/fnt_yuge.tres" type="DynamicFont" id=1]
+[ext_resource path="res://pieces/destroyer.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "play"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("bac:percent_visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fore:percent_visible")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("destroyer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+
+[node name="pause_blocked" type="Control"]
+margin_right = 512.0
+margin_bottom = 288.0
+
+[node name="bac" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -24.0
+margin_right = 8.0
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Pausing disabled"
+align = 1
+percent_visible = 0.0
+
+[node name="fore" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -28.0
+margin_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Pausing disabled"
+align = 1
+percent_visible = 0.0
+
+[node name="destroyer" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "play"
+anims/play = SubResource( 1 )

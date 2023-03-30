@@ -2,6 +2,7 @@ extends Interactable
 
 
 var spawn_position: Vector2 = Vector2()
+var open: bool = false
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func activate():
 
 func open():
 	if active:
+		open = true
 		active = false
 		
 		GlobalSound.play_random_sfx(GlobalSound.sfx_fart)

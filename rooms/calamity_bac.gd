@@ -1,15 +1,23 @@
 extends Node2D
 
 
-var motion_scales: Array = [0, 0.02, 0.04, 0.06, 0.08, 0.10]
-var sizes: Array = [1, 0.6, 0.7, 0.8, 0.9, 1]
+var distances: Array = [5.0, 1.5, 1.375, 1.25, 1.125, 1.0]
+var sizes: Array = [32, 2, 2, 2, 2, 2]
+var motion_scales: Array = sizes.duplicate()
 var room_centre: float = 2176
 
 
 func _ready() -> void:
-	for i in get_child_count():
+	for i in range( distances.size() ):
+		motion_scales[i] = pow(2, -distances[i])
+		sizes[i] *= motion_scales[i]
+	
+	for i in range( get_child_count() ):
 		var this_layer: Sprite = get_child(i)
 		this_layer.scale = Vector2(sizes[i], sizes[i])
+		
+		if i > 0:
+			this_layer.z_index = i
 
 func _process(delta: float) -> void:
 	var cam = Game.camera
