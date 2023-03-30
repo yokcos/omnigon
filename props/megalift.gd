@@ -61,6 +61,8 @@ func egress():
 	inside = false
 	unlimit_camera()
 	update_interactable()
+	
+	Game.save_game()
 
 func update_interactable():
 	var index = 1 if inside else 0
@@ -100,6 +102,12 @@ func cull_other_megalifts():
 func deploy_summoner():
 	var new_summoner = obj_summoner.instance()
 	Game.deploy_instance(new_summoner, global_position)
+
+func play_arrive_sound():
+	$sfx_arrive.play()
+
+func play_hiss_sound():
+	$sfx_hiss.play()
 
 
 func _on_interactable_activated() -> void:

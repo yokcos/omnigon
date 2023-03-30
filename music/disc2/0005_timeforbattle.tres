@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://music/music.gd" type="Script" id=1]
 [ext_resource path="res://music/disc2/0005_timeforbattle.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc2/0005_timeforbattle.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )
 id = "timeforbattle"
 title = "Time for Battle"
-lore = "???"
+lore = "Even in my homeland it is common for ordinary devices to have clocks on them for some reason. Ovens, toilets, weighing scales, trains, etc. Apparently the trend has gone even further here and even their murder-robots have such great clocks upon them, that they entirely become clocks."
 audio = ExtResource( 2 )
+icon = ExtResource( 3 )

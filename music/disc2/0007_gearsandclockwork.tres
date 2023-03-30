@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc2/0007_gearsandclockwork.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc2/0007_gearsandclockwork.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "gearsandclockwork"
+title = "Gears and Clockwork"
+lore = "Dignity. Honour. Respect. Justice. These are things that no Gears and no Clockwork can bring you. And this is the folly of the Empaire of the North, that they lean upon their technologies and their mechanisms, that they forget what it is that truly binds a people together. They may cast a million gears, nay a billion. They may peer through a hundred telescopes, nay a hundred thousand. They may link a billion minds together, nay a trillion. And yet there will be no more dignity here for it. It will be a wasteland of honourlessness. The respect of the world will be elsewhere. And only a fool would think it a just land."
+audio = ExtResource( 2 )
+icon = ExtResource( 3 )

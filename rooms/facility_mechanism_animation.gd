@@ -24,6 +24,14 @@ func enable_megalift():
 	if is_instance_valid(current_megalift):
 		current_megalift.enable_interactable()
 
+func play_arrive_sound():
+	if is_instance_valid(current_megalift):
+		current_megalift.play_arrive_sound()
+
+func play_hiss_sound():
+	if is_instance_valid(current_megalift):
+		current_megalift.play_hiss_sound()
+
 
 func _on_megalift_created():
 	activate()

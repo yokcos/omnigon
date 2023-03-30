@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wooble.wav-3941c630f28dbbe91df46ed4ade608bf.sample"
+
+[deps]
+
+source_file="res://sfx/wooble.wav"
+dest_files=[ "res://.import/wooble.wav-3941c630f28dbbe91df46ed4ade608bf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

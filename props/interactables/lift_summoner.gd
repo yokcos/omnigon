@@ -16,6 +16,8 @@ func activate():
 			new_megalift.rise()
 		else:
 			new_megalift.sink()
+	
+	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_wooble, global_position)
 
 
 func _on_interactable_activated() -> void:

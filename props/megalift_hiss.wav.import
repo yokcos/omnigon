@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/megalift_hiss.wav-41c438644bf5cdb9881f39537208e3fa.sample"
+
+[deps]
+
+source_file="res://props/megalift_hiss.wav"
+dest_files=[ "res://.import/megalift_hiss.wav-41c438644bf5cdb9881f39537208e3fa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

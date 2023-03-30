@@ -40,9 +40,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 5.4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "play_arrive_sound"
+}, {
+"args": [  ],
+"method": "play_hiss_sound"
+}, {
 "args": [  ],
 "method": "enable_megalift"
 } ]
@@ -70,9 +76,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 5.4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "play_arrive_sound"
+}, {
+"args": [  ],
+"method": "play_hiss_sound"
+}, {
 "args": [  ],
 "method": "enable_megalift"
 } ]

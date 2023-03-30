@@ -117,6 +117,7 @@ const sfx_ring = [preload("res://entities/enemies/ring.wav")]
 const sfx_ring_end = [preload("res://entities/enemies/ring_end.wav")]
 const sfx_target = [preload("res://entities/enemies/target.wav")]
 const sfx_whomp = [preload("res://sfx/whomp.wav")]
+const sfx_wooble = [preload("res://sfx/wooble.wav")]
 
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
@@ -177,12 +178,15 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc1/ingressment.tres"))
 	add_music_entry(preload("res://music/disc1/the_first_disc_ends.tres"))
 	
+	add_music_entry(preload("res://music/disc2/0000_the_second_disc_begins.tres"))
 	add_music_entry(preload("res://music/disc2/0001_facilitymechanism.tres"))
 	add_music_entry(preload("res://music/disc2/0002_suddenmimic.tres"))
 	add_music_entry(preload("res://music/disc2/0003_imperialsecrets.tres"))
 	add_music_entry(preload("res://music/disc2/0004_hallwayforeboding.tres"))
 	add_music_entry(preload("res://music/disc2/0005_timeforbattle.tres"))
 	add_music_entry(preload("res://music/disc2/0006_calamitymarch.tres"))
+	add_music_entry(preload("res://music/disc2/0007_gearsandclockwork.tres"))
+	add_music_entry(preload("res://music/disc2/0008_the_second_disc_ends.tres"))
 
 
 func add_music_entry(what: Music):

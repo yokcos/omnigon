@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0008_the_second_disc_ends.ogg-2129a6330a9e31c9ced19bf5896f6cfb.oggstr"
+
+[deps]
+
+source_file="res://music/disc2/0008_the_second_disc_ends.ogg"
+dest_files=[ "res://.import/0008_the_second_disc_ends.ogg-2129a6330a9e31c9ced19bf5896f6cfb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

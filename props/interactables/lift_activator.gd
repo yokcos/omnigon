@@ -19,6 +19,7 @@ func activate():
 	WorldSaver.save_global_data("megalift_room", Rooms.current_room)
 	WorldSaver.save_global_data("megalift_active", true)
 	Events.emit_signal("megalift_created")
+	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_shift, global_position)
 
 func get_saved():
 	return {
