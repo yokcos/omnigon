@@ -29,7 +29,7 @@ func reposition():
 	var player: Entity = Game.get_player()
 	var cam: Camera2D = Game.camera
 	
-	if player and cam:
+	if is_instance_valid(player) and is_instance_valid(cam):
 		var centre: Vector2 = cam.get_actual_position()
 		var relative: Vector2 = player.global_position - centre
 		var screen_size: Rect2 = cam.get_visible_rect()
@@ -38,7 +38,7 @@ func reposition():
 		relative *= 600
 		
 		var rect = $panel.rect_size
-		var relative_position = centre-relative - screen_size.end/2
+		var relative_position = centre-relative
 		relative_position.x = clamp(
 			relative_position.x,
 			screen_size.position.x + border + rect.x/2,
@@ -50,5 +50,5 @@ func reposition():
 			screen_size.end.y - border - rect.y/2
 		)
 		
-		target_position = relative_position + centre - screen_size.end/2
+		target_position = relative_position
 
