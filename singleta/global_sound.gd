@@ -188,8 +188,9 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0004_hallwayforeboding.tres"))
 	add_music_entry(preload("res://music/disc2/0005_timeforbattle.tres"))
 	add_music_entry(preload("res://music/disc2/0006_calamitymarch.tres"))
-	add_music_entry(preload("res://music/disc2/0007_gearsandclockwork.tres"))
-	add_music_entry(preload("res://music/disc2/0008_the_second_disc_ends.tres"))
+	add_music_entry(preload("res://music/disc2/0007_thesecretsofspacetravel.tres"))
+	add_music_entry(preload("res://music/disc2/0008_gearsandclockwork.tres"))
+	add_music_entry(preload("res://music/disc2/0009_the_second_disc_ends.tres"))
 
 
 func add_music_entry(what: Music):

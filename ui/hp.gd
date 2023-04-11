@@ -3,6 +3,7 @@ extends HBoxContainer
 
 const tex_full = preload("res://ui/hp_full.png")
 const tex_empty = preload("res://ui/hp_empty.png")
+const tex_poisoned = preload("res://ui/hp_poisoned.png")
 
 
 func _ready() -> void:
@@ -26,7 +27,7 @@ func deploy_hp():
 		new_rect.size_flags_vertical = 4
 		
 		if i < PlayerStats.hp:
-			new_rect.texture = tex_full
+			new_rect.texture = tex_poisoned if PlayerStats.poisoned else tex_full
 		else:
 			new_rect.texture = tex_empty
 		

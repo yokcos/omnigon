@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -76,6 +76,7 @@
 [ext_resource path="res://rooms/inaccessible.tscn" type="PackedScene" id=74]
 [ext_resource path="res://rooms/final_lab.tscn" type="PackedScene" id=75]
 [ext_resource path="res://rooms/introduction.tscn" type="PackedScene" id=76]
+[ext_resource path="res://rooms/deathbutton_gradual.tscn" type="PackedScene" id=77]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -303,3 +304,6 @@ position = Vector2( -3584, 1024 )
 
 [node name="introduction" parent="." instance=ExtResource( 76 )]
 position = Vector2( -8192, -2048 )
+
+[node name="deathbutton2" parent="." instance=ExtResource( 77 )]
+position = Vector2( -7680, 0 )

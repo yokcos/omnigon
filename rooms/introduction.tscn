@@ -11,9 +11,9 @@
 
 [node name="introduction" type="Node2D"]
 script = ExtResource( 2 )
-title = "Introduction"
+title = "Espionage"
 room_size = Vector2( 2, 1 )
-temp_music = "behold"
+music = "thesecretsofspacetravel"
 background_colour = Color( 0.572549, 0.862745, 0.729412, 1 )
 
 [node name="props" type="Node2D" parent="."]

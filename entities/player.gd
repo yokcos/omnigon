@@ -28,6 +28,7 @@ func _ready() -> void:
 	max_hp = PlayerStats.max_hp
 	hp = PlayerStats.hp
 	velocity = PlayerStats.velocity
+	poisoned = PlayerStats.poisoned
 	set_flip(PlayerStats.flipped)
 	
 	if PlayerStats.check_pos == Vector2():
@@ -133,6 +134,7 @@ func die():
 	Game.deploy_instance(camera, global_position)
 	
 	GlobalSound.play_random_sfx(GlobalSound.sfx_player_death)
+	PlayerStats.poisoned = false
 
 func land():
 	.land()
@@ -240,6 +242,11 @@ func climb_sfx():
 	var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_climb)
 	new_sfx.relative_volume = 0.6
 	new_sfx.randomise_pitch(0.5, 0.8)
+
+func set_poisoned(what: bool):
+	.set_poisoned(what)
+	
+	PlayerStats.poisoned = what
 
 
 func _on_attacc_activated() -> void:

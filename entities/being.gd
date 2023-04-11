@@ -12,6 +12,7 @@ export (float) var knockback_resistance = 1
 
 export (float) var max_hp = 3
 var hp: float = -1 setget set_hp
+var poisoned: bool = false setget set_poisoned
 
 var invuln: float = 0
 export (float) var invuln_duration = 0.2
@@ -60,6 +61,9 @@ func _process(delta: float) -> void:
 		invuln -= delta
 		if invuln <= 0 and flash_material:
 			material.set_shader_param( "factor", 0 )
+	
+	if poisoned and randf() * 1000 < 1:
+		take_damage(1)
 
 
 func get_loaded(data):
@@ -119,3 +123,6 @@ func die():
 	
 	WorldSaver.save_being(self)
 	queue_free()
+
+func set_poisoned(what: bool):
+	poisoned = what

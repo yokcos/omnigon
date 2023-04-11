@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0008_disc2ends.png-6ff83494fc6d5cec65e3702833a8ca45.stex"
+path="res://.import/hp_poisoned.png-7d7e2c3b0389cefa16f1cae1236ef693.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://music/disc2/0008_disc2ends.png"
-dest_files=[ "res://.import/0008_disc2ends.png-6ff83494fc6d5cec65e3702833a8ca45.stex" ]
+source_file="res://ui/hp_poisoned.png"
+dest_files=[ "res://.import/hp_poisoned.png-7d7e2c3b0389cefa16f1cae1236ef693.stex" ]
 
 [params]
 
