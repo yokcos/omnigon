@@ -144,7 +144,7 @@ func apply_position():
 	if position != Vector2():
 		Rooms.player_enter_room(position)
 	else:
-		Rooms.enter_room(Vector2())
+		Rooms.enter_room(Vector2(-16, -8))
 
 func compress_data() -> Dictionary:
 	var hat_ids = []

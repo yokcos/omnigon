@@ -122,6 +122,9 @@ const sfx_wooble = [preload("res://sfx/wooble.wav")]
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
 
+const sfx_teleporter_buttons = [preload("res://props/teleporter_buttons.wav")]
+const sfx_teleporter_activate = [preload("res://props/teleporter_activate.wav")]
+
 var musics: Dictionary = {
 	"the_first_disc_begins": preload("res://music/disc1/the_first_disc_begins.ogg"),
 	"prelude": preload("res://music/disc1/prelude.ogg"),

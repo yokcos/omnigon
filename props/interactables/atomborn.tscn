@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/interactables/atomborn.png" type="Texture" id=2]
+[ext_resource path="res://props/interactables/multi_text_interactable.gd" type="Script" id=3]
+
+[node name="atomborn" type="Node2D"]
+
+[node name="auto_sprite" parent="." instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 2
+animation_speed = 2.0
+
+[node name="interactable" type="Node2D" parent="."]
+script = ExtResource( 3 )
+description = "Atomborn"
+verb = "Hear"
+titles = PoolStringArray( "Sayeth Atomborn", "Sayeth Atomborn", "Sayeth Atomborn" )
+texts = [ "Mm yummy bottle of orange water", "Our imperial enemies in the North are close to working out the secret to time travel, which cannot be allowed. Fortunately we now have the secret of space travel. By which I mean teleportation.", "Use this doodad, then, to spacetravel into the correct enemy compound and steal their secrets." ]
+egresses = PoolStringArray( "Indeed", "I know", "Fine" )

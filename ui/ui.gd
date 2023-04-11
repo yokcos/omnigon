@@ -28,7 +28,9 @@ func _ready() -> void:
 	PlayerStats.connect("lighters_changed", self, "_on_lighters_changed")
 	Game.connect("world_changed", self, "_on_world_changed")
 	Game.connect("boss_changed", self, "_on_boss_changed")
+	Events.connect("teleported", self, "_on_teleported")
 	update_lighters()
+	shaderify_tele_flash()
 
 func _process(delta: float) -> void:
 	if Game.camera and is_instance_valid(Game.camera) and false:
@@ -41,6 +43,11 @@ func blind():
 func unblind():
 	$animator.play("envision")
 
+
+func shaderify_tele_flash():
+	$tele_flash.material = load("res://misc/mat_colouriser.tres").duplicate()
+	$tele_flash.material.set_shader_param("colour", Color("fa6a0a"))
+	$tele_flash.material.set_shader_param("factor", 1)
 
 func cull_lower_component():
 	lower_component.queue_free()
@@ -86,6 +93,10 @@ func update_lighters():
 			new_rect.rect_min_size = Vector2(16, 16)
 			$bar_bottom/lighters.add_child(new_rect)
 
+func teleport():
+	$animator.play("tele_flash")
+	GlobalSound.play_random_sfx(GlobalSound.sfx_blap)
+
 
 func _on_eyes_changed(what: int):
 	var this_texture = eye_textures[what]
@@ -104,3 +115,6 @@ func _on_boss_changed(what: Being):
 
 func _on_lighters_changed():
 	update_lighters()
+
+func _on_teleported():
+	teleport()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/teleporter_buttons.wav-c91f014a8db946d5dc63638340899051.sample"
+
+[deps]
+
+source_file="res://props/teleporter_buttons.wav"
+dest_files=[ "res://.import/teleporter_buttons.wav-c91f014a8db946d5dc63638340899051.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
