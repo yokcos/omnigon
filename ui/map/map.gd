@@ -111,7 +111,7 @@ func deploy_images():
 
 func deploy_player_icon():
 	var player = Game.get_player()
-	if player:
+	if is_instance_valid(player):
 		var pos = player.global_position / Rooms.room_size
 		var room_pos = Rooms.current_room
 		var global_pos = pos + room_pos
@@ -123,6 +123,11 @@ func deploy_player_icon():
 		new_icon.rect_size = Vector2()
 		new_icon.rect_position = icon_pos - new_icon.rect_size/2
 		new_icon.hint_tooltip = "You are here!"
+		
+		focus_on_position(new_icon.rect_position)
+
+func focus_on_position(where: Vector2):
+	$stuff/image_holder/images.rect_position = -where + $stuff/image_holder.rect_size/2
 
 func apply_scale():
 	var ratio2: Vector2 = ($stuff/image_holder.rect_size - Vector2(32, 32)) / (borders.size * image_size)

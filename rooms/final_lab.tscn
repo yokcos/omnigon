@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
 [ext_resource path="res://props/megalift.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/map/images/facility_mechanism.png" type="Texture" id=4]
+[ext_resource path="res://ui/map/images/final_lab.png" type="Texture" id=4]
 [ext_resource path="res://props/interactables/multi_text_interactable.gd" type="Script" id=5]
 [ext_resource path="res://props/bloodsplatter.png" type="Texture" id=6]
 [ext_resource path="res://props/corpse.png" type="Texture" id=7]
+[ext_resource path="res://props/interactables/button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://pieces/link_opener.gd" type="Script" id=9]
 
 [node name="final_lab" type="Node2D"]
 script = ExtResource( 2 )
@@ -43,3 +45,14 @@ egresses = PoolStringArray( "OK", "OK" )
 
 [node name="sprite" type="Sprite" parent="corpse"]
 texture = ExtResource( 7 )
+
+[node name="url" type="Node" parent="."]
+script = ExtResource( 9 )
+url = "https://store.steampowered.com/app/2371710/Omnigon/"
+
+[node name="button" parent="." instance=ExtResource( 8 )]
+position = Vector2( 56, 480 )
+description_button = "Button that lets you wishlist the full version of Omnigon"
+description_plunger = "Plunger that lets you wishlist the full version of Omnigon"
+
+[connection signal="activated" from="button" to="url" method="activate"]

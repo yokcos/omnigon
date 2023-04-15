@@ -42,7 +42,8 @@ func deploy_overlay(which: int):
 
 func switch_overlay(which: int):
 	current_overlay = which
-	overlay_object.connect("tree_exiting", self, "_on_switch_complete")
+	if is_instance_valid(overlay_object):
+		overlay_object.connect("tree_exiting", self, "_on_switch_complete")
 	
 	cull_overlay()
 	

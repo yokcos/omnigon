@@ -40,6 +40,12 @@ var texts = [
 	"Punchable pots",
 	"Shifting shapes",
 	"Gears and Clockwork",
+	"Lives on itch.io",
+	"Lives on steam",
+	"The land of Aketrex",
+	"Enter text here",
+	"Sailing through space",
+	"Not a smelly game",
 ]
 var current_texts = {}
 var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which I mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"

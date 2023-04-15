@@ -9,6 +9,7 @@ var musics = [
 	{"music": GlobalSound.musics["hallwayforeboding"], "animation": 0},
 	{"music": GlobalSound.musics["timeforbattle"], "animation": 2},
 	{"music": GlobalSound.musics["calamitymarch"], "animation": 2},
+	{"music": GlobalSound.musics["thesecretsofspacetravel"], "animation": 1},
 	{"music": GlobalSound.musics["gearsandclockwork"], "animation": 1},
 	{"music": GlobalSound.musics["the_second_disc_ends"], "animation": 0},
 ]
