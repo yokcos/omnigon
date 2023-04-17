@@ -224,6 +224,11 @@ func save_game():
 	file.store_var(data, true)
 	file.seek(file_start)
 	file.close()
+	
+	#var json_string = JSON.print(data)
+	#var json_bytes = json_string.to_utf8()
+	#print(json_bytes.size())
+	#Steamer.save_data(save_file, json_bytes)
 
 func load_game():
 	var file = File.new()
@@ -241,6 +246,9 @@ func load_game():
 		PlayerStats.uncompress_data(player_stats)
 		Settings.uncompress_settings(settings)
 		file.close()
+
+func achieve_achievement(what: String):
+	pass
 
 
 func set_boss(what: Being):

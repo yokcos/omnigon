@@ -241,6 +241,7 @@ texture_hover = ExtResource( 19 )
 texture_disabled = ExtResource( 18 )
 texture_focused = ExtResource( 19 )
 script = ExtResource( 5 )
+url = "https://store.steampowered.com/app/2371710/Omnigon/"
 
 [node name="link_patreon" type="TextureButton" parent="column/links"]
 margin_left = 48.0

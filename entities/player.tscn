@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://entities/player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player.png" type="Texture" id=2]
@@ -627,6 +627,46 @@ tracks/2/keys = {
 "values": [ Vector2( 20, 0 ), Vector2( -20, 0 ) ]
 }
 
+[sub_resource type="Animation" id=130]
+resource_name = "tip"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -14 ), Vector2( -1, -14 ), Vector2( 2, -15 ), Vector2( 18, -8 ), Vector2( 23, 6 ), Vector2( 23, 7 ), Vector2( 23, 6 ), Vector2( 18, -8 ), Vector2( 2, -15 ), Vector2( 1, -14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 44.9999, 90.0, 44.9999, 0.0 ]
+}
+
 [sub_resource type="Animation" id=127]
 resource_name = "unsit"
 length = 0.8
@@ -706,7 +746,7 @@ shape = SubResource( 108 )
 use_parent_material = true
 texture = ExtResource( 2 )
 hframes = 8
-vframes = 7
+vframes = 9
 frame = 9
 
 [node name="hats" type="Node2D" parent="flippable"]
@@ -770,6 +810,11 @@ auto_proceed = "normal"
 script = ExtResource( 12 )
 animation = "spin"
 
+[node name="tip" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+animation = "tip"
+auto_proceed = "normal"
+
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 116 )
@@ -785,6 +830,7 @@ anims/run = SubResource( 124 )
 anims/shift = SubResource( 125 )
 anims/sit = SubResource( 126 )
 anims/spin = SubResource( 129 )
+anims/tip = SubResource( 130 )
 anims/unsit = SubResource( 127 )
 
 [node name="state_revealer" parent="." instance=ExtResource( 3 )]

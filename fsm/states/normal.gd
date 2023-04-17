@@ -5,13 +5,18 @@ export (String) var still_animation = "idle"
 export (String) var run_animation = "run"
 
 var has_ladder: bool = true
+var time_since_movement: float = 0
 
 
 func _enter() -> void:
 	._enter()
+	
+	time_since_movement = 0
 
 func _step(delta: float) -> void:
 	._step(delta)
+	
+	time_since_movement += delta
 	
 	move_normally(delta)
 	
@@ -26,6 +31,8 @@ func _handle_input(event: InputEvent) -> void:
 	if father.is_controlled:
 		if father.is_grounded():
 			has_ladder = true
+		else:
+			time_since_movement = 0
 		
 		if event.is_action_pressed("jump") and father.is_grounded():
 			father.coyote_enabled = false
@@ -79,3 +86,6 @@ func player_tractutate(delta: float):
 	if move_direction < 0:
 		father.flipped = true
 	father.accelerate(move_direction, delta)
+	
+	if move_direction != 0:
+		time_since_movement = 0

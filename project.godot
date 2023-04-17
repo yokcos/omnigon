@@ -145,6 +145,7 @@ Rooms="*res://singleta/rooms.gd"
 GlobalSound="*res://singleta/global_sound.gd"
 Settings="*res://singleta/settings.gd"
 Events="*res://singleta/events.gd"
+Steamer="*res://singleta/steamer.gd"
 
 [debug]
 
@@ -291,6 +292,10 @@ ui_backspace={
 2d_physics/layer_2="others"
 2d_physics/layer_3="environment"
 2d_physics/layer_4="ethereal"
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [physics]
 

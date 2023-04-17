@@ -59,6 +59,9 @@ func _process(delta: float) -> void:
 	
 	#$debug.text = str((velocity/16).round())
 	
+	if $fsm.state_name == "normal" and $fsm/normal.time_since_movement > 8:
+		set_state("tip")
+	
 	if GlobalSound.ear:
 		GlobalSound.ear.position = global_position
 
