@@ -1,0 +1,212 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://pieces/auto_sprite.gd" type="Script" id=1]
+[ext_resource path="res://props/child.png" type="Texture" id=2]
+[ext_resource path="res://props/connoisseur.png" type="Texture" id=3]
+[ext_resource path="res://props/bloodsplatter.png" type="Texture" id=4]
+[ext_resource path="res://props/child.gd" type="Script" id=5]
+[ext_resource path="res://entities/enemies/eyesaac_laser_shoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://entities/enemies/eyesaac_laser_shoot_reverse.wav" type="AudioStream" id=7]
+[ext_resource path="res://sfx/coins0_1.wav" type="AudioStream" id=8]
+[ext_resource path="res://fx/chunks.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 16 )
+
+[sub_resource type="CanvasItemMaterial" id=4]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.548387, 0.809091 ), -0.467225, -0.467225, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("splatter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("splatter:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("particulation:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "explode"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.6, 3.7, 3.8, 3.9, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("splatter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.6, 3.7, 3.8, 3.9, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("splatter:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 3, 3.7, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ), Vector2( 1.08125, 1.08125 ), Vector2( 1, 1 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0, 3.3 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("particulation:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="child" type="Area2D"]
+script = ExtResource( 5 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( -8, 0 )
+shape = SubResource( 1 )
+
+[node name="particulation" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+scale = Vector2( 1, 1 )
+emitting = false
+amount = 60
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.9
+texture = ExtResource( 9 )
+direction = Vector2( 0, -1 )
+spread = 135.0
+initial_velocity = 200.0
+initial_velocity_random = 0.7
+angle = 360.0
+angle_random = 1.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 5 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="sprite0" type="Sprite" parent="sprites"]
+texture = ExtResource( 2 )
+hframes = 6
+script = ExtResource( 1 )
+
+[node name="sprite1" type="Sprite" parent="sprites"]
+visible = false
+position = Vector2( -8, -8 )
+texture = ExtResource( 3 )
+hframes = 6
+script = ExtResource( 1 )
+
+[node name="splatter" type="Node2D" parent="."]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+
+[node name="sprite0" type="Sprite" parent="splatter"]
+position = Vector2( 88, -88 )
+texture = ExtResource( 4 )
+
+[node name="sprite1" type="Sprite" parent="splatter"]
+position = Vector2( -96, -88 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/explode = SubResource( 3 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="sfx_money" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = 20.0
+bus = "SFX"

@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://projectiles/bullet.gd" type="Script" id=1]
 [ext_resource path="res://projectiles/bullet_basic.png" type="Texture" id=2]
 [ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fx/bbreak.png" type="Texture" id=4]
+[ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 8.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 24.0
 
 [node name="bullet" type="Area2D"]
 collision_layer = 8
@@ -33,4 +37,10 @@ collision_mask = 4
 [node name="hitbox" type="CollisionShape2D" parent="wall_detector"]
 shape = SubResource( 2 )
 
+[node name="shift_detector" parent="." instance=ExtResource( 5 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="shift_detector"]
+shape = SubResource( 3 )
+
 [connection signal="body_entered" from="wall_detector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="shifted" from="shift_detector" to="." method="_on_shift"]

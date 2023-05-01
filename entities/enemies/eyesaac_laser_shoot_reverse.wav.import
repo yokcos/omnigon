@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/eyesaac_laser_shoot_reverse.wav-253c08f576477144dc300f259a32de92.sample"
+
+[deps]
+
+source_file="res://entities/enemies/eyesaac_laser_shoot_reverse.wav"
+dest_files=[ "res://.import/eyesaac_laser_shoot_reverse.wav-253c08f576477144dc300f259a32de92.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

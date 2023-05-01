@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vertex.png-3e6ae7bf5c394184846180e4b76e0345.stex"
+path="res://.import/chunks.png-936b6c73a25d41cda190613e088fb04e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://vertex.png"
-dest_files=[ "res://.import/vertex.png-3e6ae7bf5c394184846180e4b76e0345.stex" ]
+source_file="res://fx/chunks.png"
+dest_files=[ "res://.import/chunks.png-936b6c73a25d41cda190613e088fb04e.stex" ]
 
 [params]
 

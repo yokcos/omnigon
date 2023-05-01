@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://animations/eye_needles/bac.png" type="Texture" id=1]
 [ext_resource path="res://animations/eye_needles/kiosk0.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://animations/eye_needles/pbot0.png" type="Texture" id=8]
 [ext_resource path="res://animations/eye_needles/shockbac1.png" type="Texture" id=9]
 [ext_resource path="res://pieces/destroyer.gd" type="Script" id=10]
+[ext_resource path="res://animations/eye_needles/eye_needles.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -381,8 +382,23 @@ tracks/14/keys = {
 "method": "activate"
 } ]
 }
+tracks/15/type = "method"
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 2.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "blind"
+} ]
+}
 
 [node name="eye_needles" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="destroyer" type="Node" parent="."]
 script = ExtResource( 10 )

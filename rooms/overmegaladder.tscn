@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://props/interactables/artwork.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/artwork/human_small.png" type="Texture" id=7]
 [ext_resource path="res://ui/artwork/human.tscn" type="PackedScene" id=8]
-[ext_resource path="res://props/child.png" type="Texture" id=9]
-[ext_resource path="res://pieces/auto_sprite.gd" type="Script" id=10]
+[ext_resource path="res://props/child.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/map/images/overmegaladder.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -53,14 +52,12 @@ popup = ExtResource( 8 )
 [node name="sprite" type="Sprite" parent="artwork"]
 texture = ExtResource( 7 )
 
-[node name="child" type="Sprite" parent="."]
-position = Vector2( 232, 224 )
-texture = ExtResource( 9 )
-hframes = 6
-script = ExtResource( 10 )
-
 [node name="invis_floor" type="StaticBody2D" parent="."]
 position = Vector2( 64, 184 )
 
 [node name="hitbox" type="CollisionShape2D" parent="invis_floor"]
 shape = SubResource( 1 )
+
+[node name="child" parent="." instance=ExtResource( 9 )]
+position = Vector2( 232, 224 )
+z_index = -20

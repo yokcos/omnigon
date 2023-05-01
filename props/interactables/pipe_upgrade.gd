@@ -8,6 +8,7 @@ export (String) var upgrade = ""
 func _ready() -> void:
 	if upgrade != "" and PlayerStats.check_upgrade(upgrade):
 		$body/sprite.frame = 1
+		$body/sprite_not.frame = 1
 		active = false
 	
 	description = "Pipe"

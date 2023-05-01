@@ -9,6 +9,7 @@ const obj_hat = preload("res://entities/hat.tscn")
 func _ready() -> void:
 	if hat and PlayerStats.available_hats.has(hat):
 		$body/sprite.frame = 1
+		$body/sprite_not.frame = 1
 		active = false
 	
 	description = "Pipe"

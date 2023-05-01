@@ -12,6 +12,7 @@ func begin_teleport():
 		player.set_state("teleport")
 	$sfx.play()
 	$teleport_timer.start()
+	$text/animator.play("hum")
 
 func teleport():
 	var player = Game.get_player()

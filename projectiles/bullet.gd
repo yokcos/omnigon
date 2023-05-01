@@ -11,6 +11,8 @@ var duration: float = 12
 var velocity: Vector2 = Vector2()
 var acceleration: Vector2 = Vector2()
 
+var obj_ball: PackedScene = load("res://projectiles/bullet_ball.tscn")
+
 
 func _ready() -> void:
 	active = true
@@ -40,3 +42,8 @@ func die():
 func _on_wall_detector_body_entered(body: Node) -> void:
 	if !thru_walls:
 		die()
+
+func _on_shift() -> void:
+	var new_ball = obj_ball.instance()
+	new_ball.linear_velocity = Vector2(0, -16).rotated(rand_range(-PI/2, PI/2))
+	Game.replace_instance(self, new_ball)

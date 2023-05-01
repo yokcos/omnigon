@@ -12,6 +12,7 @@ const lighters = [
 func _ready() -> void:
 	if WorldSaver.load_data(spawn_position):
 		$body/sprite.frame = 1
+		$body/sprite_not.frame = 1
 		active = false
 	
 	description = "Pipe"

@@ -26,7 +26,7 @@ func remove_eyes():
 	PlayerStats.eyes = PlayerStats.EYES_NONE
 
 func _on_popup_slain():
-	remove_eyes()
+	#remove_eyes()
 	
 	var player = Game.get_player()
 	if is_instance_valid(player):

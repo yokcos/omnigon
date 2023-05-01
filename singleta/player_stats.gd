@@ -184,7 +184,7 @@ func uncompress_data(data: Dictionary):
 	eyes = data["eyes"]
 	hp = data["hp"]
 	max_hp = data["max_hp"]
-	vertices = data["vertices"]
+	set_vertices( data["vertices"] )
 	check_pos = data["check_pos"]
 	extra_data = data["extra_data"]
 	position = data["position"]

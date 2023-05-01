@@ -2,6 +2,7 @@ extends "res://props/interactables/pipe.gd"
 
 
 export (int) var vertices = 10
+
 const obj_vertex = preload("res://entities/vertex.tscn")
 
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 		
 		if vertices <= 0:
 			$body/sprite.frame = 1
+			$body/sprite_not.frame = 1
 			active = false
 
 
@@ -26,5 +28,6 @@ func open():
 			new_vertex.source = self
 			
 			Game.deploy_instance(new_vertex, global_position + Vector2(0, -16).rotated(global_rotation))
+
 
 

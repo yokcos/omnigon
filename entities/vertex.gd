@@ -3,6 +3,7 @@ extends RigidBody2D
 
 var value: float = 1
 var can_be_collected: bool = false
+var flying: bool = false
 
 var tex_fx = preload("res://fx/coin_collect.png")
 var source: Node2D = null
@@ -18,14 +19,45 @@ func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
 	
 	add_to_group("vertices")
+	
+	$ray.cast_to.y = rand_range(32, 64)
 
 func _process(delta: float) -> void:
 	recent_vertices = lerp(recent_vertices, 0, delta)
+	
+	if flying:
+		if $ray.is_colliding():
+			linear_velocity.y -= 20*delta
 
 
 func activate():
 	can_be_collected = true
 	$entity_detector.check()
+
+func update_sprites():
+	$sprite0.visible = !flying
+	$sprite1.visible =  flying
+
+func get_shifted():
+	if can_be_collected:
+		flying = !flying
+		
+		if flying:
+			linear_velocity = Vector2()
+			linear_damp = 10
+			angular_velocity = 0
+			gravity_scale = 0
+			rotation = 0
+			$ray.enabled = true
+		else:
+			gravity_scale = 1
+			linear_damp = 0.1
+			$ray.enabled = false
+		
+		can_be_collected = false
+		$timer.start()
+		
+		update_sprites()
 
 
 func _on_entity_detector_activated() -> void:
