@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0001_deepingress.ogg-8e9a5b8d68b671c6d00a2b6338948ffe.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0001_deepingress.ogg"
+dest_files=[ "res://.import/0001_deepingress.ogg-8e9a5b8d68b671c6d00a2b6338948ffe.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

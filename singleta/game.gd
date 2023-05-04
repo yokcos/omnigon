@@ -57,7 +57,7 @@ var gameholder: Node2D = null
 var world: Node2D = null
 var camera: Camera2D = null
 var background_colour: Color = Color("e3e6ff")
-var current_popup: Popup = null
+var current_popup: Control = null
 var controllering: bool = false
 
 var closest_tooltipable: Node2D = null
@@ -261,11 +261,11 @@ func set_boss(what: Being):
 		GlobalSound.resume_music()
 
 func summon_popup(title: String, text: String, egress: String = "Alrighty", anchor: Node2D = null):
-	if gameholder:
+	if gameholder and !is_instance_valid(current_popup):
 		gameholder.add_popup(title, text, egress, anchor)
 
 func summon_popup_world(this_world: PackedScene, title = "Witness"):
-	if gameholder and !current_popup:
+	if gameholder and !is_instance_valid(current_popup):
 		current_popup = gameholder.deploy_popup_world(this_world)
 		current_popup.set_title(title)
 		current_popup.connect("tree_exiting", self, "_on_popup_slain")

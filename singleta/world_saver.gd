@@ -129,6 +129,8 @@ func load_being(what: Dictionary):
 		new_being.hp = what["hp"]
 		if new_being.has_node("fsm") and what.has("state"):
 			new_being.get_node("fsm").set_state_string(what["state"])
+		
+		new_being.get_loaded(what)
 
 func load_misc():
 	if data.has(Rooms.current_room):

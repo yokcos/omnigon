@@ -59,7 +59,7 @@ texture = ExtResource( 1 )
 hframes = 8
 
 [node name="barrel" type="Position2D" parent="."]
-position = Vector2( 8, 0 )
+position = Vector2( 16, 0 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )

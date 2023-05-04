@@ -38,7 +38,7 @@ func _ready() -> void:
 	calculate_screen_size()
 
 func _process(delta: float) -> void:
-	if popup_queue.size() > 0 and !current_popup:
+	if popup_queue.size() > 0 and !is_instance_valid(current_popup):
 		var dict = popup_queue.pop_front()
 		
 		deploy_popup(dict)
@@ -102,8 +102,10 @@ func deploy_popup(data: Dictionary):
 	new_popup.anchor = data["anchor"]
 	
 	new_popup.connect("tree_exiting", self, "_on_popup_slain")
+	new_popup.connect("tree_exiting", Game, "_on_popup_slain")
 	
 	current_popup = new_popup
+	Game.current_popup = new_popup
 	
 	$ui/ui.add_popup(new_popup)
 	

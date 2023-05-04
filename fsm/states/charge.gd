@@ -4,6 +4,7 @@ extends State
 export (String) var recover_animation = ""
 export (Vector2) var target_velocity = Vector2()
 export (float) var acceleration = 0
+export (bool) var accelerate_vertically = false
 
 var recovering: bool = false
 var next_state: String = ""
@@ -34,7 +35,10 @@ func _step(delta: float):
 	
 	if acceleration > 0:
 		var relative_velocity = target_velocity - father.velocity
-		father.velocity.x += sign(relative_velocity.x) * delta * acceleration
+		if accelerate_vertically:
+			father.velocity += relative_velocity * delta * acceleration
+		else:
+			father.velocity.x += sign(relative_velocity.x) * delta * acceleration
 
 
 func reset():
@@ -52,5 +56,5 @@ func activate():
 
 
 func _on_animation_finished():
-	if !recovering and animator.has_animation(recover_animation):
+	if active and !recovering and animator.has_animation(recover_animation):
 		activate()

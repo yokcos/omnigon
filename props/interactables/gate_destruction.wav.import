@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gate_destruction.wav-5bf434dea2c4549c794579b3df6b3001.sample"
+
+[deps]
+
+source_file="res://props/interactables/gate_destruction.wav"
+dest_files=[ "res://.import/gate_destruction.wav-5bf434dea2c4549c794579b3df6b3001.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

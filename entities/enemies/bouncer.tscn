@@ -367,12 +367,14 @@ script = ExtResource( 6 )
 animation = "dive_pause"
 auto_proceed = "boing"
 recover_animation = "dive"
+accelerate_vertically = true
 
 [node name="dive_dive" type="Node" parent="fsm"]
 script = ExtResource( 12 )
 animation = "predive"
 auto_proceed = "dive_recover"
 recover_animation = "divedive"
+accelerate_vertically = true
 
 [node name="dive_recover" type="Node" parent="fsm"]
 script = ExtResource( 11 )

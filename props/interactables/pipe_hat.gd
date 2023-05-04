@@ -11,6 +11,7 @@ func _ready() -> void:
 		$body/sprite.frame = 1
 		$body/sprite_not.frame = 1
 		active = false
+		open = true
 	
 	description = "Pipe"
 	verb = "Unseal"
@@ -28,5 +29,6 @@ func open():
 		Game.deploy_instance(new_hat, global_position + Vector2(0, -16).rotated(global_rotation))
 		
 		WorldSaver.save_data( spawn_position, true )
+		open = true
 
 

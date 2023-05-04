@@ -44,6 +44,18 @@ base_text = "Please move with '{move_left}' and '{move_right}'
 Jump with '{jump}' and attack with '{attack}'
 Thank you very much!"
 
+[node name="temp_aid" type="Label" parent="."]
+margin_left = 912.0
+margin_top = 112.0
+margin_right = 1008.0
+margin_bottom = 126.0
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.862745, 0.729412, 1 )
+custom_fonts/font = ExtResource( 8 )
+autowrap = true
+script = ExtResource( 6 )
+base_text = "If you have played this demo before, you can skip the first area with '{test}', which will give you the equipment and location to immediately move to the second area."
+
 [node name="dummy" parent="." instance=ExtResource( 7 )]
 position = Vector2( 480, 224 )
 max_hp = 3.0

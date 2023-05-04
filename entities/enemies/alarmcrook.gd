@@ -30,17 +30,24 @@ func cull_sfx():
 		ring_sfx.queue_free()
 		ring_sfx = null
 
-
-func _on_entity_detector_activated() -> void:
-	$fsm/idle.set_state("attacc")
-
-func _on_attack_timer_timeout() -> void:
-	var attacks = ["pre_ring", "charge", "jump"]
+func launch_random_attack(attacks: Array):
 	var index = randi() % attacks.size()
 	var this_attack = attacks[index]
 	
 	$fsm/idle.set_state(this_attack)
 	$attack_timer.stop()
+
+
+func _on_entity_detector_activated() -> void:
+	if randf()*4 < 3:
+		$fsm/idle.set_state("attacc")
+	else:
+		var attacks = ["pre_ring", "jump"]
+		launch_random_attack(attacks)
+
+func _on_attack_timer_timeout() -> void:
+	var attacks = ["pre_ring", "charge", "jump"]
+	launch_random_attack(attacks)
 
 func _on_wall_detector_activated() -> void:
 	$fsm/charge.set_state("dazed")

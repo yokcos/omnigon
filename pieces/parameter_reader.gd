@@ -11,7 +11,7 @@ signal deactivated
 
 func _ready() -> void:
 	update_status()
-	emit_relevant_signal()
+	call_deferred("emit_relevant_signal")
 
 func _process(delta: float) -> void:
 	update_status()

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc3/0001_deepingress.ogg" type="AudioStream" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "deepingress"
+title = "Deep Ingress"
+lore = "Hopefully this place with the nice red wallpaper is where they keep their deepest secrets of all. Nothing remains to do, but to continue the ingress and theft!"
+audio = ExtResource( 2 )

@@ -100,6 +100,8 @@ const sfx_pot_break_b = [
 	preload("res://props/pot_break4.wav"),
 	preload("res://props/pot_break5.wav"),
 ]
+const sfx_gate_burn = [preload("res://props/interactables/gate_burn.wav")]
+const sfx_gate_destruction = [preload("res://props/interactables/gate_destruction.wav")]
 const sfx_automaton_recharge = [preload("res://entities/enemies/automaton_recharge.wav")]
 const sfx_automaton_turn = [preload("res://entities/enemies/automaton_turn.wav")]
 const sfx_tick = [
@@ -118,6 +120,10 @@ const sfx_ring_end = [preload("res://entities/enemies/ring_end.wav")]
 const sfx_target = [preload("res://entities/enemies/target.wav")]
 const sfx_whomp = [preload("res://sfx/whomp.wav")]
 const sfx_wooble = [preload("res://sfx/wooble.wav")]
+
+const sfx_electrodrill_impact = [preload("res://entities/enemies/electrodrill_impact.wav")]
+const sfx_electrodrill_unextend = [preload("res://entities/enemies/electrodrill_unextend.wav")]
+const sfx_eel_shoot = [preload("res://entities/enemies/eel_shoot.wav")]
 
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
@@ -191,6 +197,8 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0007_thesecretsofspacetravel.tres"))
 	add_music_entry(preload("res://music/disc2/0008_gearsandclockwork.tres"))
 	add_music_entry(preload("res://music/disc2/0009_the_second_disc_ends.tres"))
+	
+	add_music_entry(preload("res://music/disc3/0001_deepingress.tres"))
 
 
 func add_music_entry(what: Music):

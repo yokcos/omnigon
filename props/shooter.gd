@@ -38,6 +38,7 @@ func shoot():
 
 func get_shifted():
 	var new_shooter = obj_shooter.instance()
+	new_shooter.angular_velocity = rand_range(-11, 1)
 	Game.replace_instance(self, new_shooter)
 
 func disable_shiftbox():

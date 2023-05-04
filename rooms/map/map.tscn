@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -77,6 +77,13 @@
 [ext_resource path="res://rooms/final_lab.tscn" type="PackedScene" id=75]
 [ext_resource path="res://rooms/introduction.tscn" type="PackedScene" id=76]
 [ext_resource path="res://rooms/deathbutton_gradual.tscn" type="PackedScene" id=77]
+[ext_resource path="res://rooms/pristinity.tscn" type="PackedScene" id=78]
+[ext_resource path="res://rooms/electrodrill.tscn" type="PackedScene" id=79]
+[ext_resource path="res://rooms/c.tscn" type="PackedScene" id=80]
+[ext_resource path="res://rooms/robots.tscn" type="PackedScene" id=81]
+[ext_resource path="res://rooms/hurdles.tscn" type="PackedScene" id=82]
+[ext_resource path="res://rooms/big_ladder.tscn" type="PackedScene" id=83]
+[ext_resource path="res://rooms/blockades.tscn" type="PackedScene" id=84]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -307,3 +314,24 @@ position = Vector2( -8192, -2048 )
 
 [node name="deathbutton2" parent="." instance=ExtResource( 77 )]
 position = Vector2( -7680, 0 )
+
+[node name="pristinity" parent="." instance=ExtResource( 78 )]
+position = Vector2( -3072, 1280 )
+
+[node name="electrodrill" parent="." instance=ExtResource( 79 )]
+position = Vector2( -2560, 1792 )
+
+[node name="c" parent="." instance=ExtResource( 80 )]
+position = Vector2( -3072, 1792 )
+
+[node name="robots" parent="." instance=ExtResource( 81 )]
+position = Vector2( -2560, 2048 )
+
+[node name="hurdles" parent="." instance=ExtResource( 82 )]
+position = Vector2( -1536, 2048 )
+
+[node name="big_ladder" parent="." instance=ExtResource( 83 )]
+position = Vector2( -1024, 1792 )
+
+[node name="blockades" parent="." instance=ExtResource( 84 )]
+position = Vector2( -2048, 2304 )

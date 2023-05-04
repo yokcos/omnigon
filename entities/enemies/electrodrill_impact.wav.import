@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/electrodrill_impact.wav-83e40607afb15fedb4c0d395fb0c08e3.sample"
+
+[deps]
+
+source_file="res://entities/enemies/electrodrill_impact.wav"
+dest_files=[ "res://.import/electrodrill_impact.wav-83e40607afb15fedb4c0d395fb0c08e3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

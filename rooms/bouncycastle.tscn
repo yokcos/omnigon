@@ -31,6 +31,7 @@ tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0, -6
 
 [node name="floor" type="StaticBody2D" parent="."]
 position = Vector2( 256, 184 )
+collision_layer = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="floor"]
 position = Vector2( 0, 64 )
@@ -38,18 +39,21 @@ shape = SubResource( 1 )
 
 [node name="ceiling" type="StaticBody2D" parent="."]
 position = Vector2( 256, 0 )
+collision_layer = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="ceiling"]
 shape = SubResource( 1 )
 
 [node name="block0" type="StaticBody2D" parent="."]
 position = Vector2( 504, 208 )
+collision_layer = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="block0"]
 shape = SubResource( 3 )
 
 [node name="block1" type="StaticBody2D" parent="."]
 position = Vector2( 8, 208 )
+collision_layer = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="block1"]
 shape = SubResource( 3 )

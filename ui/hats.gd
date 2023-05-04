@@ -130,6 +130,7 @@ func add_hat(what: Hat):
 	new_tex.position.x = hat_width*existing_hats
 	new_tex.centered = false
 	list.add_child(new_tex)
+	new_tex.position.y -= what.large_sprite.get_height() - 64
 
 func toggle_hat():
 	var this_hat = get_selected_hat()
