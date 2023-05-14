@@ -16,6 +16,8 @@ var gravity: float = 540
 var fall_multiplier: float = 1
 var is_controlled: bool = false
 var air_time: float = 0
+export (bool) var submergable = true
+var submerged: bool = false
 var spawn_position: Vector2 = Vector2()
 var extra_data: Dictionary = {}
 var age: float = 0
@@ -57,6 +59,9 @@ func _process(delta: float) -> void:
 		air_time = 0
 	else:
 		air_time += delta
+	
+	if submergable:
+		submerged = is_submerged()
 	
 	flip()
 	
@@ -127,15 +132,28 @@ func land():
 
 func frictutate(delta: float):
 	velocity.x -= velocity.x * friction * delta
+	if submerged:
+		velocity -= velocity * friction * delta
 
 func gravitate(delta: float):
+	var this_gravity = gravity * delta
+	if submerged: this_gravity *= -.5
+	
 	if velocity.y > 0:
-		velocity.y += gravity * delta * fall_multiplier
+		velocity.y += this_gravity * fall_multiplier
 	else:
-		velocity.y += gravity * delta
+		velocity.y += this_gravity
 
 func is_grounded() -> bool:
 	return air_time < coyote_time and coyote_enabled
+
+func is_submerged() -> bool:
+	for i in get_tree().get_nodes_in_group("waters"):
+		if i.get_overlapping_bodies().has(self):
+			if !submerged:
+				GlobalSound.play_random_sfx_2d( GlobalSound.sfx_splash, global_position )
+			return true
+	return false
 
 func time_freeze(duration: float):
 	timefreeze = duration

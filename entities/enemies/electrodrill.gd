@@ -63,6 +63,7 @@ func extend():
 	$flippable/head1.show()
 	$flippable/connection.show()
 	$blockade/hitbox.disabled = false
+	$flippable/head1/punch_detector/hitbox.disabled = false
 	
 	activate_hurtbox()
 	deploy_upper_sparks()
@@ -74,6 +75,7 @@ func unextend():
 	$flippable/head1.hide()
 	$flippable/connection.hide()
 	$blockade/hitbox.disabled = true
+	$flippable/head1/punch_detector/hitbox.disabled = true
 	
 	deactivate_hurtbox()
 	snap_to_ceiling()
@@ -119,3 +121,6 @@ func _on_extended_entered() -> void:
 
 func _on_unextend_entered() -> void:
 	unextend()
+
+func _on_punch_detector_punched() -> void:
+	$fsm/extended.set_state("unextend")

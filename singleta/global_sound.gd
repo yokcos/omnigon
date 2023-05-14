@@ -124,6 +124,8 @@ const sfx_wooble = [preload("res://sfx/wooble.wav")]
 const sfx_electrodrill_impact = [preload("res://entities/enemies/electrodrill_impact.wav")]
 const sfx_electrodrill_unextend = [preload("res://entities/enemies/electrodrill_unextend.wav")]
 const sfx_eel_shoot = [preload("res://entities/enemies/eel_shoot.wav")]
+const sfx_click = [preload("res://ui/click0.wav")]
+const sfx_splash = [preload("res://sfx/splash.wav")]
 
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]

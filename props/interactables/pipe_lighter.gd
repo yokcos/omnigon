@@ -19,8 +19,8 @@ func _ready() -> void:
 	verb = "Unseal"
 
 
-func open():
-	var result = .open()
+func open_pipe():
+	var result = .open_pipe()
 	
 	if result:
 		var new_lighter = lighters[type].instance()

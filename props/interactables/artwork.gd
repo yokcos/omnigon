@@ -7,7 +7,7 @@ export (PackedScene) var popup = null
 func summon_popup():
 	var new_thing = popup.instance()
 	Game.deploy_ui_instance(new_thing, Vector2())
-	get_tree().paused = true
+	Game.pause()
 	
 	PlayerStats.check_pos = Rooms.get_world_position(global_position)
 	PlayerStats.hp = PlayerStats.max_hp

@@ -27,9 +27,9 @@ func get_loaded(what: Dictionary):
 func activate():
 	.activate()
 	
-	open()
+	open_pipe()
 
-func open():
+func open_pipe():
 	if active:
 		open = true
 		active = false

@@ -71,6 +71,7 @@ const obj_fx = preload("res://fx/fx_transient.tscn")
 var obj_mattress: PackedScene = load("res://props/mattress.tscn")
 var obj_mattress_gremlin: PackedScene = load("res://props/mattress_gremlin.tscn")
 var screen_scale = 2
+var rsoo_loaded: bool = false
 
 
 signal world_changed
@@ -100,6 +101,35 @@ func _process(delta: float) -> void:
 			
 			GlobalSound.resume_music()
 
+
+func load_rsoo():
+	if !rsoo_loaded:
+		ProjectSettings.load_resource_pack("res://RSOO.pck")
+		
+		rsoo_loaded = true
+
+func unload_rsoo():
+	if rsoo_loaded:
+		delete_folder("res://rsoo/")
+		
+		rsoo_loaded = false
+
+func delete_folder(path, dir: Directory = null):
+	if !dir: dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+	var fname: String = dir.get_next()
+	while fname != "":
+		var full_path = path + fname
+		
+		if dir.current_is_dir():
+			delete_folder(full_path, dir)
+		else:
+			dir.remove(full_path)
+		
+		fname = dir.get_next()
+	
+	dir.remove(path)
 
 func apply_default_controls():
 	var file = File.new()
@@ -246,6 +276,12 @@ func load_game():
 		PlayerStats.uncompress_data(player_stats)
 		Settings.uncompress_settings(settings)
 		file.close()
+
+func pause():
+	get_tree().paused = true
+
+func unpause():
+	get_tree().paused = false
 
 func achieve_achievement(what: String):
 	pass

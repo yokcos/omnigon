@@ -4,6 +4,7 @@ extends RigidBody2D
 export (float) var shot_speed = 200
 export (float) var interval = 2
 export (float, 0, 1) var phase = 0
+export (float) var animation_speed = 1
 
 var spawn_position: Vector2 = Vector2()
 var rtime = interval
@@ -26,6 +27,7 @@ func _process(delta: float) -> void:
 
 func activate():
 	$animator.play("shoot")
+	$animator.playback_speed = animation_speed
 
 func shoot():
 	var new_bullet = obj_bullet.instance()
@@ -38,6 +40,8 @@ func shoot():
 
 func get_shifted():
 	var new_shooter = obj_shooter.instance()
+	new_shooter.interval = interval
+	new_shooter.animation_speed = animation_speed
 	Game.replace_instance(self, new_shooter)
 	new_shooter.disable_shiftbox()
 

@@ -23,9 +23,11 @@ func get_randomisers():
 	while fname != "":
 		
 		if !dir.current_is_dir():
-			var this_thing = load(path + fname)
-			if this_thing is TileRandomiser:
-				randomisers.append(this_thing)
+			var full_path = path + fname
+			if full_path.ends_with(".tres") and full_path.begins_with("tra_"):
+				var this_thing = load(full_path)
+				if this_thing is TileRandomiser:
+					randomisers.append(this_thing)
 		
 		fname = dir.get_next()
 

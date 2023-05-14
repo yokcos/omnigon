@@ -25,3 +25,5 @@ func activate():
 
 func get_shifted():
 	$sprite.flip_h = !$sprite.flip_h
+
+

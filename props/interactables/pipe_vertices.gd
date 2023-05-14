@@ -17,8 +17,8 @@ func _ready() -> void:
 			active = false
 
 
-func open():
-	var result = .open()
+func open_pipe():
+	var result = .open_pipe()
 	
 	if result:
 		for i in range(vertices):

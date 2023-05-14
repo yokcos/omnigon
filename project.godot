@@ -146,6 +146,12 @@ GlobalSound="*res://singleta/global_sound.gd"
 Settings="*res://singleta/settings.gd"
 Events="*res://singleta/events.gd"
 Steamer="*res://singleta/steamer.gd"
+RSOOEvents="*res://nothing.gd"
+RSOOGlobalSound="*res://nothing.gd"
+RSOOLevels="*res://nothing.gd"
+RSOO="*res://nothing.gd"
+RSOOTransients="*res://nothing.gd"
+RSOOUtility="*res://nothing.gd"
 
 [debug]
 
@@ -283,6 +289,11 @@ map={
 ui_backspace={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777220,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+mute={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
