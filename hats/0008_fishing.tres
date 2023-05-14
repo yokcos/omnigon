@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0008_fishing.png" type="Texture" id=2]
+[ext_resource path="res://hats/0008_fishing_large.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "fishing"
+sprite = ExtResource( 2 )
+large_sprite = ExtResource( 3 )
+name = "Fisherman's Hat"
+description = "Instead of punching, those wearing this hat shall fish."
+height = 8.0
+small_frames = 1
+large_frames = 1

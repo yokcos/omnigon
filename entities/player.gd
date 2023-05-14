@@ -5,8 +5,10 @@ var base_gravity: float = 1250
 var gravity_multiplier: float = 1.5
 var base_animation_speed: float = 1
 var jet_power: float = 0
+var current_bobber: Node2D = null
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
+const obj_bobber = preload("res://entities/fishing_bobber.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 
@@ -76,8 +78,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		Game.deploy_ui_instance(new_thing, Vector2())
 		get_tree().paused = true
 	
-	if event.is_action_pressed("ui_cancel"):
-		pass
+	if event.is_action_pressed("attack"):
+		if is_instance_valid(current_bobber):
+			recall_bobber()
 
 
 func collide_against(what: KinematicCollision2D):
@@ -251,6 +254,28 @@ func set_poisoned(what: bool):
 	
 	PlayerStats.poisoned = what
 
+func fish():
+	if is_instance_valid(current_bobber):
+		recall_bobber()
+	else:
+		$fsm/normal.set_state("fish")
+
+func cast_bobber():
+	var new_bobber = obj_bobber.instance()
+	Game.deploy_instance(new_bobber, $flippable/fistbox.global_position)
+	new_bobber.velocity = Vector2( 300*flip_int, -200 )
+	new_bobber.source = self
+	current_bobber = new_bobber
+
+func recall_bobber():
+	if is_instance_valid(current_bobber.target):
+		var relative = global_position - current_bobber.target.global_position
+		var this_dir = sign(relative.x)
+		current_bobber.target.velocity += Vector2( 900*this_dir, -400 )
+	
+	current_bobber.queue_free()
+	current_bobber = null
+
 
 func _on_attacc_activated() -> void:
 	velocity.x += -200 if flipped else 200
@@ -288,7 +313,9 @@ func _on_attacc_exited() -> void:
 func _on_shift_activated() -> void:
 	shift()
 
+func _on_fish_activated() -> void:
+	cast_bobber()
+
 func _on_hats_changed(new_hats: Array):
 	apply_hats()
-
 

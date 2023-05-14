@@ -3,7 +3,7 @@
 [ext_resource path="res://tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/tilemap.gd" type="Script" id=2]
 
-[node name="tilemap" type="TileMap"]
+[node name="tilemap" type="TileMap" groups=["tilemaps"]]
 z_index = -20
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )

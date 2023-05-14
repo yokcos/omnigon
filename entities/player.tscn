@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://entities/player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://fsm/states/state.gd" type="Script" id=12]
 [ext_resource path="res://fsm/states/player_sitting.gd" type="Script" id=13]
 [ext_resource path="res://fsm/states/charge_airmove.gd" type="Script" id=14]
+[ext_resource path="res://entities/fishing_pole.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=104]
 extents = Vector2( 8, 12 )
@@ -73,6 +74,42 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("flippable/fishing_pole:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("flippable/fishing_pole:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 29, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("flippable/fishing_pole:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=117]
@@ -313,6 +350,82 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=131]
+resource_name = "fish"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 68, 69, 70, 71, 72, 73 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -15 ), Vector2( -2, -15 ), Vector2( -7, -11 ), Vector2( -8, -10 ), Vector2( -8, -9 ), Vector2( -7, -11 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0.0, -12.4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("flippable/fishing_pole:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("flippable/fishing_pole:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 29, 0 ), Vector2( 24, -10 ), Vector2( -22, -5 ), Vector2( -22, -2 ), Vector2( -22, -1 ), Vector2( -20, -4 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("flippable/fishing_pole:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -17.6589, -167.707 ]
+}
+
 [sub_resource type="Animation" id=121]
 resource_name = "idle"
 length = 1.6
@@ -392,6 +505,82 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=132]
+resource_name = "postfish"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 74, 75 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -2, -15 ), Vector2( 0, -15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("flippable/hats:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("flippable/fishing_pole:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("flippable/fishing_pole:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 24, -10 ), Vector2( 29, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("flippable/fishing_pole:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ -17.6589, 0.0 ]
 }
 
 [sub_resource type="Animation" id=123]
@@ -746,8 +935,13 @@ shape = SubResource( 108 )
 use_parent_material = true
 texture = ExtResource( 2 )
 hframes = 8
-vframes = 9
+vframes = 10
 frame = 9
+
+[node name="fishing_pole" type="Sprite" parent="flippable"]
+visible = false
+position = Vector2( 29, 0 )
+texture = ExtResource( 15 )
 
 [node name="hats" type="Node2D" parent="flippable"]
 position = Vector2( 0, -12 )
@@ -780,6 +974,13 @@ script = ExtResource( 14 )
 animation = "attacc"
 auto_proceed = "normal"
 recover_animation = "postattacc"
+air_speed = 0.75
+
+[node name="fish" type="Node" parent="fsm"]
+script = ExtResource( 14 )
+animation = "fish"
+auto_proceed = "normal"
+recover_animation = "postfish"
 air_speed = 0.75
 
 [node name="shift" type="Node" parent="fsm"]
@@ -823,8 +1024,10 @@ anims/back = SubResource( 128 )
 anims/climb = SubResource( 118 )
 anims/climb_down = SubResource( 119 )
 anims/climb_up = SubResource( 120 )
+anims/fish = SubResource( 131 )
 anims/idle = SubResource( 121 )
 anims/postattacc = SubResource( 122 )
+anims/postfish = SubResource( 132 )
 anims/postshift = SubResource( 123 )
 anims/run = SubResource( 124 )
 anims/shift = SubResource( 125 )
@@ -857,4 +1060,7 @@ valign = 2
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
 [connection signal="entered" from="fsm/attacc" to="." method="_on_attacc_entered"]
 [connection signal="exited" from="fsm/attacc" to="." method="_on_attacc_exited"]
+[connection signal="activated" from="fsm/fish" to="." method="_on_fish_activated"]
+[connection signal="entered" from="fsm/fish" to="." method="_on_attacc_entered"]
+[connection signal="exited" from="fsm/fish" to="." method="_on_attacc_exited"]
 [connection signal="activated" from="fsm/shift" to="." method="_on_shift_activated"]

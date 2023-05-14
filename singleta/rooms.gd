@@ -104,14 +104,27 @@ func print_rooms():
 	
 	print(dict)
 
+func get_room_base(room_coords: Vector2) -> Vector2:
+	# Gets the room-grid top-left coords of the given room
+	# e.g. input (4, 6) is the bottom of a 3-tall room
+	# will return (4, 4)
+	if rooms.has(room_coords):
+		while rooms[room_coords] is Vector2:
+			room_coords = rooms[room_coords]
+	
+	return room_coords
+
 func get_room_at(where: Vector2) -> Vector2:
 	var room_pos = get_subroom_at(where)
 	
-	if rooms.has(room_pos):
-		while rooms[room_pos] is Vector2:
-			room_pos = rooms[room_pos]
-	
-	return room_pos
+	return get_room_base(room_pos)
+
+func get_room_data(room_coords: Vector2):
+	room_coords = get_room_base(room_coords)
+	if room_data.has(room_coords):
+		return room_data[ room_coords ]
+	else:
+		return null
 
 func get_subroom_at(where: Vector2) -> Vector2:
 	var room_pos = where / room_size

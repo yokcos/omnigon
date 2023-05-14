@@ -32,6 +32,7 @@ var upgrades: Dictionary = {
 	"fake_id": false,
 }
 
+var all_hats: Dictionary = {}
 var available_hats: Array = [
 	preload("res://hats/0001_vitality.tres"),
 ]
@@ -48,10 +49,34 @@ signal hats_changed
 signal lighters_changed
 
 
+func _ready() -> void:
+	load_all_hats()
+
 func _process(delta: float) -> void:
 	if Game.in_game:
 		time += delta
 
+
+func load_all_hats():
+	var dir := Directory.new()
+	var path = "res://hats/"
+	dir.open(path)
+	dir.list_dir_begin()
+	var fname = dir.get_next()
+	while fname != "":
+		if fname.ends_with(".tres"):
+			var full_path = path + fname
+			var thing = load(full_path)
+			if thing is Hat:
+				all_hats[thing.id] = thing
+		
+		fname = dir.get_next()
+
+func get_hat(id: String):
+	if all_hats.has(id):
+		return all_hats[id]
+	else:
+		return null
 
 func set_eyes(what: int):
 	eyes = what

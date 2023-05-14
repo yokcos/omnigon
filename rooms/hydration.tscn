@@ -9,7 +9,7 @@
 
 [node name="hydration" type="Node2D"]
 script = ExtResource( 4 )
-title = "Not Weird"
+title = "Hydration"
 room_size = Vector2( 1, 2 )
 temp_music = "notweird"
 map_image = ExtResource( 10 )
@@ -22,6 +22,7 @@ length = 6
 
 [node name="pipe" parent="props" instance=ExtResource( 7 )]
 position = Vector2( 184, 488 )
+highlight_distance = 128.0
 
 [node name="water" parent="props" instance=ExtResource( 3 )]
 position = Vector2( 184, 392 )

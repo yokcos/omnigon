@@ -43,7 +43,10 @@ func _handle_input(event: InputEvent) -> void:
 			new_sfx.relative_volume = rand_range(0.4, 0.8)
 		
 		if event.is_action_pressed("attack"):
-			set_state("attacc")
+			if PlayerStats.has_hat("fishing"):
+				father.fish()
+			else:
+				set_state("attacc")
 		
 		if event.is_action_pressed("shift"):
 			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder") and has_ladder:

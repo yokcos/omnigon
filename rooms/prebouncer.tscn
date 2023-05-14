@@ -65,4 +65,4 @@ rotation = 3.14159
 [node name="button" parent="." instance=ExtResource( 8 )]
 position = Vector2( 720, 224 )
 
-[connection signal="activated" from="button" to="pipe" method="open"]
+[connection signal="activated" from="button" to="pipe" method="open_pipe"]
