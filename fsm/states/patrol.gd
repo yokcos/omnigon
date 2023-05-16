@@ -24,7 +24,7 @@ func _step(delta: float) -> void:
 
 
 func move_normally(delta: float):
-	if is_time_now(turn_time - 0.8, delta):
+	if is_time_now(turn_time - 0.8, delta) and father.is_grounded():
 		update_flip()
 		father.velocity.x = 0
 	

@@ -10,6 +10,8 @@ var obj_googlyspring = preload("res://props/googlyspring.tscn")
 func _ready() -> void:
 	if WorldSaver.load_data("bosses_defeated") > 0:
 		queue_free()
+	else:
+		connect("tree_exiting", self, "_on_tree_exiting")
 
 func _process(delta: float) -> void:
 	if $dangersword.visible:
@@ -38,6 +40,16 @@ func enter_second_stage():
 	$fsm/idle.weights.append(1)
 	$fsm/idle.options.append("dive_jump")
 	$fsm/idle.weights.append(1)
+
+func enter_first_stage():
+	if $fsm/idle.options.has("big_jump"):
+		$fsm/idle.options.erase("big_jump")
+		$fsm/idle.options.erase("dive_jump")
+		$fsm/idle.weights.pop_back()
+		$fsm/idle.weights.pop_back()
+		
+		$fsm/rapier_dive.auto_proceed = "boing"
+		$fsm/dive_dive.auto_proceed = "dive_recover"
 
 func play_bounce_sfx(volume: float = 1):
 	var new_sfx: SFX2D = GlobalSound.play_random_sfx_2d(GlobalSound.sfx_bouncer_bounce, global_position)
@@ -111,8 +123,6 @@ func _on_idle_entered() -> void:
 	Game.set_boss(self)
 	GlobalSound.play_temp_music("entrydenied")
 
-
-
 func _on_rapier_jump_entered() -> void:
 	play_bounce_sfx()
 
@@ -124,3 +134,6 @@ func _on_boing_entered() -> void:
 
 func _on_attacc0_entered() -> void:
 	play_bounce_sfx(0.6)
+
+func _on_tree_exiting():
+	enter_first_stage()

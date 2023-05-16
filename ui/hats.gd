@@ -6,7 +6,7 @@ var hats: Array = []
 var active: bool = false
 
 var list_tpos: float = 0
-var preview_spacing: float = 40
+var preview_spacing: float = 8
 var full_height: float = 0
 
 onready var list: HBoxContainer = $list_holder/sprites
@@ -82,7 +82,7 @@ func create_preview_hat(what: Hat):
 	
 	preview.add_child(new_tex)
 	
-	full_height += preview_spacing * (what.height / 8)
+	full_height += preview_spacing + (what.height * 4)
 	new_tex.position.y = -full_height + 10
 
 func get_selected_hat() -> Hat:
@@ -130,15 +130,16 @@ func add_hat(what: Hat):
 	new_tex.position.x = hat_width*existing_hats
 	new_tex.centered = false
 	list.add_child(new_tex)
-	new_tex.position.y -= what.large_sprite.get_height() - 64
+	new_tex.position.y -= (what.height*4 - 32)
 
 func toggle_hat():
 	var this_hat = get_selected_hat()
 	
 	if !PlayerStats.hats.has(this_hat):
-		PlayerStats.hats.append(this_hat)
+		if !PlayerStats.don_hat(this_hat):
+			$animator.play("warn")
 	else:
-		PlayerStats.hats.erase(this_hat)
+		PlayerStats.doff_hat(this_hat)
 	
 	apply_preview()
 	update_buttons()
@@ -161,8 +162,8 @@ func get_button(what: String):
 func _on_don_pressed() -> void:
 	var this_hat = get_selected_hat()
 	
-	if !PlayerStats.hats.has(this_hat):
-		PlayerStats.hats.append(this_hat)
+	if !PlayerStats.don_hat(this_hat):
+		$animator.play("warn")
 	
 	apply_preview()
 	update_buttons()
@@ -170,8 +171,7 @@ func _on_don_pressed() -> void:
 func _on_doff_pressed() -> void:
 	var this_hat = get_selected_hat()
 	
-	if PlayerStats.hats.has(this_hat):
-		PlayerStats.hats.erase(this_hat)
+	PlayerStats.doff_hat(this_hat)
 	
 	apply_preview()
 	update_buttons()

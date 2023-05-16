@@ -16,7 +16,16 @@ func _ready():
 	new_borders.room_size = room_size
 	add_child(new_borders)
 	load_tile_changes()
+	apply_music()
 	
+	WorldSaver.load_all_beings()
+	WorldSaver.load_misc()
+	
+	VisualServer.set_default_clear_color(background_colour)
+	Game.background_colour = background_colour
+
+
+func apply_music():
 	if temp_music != "":
 		GlobalSound.play_temp_music(temp_music)
 		if music != "":
@@ -26,13 +35,6 @@ func _ready():
 			GlobalSound.resume_music()
 		else:
 			GlobalSound.play_music(music)
-	
-	WorldSaver.load_all_beings()
-	WorldSaver.load_misc()
-	
-	VisualServer.set_default_clear_color(background_colour)
-	Game.background_colour = background_colour
-
 
 func load_tile_changes():
 	var map = find_tile_map()

@@ -34,13 +34,20 @@ func _handle_input(event: InputEvent) -> void:
 		else:
 			time_since_movement = 0
 		
-		if event.is_action_pressed("jump") and father.is_grounded():
-			father.coyote_enabled = false
-			father.velocity.x *= 1.35
-			father.jump()
-			
-			var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_jump)
-			new_sfx.relative_volume = rand_range(0.4, 0.8)
+		if event.is_action_pressed("jump"):
+			if father.is_grounded():
+				father.coyote_enabled = false
+				father.velocity.x *= 1.35
+				father.jump()
+				
+				var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_jump)
+				new_sfx.relative_volume = rand_range(0.4, 0.8)
+			if father.submerged:
+				father.jump()
+				
+				var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_jump)
+				new_sfx.randomise_pitch(.4, .6)
+				new_sfx.relative_volume = rand_range(0.4, 0.5)
 		
 		if event.is_action_pressed("attack"):
 			if PlayerStats.has_hat("fishing"):

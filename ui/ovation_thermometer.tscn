@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/ovation_thermometer0.png" type="Texture" id=1]
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/ovation_thermometer.gd" type="Script" id=3]
+[ext_resource path="res://misc/fnt_main.tres" type="DynamicFont" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.25098, 0.2, 0.32549, 1 )
+
+[node name="ovation_thermometer" type="Control"]
+margin_right = 192.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 268, 220 )
+script = ExtResource( 3 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="auto_sprite" parent="." instance=ExtResource( 2 )]
+position = Vector2( 38, 8 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 2
+
+[node name="score" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_bottom = -4.0
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "SCORE: 0000"
+align = 1
+valign = 1
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2( 134, 110 )
+current = true
+zoom = Vector2( 0.5, 0.5 )

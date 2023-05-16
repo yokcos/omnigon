@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fishticuffs/hook.gd" type="Script" id=1]
+[ext_resource path="res://fishticuffs/hook.png" type="Texture" id=2]
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.0
+
+[node name="hook" type="KinematicBody2D" groups=["hooks"]]
+collision_mask = 5
+script = ExtResource( 1 )
+flip_path = NodePath("flippable")
+team = 0
+
+[node name="flippable" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite" parent="flippable"]
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 3 )]
+target_teams = [ 1 ]
+hit_rate = 0.5
+radial_knockback = 50.0
+
+[node name="hitbox" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 2 )

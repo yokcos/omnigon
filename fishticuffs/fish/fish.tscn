@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://fishticuffs/fish/fish.gd" type="Script" id=1]
+[ext_resource path="res://fishticuffs/fish/fish.png" type="Texture" id=2]
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=3]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=4]
+[ext_resource path="res://fsm/states/charge.gd" type="Script" id=5]
+[ext_resource path="res://fishticuffs/fish/fish_corpse.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "post_attacc"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 11 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "pre_attacc"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="fish" type="KinematicBody2D"]
+script = ExtResource( 1 )
+flip_path = NodePath("flippable")
+max_hp = 1.0
+corpse_sprite = ExtResource( 6 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="barrel" type="Position2D" parent="."]
+position = Vector2( 8, 0 )
+
+[node name="flippable" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="sprite" type="Sprite" parent="flippable"]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 3
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 3 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "idle"
+
+[node name="attacc" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+animation = "pre_attacc"
+auto_proceed = "idle"
+recover_animation = "post_attacc"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/post_attacc = SubResource( 5 )
+anims/pre_attacc = SubResource( 3 )
+
+[node name="attacc" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="timeout" from="attacc" to="." method="_on_attacc_timeout"]

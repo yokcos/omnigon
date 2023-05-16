@@ -28,6 +28,7 @@ var timefreeze_fx = null
 
 export (bool) var can_flip_by_default = true
 export (bool) var never_flips = false
+export (float) var air_friction_multiplier = 1
 onready var can_flip: bool = can_flip_by_default
 export (NodePath) var flip_path = "."
 var flipped: bool = false setget set_flip
@@ -131,7 +132,14 @@ func land():
 	coyote_enabled = true
 
 func frictutate(delta: float):
-	velocity.x -= velocity.x * friction * delta
+	if friction <= 0:
+		return false
+	
+	var this_friction = friction * delta
+	if !is_grounded():
+		this_friction *= air_friction_multiplier
+	velocity.x -= velocity.x * this_friction
+	
 	if submerged:
 		velocity -= velocity * friction * delta
 
@@ -145,7 +153,7 @@ func gravitate(delta: float):
 		velocity.y += this_gravity
 
 func is_grounded() -> bool:
-	return air_time < coyote_time and coyote_enabled
+	return air_time <= 0 or (air_time < coyote_time and coyote_enabled)
 
 func is_submerged() -> bool:
 	for i in get_tree().get_nodes_in_group("waters"):

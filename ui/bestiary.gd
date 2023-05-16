@@ -61,7 +61,7 @@ func get_all_enemies() -> Array:
 		elif not file.begins_with("."):
 			var loaded_thing = load(path + file)
 			if loaded_thing is EnemyData:
-				if PlayerStats.get_kills(loaded_thing) > 0:
+				if PlayerStats.get_enemy_deaths(loaded_thing) > 0:
 					enemies.append(loaded_thing)
 	
 	dir.list_dir_end()

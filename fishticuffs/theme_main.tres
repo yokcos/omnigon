@@ -1,0 +1,168 @@
+[gd_resource type="Theme" load_steps=17 format=2]
+
+[ext_resource path="res://misc/fnt_main.tres" type="DynamicFont" id=1]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0.105882, 0.141176, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.105882, 0.141176, 0.278431, 1 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0.105882, 0.141176, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.105882, 0.141176, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.392157, 0.211765, 0.294118, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.698039, 0.321569, 0.4, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.698039, 0.321569, 0.4, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.964706, 0.635294, 0.658824, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.105882, 0.141176, 0.278431, 1 )
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.0784314, 0.0705882, 0.113725, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.152941, 0.537255, 0.803922, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+Button/colors/font_color_disabled = Color( 0.152941, 0.537255, 0.803922, 1 )
+Button/colors/font_color_hover = Color( 0.815686, 1, 0.917647, 1 )
+Button/colors/font_color_pressed = Color( 0.152941, 0.537255, 0.803922, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
+CheckBox/colors/font_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckBox/colors/font_color_hover = Color( 0.815686, 1, 0.917647, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 0.815686, 1, 0.917647, 1 )
+CheckBox/colors/font_color_pressed = Color( 0.815686, 1, 0.917647, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = ExtResource( 4 )
+CheckBox/styles/disabled = SubResource( 4 )
+CheckBox/styles/focus = SubResource( 5 )
+CheckBox/styles/hover = SubResource( 5 )
+CheckBox/styles/hover_pressed = SubResource( 5 )
+CheckBox/styles/normal = SubResource( 4 )
+CheckBox/styles/pressed = SubResource( 4 )
+GridContainer/constants/hseparation = 20
+GridContainer/constants/vseparation = 12
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = SubResource( 6 )
+HScrollBar/styles/grabber_highlight = SubResource( 7 )
+HScrollBar/styles/grabber_pressed = SubResource( 8 )
+HScrollBar/styles/scroll = SubResource( 9 )
+HScrollBar/styles/scroll_focus = SubResource( 9 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/slider = SubResource( 11 )
+Label/colors/font_color = Color( 0.45098, 0.937255, 0.909804, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+Panel/styles/panel = SubResource( 12 )
+PanelContainer/styles/panel = SubResource( 12 )
+ProgressBar/colors/font_color = Color( 0.815686, 1, 0.917647, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0.0784314, 0.0705882, 0.113725, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = SubResource( 13 )
+ProgressBar/styles/fg = SubResource( 14 )

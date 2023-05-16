@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/other/FP_ocean.ogg" type="AudioStream" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "fc_ocean"
+title = "Shellow Seas"
+lore = ""
+audio = ExtResource( 2 )

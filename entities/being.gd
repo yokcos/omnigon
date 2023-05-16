@@ -25,9 +25,9 @@ export (bool) var saving_enabled = true
 export (String) var boss_theme = ""
 
 
-const obj_part_hit = preload("res://fx/part_hit.tscn")
-const obj_part_stars = preload("res://fx/part_death_stars.tscn")
-const obj_part_spirals = preload("res://fx/part_death_spirals.tscn")
+var obj_part_hit = preload("res://fx/part_hit.tscn")
+var obj_part_stars = preload("res://fx/part_death_stars.tscn")
+var obj_part_spirals = preload("res://fx/part_death_spirals.tscn")
 
 
 signal damage_taken
@@ -39,12 +39,6 @@ func _ready() -> void:
 		hp = max_hp
 	
 	add_to_group("beings")
-	set_collision_layer_bit(0, false)
-	set_collision_layer_bit(1, true)
-	
-	set_collision_mask_bit(0, true)
-	set_collision_mask_bit(1, true)
-	set_collision_mask_bit(2, true)
 	
 	#var data = WorldSaver.load_data(spawn_position)
 	
@@ -97,8 +91,9 @@ func take_damage(what: float, from: Being = null) -> float:
 		if flash_material:
 			material.set_shader_param( "factor", 1 )
 		
-		var new_part_hit = obj_part_hit.instance()
-		Game.deploy_instance(new_part_hit, global_position + centre_offset)
+		if is_instance_valid(Game.world):
+			var new_part_hit = obj_part_hit.instance()
+			Game.deploy_instance(new_part_hit, global_position + centre_offset)
 		
 		emit_signal("damage_taken", what)
 		

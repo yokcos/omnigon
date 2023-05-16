@@ -3,6 +3,7 @@ extends "res://ui/popup_parent.gd"
 
 var scale = 2
 var base_size: Vector2 = Vector2(268, 220)
+var world: Node = null
 
 
 signal world_slain
@@ -16,11 +17,11 @@ func _ready() -> void:
 func set_title(what: String):
 	window_title = what
 
-func apply_world(world: PackedScene):
-	var new_world = world.instance()
-	$worldholder/port.add_child(new_world)
+func apply_world(this_world: PackedScene):
+	world = this_world.instance()
+	$worldholder/port.add_child(world)
 	
-	new_world.connect("tree_exiting", self, "_on_world_slain")
+	world.connect("tree_exiting", self, "_on_world_slain")
 
 func egress():
 	$animator.play("depart")

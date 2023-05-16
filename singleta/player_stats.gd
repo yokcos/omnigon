@@ -38,6 +38,7 @@ var available_hats: Array = [
 ]
 var hats: Array = []
 var kills: Dictionary = {}
+var enemy_deaths: Dictionary = {}
 var secrets: Array = []
 
 
@@ -47,10 +48,12 @@ signal vertices_changed
 signal vertices_collected
 signal hats_changed
 signal lighters_changed
+signal hat_too_large
 
 
 func _ready() -> void:
 	load_all_hats()
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 func _process(delta: float) -> void:
 	if Game.in_game:
@@ -123,6 +126,35 @@ func gain_hat(what: Hat):
 	if !available_hats.has(what):
 		available_hats.append(what)
 
+func don_hat(what: Hat):
+	var player = Game.get_player()
+	var can_do: bool = true
+	
+	if is_instance_valid(player):
+		player.pause_mode = PAUSE_MODE_PROCESS
+		can_do = player.check_hat_viability(what)
+	
+	if can_do:
+		if !hats.has(what):
+			hats.append(what)
+			if is_instance_valid(player):
+				player.apply_hats()
+	
+	if is_instance_valid(player):
+		player.pause_mode = PAUSE_MODE_INHERIT
+	return can_do
+
+func doff_hat(what: Hat):
+	var player = Game.get_player()
+	
+	if hats.has(what):
+		hats.erase(what)
+	
+	if is_instance_valid(player):
+		player.pause_mode = PAUSE_MODE_PROCESS
+		player.apply_hats()
+		player.pause_mode = PAUSE_MODE_INHERIT
+
 func gain_upgrade(what: String):
 	if !check_upgrade(what):
 		upgrades[what] = true
@@ -150,10 +182,24 @@ func add_kill(what: EnemyData):
 	else:
 		kills[id] = 1
 
+func add_enemy_death(what: EnemyData):
+	var id = what.id
+	if enemy_deaths.has(id):
+		enemy_deaths[id] += 1
+	else:
+		enemy_deaths[id] = 1
+
 func get_kills(what: EnemyData):
 	var id = what.id
 	if kills.has(id):
 		return kills[id]
+	else:
+		return 0
+
+func get_enemy_deaths(what: EnemyData):
+	var id = what.id
+	if enemy_deaths.has(id):
+		return enemy_deaths[id]
 	else:
 		return 0
 

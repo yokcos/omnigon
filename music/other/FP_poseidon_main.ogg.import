@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FP_poseidon_main.ogg-053f9123dc1e0ea9c106d368e9840894.oggstr"
+
+[deps]
+
+source_file="res://music/other/FP_poseidon_main.ogg"
+dest_files=[ "res://.import/FP_poseidon_main.ogg-053f9123dc1e0ea9c106d368e9840894.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

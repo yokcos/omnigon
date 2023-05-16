@@ -50,10 +50,40 @@ margin_right = 512.0
 margin_bottom = 42.0
 text = "Hats:"
 
-[node name="hat_gainer" type="HBoxContainer" parent="."]
+[node name="hat_donner" type="HBoxContainer" parent="."]
 margin_top = 46.0
 margin_right = 512.0
 margin_bottom = 62.0
+
+[node name="text" type="LineEdit" parent="hat_donner"]
+margin_right = 62.0
+margin_bottom = 16.0
+
+[node name="activate" type="Button" parent="hat_donner"]
+margin_left = 70.0
+margin_right = 95.0
+margin_bottom = 16.0
+text = "Don"
+
+[node name="hat_doffer" type="HBoxContainer" parent="."]
+margin_top = 66.0
+margin_right = 512.0
+margin_bottom = 82.0
+
+[node name="text" type="LineEdit" parent="hat_doffer"]
+margin_right = 62.0
+margin_bottom = 16.0
+
+[node name="activate" type="Button" parent="hat_doffer"]
+margin_left = 70.0
+margin_right = 99.0
+margin_bottom = 16.0
+text = "Doff"
+
+[node name="hat_gainer" type="HBoxContainer" parent="."]
+margin_top = 86.0
+margin_right = 512.0
+margin_bottom = 102.0
 
 [node name="text" type="LineEdit" parent="hat_gainer"]
 margin_right = 62.0
@@ -61,32 +91,18 @@ margin_bottom = 16.0
 
 [node name="activate" type="Button" parent="hat_gainer"]
 margin_left = 70.0
-margin_right = 95.0
+margin_right = 101.0
 margin_bottom = 16.0
-text = "Don"
-
-[node name="hat_loser" type="HBoxContainer" parent="."]
-margin_top = 66.0
-margin_right = 512.0
-margin_bottom = 82.0
-
-[node name="text" type="LineEdit" parent="hat_loser"]
-margin_right = 62.0
-margin_bottom = 16.0
-
-[node name="activate" type="Button" parent="hat_loser"]
-margin_left = 70.0
-margin_right = 99.0
-margin_bottom = 16.0
-text = "Doff"
+text = "Gain"
 
 [node name="output" type="Label" parent="."]
-margin_top = 86.0
+margin_top = 106.0
 margin_right = 512.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 
 [connection signal="value_changed" from="room_teleporter/x" to="." method="_on_room_target_changed"]
 [connection signal="value_changed" from="room_teleporter/y" to="." method="_on_room_target_changed"]
 [connection signal="pressed" from="room_teleporter/activate" to="." method="_on_teleport_pressed"]
-[connection signal="pressed" from="hat_gainer/activate" to="." method="_on_don_pressed"]
-[connection signal="pressed" from="hat_loser/activate" to="." method="_on_doff_pressed"]
+[connection signal="pressed" from="hat_donner/activate" to="." method="_on_don_pressed"]
+[connection signal="pressed" from="hat_doffer/activate" to="." method="_on_doff_pressed"]
+[connection signal="pressed" from="hat_gainer/activate" to="." method="_on_gain_pressed"]

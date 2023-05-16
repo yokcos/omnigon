@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fish_die2.wav-c412eccdc72938f18147d251e3d0e773.sample"
+
+[deps]
+
+source_file="res://fishticuffs/sfx/fish_die2.wav"
+dest_files=[ "res://.import/fish_die2.wav-c412eccdc72938f18147d251e3d0e773.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

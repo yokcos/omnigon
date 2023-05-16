@@ -40,27 +40,29 @@ func _on_teleport_pressed() -> void:
 	teleport_to_room()
 
 func _on_don_pressed() -> void:
-	var hat_name = $hat_gainer/text.text
+	var hat_name = $hat_donner/text.text
 	var this_hat = PlayerStats.get_hat(hat_name)
 	
 	if this_hat:
-		if !PlayerStats.hats.has(this_hat):
-			PlayerStats.hats.append(this_hat)
-			
-			if is_instance_valid(Game.get_player()):
-				Game.get_player().apply_hats()
+		if !PlayerStats.don_hat(this_hat):
+			Game.summon_popup("ERROR", "That hat is too long to be worn in your current position", "ah poo")
 	else:
 		show_output("No such hat")
 
 func _on_doff_pressed() -> void:
+	var hat_name = $hat_doffer/text.text
+	var this_hat = PlayerStats.get_hat(hat_name)
+	
+	if this_hat:
+		PlayerStats.doff_hat(this_hat)
+	else:
+		show_output("No such hat")
+
+func _on_gain_pressed() -> void:
 	var hat_name = $hat_gainer/text.text
 	var this_hat = PlayerStats.get_hat(hat_name)
 	
 	if this_hat:
-		if PlayerStats.hats.has(this_hat):
-			PlayerStats.hats.erase(this_hat)
-			
-			if is_instance_valid(Game.get_player()):
-				Game.get_player().apply_hats()
+		PlayerStats.gain_hat(this_hat)
 	else:
 		show_output("No such hat")

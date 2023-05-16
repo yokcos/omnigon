@@ -127,11 +127,37 @@ const sfx_eel_shoot = [preload("res://entities/enemies/eel_shoot.wav")]
 const sfx_click = [preload("res://ui/click0.wav")]
 const sfx_splash = [preload("res://sfx/splash.wav")]
 
-const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
-const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
-
 const sfx_teleporter_buttons = [preload("res://props/teleporter_buttons.wav")]
 const sfx_teleporter_activate = [preload("res://props/teleporter_activate.wav")]
+
+const sfx_fc_angler = [preload("res://fishticuffs/sfx/angler.wav")]
+const sfx_fc_bubblies = [preload("res://fishticuffs/sfx/bubblies.wav")]
+const sfx_fc_splash = [preload("res://fishticuffs/sfx/splash.wav")]
+const sfx_fc_fish_die = [
+	preload("res://fishticuffs/sfx/fish_die0.wav"),
+	preload("res://fishticuffs/sfx/fish_die1.wav"),
+	preload("res://fishticuffs/sfx/fish_die2.wav"),
+]
+const sfx_fc_hook_hit = [
+	preload("res://fishticuffs/sfx/hook_hit0.wav"),
+	preload("res://fishticuffs/sfx/hook_hit1.wav"),
+]
+const sfx_fc_hook_strike = [
+	preload("res://fishticuffs/sfx/hook_strike0.wav"),
+	preload("res://fishticuffs/sfx/hook_strike1.wav"),
+	preload("res://fishticuffs/sfx/hook_strike2.wav"),
+]
+const sfx_fc_shoot = [
+	preload("res://fishticuffs/sfx/shoot0.wav"),
+	preload("res://fishticuffs/sfx/shoot1.wav"),
+	preload("res://fishticuffs/sfx/shoot2.wav"),
+	preload("res://fishticuffs/sfx/shoot3.wav"),
+	preload("res://fishticuffs/sfx/shoot4.wav"),
+	preload("res://fishticuffs/sfx/shoot5.wav"),
+]
+
+const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
+const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
 
 var musics: Dictionary = {
 	"the_first_disc_begins": preload("res://music/disc1/the_first_disc_begins.ogg"),
@@ -201,6 +227,8 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0009_the_second_disc_ends.tres"))
 	
 	add_music_entry(preload("res://music/disc3/0001_deepingress.tres"))
+	
+	add_music_entry(preload("res://music/other/FC_ocean.tres"))
 
 
 func add_music_entry(what: Music):
@@ -257,6 +285,11 @@ func resume_music():
 	var main_music = PlayerStats.main_music
 	if main_music:
 		play_music(main_music)
+
+func reset_music():
+	var room = Game.world
+	if is_instance_valid(room):
+		room.apply_music()
 
 func cut_temp_music():
 	if temp_music:

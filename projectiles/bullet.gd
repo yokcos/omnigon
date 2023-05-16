@@ -38,6 +38,10 @@ func die():
 	if death_particles:
 		Game.deploy_fx(death_particles, global_position, death_particle_frames)
 
+func set_sprite(what: Texture, frames: int = 8):
+	$auto_sprite.texture = what
+	$auto_sprite.hframes = frames
+
 
 func _on_wall_detector_body_entered(body: Node) -> void:
 	if !thru_walls:

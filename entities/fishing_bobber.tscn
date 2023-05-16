@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/fishing_bobber.png" type="Texture" id=1]
 [ext_resource path="res://entities/fishing_bobber.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12, 12 )
 
 [node name="fishing_bobber" type="Area2D"]
 collision_layer = 8
@@ -29,5 +32,15 @@ target_teams = [ 1, 0 ]
 visible = false
 shape = SubResource( 1 )
 
+[node name="over_detector" type="Area2D" parent="."]
+position = Vector2( 0, -6 )
+collision_layer = 8
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="over_detector"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="updated" from="entity_detector" to="." method="_on_entity_detector_updated"]

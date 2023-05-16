@@ -6,9 +6,24 @@ export (int) var sfx_set = 0
 export (Resource) var enemy_data = null
 var sfx_hit = []
 var sfx_death = []
+var hits: int = 0
+var most_recent_hit: int = 0
+
+
+func _ready() -> void:
+	set_collision_layer_bit(0, false)
+	set_collision_layer_bit(1, true)
+	
+	set_collision_mask_bit(0, true)
+	set_collision_mask_bit(1, true)
+	set_collision_mask_bit(2, true)
 
 
 func take_damage(dmg: float, source: Being = null):
+	if source == Game.get_player():
+		hits += 1
+		most_recent_hit = OS.get_ticks_msec()
+	
 	var actual_dmg = .take_damage(dmg, source)
 	
 	var new_sfx: SFX2D = null
@@ -27,7 +42,9 @@ func die():
 	.die()
 	
 	if enemy_data is EnemyData:
-		PlayerStats.add_kill(enemy_data)
+		PlayerStats.add_enemy_death(enemy_data)
+		if most_recent_hit > OS.get_ticks_msec()-50:
+			PlayerStats.add_kill(enemy_data)
 	
 	var new_sfx: SFX2D = null
 	if sfx_death == []:

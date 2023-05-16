@@ -10,8 +10,7 @@ id = "peace"
 sprite = ExtResource( 2 )
 large_sprite = ExtResource( 3 )
 name = "Frayed Hat of Peace"
-description = "Tattered remnant of one of the most potent hats of the Hattening.
-Now only prevents Blademasters from attacking you."
+description = "Gives off a weak aura of peace, which prevents Blademasters from attacking you."
 height = 8.0
 small_frames = 1
 large_frames = 1

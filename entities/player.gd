@@ -11,6 +11,7 @@ const obj_fx = preload("res://fx/fx_transient.tscn")
 const obj_bobber = preload("res://entities/fishing_bobber.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
+const scr_effect_fished = preload("res://pieces/effects/effect_fished.gd")
 
 const base_hitbox_height: float = 12.0
 const base_hitbox_position: float = 4.0
@@ -82,6 +83,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_instance_valid(current_bobber):
 			recall_bobber()
 
+
+func is_submerged():
+	var subm = .is_submerged()
+	
+	if !submerged and subm:
+		AudioServer.set_bus_effect_enabled(2, 0, true)
+		AudioServer.set_bus_effect_enabled(1, 0, true)
+	if submerged and !subm:
+		AudioServer.set_bus_effect_enabled(2, 0, false)
+		AudioServer.set_bus_effect_enabled(1, 0, false)
+	
+	return subm
 
 func collide_against(what: KinematicCollision2D):
 	.collide_against(what)
@@ -196,6 +209,13 @@ func get_overlapping_ladder(up: bool = false) -> Area2D:
 	
 	return best_ladder
 
+func check_hat_viability(hat: Hat):
+	var height = hat.height
+	var obstruction: bool = false
+	obstruction = test_move(transform, Vector2(0, -hat.height))
+	
+	return !obstruction
+
 func reset_hats():
 	var sprites = $flippable/hats.get_children()
 	for i in sprites:
@@ -271,7 +291,12 @@ func recall_bobber():
 	if is_instance_valid(current_bobber.target):
 		var relative = global_position - current_bobber.target.global_position
 		var this_dir = sign(relative.x)
-		current_bobber.target.velocity += Vector2( 900*this_dir, -400 )
+		current_bobber.target.take_damage(1)
+		current_bobber.target.take_knockback( Vector2( 900*this_dir, -300 ) )
+		current_bobber.target.air_time += 1
+		
+		var new_effect = scr_effect_fished.new()
+		current_bobber.target.add_child(new_effect)
 	
 	current_bobber.queue_free()
 	current_bobber = null

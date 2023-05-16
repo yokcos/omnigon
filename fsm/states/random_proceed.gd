@@ -30,3 +30,4 @@ func roll():
 	else:
 		var index = randi() % options.size()
 		auto_proceed = options[index]
+

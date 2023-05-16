@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fishticuffs/chain.png" type="Texture" id=1]
+[ext_resource path="res://fishticuffs/chain.gd" type="Script" id=2]
+
+[node name="chain" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

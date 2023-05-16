@@ -5,6 +5,7 @@ var scroll: int = 0
 var spacing: float = 15
 var bar_size: float = 100
 var animation_duration: float = 0.5
+var prev_lowpass: bool = false
 # Look, I apologise for these being out of order
 # I could go in and rename them but that's boring and I'm too lazy for that
 # and ultimately nobody is going to care
@@ -34,6 +35,7 @@ func _ready() -> void:
 	get_tree().paused = true
 	
 	arrive_animation()
+	prev_lowpass = AudioServer.is_bus_effect_enabled(1, 0)
 	AudioServer.set_bus_effect_enabled(1, 0, true)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -78,7 +80,7 @@ func reposition_elements():
 		fulcra[i].target_rotation = angle
 
 func remove_effects():
-	AudioServer.set_bus_effect_enabled(1, 0, false)
+	AudioServer.set_bus_effect_enabled(1, 0, prev_lowpass)
 	get_tree().paused = false
 
 func arrive_animation():
