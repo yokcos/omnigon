@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 func attach_to_target(what: Being):
 	target = what
 	target_relative_position = global_position - target.global_position
-	what.take_damage(1)
+	what.take_damage(.75)
 	what.take_knockback( -target_relative_position.normalized() * knockback )
 
 func follow_target():
@@ -70,6 +70,9 @@ func _on_entity_detector_updated(entities: Array) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if armed:
+		if body.has_method("get_punched"):
+			body.get_punched()
+		
 		if $over_detector.overlaps_body(body):
 			deactivate()
 		else:
@@ -81,6 +84,9 @@ func _on_body_entered(body: Node) -> void:
 				gravy = 0
 
 func _on_area_entered(area: Area2D) -> void:
+	if armed and area.has_method("get_punched"):
+		area.get_punched()
+	
 	if area.is_in_group("waters"):
 		if !is_instance_valid(Game.current_popup):
 			queue_free()

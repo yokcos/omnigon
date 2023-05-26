@@ -64,6 +64,7 @@ const sfx_bleh = [
 ]
 const sfx_blast = [preload("res://sfx/blast0.wav")]
 const sfx_blast_large = [preload("res://sfx/blast_large.wav")]
+const sfx_blast_spacemine = [preload("res://sfx/blast_spacemine.wav")]
 const sfx_blap = [preload("res://sfx/blap.wav")]
 const sfx_spring = [preload("res://sfx/spring.wav")]
 const sfx_boing = [preload("res://sfx/boing.wav")]

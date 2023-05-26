@@ -138,6 +138,7 @@ func don_hat(what: Hat):
 		if !hats.has(what):
 			hats.append(what)
 			if is_instance_valid(player):
+				player.apply_hat_visuals()
 				player.apply_hats()
 	
 	if is_instance_valid(player):
@@ -152,6 +153,7 @@ func doff_hat(what: Hat):
 	
 	if is_instance_valid(player):
 		player.pause_mode = PAUSE_MODE_PROCESS
+		player.apply_hat_visuals()
 		player.apply_hats()
 		player.pause_mode = PAUSE_MODE_INHERIT
 

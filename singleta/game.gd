@@ -286,6 +286,14 @@ func unpause():
 func achieve_achievement(what: String):
 	pass
 
+func get_all_descendents(what: Node):
+	var output: Array = [what]
+	
+	for i in what.get_children():
+		output.append_array( get_all_descendents(i) )
+	
+	return output
+
 
 func set_boss(what: Being):
 	current_boss = what

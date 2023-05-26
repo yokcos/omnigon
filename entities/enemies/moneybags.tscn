@@ -1,0 +1,188 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://fsm/fsm.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/moneybags.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/moneybags.gd" type="Script" id=3]
+[ext_resource path="res://fsm/states/state.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 20 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "attacc0_post"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "attacc0_pre"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attacc1_post"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attacc1_pre"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "jump"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "jump_pre"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+
+[node name="moneybags" type="KinematicBody2D"]
+script = ExtResource( 3 )
+flip_path = NodePath("flippable")
+title = "Lord Moneybags"
+max_hp = 30.0
+saving_enabled = false
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="flippable" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite" parent="flippable"]
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 5
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 1 )
+animator_path = NodePath("../animator")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="attacc0" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="attacc1" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="attacc2" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="jump_pre" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "jump_pre"
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "jump"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/attacc0_post = SubResource( 3 )
+anims/attacc0_pre = SubResource( 4 )
+anims/attacc1_post = SubResource( 5 )
+anims/attacc1_pre = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/jump = SubResource( 8 )
+anims/jump_pre = SubResource( 9 )

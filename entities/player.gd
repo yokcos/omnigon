@@ -11,7 +11,7 @@ const obj_fx = preload("res://fx/fx_transient.tscn")
 const obj_bobber = preload("res://entities/fishing_bobber.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
-const scr_effect_fished = preload("res://pieces/effects/effect_fished.gd")
+const scr_effect_fished = preload("res://pieces/effects/effect_air_uncontrol.gd")
 
 const base_hitbox_height: float = 12.0
 const base_hitbox_position: float = 4.0
@@ -38,7 +38,7 @@ func _ready() -> void:
 		PlayerStats.check_pos = global_position
 	
 	resolve_extra_data()
-	apply_hats()
+	apply_hat_visuals()
 	
 	var room_size = Rooms.get_room_size(Rooms.current_room)
 	$cam.limit_right  = room_size.x * Rooms.room_size.x
@@ -47,6 +47,8 @@ func _ready() -> void:
 	if Game.gameholder:
 		pass
 		#$cam.limit_bottom += Game.gameholder.lower_border + Game.gameholder.upper_border
+	
+	$flippable/fistbox.effects.append(scr_effect_fished)
 	
 	add_to_group("players")
 	
@@ -216,7 +218,7 @@ func check_hat_viability(hat: Hat):
 	
 	return !obstruction
 
-func reset_hats():
+func reset_hat_visuals():
 	var sprites = $flippable/hats.get_children()
 	for i in sprites:
 		i.queue_free()
@@ -224,8 +226,8 @@ func reset_hats():
 	$hitbox.shape.extents.y = base_hitbox_height
 	$hitbox.position.y = base_hitbox_position
 
-func apply_hats():
-	reset_hats()
+func apply_hat_visuals():
+	reset_hat_visuals()
 	
 	var total_height = 0
 	
@@ -241,12 +243,19 @@ func apply_hats():
 		
 		total_height += hat.height
 	
-	$hitbox.shape.extents.y += total_height/2
-	$hitbox.position.y -= total_height/2
+	var hitbox_height = total_height - 1
+	$hitbox.shape.extents.y += hitbox_height/2
+	$hitbox.position.y -= hitbox_height/2
 	
 	$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size
 	if PlayerStats.has_hat("electromonocle"):
 		$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size * 1.25
+
+func apply_hats():
+	var this_knockback = Vector2(100, -45)
+	if PlayerStats.has_hat("yeet"):
+		this_knockback *= 4
+	$flippable/fistbox.knockback = this_knockback
 
 func finish_sitting():
 	emit_signal("sitting_complete")
@@ -286,13 +295,20 @@ func cast_bobber():
 	new_bobber.velocity = Vector2( 300*flip_int, -200 )
 	new_bobber.source = self
 	current_bobber = new_bobber
+	
+	if PlayerStats.has_hat("yeet"):
+		new_bobber.knockback *= 4
 
 func recall_bobber():
 	if is_instance_valid(current_bobber.target):
 		var relative = global_position - current_bobber.target.global_position
 		var this_dir = sign(relative.x)
-		current_bobber.target.take_damage(1)
-		current_bobber.target.take_knockback( Vector2( 900*this_dir, -300 ) )
+		var this_knockback: Vector2 = Vector2( 900*this_dir, -300 )
+		if PlayerStats.has_hat("yeet"):
+			this_knockback.x *= 2
+		
+		current_bobber.target.take_damage(.75)
+		current_bobber.target.take_knockback( this_knockback )
 		current_bobber.target.air_time += 1
 		
 		var new_effect = scr_effect_fished.new()
@@ -342,5 +358,6 @@ func _on_fish_activated() -> void:
 	cast_bobber()
 
 func _on_hats_changed(new_hats: Array):
+	apply_hat_visuals()
 	apply_hats()
 

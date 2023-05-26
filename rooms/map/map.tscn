@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -89,6 +89,11 @@
 [ext_resource path="res://rooms/gateway.tscn" type="PackedScene" id=87]
 [ext_resource path="res://rooms/easy_pit.tscn" type="PackedScene" id=88]
 [ext_resource path="res://rooms/hydration.tscn" type="PackedScene" id=89]
+[ext_resource path="res://rooms/firearm.tscn" type="PackedScene" id=90]
+[ext_resource path="res://rooms/grate.tscn" type="PackedScene" id=91]
+[ext_resource path="res://rooms/hard_pit.tscn" type="PackedScene" id=92]
+[ext_resource path="res://rooms/multiladder.tscn" type="PackedScene" id=93]
+[ext_resource path="res://rooms/locked_door.tscn" type="PackedScene" id=94]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -355,3 +360,18 @@ position = Vector2( -2560, 2816 )
 
 [node name="hydration" parent="." instance=ExtResource( 89 )]
 position = Vector2( 512, -1280 )
+
+[node name="firearm" parent="." instance=ExtResource( 90 )]
+position = Vector2( -3584, 2304 )
+
+[node name="grate" parent="." instance=ExtResource( 91 )]
+position = Vector2( -3072, 2560 )
+
+[node name="hard_pit" parent="." instance=ExtResource( 92 )]
+position = Vector2( -4608, 2560 )
+
+[node name="multiladder" parent="." instance=ExtResource( 93 )]
+position = Vector2( -5120, 2048 )
+
+[node name="locked_door" parent="." instance=ExtResource( 94 )]
+position = Vector2( -5632, 1792 )

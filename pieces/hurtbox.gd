@@ -8,6 +8,7 @@ extends Area2D
 var overlapping_bodies: Array = []
 var hit_bodies: Dictionary = {}
 var source: Being = null
+var effects: Array = []
 
 export (Array, int) var target_teams = [0]
 export (float) var damage = 1
@@ -60,6 +61,11 @@ func hit_enemy(what: Being):
 	if actual_damage > 0:
 		what.take_knockback(knockback * kb_multiplicator)
 		what.take_knockback(radial_knockback * relative)
+	
+	for i in effects:
+		var new_effect = i.new()
+		what.add_child(new_effect)
+	
 	hit_bodies[what] = hit_rate
 
 func decay_hits(delta: float):

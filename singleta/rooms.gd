@@ -44,7 +44,7 @@ func _ready() -> void:
 	load_rooms()
 
 func _input(event: InputEvent) -> void:
-	if !Engine.editor_hint and event.is_action_pressed("test") and Game.in_game:
+	if false and !Engine.editor_hint and event.is_action_pressed("test") and Game.in_game:
 		#player_enter_room(Vector2(256, 128))
 		#skip_first_boss()
 		player_enter_room(Vector2(-2200, 2400))

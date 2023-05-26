@@ -131,7 +131,7 @@ egress = "I just walked through"
 script = ExtResource( 5 )
 description = "Guillaume"
 verb = "Listen"
-title = "sayeth Guillaume"
+title = "sayeth Guillaume:"
 text = "HAHAHAHAHA FINALLY I CAN EXIST AGAIN!
 Thank you strange hat-wearer for summoning me to this plane of existence once again! Now I can enact my Plans and Schemes, and in the end even the Sun and its Winds shall bow to me!"
 egress = "Shut up you shitstain"

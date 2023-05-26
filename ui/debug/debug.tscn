@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://ui/debug/debug.gd" type="Script" id=2]
+[ext_resource path="res://misc/fnt_main_outline.tres" type="DynamicFont" id=3]
 
 [node name="debug" type="VBoxContainer"]
 anchor_right = 1.0
@@ -32,6 +33,7 @@ margin_top = 1.0
 margin_right = 172.0
 margin_bottom = 15.0
 custom_colors/font_outline_modulate = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_fonts/font = ExtResource( 3 )
 
 [node name="activate" type="Button" parent="room_teleporter"]
 margin_left = 180.0
@@ -48,61 +50,44 @@ margin_bottom = 24.0
 margin_top = 28.0
 margin_right = 512.0
 margin_bottom = 42.0
+custom_fonts/font = ExtResource( 3 )
 text = "Hats:"
 
-[node name="hat_donner" type="HBoxContainer" parent="."]
+[node name="hats" type="HBoxContainer" parent="."]
 margin_top = 46.0
 margin_right = 512.0
 margin_bottom = 62.0
 
-[node name="text" type="LineEdit" parent="hat_donner"]
+[node name="text" type="LineEdit" parent="hats"]
 margin_right = 62.0
 margin_bottom = 16.0
 
-[node name="activate" type="Button" parent="hat_donner"]
+[node name="don" type="Button" parent="hats"]
 margin_left = 70.0
 margin_right = 95.0
 margin_bottom = 16.0
 text = "Don"
 
-[node name="hat_doffer" type="HBoxContainer" parent="."]
-margin_top = 66.0
-margin_right = 512.0
-margin_bottom = 82.0
-
-[node name="text" type="LineEdit" parent="hat_doffer"]
-margin_right = 62.0
-margin_bottom = 16.0
-
-[node name="activate" type="Button" parent="hat_doffer"]
-margin_left = 70.0
-margin_right = 99.0
+[node name="doff" type="Button" parent="hats"]
+margin_left = 103.0
+margin_right = 132.0
 margin_bottom = 16.0
 text = "Doff"
 
-[node name="hat_gainer" type="HBoxContainer" parent="."]
-margin_top = 86.0
-margin_right = 512.0
-margin_bottom = 102.0
-
-[node name="text" type="LineEdit" parent="hat_gainer"]
-margin_right = 62.0
-margin_bottom = 16.0
-
-[node name="activate" type="Button" parent="hat_gainer"]
-margin_left = 70.0
-margin_right = 101.0
+[node name="gain" type="Button" parent="hats"]
+margin_left = 140.0
+margin_right = 171.0
 margin_bottom = 16.0
 text = "Gain"
 
 [node name="output" type="Label" parent="."]
-margin_top = 106.0
+margin_top = 66.0
 margin_right = 512.0
-margin_bottom = 120.0
+margin_bottom = 80.0
 
 [connection signal="value_changed" from="room_teleporter/x" to="." method="_on_room_target_changed"]
 [connection signal="value_changed" from="room_teleporter/y" to="." method="_on_room_target_changed"]
 [connection signal="pressed" from="room_teleporter/activate" to="." method="_on_teleport_pressed"]
-[connection signal="pressed" from="hat_donner/activate" to="." method="_on_don_pressed"]
-[connection signal="pressed" from="hat_doffer/activate" to="." method="_on_doff_pressed"]
-[connection signal="pressed" from="hat_gainer/activate" to="." method="_on_gain_pressed"]
+[connection signal="pressed" from="hats/don" to="." method="_on_don_pressed"]
+[connection signal="pressed" from="hats/doff" to="." method="_on_doff_pressed"]
+[connection signal="pressed" from="hats/gain" to="." method="_on_gain_pressed"]

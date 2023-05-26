@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0010_yeet_large.png" type="Texture" id=2]
+[ext_resource path="res://hats/0010_yeet.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "yeet"
+sprite = ExtResource( 3 )
+large_sprite = ExtResource( 2 )
+name = "Mug of Yeet"
+description = "By the power of Yeet, any enemy you strike will be knocked back slightly more than usual!"
+height = 8.0
+small_frames = 2
+large_frames = 4

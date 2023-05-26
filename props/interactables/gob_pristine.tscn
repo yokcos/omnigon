@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/interactables/text_interactable.gd" type="Script" id=3]
+[ext_resource path="res://props/interactables/gob_pristine.png" type="Texture" id=4]
+
+[node name="gob_pristine" type="Node2D"]
+script = ExtResource( 3 )
+description = "Pristine Gob"
+verb = "Interact"
+title = "ERROR"
+text = "The PRISTINE GOB is not physical enough to be interacted with!"
+
+[node name="auto_sprite" parent="." instance=ExtResource( 1 )]
+texture = ExtResource( 4 )
+hframes = 4

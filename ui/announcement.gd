@@ -6,6 +6,7 @@ var target_position: Vector2 = Vector2()
 
 
 func _ready() -> void:
+	z_index = 20
 	reposition()
 
 func _process(delta: float) -> void:

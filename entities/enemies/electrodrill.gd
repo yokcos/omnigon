@@ -123,4 +123,4 @@ func _on_unextend_entered() -> void:
 	unextend()
 
 func _on_punch_detector_punched() -> void:
-	$fsm/extended.set_state("unextend")
+	$fsm/extended.call_deferred("set_state", "unextend")

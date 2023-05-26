@@ -8,7 +8,14 @@ func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event.is_action_pressed("debug"):
 			visible = !visible
+			if visible:
+				target_this_room()
 
+
+func target_this_room():
+	var this_room = Rooms.current_room
+	$room_teleporter/x.value = this_room.x
+	$room_teleporter/y.value = this_room.y
 
 func update_target_room():
 	var x = $room_teleporter/x.value
@@ -40,7 +47,7 @@ func _on_teleport_pressed() -> void:
 	teleport_to_room()
 
 func _on_don_pressed() -> void:
-	var hat_name = $hat_donner/text.text
+	var hat_name = $hats/text.text
 	var this_hat = PlayerStats.get_hat(hat_name)
 	
 	if this_hat:
@@ -50,7 +57,7 @@ func _on_don_pressed() -> void:
 		show_output("No such hat")
 
 func _on_doff_pressed() -> void:
-	var hat_name = $hat_doffer/text.text
+	var hat_name = $hats/text.text
 	var this_hat = PlayerStats.get_hat(hat_name)
 	
 	if this_hat:
@@ -59,7 +66,7 @@ func _on_doff_pressed() -> void:
 		show_output("No such hat")
 
 func _on_gain_pressed() -> void:
-	var hat_name = $hat_gainer/text.text
+	var hat_name = $hats/text.text
 	var this_hat = PlayerStats.get_hat(hat_name)
 	
 	if this_hat:

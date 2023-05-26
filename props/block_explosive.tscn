@@ -21,6 +21,7 @@ extents = Vector2( 32, 8 )
 extents = Vector2( 8, 32 )
 
 [node name="block_explosive" type="StaticBody2D"]
+z_index = 21
 script = ExtResource( 3 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

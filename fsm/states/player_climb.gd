@@ -50,7 +50,9 @@ func _step(delta: float):
 			leaning = true
 			lean += lean_speed * delta * 2
 		lean = lerp(lean, 0, 0.3*delta if leaning else 4*delta)
-		if abs(lean) > max_lean:
+		lean = clamp(lean, -max_lean, max_lean)
+		
+		if descendation == 0 and abs(lean) >= max_lean - 0.01:
 			set_state(exit_state)
 			father.air_time = 0
 		

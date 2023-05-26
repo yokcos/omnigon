@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/interactables/text_interactable.gd" type="Script" id=1]
+[ext_resource path="res://props/interactables/gob_putrid.png" type="Texture" id=2]
+[ext_resource path="res://pieces/auto_sprite.gd" type="Script" id=3]
+
+[node name="gob_putrid" type="Node2D"]
+script = ExtResource( 1 )
+description = "Putrid Gob"
+verb = "Interact"
+title = "ERROR"
+text = "The PUTRID GOB is not physical enough to be interacted with!"
+
+[node name="auto_sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+script = ExtResource( 3 )
