@@ -17,5 +17,5 @@ script = ExtResource( 3 )
 description = "Atomborn"
 verb = "Hear"
 titles = PoolStringArray( "Sayeth Atomborn", "Sayeth Atomborn", "Sayeth Atomborn" )
-texts = [ "Mm yummy bottle of orange water", "Our imperial enemies in the North are close to working out the secret to time travel, which cannot be allowed. Fortunately we now have the secret of space travel. By which I mean teleportation.", "Use this doodad, then, to spacetravel into the correct enemy compound and steal their secrets." ]
+texts = [ "Mm yummy bottle of orange water", "Our imperial enemies in the North are close to working out the secret to time travel, which cannot be allowed. Fortunately we now have the secret of space travel. By which I mean teleportation.", "Use this doodad, then, to spacetravel into the enemy compound run by Lord Moneybags, and steal their secrets." ]
 egresses = PoolStringArray( "Indeed", "I know", "Fine" )

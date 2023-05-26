@@ -28,6 +28,7 @@ var poisoned: bool = false
 
 var upgrades: Dictionary = {
 	"blademaster_recover": false,
+	"rapiers": false,
 	"arrow_ladder": false,
 	"fake_id": false,
 }

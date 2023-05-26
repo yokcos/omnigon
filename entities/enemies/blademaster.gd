@@ -8,6 +8,14 @@ func _ready() -> void:
 	if !extra_data.has("fallen"):
 		extra_data["fallen"] = false
 
+func _process(delta: float) -> void:
+	if PlayerStats.check_upgrade("rapiers"):
+		$fsm/patrol.set_state("patrol_r")
+		$fsm/attacc.set_state("attacc_r0")
+	else:
+		$fsm/patrol_r.set_state("patrol")
+		$fsm/attacc_r0.set_state("attacc")
+
 
 func get_loaded(data):
 	if data:
@@ -24,6 +32,13 @@ func _on_attacc_activated() -> void:
 	var new_sfx: SFX2D = GlobalSound.play_random_sfx_2d(GlobalSound.sfx_whoosh, global_position)
 	new_sfx.relative_volume = 0.6
 	new_sfx.randomise_pitch(0.8, 1.2)
+
+func _on_attacc_r_activated() -> void:
+	$flippable/hurtbox_r.pulse()
+	
+	var new_sfx: SFX2D = GlobalSound.play_random_sfx_2d(GlobalSound.sfx_whoosh, global_position)
+	new_sfx.relative_volume = 0.6
+	new_sfx.randomise_pitch(1.0, 1.4)
 
 func _on_state_changed(old_state, new_state) -> void:
 	if new_state == $fsm/fumble:
@@ -47,6 +62,7 @@ func _on_entity_detector_activated() -> void:
 	# Apply hat Peace
 	if !PlayerStats.has_hat("peace"):
 		$fsm/patrol.perform_action("attacc")
+		$fsm/patrol_r.perform_action("attacc_r0")
 		
 		var mattress_position: Vector2 = Vector2(16, 8)
 		mattress_position.x *= flip_int

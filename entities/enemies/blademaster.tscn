@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
@@ -15,6 +15,12 @@
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 8, 8.5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 10, 3 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 8, 8 )
@@ -48,6 +54,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "attacc_r0"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -85,6 +107,23 @@ tracks/0/keys = {
 "values": [ 20, 21, 22, 23 ]
 }
 
+[sub_resource type="Animation" id=14]
+resource_name = "idle_r"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "postattacc"
 length = 0.6
@@ -113,6 +152,22 @@ tracks/1/keys = {
 "args": [  ],
 "method": "fall"
 } ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "postattacc_r0"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 51, 52, 53, 54, 55 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -164,6 +219,24 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
+[sub_resource type="Animation" id=16]
+resource_name = "walk_r"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43, 44, 45, 46, 47 ]
+}
+
 [node name="blademaster" type="KinematicBody2D"]
 script = ExtResource( 5 )
 flip_path = NodePath("flippable")
@@ -174,6 +247,10 @@ enemy_data = ExtResource( 12 )
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
 
+[node name="hitbox_r" type="CollisionShape2D" parent="."]
+position = Vector2( -2, -0.5 )
+shape = SubResource( 11 )
+
 [node name="flippable" type="Node2D" parent="."]
 use_parent_material = true
 
@@ -182,6 +259,13 @@ knockback = Vector2( 100, -45 )
 
 [node name="hitbox" type="CollisionPolygon2D" parent="flippable/hurtbox"]
 polygon = PoolVector2Array( -12, -24, 0, -28, 12, -24, 20, -16, 28, 0, 12, 0, 8, -4, 4, -8, -4, -8 )
+
+[node name="hurtbox_r" parent="flippable" instance=ExtResource( 1 )]
+position = Vector2( 22, 1 )
+knockback = Vector2( 100, -45 )
+
+[node name="hitbox" type="CollisionShape2D" parent="flippable/hurtbox_r"]
+shape = SubResource( 12 )
 
 [node name="walledge_detector" parent="flippable" instance=ExtResource( 8 )]
 position = Vector2( 12, 8 )
@@ -197,18 +281,22 @@ use_parent_material = true
 position = Vector2( 0, -16 )
 texture = ExtResource( 9 )
 hframes = 8
-vframes = 4
+vframes = 7
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 1 )
 anims/attacc = SubResource( 2 )
+anims/attacc_r0 = SubResource( 13 )
 anims/fumble = SubResource( 3 )
 anims/idle = SubResource( 7 )
+anims/idle_r = SubResource( 14 )
 anims/postattacc = SubResource( 4 )
+anims/postattacc_r0 = SubResource( 15 )
 anims/recover = SubResource( 9 )
 anims/unattacc = SubResource( 10 )
 anims/walk = SubResource( 5 )
+anims/walk_r = SubResource( 16 )
 
 [node name="fsm" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -218,11 +306,22 @@ animator_path = NodePath("../animator")
 script = ExtResource( 3 )
 run_animation = "walk"
 
+[node name="patrol_r" type="Node" parent="fsm"]
+script = ExtResource( 3 )
+still_animation = "idle_r"
+run_animation = "walk_r"
+
 [node name="attacc" type="Node" parent="fsm"]
 script = ExtResource( 6 )
 animation = "attacc"
 auto_proceed = "fumble"
 recover_animation = "postattacc"
+
+[node name="attacc_r0" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+animation = "attacc_r0"
+auto_proceed = "patrol_r"
+recover_animation = "postattacc_r0"
 
 [node name="unattacc" type="Node" parent="fsm"]
 script = ExtResource( 11 )
@@ -240,6 +339,8 @@ auto_proceed = "patrol"
 duration = 0.8
 
 [connection signal="updated" from="flippable/walledge_detector" to="fsm/patrol" method="_on_walledge_detector_updated"]
+[connection signal="updated" from="flippable/walledge_detector" to="fsm/patrol_r" method="_on_walledge_detector_updated"]
 [connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
 [connection signal="state_changed" from="fsm" to="." method="_on_state_changed"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
+[connection signal="activated" from="fsm/attacc_r0" to="." method="_on_attacc_r_activated"]

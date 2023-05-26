@@ -4,7 +4,7 @@ extends StaticBody2D
 var exploding: bool = false
 var spawn_position: Vector2 = Vector2()
 
-const tex_explosion = preload("res://fx/explosion.png")
+const tex_explosion = preload("res://fx/explosionB.png")
 
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func activate():
 	if !exploding:
 		$blast_player.pulse(0.1)
 		$blast_enemy.pulse(0.2)
-		var new_fx = Game.deploy_fx(tex_explosion, global_position, 8)
+		var new_fx = Game.deploy_fx(tex_explosion, global_position, 10)
 		if new_fx:
 			new_fx.rotation = randf()*2*PI
 		Game.shake_cam_random(2)

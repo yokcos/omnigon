@@ -905,6 +905,7 @@ team = 0
 acceleration = 2000.0
 speed = 200.0
 jump_speed = 450.0
+invuln_duration = 0.8
 saving_enabled = false
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

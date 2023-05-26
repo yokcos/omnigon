@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://projectiles/rocket.tscn" type="PackedScene" id=1]
+[ext_resource path="res://projectiles/stoppy_rocket.gd" type="Script" id=2]
+
+[node name="stoppy_rocket" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="stop_timer" type="Timer" parent="." index="3"]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
+[node name="relaunch_timer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="timeout" from="stop_timer" to="." method="_on_stop_timer_timeout"]
+[connection signal="timeout" from="relaunch_timer" to="." method="_on_relaunch_timer_timeout"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0003_thepriceofwar.ogg-7700736ad7301df877af9441edc4dcd5.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0003_thepriceofwar.ogg"
+dest_files=[ "res://.import/0003_thepriceofwar.ogg-7700736ad7301df877af9441edc4dcd5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

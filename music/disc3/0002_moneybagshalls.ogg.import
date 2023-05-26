@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0002_moneybagshalls.ogg-84c350d4eb46996863262d037a2d2f26.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0002_moneybagshalls.ogg"
+dest_files=[ "res://.import/0002_moneybagshalls.ogg-84c350d4eb46996863262d037a2d2f26.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

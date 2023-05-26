@@ -302,7 +302,7 @@ func set_boss(what: Being):
 	if what and what.boss_theme != "":
 		GlobalSound.play_temp_music(what.boss_theme)
 	else:
-		GlobalSound.resume_music()
+		GlobalSound.reset_music()
 
 func summon_popup(title: String, text: String, egress: String = "Alrighty", anchor: Node2D = null):
 	if gameholder and !is_instance_valid(current_popup):

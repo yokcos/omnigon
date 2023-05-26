@@ -3,6 +3,7 @@ extends Area2D
  
  
 var velocity: Vector2 = Vector2()
+var acceleration: Vector2 = Vector2()
 var duration: float = 20
 var damage: float = 1
 var penetrations: float = 0
@@ -14,15 +15,22 @@ func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
  
 func _process(delta: float) -> void:
+	velocity += acceleration * delta
 	position += velocity * delta
 	
 	duration -= delta
 	if duration <= 0:
 		queue_free()
  
+
+func hit(what: Being):
+	what.take_damage(damage)
+	
+	penetrations -= 1
+	if penetrations < 0:
+		queue_free()
  
  
 func _on_body_entered(body):
 	if body is Being and !body in exceptions:
-		body.take_damage(damage)
-		queue_free()
+		hit(body)

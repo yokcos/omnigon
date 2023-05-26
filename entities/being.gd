@@ -84,7 +84,7 @@ func take_knockback(knock: Vector2):
 
 func take_damage(what: float, from: Being = null) -> float:
 	# Returns the actual amount of damage dealt
-	if invuln <= 0:
+	if invuln <= 0 and what > 0:
 		set_hp(hp - what)
 		
 		invuln = invuln_duration
