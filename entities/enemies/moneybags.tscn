@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/moneybags.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://fsm/states/charge.gd" type="Script" id=5]
 [ext_resource path="res://fsm/states/approach_target.gd" type="Script" id=6]
 [ext_resource path="res://fsm/states/mb_jump.gd" type="Script" id=7]
+[ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 20 )
@@ -158,6 +159,36 @@ tracks/2/keys = {
 "values": [ -25.7917 ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "attacc2_post"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 49, 50, 51, 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "attacc2_pre"
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 44, 45, 46, 47, 48 ]
+}
+
 [sub_resource type="Animation" id=7]
 resource_name = "idle"
 length = 0.4
@@ -243,15 +274,25 @@ use_parent_material = true
 
 [node name="sprite" type="Sprite" parent="flippable"]
 use_parent_material = true
+position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 hframes = 8
-vframes = 6
+vframes = 7
 
 [node name="barrel" type="Position2D" parent="flippable"]
 position = Vector2( 27, 3 )
 
 [node name="footsplosion" type="Position2D" parent="flippable"]
 position = Vector2( 1.90735e-06, 24 )
+
+[node name="wavesplosion" type="Position2D" parent="flippable"]
+position = Vector2( 48, 19 )
+
+[node name="slam_hurtbox" parent="flippable" instance=ExtResource( 8 )]
+knockback = Vector2( 600, -300 )
+
+[node name="hitbox" type="CollisionPolygon2D" parent="flippable/slam_hurtbox"]
+polygon = PoolVector2Array( -1, -37, 19, -31, 39, -13, 46, 3, 48, 21, 13, 21, 13, -10 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -260,6 +301,8 @@ anims/attacc0_post = SubResource( 3 )
 anims/attacc0_pre = SubResource( 4 )
 anims/attacc1_post = SubResource( 5 )
 anims/attacc1_pre = SubResource( 6 )
+anims/attacc2_post = SubResource( 11 )
+anims/attacc2_pre = SubResource( 12 )
 anims/idle = SubResource( 7 )
 anims/jump = SubResource( 8 )
 anims/jump_pre = SubResource( 9 )
@@ -287,11 +330,17 @@ animation = "attacc1_pre"
 auto_proceed = "idle"
 recover_animation = "attacc1_post"
 
-[node name="attacc2" type="Node" parent="fsm"]
+[node name="attacc1b" type="Node" parent="fsm"]
 script = ExtResource( 5 )
 animation = "attacc1_pre"
 auto_proceed = "idle"
 recover_animation = "attacc1_post"
+
+[node name="attacc2" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+animation = "attacc2_pre"
+auto_proceed = "idle"
+recover_animation = "attacc2_post"
 
 [node name="jump_pre" type="Node" parent="fsm"]
 script = ExtResource( 4 )
@@ -310,6 +359,7 @@ one_shot = true
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="activated" from="fsm/attacc0" to="." method="_on_attacc0_activated"]
 [connection signal="activated" from="fsm/attacc1" to="." method="_on_attacc1_activated"]
+[connection signal="activated" from="fsm/attacc1b" to="." method="_on_attacc1b_activated"]
 [connection signal="activated" from="fsm/attacc2" to="." method="_on_attacc2_activated"]
 [connection signal="exited" from="fsm/jump_pre" to="." method="_on_jump_pre_exited"]
 [connection signal="timeout" from="attacc_timer" to="." method="_on_attacc_timer_timeout"]

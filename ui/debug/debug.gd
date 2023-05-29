@@ -45,6 +45,7 @@ func _on_room_target_changed(value: float) -> void:
 
 func _on_teleport_pressed() -> void:
 	teleport_to_room()
+	hide()
 
 func _on_don_pressed() -> void:
 	var hat_name = $hats/text.text

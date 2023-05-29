@@ -2,10 +2,14 @@ extends Projectile
 
 
 const obj_explosion = preload("res://fx/explosion.tscn")
+const fx_smoke = preload("res://fx/smoke.tscn")
 
 
 func _ready() -> void:
 	damage = 0
+	
+	var new_smoke = fx_smoke.instance()
+	add_child(new_smoke)
 
 func _process(delta: float):
 	if velocity.length_squared() > 10:
