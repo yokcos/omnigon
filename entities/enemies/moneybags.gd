@@ -12,10 +12,18 @@ const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.
 
 func _ready() -> void:
 	coyote_time = 0
+	
+	$fsm/attacc_u0.barrel_bac0  = $flippable/gun_barrels/bac0
+	$fsm/attacc_u0.barrel_bac1  = $flippable/gun_barrels/bac1
+	$fsm/attacc_u0.barrel_fore0 = $flippable/gun_barrels/fore0
+	$fsm/attacc_u0.barrel_fore1 = $flippable/gun_barrels/fore1
+	$fsm/attacc_u0.barrel_gun   = $flippable/gun_barrels/gun
 
 func _process(delta: float) -> void:
 	if !is_instance_valid($fsm/idle.target):
-		$fsm/idle.target = Game.get_player()
+		$fsm/idle.target   = Game.get_player()
+		$fsm/idle_b.target = Game.get_player()
+		$fsm/idle_u.target = Game.get_player()
 		Game.set_boss(self)
 
 
@@ -40,17 +48,31 @@ func random_attack():
 	var these_attacks = attacks.duplicate()
 	if hp > max_hp/2:
 		these_attacks.append("jump_pre")
+	these_attacks = ["attacc_u0_pre"]
 	
 	var index: int = randi() % these_attacks.size()
 	var this_attack: String = these_attacks[index]
 	$fsm/idle.set_state(this_attack)
+	
+	$fsm/idle_b.set_state("attacc_b0")
+	
+	$fsm/idle_u.set_state("attacc_u0_pre")
+
+func start_attack_timer(time: float = 0.75):
+	$attacc_timer.start(time)
 
 
 func _on_attacc_timer_timeout() -> void:
 	random_attack()
 
 func _on_idle_entered() -> void:
-	$attacc_timer.start()
+	start_attack_timer()
+
+func _on_idle_b_entered() -> void:
+	start_attack_timer()
+
+func _on_idle_u_entered() -> void:
+	start_attack_timer(3)
 
 func _on_attacc0_activated() -> void:
 	shoot()
@@ -87,6 +109,7 @@ func _on_jump_pre_exited() -> void:
 	
 	var new_explosion = obj_explosion.instance()
 	Game.deploy_instance(new_explosion, $flippable/footsplosion.global_position)
+
 
 
 

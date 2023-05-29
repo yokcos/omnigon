@@ -42,6 +42,9 @@ func set_sprite(what: Texture, frames: int = 8):
 	$auto_sprite.texture = what
 	$auto_sprite.hframes = frames
 
+func set_animation_speed(what: float):
+	$auto_sprite.animation_speed = what
+
 
 func _on_wall_detector_body_entered(body: Node) -> void:
 	if !thru_walls:

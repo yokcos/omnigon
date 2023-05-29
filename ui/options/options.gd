@@ -42,6 +42,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		depart_animation()
 
+func _exit_tree() -> void:
+	Settings.save_settings()
+
 
 func order_fulcra():
 	var fulcra = get_fulcra(true)

@@ -216,6 +216,7 @@ VScrollBar/styles/grabber_highlight = SubResource( 13 )
 VScrollBar/styles/grabber_pressed = SubResource( 14 )
 VScrollBar/styles/scroll = SubResource( 15 )
 VScrollBar/styles/scroll_focus = SubResource( 16 )
+VSeparator/styles/separator = SubResource( 2 )
 WindowDialog/colors/title_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
 WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = ExtResource( 1 )

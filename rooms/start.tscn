@@ -9,7 +9,7 @@
 
 [node name="start" type="Node2D"]
 script = ExtResource( 1 )
-title = "Ingress"
+title = "Beginneth Omnigon"
 music = "ingress"
 map_image = ExtResource( 7 )
 

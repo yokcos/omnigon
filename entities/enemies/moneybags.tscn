@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/moneybags.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://fsm/states/approach_target.gd" type="Script" id=6]
 [ext_resource path="res://fsm/states/mb_jump.gd" type="Script" id=7]
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fsm/states/flee_target.gd" type="Script" id=9]
+[ext_resource path="res://fsm/states/mb_hat_gun.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 20 )
@@ -189,6 +191,88 @@ tracks/0/keys = {
 "values": [ 44, 45, 46, 47, 48 ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "attacc_b0_post"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 90, 91 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "attacc_b0_pre"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 84, 85, 86, 87, 88, 89 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "attacc_u0"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 108, 109, 110, 111, 112, 113, 114, 115 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "attacc_u0_post"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 116, 117, 118, 119 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "attacc_u0_pre"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107 ]
+}
+
 [sub_resource type="Animation" id=7]
 resource_name = "idle"
 length = 0.4
@@ -205,6 +289,40 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "idle_b"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 52, 53, 54, 55, 56, 57, 58, 59 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "idle_u"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 68, 69, 70, 71, 72, 73, 74, 75 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -257,6 +375,40 @@ tracks/0/keys = {
 "values": [ 36, 37, 38, 39, 40, 41, 42, 43 ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "walk_b"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 60, 61, 62, 63, 64, 65, 66, 67 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "walk_u"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 76, 77, 78, 79, 80, 81, 82, 83 ]
+}
+
 [node name="moneybags" type="KinematicBody2D"]
 script = ExtResource( 3 )
 flip_path = NodePath("flippable")
@@ -277,7 +429,7 @@ use_parent_material = true
 position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 hframes = 8
-vframes = 7
+vframes = 15
 
 [node name="barrel" type="Position2D" parent="flippable"]
 position = Vector2( 27, 3 )
@@ -288,25 +440,28 @@ position = Vector2( 1.90735e-06, 24 )
 [node name="wavesplosion" type="Position2D" parent="flippable"]
 position = Vector2( 48, 19 )
 
+[node name="gun_barrels" type="Node2D" parent="flippable"]
+
+[node name="bac0" type="Position2D" parent="flippable/gun_barrels"]
+position = Vector2( -41, -19 )
+
+[node name="bac1" type="Position2D" parent="flippable/gun_barrels"]
+position = Vector2( -41, -14 )
+
+[node name="fore0" type="Position2D" parent="flippable/gun_barrels"]
+position = Vector2( 40, -23 )
+
+[node name="fore1" type="Position2D" parent="flippable/gun_barrels"]
+position = Vector2( 40, -8 )
+
+[node name="gun" type="Position2D" parent="flippable/gun_barrels"]
+position = Vector2( 36, -35 )
+
 [node name="slam_hurtbox" parent="flippable" instance=ExtResource( 8 )]
 knockback = Vector2( 600, -300 )
 
 [node name="hitbox" type="CollisionPolygon2D" parent="flippable/slam_hurtbox"]
 polygon = PoolVector2Array( -1, -37, 19, -31, 39, -13, 46, 3, 48, 21, 13, 21, 13, -10 )
-
-[node name="animator" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-anims/RESET = SubResource( 2 )
-anims/attacc0_post = SubResource( 3 )
-anims/attacc0_pre = SubResource( 4 )
-anims/attacc1_post = SubResource( 5 )
-anims/attacc1_pre = SubResource( 6 )
-anims/attacc2_post = SubResource( 11 )
-anims/attacc2_pre = SubResource( 12 )
-anims/idle = SubResource( 7 )
-anims/jump = SubResource( 8 )
-anims/jump_pre = SubResource( 9 )
-anims/walk = SubResource( 10 )
 
 [node name="fsm" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -316,6 +471,18 @@ animator_path = NodePath("../animator")
 script = ExtResource( 6 )
 idle_animation = "idle"
 walk_animation = "walk"
+pause_duration = 0.25
+
+[node name="idle_b" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+idle_animation = "idle_b"
+walk_animation = "walk_b"
+pause_duration = 0.25
+
+[node name="idle_u" type="Node" parent="fsm"]
+script = ExtResource( 9 )
+idle_animation = "idle_u"
+walk_animation = "walk_u"
 pause_duration = 0.25
 
 [node name="attacc0" type="Node" parent="fsm"]
@@ -342,6 +509,27 @@ animation = "attacc2_pre"
 auto_proceed = "idle"
 recover_animation = "attacc2_post"
 
+[node name="attacc_b0" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+animation = "attaccb0_pre"
+auto_proceed = "idle_u"
+recover_animation = "attaccb0_post"
+
+[node name="attacc_u0_pre" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "attacc_u0_pre"
+auto_proceed = "attacc_u0"
+
+[node name="attacc_u0" type="Node" parent="fsm"]
+script = ExtResource( 10 )
+animation = "attacc_u0"
+auto_proceed = "attacc_u0_post"
+
+[node name="attacc_u0_post" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+animation = "attacc_u0_post"
+auto_proceed = "idle_u"
+
 [node name="jump_pre" type="Node" parent="fsm"]
 script = ExtResource( 4 )
 animation = "jump_pre"
@@ -352,11 +540,36 @@ script = ExtResource( 7 )
 animation = "jump"
 auto_proceed = "idle"
 
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/attacc0_post = SubResource( 3 )
+anims/attacc0_pre = SubResource( 4 )
+anims/attacc1_post = SubResource( 5 )
+anims/attacc1_pre = SubResource( 6 )
+anims/attacc2_post = SubResource( 11 )
+anims/attacc2_pre = SubResource( 12 )
+anims/attacc_b0_post = SubResource( 21 )
+anims/attacc_b0_pre = SubResource( 20 )
+anims/attacc_u0 = SubResource( 13 )
+anims/attacc_u0_post = SubResource( 14 )
+anims/attacc_u0_pre = SubResource( 15 )
+anims/idle = SubResource( 7 )
+anims/idle_b = SubResource( 16 )
+anims/idle_u = SubResource( 17 )
+anims/jump = SubResource( 8 )
+anims/jump_pre = SubResource( 9 )
+anims/walk = SubResource( 10 )
+anims/walk_b = SubResource( 18 )
+anims/walk_u = SubResource( 19 )
+
 [node name="attacc_timer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
 
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
+[connection signal="entered" from="fsm/idle_b" to="." method="_on_idle_b_entered"]
+[connection signal="entered" from="fsm/idle_u" to="." method="_on_idle_u_entered"]
 [connection signal="activated" from="fsm/attacc0" to="." method="_on_attacc0_activated"]
 [connection signal="activated" from="fsm/attacc1" to="." method="_on_attacc1_activated"]
 [connection signal="activated" from="fsm/attacc1b" to="." method="_on_attacc1b_activated"]

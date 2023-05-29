@@ -11,6 +11,7 @@ enum {
 	LIGHTER_SOPHISTICATED,
 }
 
+var save_id: int = randi()
 var base_max_hp: float = 3
 var max_hp: float = base_max_hp
 var hp: float = base_max_hp setget set_hp
@@ -231,6 +232,7 @@ func compress_data() -> Dictionary:
 		available_hat_ids.append(this_hat.resource_path)
 	
 	var data = {
+		"id": save_id,
 		"lighters": lighters,
 		"hats": hat_ids,
 		"available_hats": available_hat_ids,
@@ -251,6 +253,7 @@ func compress_data() -> Dictionary:
 	return data
 
 func uncompress_data(data: Dictionary):
+	if data.has("id"): save_id = data["id"]
 	lighters = data["lighters"]
 	var hat_ids = data["hats"]
 	var available_hat_ids = data["available_hats"]

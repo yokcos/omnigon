@@ -7,7 +7,9 @@ var default_controls: Dictionary = {
 	"shift":    [KEY_A, KEY_S],
 	"interact": [KEY_D, KEY_F],
 }
-var save_file = "user://world.sav"
+var old_save_file = "user://world.sav"
+var save_file = "user://omnigon%s.sav"
+var save_slot: int = -1
 var keyboard_layouts = {
 	"QWERTY": {
 		"Z": "Z", "X": "X",
@@ -88,9 +90,11 @@ func _ready() -> void:
 	OS.window_size = base_size*screen_scale
 	OS.window_position = OS.get_screen_size()/2 - OS.window_size/2
 	
-	apply_default_controls()
+	#call_deferred("load_game")
+	Settings.call_deferred("load_settings")
 	
-	call_deferred("load_game")
+	rename_old_save_file()
+	apply_default_controls()
 
 func _process(delta: float) -> void:
 	closest_tooltipable = get_closest_tooltipable()
@@ -241,41 +245,81 @@ func replace_input_string(text: String):
 	
 	return full_text
 
+# -------- -------- -------- -------- SAVING AND LOADING -------- -------- -------- --------
+
+func rename_old_save_file():
+	var dir = Directory.new()
+	if dir.file_exists(old_save_file):
+		var i = 0
+		while true:
+			if !save_file_exists(i):
+				dir.rename(old_save_file, get_save_file_name(i))
+				break
+			i += 1
+
+func get_save_file_name(slot: int = save_slot):
+	return save_file % str(slot).pad_zeros(4)
+
+func save_file_exists(slot: int) -> bool:
+	var file_name = get_save_file_name(slot)
+	var dir = Directory.new()
+	return dir.file_exists(file_name)
+
 func save_game():
+	if save_slot < 0:
+		return false
+	
 	PlayerStats.update_position()
 	var file = File.new()
-	file.open(save_file, File.WRITE)
+	file.open(get_save_file_name(), File.WRITE)
 	var data = {
 		"world": WorldSaver.data,
 		"player": PlayerStats.compress_data(),
-		"settings": Settings.compress_settings()
+		#"settings": Settings.compress_settings()
 	}
 	var file_start = file.get_position()
 	file.store_var(data, true)
 	file.seek(file_start)
 	file.close()
-	
-	#var json_string = JSON.print(data)
-	#var json_bytes = json_string.to_utf8()
-	#print(json_bytes.size())
-	#Steamer.save_data(save_file, json_bytes)
 
-func load_game():
+func load_game(slot: int = save_slot) -> Dictionary:
 	var file = File.new()
-	file.open(save_file, File.READ)
+	file.open(get_save_file_name(slot), File.READ)
 	if file.is_open():
 		var file_start = file.get_position()
 		var data = file.get_var(true)
 		file.seek(file_start)
 		
-		var world_data = data["world"]
-		var player_stats = data["player"]
-		var settings = data["settings"]
-		
-		WorldSaver.data = world_data
-		PlayerStats.uncompress_data(player_stats)
-		Settings.uncompress_settings(settings)
 		file.close()
+		return data
+	return {}
+
+func apply_save_file(data: Dictionary):
+	#var settings = data["settings"]
+	var world_data = data["world"]
+	var player_stats = data["player"]
+	
+	#Settings.uncompress_settings(settings)
+	WorldSaver.data = world_data
+	PlayerStats.uncompress_data(player_stats)
+
+func remove_save_file(slot: int = save_slot):
+	var i: int = 0
+	var file_count: int = 0
+	var dir := Directory.new()
+	
+	while true:
+		if !save_file_exists(i):
+			break
+		i += 1
+	
+	file_count = i
+	
+	dir.remove( get_save_file_name(slot) )
+	for j in range(slot, file_count-1):
+		dir.rename( get_save_file_name(j+1), get_save_file_name(j) )
+
+# -------- -------- -------- -------- -------- -------- -------- --------
 
 func pause():
 	get_tree().paused = true

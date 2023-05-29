@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/save_files.gd" type="Script" id=1]
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=2]
+
+[node name="save_files" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="list" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -32.0
+custom_constants/separation = 16
+
+[node name="egress" type="Button" parent="."]
+margin_left = 192.0
+margin_top = 248.0
+margin_right = 320.0
+margin_bottom = 264.0
+text = "Egress"
+
+[connection signal="pressed" from="egress" to="." method="_on_egress_pressed"]

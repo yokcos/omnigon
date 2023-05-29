@@ -31,9 +31,7 @@ var rooms: Dictionary = {
 	Vector2(-6, 0): Vector2(-6,-1),
 	Vector2(-6, 1): Vector2(-6,-1),
 }
-var room_data: Dictionary = {
-	
-}
+var room_data: Dictionary = {}
 
 var map: Resource = null
 const room_size = Vector2(512, 256)
@@ -163,7 +161,6 @@ func enter_room(which: Vector2) -> bool:
 			Game.switch_room( target )
 			WorldSaver.add_data("visits", 1)
 			return true
-	
 	return false
 
 func player_enter_room(pos: Vector2):

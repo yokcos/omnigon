@@ -128,9 +128,7 @@ func deploy_text(offset = 0):
 
 
 func _on_begin_pressed() -> void:
-	get_tree().change_scene("res://gameholder.tscn")
-	PlayerStats.call_deferred("apply_position")
-	#Game.call_deferred("summon_popup", "Vital lore", lore, "Oh okay", null)
+	get_tree().change_scene("res://ui/save_files.tscn")
 
 func _on_options_pressed() -> void:
 	var new_options = obj_options.instance()

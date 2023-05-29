@@ -1,0 +1,150 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/save_delete_confirm.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 30.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "arrive"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.8784, 0.8784 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 30.0, 4.56, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "depart"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8784, 0.8784 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 4.56, 30.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="save_delete_confirm" type="Control"]
+rect_rotation = 30.0
+rect_scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
+
+[node name="bac" type="Panel" parent="."]
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
+
+[node name="title" type="Label" parent="bac"]
+anchor_right = 1.0
+margin_top = 8.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "Actually destroy this save to death?"
+align = 1
+autowrap = true
+
+[node name="buttons" type="HBoxContainer" parent="bac"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -32.0
+margin_bottom = -12.0
+alignment = 1
+
+[node name="nay" type="Button" parent="bac/buttons"]
+margin_left = 27.0
+margin_right = 63.0
+margin_bottom = 20.0
+text = "Nay"
+
+[node name="yea" type="Button" parent="bac/buttons"]
+margin_left = 67.0
+margin_right = 101.0
+margin_bottom = 20.0
+text = "Yea"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "arrive"
+anims/RESET = SubResource( 1 )
+anims/arrive = SubResource( 2 )
+anims/depart = SubResource( 3 )
+
+[connection signal="pressed" from="bac/buttons/nay" to="." method="_on_nay_pressed"]
+[connection signal="pressed" from="bac/buttons/yea" to="." method="_on_yea_pressed"]
