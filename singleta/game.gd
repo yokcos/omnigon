@@ -257,6 +257,20 @@ func rename_old_save_file():
 				break
 			i += 1
 
+func remove_cursed_files(start: int = 0):
+	var i: int = start
+	while true:
+		if save_file_exists(i):
+			var this_file = load_game(i)
+			if this_file["player"].has("id"):
+				if Settings.curses.has(this_file["player"]["id"]):
+					remove_save_file(i)
+					remove_cursed_files(i)
+		else:
+			break
+		
+		i += 1
+
 func get_save_file_name(slot: int = save_slot):
 	return save_file % str(slot).pad_zeros(4)
 
@@ -371,6 +385,13 @@ func summon_popup_secret(what: Secret):
 
 func popup_exists() -> bool:
 	return gameholder and gameholder.count_popups() > 0
+
+func exit_game():
+	world = null
+	gameholder = null
+	in_game = false
+	save_slot = -1
+	get_tree().change_scene("res://ui/main_menu.tscn")
 
 func switch_room(which: PackedScene):
 	if is_instance_valid(gameholder):

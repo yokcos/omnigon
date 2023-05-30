@@ -115,6 +115,11 @@ _global_script_classes=[ {
 "path": "res://tiles/randomisers/tile_randomiser.gd"
 }, {
 "base": "Resource",
+"class": "VendorWare",
+"language": "GDScript",
+"path": "res://ui/vendor/vendor_ware_type.gd"
+}, {
+"base": "Resource",
 "class": "WorldMap",
 "language": "GDScript",
 "path": "res://rooms/map/world_map.gd"
@@ -141,6 +146,7 @@ _global_script_class_icons={
 "StatusEffect": "",
 "TextInteractable": "",
 "TileRandomiser": "",
+"VendorWare": "",
 "WorldMap": ""
 }
 

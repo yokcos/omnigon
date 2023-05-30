@@ -16,7 +16,7 @@ var icons: Array = [
 	preload("res://ui/options/pause_icons2.png"),
 	preload("res://ui/options/pause_icons3.png"),
 	preload("res://ui/options/pause_icons7.png"),
-	preload("res://ui/options/pause_icons6.png"),
+	#preload("res://ui/options/pause_icons6.png"),
 	preload("res://ui/options/pause_icons5.png"),
 ]
 
@@ -159,9 +159,7 @@ func _on_egress_pressed() -> void:
 	remove_effects()
 	PlayerStats.update_position()
 	WorldSaver.save_room()
-	Game.world = null
-	Game.in_game = false
-	get_tree().change_scene("res://ui/main_menu.tscn")
+	Game.exit_game()
 
 
 func _on_controls_slain():

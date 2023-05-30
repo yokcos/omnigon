@@ -11,7 +11,7 @@ enum {
 	LIGHTER_SOPHISTICATED,
 }
 
-var save_id: int = randi()
+var save_id: int = 0
 var base_max_hp: float = 3
 var max_hp: float = base_max_hp
 var hp: float = base_max_hp setget set_hp
@@ -54,6 +54,9 @@ signal hat_too_large
 
 
 func _ready() -> void:
+	randomize()
+	save_id = randi()
+	
 	load_all_hats()
 	pause_mode = Node.PAUSE_MODE_PROCESS
 

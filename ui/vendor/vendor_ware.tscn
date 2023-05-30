@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://hats/0008_fishing_large.png" type="Texture" id=1]
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=2]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://entities/vertex.png" type="Texture" id=4]
+[ext_resource path="res://ui/vendor/vendor_ware.gd" type="Script" id=5]
+
+[node name="vendor_ware" type="Control"]
+margin_right = 512.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+focus_mode = 2
+script = ExtResource( 5 )
+
+[node name="bac" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="all" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+
+[node name="image" type="TextureRect" parent="all"]
+margin_right = 48.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="deets" type="VBoxContainer" parent="all"]
+margin_left = 56.0
+margin_right = 512.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="name" type="Label" parent="all/deets"]
+margin_top = 10.0
+margin_right = 456.0
+margin_bottom = 24.0
+text = "NAME OF THE ITEM"
+
+[node name="desc" type="Label" parent="all/deets"]
+margin_top = 28.0
+margin_right = 456.0
+margin_bottom = 37.0
+custom_constants/line_spacing = 0
+custom_fonts/font = ExtResource( 3 )
+text = "What the description is, of the item"
+autowrap = true
+
+[node name="cost" type="HBoxContainer" parent="all/deets"]
+margin_top = 41.0
+margin_right = 456.0
+margin_bottom = 53.0
+
+[node name="image" type="TextureRect" parent="all/deets/cost"]
+margin_right = 12.0
+margin_bottom = 12.0
+texture = ExtResource( 4 )
+
+[node name="number" type="Label" parent="all/deets/cost"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 3 )
+text = "0000"
+
+[node name="tween" type="Tween" parent="."]

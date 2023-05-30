@@ -70,8 +70,9 @@ func get_selected():
 	
 	$bac.add_stylebox_override("panel", mat_selected)
 	
-	$tween.interpolate_property($bac, "margin_left",  $bac.margin_left, -8, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	$tween.interpolate_property($bac, "margin_right", $bac.margin_left,  8, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.interpolate_property($bac, "margin_left",  $bac.margin_left , -8, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.interpolate_property($bac, "margin_right", $bac.margin_right,  8, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.interpolate_property($list/index, "rect_rotation", 90, 0, 1, Tween.TRANS_BACK, Tween.EASE_OUT)
 	$tween.start()
 
 func get_deselected():
@@ -80,16 +81,16 @@ func get_deselected():
 	
 	$bac.add_stylebox_override("panel", mat_normal)
 	
-	$tween.interpolate_property($bac, "margin_left",  $bac.margin_left, 0, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	$tween.interpolate_property($bac, "margin_right", $bac.margin_left, 0, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.interpolate_property($bac, "margin_left",  $bac.margin_left , 0, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.interpolate_property($bac, "margin_right", $bac.margin_right, 0, .5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	$tween.start()
 
 
 func _on_focus_entered():
-	get_selected()
+	call_deferred("get_selected")
 
 func _on_focus_exited():
-	get_deselected()
+	call_deferred("get_deselected")
 
 func _on_begin_pressed() -> void:
 	activate()

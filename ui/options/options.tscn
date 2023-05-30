@@ -192,31 +192,6 @@ margin_right = -64.0
 margin_bottom = 8.0
 text = "Fullscreen"
 
-[node name="unsave" type="Control" parent="fulcra"]
-margin_right = 40.0
-margin_bottom = 40.0
-focus_mode = 2
-script = ExtResource( 5 )
-focus_target = NodePath("button")
-
-[node name="button" type="Button" parent="fulcra/unsave"]
-margin_left = -192.0
-margin_top = -8.0
-margin_right = -64.0
-margin_bottom = 8.0
-text = "Delete Save"
-
-[node name="details" type="Label" parent="fulcra/unsave"]
-margin_left = -200.0
-margin_top = 8.0
-margin_right = -56.0
-margin_bottom = 16.0
-custom_colors/font_outline_modulate = Color( 0.890196, 0.901961, 1, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "Will also close the game"
-align = 1
-valign = 2
-
 [node name="egress" type="Control" parent="fulcra"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -251,5 +226,4 @@ anims/saved = SubResource( 1 )
 [connection signal="value_changed" from="fulcra/volume_sfx/area/bar" to="." method="_on_sfx_value_changed"]
 [connection signal="pressed" from="fulcra/controls/button" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="fulcra/fullscreeno/button" to="." method="_on_fullscreen_pressed"]
-[connection signal="pressed" from="fulcra/unsave/button" to="." method="_on_unsave_pressed"]
 [connection signal="pressed" from="fulcra/egress/button" to="." method="_on_egress_pressed"]

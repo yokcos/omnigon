@@ -3,6 +3,7 @@ extends Node
 
 var volume_music: float = 0.7 setget set_volume_music
 var volume_sfx: float = 0.7 setget set_volume_sfx
+var curses = []
 
 const actions = [
 	"move_up",
@@ -67,13 +68,15 @@ func compress_settings() -> Dictionary:
 			if dict.size() > 0:
 				controlses[action].append(dict)
 	data["controls"] = controlses
+	data["curses"] = curses
 	
 	return data
 
 func uncompress_settings(data: Dictionary):
 	set_volume_music( data["volume_music"] )
 	set_volume_sfx( data["volume_sfx"] )
-	replace_input_actions(data["controls"])
+	replace_input_actions( data["controls"] )
+	if data.has("curses"): curses = data["curses"]
 
 func save_settings():
 	var file = File.new()
@@ -89,3 +92,4 @@ func load_settings():
 		var setts = file.get_var()
 		uncompress_settings(setts)
 		file.close()
+	Game.remove_cursed_files()

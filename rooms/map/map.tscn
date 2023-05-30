@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -95,6 +95,7 @@
 [ext_resource path="res://rooms/multiladder.tscn" type="PackedScene" id=93]
 [ext_resource path="res://rooms/locked_door.tscn" type="PackedScene" id=94]
 [ext_resource path="res://rooms/lord.tscn" type="PackedScene" id=95]
+[ext_resource path="res://rooms/interior.tscn" type="PackedScene" id=96]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -379,3 +380,6 @@ position = Vector2( -5632, 1792 )
 
 [node name="lord" parent="." instance=ExtResource( 95 )]
 position = Vector2( -4608, 1536 )
+
+[node name="interior" parent="." instance=ExtResource( 96 )]
+position = Vector2( -12288, -2048 )

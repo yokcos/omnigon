@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://ui/vendor/vendor_ware_type.gd" type="Script" id=1]
+[ext_resource path="res://ui/vendor/wares/ware_rapiers.png" type="Texture" id=2]
+[ext_resource path="res://ui/vendor/wares/rapier.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Rapiers"
+description = "Blademasters will forever be equipped with Rapiers, allowing them to attack without falling over."
+cost = 50
+availability_script = ExtResource( 3 )
+purchase_script = ExtResource( 3 )
