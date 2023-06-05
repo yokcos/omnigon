@@ -4,15 +4,15 @@
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/water.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/room.gd" type="Script" id=4]
+[ext_resource path="res://ui/map/images/hydration.png" type="Texture" id=5]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ui/map/images/prebouncer.png" type="Texture" id=10]
 
 [node name="hydration" type="Node2D"]
 script = ExtResource( 4 )
 title = "Hydration"
 room_size = Vector2( 1, 2 )
 temp_music = "notweird"
-map_image = ExtResource( 10 )
+map_image = ExtResource( 5 )
 
 [node name="props" type="Node2D" parent="."]
 
