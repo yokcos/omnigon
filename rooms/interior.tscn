@@ -57,6 +57,9 @@ background_colour = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 visible = false
 position = Vector2( 761, 354 )
 screen_path = NodePath("../quiz_screen_depthifier/quiz_screen")
+regurgitator_path = NodePath("../../regurgitator")
+correct_answer_text = "You answer correctly, and very prettily as well. As reward, I shall be willing to sell you some of my PRECIOUS WARES."
+emetic_dispenser_location = Vector2( 472, 354 )
 
 [node name="uppercurtain0" type="Sprite" parent="props"]
 position = Vector2( 432, 240 )
@@ -214,16 +217,11 @@ vomit_velocity = Vector2( 1000, -200 )
 position = Vector2( 624, 464 )
 
 [node name="wrongtext" type="Control" parent="regurgitator"]
-margin_right = 1024.0
-margin_bottom = 512.0
+margin_left = 656.0
+margin_top = 264.0
+margin_right = 656.0
+margin_bottom = 264.0
 theme = ExtResource( 14 )
-
-[node name="label" type="Label" parent="regurgitator/wrongtext"]
-margin_left = 608.0
-margin_top = 208.0
-margin_right = 648.0
-margin_bottom = 222.0
-text = "WRONG"
 
 [node name="blackening" type="Polygon2D" parent="regurgitator"]
 visible = false
@@ -232,14 +230,14 @@ color = Color( 0.141176, 0.133333, 0.203922, 1 )
 polygon = PoolVector2Array( -16, -16, 1040, -16, 1040, 528, -16, 528 )
 
 [node name="short_timer" type="Timer" parent="regurgitator"]
-wait_time = 3.5
+wait_time = 5.0
 one_shot = true
 
 [node name="timer" type="Timer" parent="regurgitator"]
-wait_time = 4.0
+wait_time = 6.0
 one_shot = true
 
-[connection signal="wrong" from="props/quizzenator" to="regurgitator" method="activate"]
+[connection signal="wrong" from="props/quizzenator" to="regurgitator" method="get_wronged"]
 [connection signal="activated" from="props/entity_detector" to="props/quiz_activator" method="activate"]
 [connection signal="activated" from="request0/entity_detector" to="request0/label/visiblifier" method="show"]
 [connection signal="deactivated" from="request0/entity_detector" to="request0/label/visiblifier" method="hide"]

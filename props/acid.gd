@@ -15,3 +15,8 @@ func _process(delta: float) -> void:
 		
 		if randf()*2 < 1:
 			new_fx.scale.x = -1
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.has_method("get_acided"):
+		body.get_acided()

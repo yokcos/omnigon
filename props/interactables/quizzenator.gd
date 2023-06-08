@@ -2,10 +2,14 @@ extends Node2D
 
 
 export (NodePath) var screen_path
+export (NodePath) var regurgitator_path
+export (String, MULTILINE) var correct_answer_text = ""
+export (Vector2) var emetic_dispenser_location = Vector2()
 var questions: Array = []
 var current_quiz: Control = null
 
 const obj_quiz = preload("res://ui/quiz_screen.tscn")
+const obj_emetic_dispenser = preload("res://props/interactables/emetic_dispenser.tscn")
 
 signal correct
 signal wrong
@@ -49,7 +53,7 @@ func _ready() -> void:
 	add_question(
 		"Capybara Cheese is an important ingredient in what traditional recipe?", [
 			"Grilled Capybara Cheese sandwiches",
-			"Molotov cocktails",
+			"Bomb cocktails",
 			"The Stone of Philosophers",
 			"Greater Fruitcake",
 		]
@@ -122,10 +126,20 @@ func activate():
 func deactivate():
 	$interactable.active = false
 
+func correct_answer():
+	Game.summon_popup("Sayeth Quizzenator", correct_answer_text, "Huzzah!", self)
+	$vendor/interactable.active = true
+	$interactable.active = false
+	
+	var new_dispenser = obj_emetic_dispenser.instance()
+	Game.deploy_instance(new_dispenser, emetic_dispenser_location)
+	new_dispenser.regurgitator = get_node(regurgitator_path)
+
 
 func _on_answer_selected(which: int):
 	if which == 0:
 		emit_signal("correct")
+		correct_answer()
 	else:
 		emit_signal("wrong")
 	

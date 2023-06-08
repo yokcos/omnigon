@@ -13,6 +13,10 @@ func _process(delta: float) -> void:
 		Game.shake_cam(rand_range(-6, 6), PI/2)
 
 
+func get_wronged():
+	activate()
+	deploy_wrongtext()
+
 func activate():
 	active = true
 	current_sfx = GlobalSound.play_random_sfx(GlobalSound.sfx_regurgitation)
@@ -22,12 +26,23 @@ func activate():
 	$timer.start()
 
 func deploy_wrongtext():
-	var angle: float = 0.1
+	var angle: float = 10
 	
-	for i in range(32):
-		for j in range(32):
+	var xdir = Vector2(48, 0).rotated(deg2rad(angle))
+	var ydir = Vector2(0, 16).rotated(deg2rad(angle))
+	
+	var colours = [Color("5b3138"), Color("328464")]
+	
+	for i in range(-16, 16):
+		for j in range(-16, 16):
 			var new_label = Label.new()
+			new_label.rect_rotation = angle
+			new_label.text = "WRONG"
+			new_label.add_color_override("font_color", colours[posmod(i+j, 2)])
 			
+			$wrongtext.add_child(new_label)
+			new_label.rect_position += i * xdir
+			new_label.rect_position += j * ydir
 
 func halt():
 	var player = Game.get_player()
@@ -41,6 +56,7 @@ func halt():
 func vomit():
 	PlayerStats.velocity = vomit_velocity
 	Rooms.player_enter_room(target)
+	GlobalSound.play_random_sfx(GlobalSound.sfx_bleh)
 
 
 func _on_short_timer_timeout() -> void:

@@ -19,7 +19,7 @@ data = {
 image = SubResource( 4 )
 size = Vector2( 16, 16 )
 
-[node name="acid" type="Area2D" groups=["waters"]]
+[node name="acid" type="Area2D" groups=["acids"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 15
@@ -35,3 +35,5 @@ shape = SubResource( 1 )
 material = ExtResource( 2 )
 texture = SubResource( 3 )
 region_rect = Rect2( 0, 0, 16, 16 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

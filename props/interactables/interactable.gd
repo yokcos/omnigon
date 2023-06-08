@@ -6,10 +6,10 @@ export (float) var highlight_distance = 48
 export (String) var description = ""
 export (String) var verb = "Obtain"
 export (bool) var thru_walls = false
+export (bool) var active = true
 
 var current_tooltip: Node2D = null
 var is_closest: bool = false
-var active: bool = true
 var cast: RayCast2D = null
 
 const obj_tooltip = preload("res://ui/interactable_tooltip.tscn")
