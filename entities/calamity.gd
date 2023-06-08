@@ -12,11 +12,14 @@ var duration: float = 76.8
 var strike_duration: float = 3.2
 var struck: bool = false
 var retreating: bool = false
+var particles: CPUParticles2D = null
 
 var base_size: float = 2
 var distance: float = 0.01
 var motion_scale: float = 0.01
 var distances: Array = []
+
+const obj_particles = preload("res://fx/calamity_particles.tscn")
 
 
 func _ready() -> void:
@@ -78,6 +81,21 @@ func _process(delta: float) -> void:
 		
 		if age >= duration:
 			player.die()
+		
+		var shake_power = (ratio - 0.5) * 2
+		if ratio > .5 and randf() * 10 < 1:
+			Game.shake_cam_random(shake_power*6)
+		
+		if ratio > .75:
+			if !is_instance_valid(particles):
+				particles = obj_particles.instance()
+				Game.deploy_instance(particles, Vector2(0, 256))
+			else:
+				particles.speed_scale = (ratio-.75)*16
+		else:
+			if is_instance_valid(particles):
+				particles.queue_free()
+				particles = null
 
 
 func retreat():

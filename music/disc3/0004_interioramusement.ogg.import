@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0004_interioramusement.ogg-8b37765fa88d7f11968c9494bd5b0302.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0004_interioramusement.ogg"
+dest_files=[ "res://.import/0004_interioramusement.ogg-8b37765fa88d7f11968c9494bd5b0302.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

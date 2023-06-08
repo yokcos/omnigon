@@ -130,6 +130,7 @@ const sfx_splash = [preload("res://sfx/splash.wav")]
 
 const sfx_teleporter_buttons = [preload("res://props/teleporter_buttons.wav")]
 const sfx_teleporter_activate = [preload("res://props/teleporter_activate.wav")]
+const sfx_regurgitation = [preload("res://sfx/regurgitation.wav")]
 
 const sfx_fc_angler = [preload("res://fishticuffs/sfx/angler.wav")]
 const sfx_fc_bubblies = [preload("res://fishticuffs/sfx/bubblies.wav")]
@@ -230,6 +231,7 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc3/0001_deepingress.tres"))
 	add_music_entry(preload("res://music/disc3/0002_moneybagshalls.tres"))
 	add_music_entry(preload("res://music/disc3/0003_thepriceofwar.tres"))
+	add_music_entry(preload("res://music/disc3/0004_interioramusement.tres"))
 	
 	add_music_entry(preload("res://music/other/FC_ocean.tres"))
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fx/light_line.gd" type="Script" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 456, 224, 2.62204, -24.7221, -2.62204, 24.7221, 456, 296, 7.86611, -27.7187, -7.86611, 27.7187, 440, 392, 0, 0, 0, 0, 416, 432 )
+}
+
+[node name="light_line" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 1 )

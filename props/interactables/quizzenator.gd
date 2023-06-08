@@ -1,10 +1,19 @@
 extends Node2D
 
 
+export (NodePath) var screen_path
 var questions: Array = []
+var current_quiz: Control = null
+
+const obj_quiz = preload("res://ui/quiz_screen.tscn")
+
+signal correct
+signal wrong
 
 
 func _ready() -> void:
+	randomize()
+	deactivate()
 	add_question(
 		"Whomst rules this here Empaire?", [
 			"The Emperor of course",
@@ -93,3 +102,36 @@ func add_question( question: String, answers: Array ):
 	dict["question"] = question
 	dict["answers"] = answers
 	questions.append(dict)
+
+func deploy_quiz():
+	var index: int = randi() % questions.size()
+	var this_quiz = questions[index]
+	
+	var new_quiz = obj_quiz.instance()
+	new_quiz.call_deferred("set_quiz", this_quiz)
+	new_quiz.connect("selected", self, "_on_answer_selected")
+	get_node(screen_path).add_child(new_quiz)
+	current_quiz = new_quiz
+
+func get_shifted():
+	$animator.play("reset")
+
+func activate():
+	$interactable.active = true
+
+func deactivate():
+	$interactable.active = false
+
+
+func _on_answer_selected(which: int):
+	if which == 0:
+		emit_signal("correct")
+	else:
+		emit_signal("wrong")
+	
+	if is_instance_valid(current_quiz):
+		current_quiz.queue_free()
+
+func _on_interactable_activated() -> void:
+	deploy_quiz()
+	deactivate()

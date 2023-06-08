@@ -3072,4 +3072,4 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 "shape": SubResource( 311 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-12/z_index = 0
+12/z_index = 30
