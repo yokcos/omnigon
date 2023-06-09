@@ -215,6 +215,7 @@ vomit_velocity = Vector2( 1000, -200 )
 
 [node name="part_regurgitation" parent="regurgitator" instance=ExtResource( 10 )]
 position = Vector2( 624, 464 )
+z_index = 1
 
 [node name="wrongtext" type="Control" parent="regurgitator"]
 margin_left = 656.0
