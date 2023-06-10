@@ -6,9 +6,11 @@ var gravity_multiplier: float = 1.5
 var base_animation_speed: float = 1
 var jet_power: float = 0
 var current_bobber: Node2D = null
+var combhat_height: float = -1
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
 const obj_bobber = preload("res://entities/fishing_bobber.tscn")
+const obj_bullet_combhat = preload("res://projectiles/bullet_combhat.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 const scr_effect_fished = preload("res://pieces/effects/effect_air_uncontrol.gd")
@@ -225,14 +227,22 @@ func reset_hat_visuals():
 	
 	$hitbox.shape.extents.y = base_hitbox_height
 	$hitbox.position.y = base_hitbox_position
+	
+	combhat_height = -1
 
 func apply_hat_visuals():
 	reset_hat_visuals()
 	
 	var total_height = 0
+	var anvil_position: int = -1
+	var anvil_crush_factor: float = 0.5
 	
-	for i in PlayerStats.hats:
-		var hat = i as Hat
+	for i in range( PlayerStats.hats.size() ):
+		if PlayerStats.hats[i].id == "anvil":
+			anvil_position = i
+	
+	for i in range( PlayerStats.hats.size() ):
+		var hat = PlayerStats.hats[i] as Hat
 		
 		var new_sprite = Sprite.new()
 		new_sprite.texture = hat.sprite
@@ -241,7 +251,14 @@ func apply_hat_visuals():
 		$flippable/hats.add_child(new_sprite)
 		new_sprite.position.y = -total_height
 		
-		total_height += hat.height
+		if i < anvil_position:
+			new_sprite.scale.y = anvil_crush_factor
+			new_sprite.position.y += hat.sprite.get_height() * (1 - anvil_crush_factor) / 2
+		total_height += hat.height * anvil_crush_factor\
+		if i < anvil_position else hat.height
+		
+		if hat.id == "combhat":
+			combhat_height = -new_sprite.position.y
 	
 	var hitbox_height = total_height - 1
 	$hitbox.shape.extents.y += hitbox_height/2
@@ -256,6 +273,11 @@ func apply_hats():
 	if PlayerStats.has_hat("yeet"):
 		this_knockback *= 4
 	$flippable/fistbox.knockback = this_knockback
+	
+	if PlayerStats.has_hat("anvil"):
+		jump_speed = 449.99
+	else:
+		jump_speed = 450
 
 func finish_sitting():
 	emit_signal("sitting_complete")
@@ -317,6 +339,12 @@ func recall_bobber():
 	current_bobber.queue_free()
 	current_bobber = null
 
+func shoot_combhat():
+	if combhat_height >= 0:
+		var new_bullet = obj_bullet_combhat.instance()
+		new_bullet.velocity.x = flip_int * 100
+		Game.deploy_instance(new_bullet, global_position - Vector2(0, combhat_height))
+
 
 func _on_attacc_activated() -> void:
 	velocity.x += -200 if flipped else 200
@@ -361,3 +389,5 @@ func _on_hats_changed(new_hats: Array):
 	apply_hat_visuals()
 	apply_hats()
 
+func _on_timer_combhat_timeout() -> void:
+	shoot_combhat()

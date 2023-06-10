@@ -101,34 +101,7 @@ func clear_mess():
 		tiles.update_bitmask_region( start_pos - Vector2(1, 1), start_pos + size )
 
 func update_corners():
-	var extents = size/2 * tile_size
-	
-	$visuals/ul.position = -extents
-	$visuals/br.position =  extents
-	
-	$visuals/ur.position = Vector2( extents.x,-extents.y )
-	$visuals/bl.position = Vector2(-extents.x, extents.y )
-	
-	$visuals/ul.points = PoolVector2Array([
-		Vector2(0, tile_size.y),
-		Vector2(0, 0),
-		Vector2(tile_size.x, 0),
-	])
-	$visuals/ur.points = PoolVector2Array([
-		Vector2(0, tile_size.y),
-		Vector2(0, 0),
-		Vector2(-tile_size.x, 0),
-	])
-	$visuals/bl.points = PoolVector2Array([
-		Vector2(0, -tile_size.y),
-		Vector2(0, 0),
-		Vector2(tile_size.x, 0),
-	])
-	$visuals/br.points = PoolVector2Array([
-		Vector2(0, -tile_size.y),
-		Vector2(0, 0),
-		Vector2(-tile_size.x, 0),
-	])
+	$visuals.update_corners(size, tile_size)
 
 func set_size(what: Vector2):
 	size = what

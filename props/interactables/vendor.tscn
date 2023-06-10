@@ -1,28 +1,26 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://props/interactables/vendor.png" type="Texture" id=1]
 [ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/interactables/vendor.gd" type="Script" id=3]
 [ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=4]
-[ext_resource path="res://props/interactables/interactable.gd" type="Script" id=5]
+[ext_resource path="res://ui/vendor/wares/anvil.tres" type="Resource" id=5]
 [ext_resource path="res://ui/vendor/wares/moneybag.tres" type="Resource" id=6]
 [ext_resource path="res://ui/vendor/wares/rapiers.tres" type="Resource" id=7]
+[ext_resource path="res://pieces/vendor_piece.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
 
 [node name="vendor" type="Node2D"]
 script = ExtResource( 3 )
-wares = [ ExtResource( 7 ), ExtResource( 6 ) ]
 
 [node name="auto_sprite" parent="." instance=ExtResource( 2 )]
 texture = ExtResource( 1 )
 hframes = 8
 
-[node name="interactable" type="Node2D" parent="."]
-script = ExtResource( 5 )
-description = "Vendor"
-verb = "Peruse wares"
+[node name="vendor_piece" parent="." instance=ExtResource( 8 )]
+wares = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ]
 
 [node name="shift_detector" parent="." instance=ExtResource( 4 )]
 
@@ -30,5 +28,4 @@ verb = "Peruse wares"
 position = Vector2( 0, 4 )
 shape = SubResource( 1 )
 
-[connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]
 [connection signal="shifted" from="shift_detector" to="." method="_on_shift_detector_shifted"]

@@ -1,23 +1,21 @@
 extends Node2D
 
 
-export (Array) var wares = []
-
 var obj_hungry = load("res://props/interactables/vendor_hungry.tscn")
 const obj_vending_screen = preload("res://ui/vendor/vendor.tscn")
+const obj_vomit_chunk = preload("res://fx/vomit_chunk.tscn")
 
 
-func deploy_vending_screen():
-	var new_vending_screen = obj_vending_screen.instance()
-	new_vending_screen.wares = wares
-	Game.deploy_ui_instance(new_vending_screen, Vector2())
-
-func activate():
-	$interactable.active = true
+func _ready() -> void:
+	Events.connect("vendor_vomited", self, "vomit")
 
 
-func _on_interactable_activated() -> void:
-	deploy_vending_screen()
+func vomit():
+	for i in range(32):
+		var new_chunk = obj_vomit_chunk.instance()
+		new_chunk.velocity = Vector2(rand_range(100, 600), -49).rotated(rand_range(-.5, .5))
+		Game.deploy_instance(new_chunk, global_position)
+
 
 func _on_shift_detector_shifted() -> void:
 	var new_hungry = obj_hungry.instance()

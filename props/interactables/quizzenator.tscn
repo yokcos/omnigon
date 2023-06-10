@@ -3,7 +3,7 @@
 [ext_resource path="res://props/interactables/quizzenator.png" type="Texture" id=1]
 [ext_resource path="res://props/interactables/quizzenator.gd" type="Script" id=2]
 [ext_resource path="res://props/interactables/interactable.gd" type="Script" id=3]
-[ext_resource path="res://props/interactables/vendor.gd" type="Script" id=4]
+[ext_resource path="res://pieces/vendor_piece.tscn" type="PackedScene" id=4]
 [ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -71,18 +71,12 @@ script = ExtResource( 3 )
 description = "Quizzenator"
 verb = "Get quizzed"
 
-[node name="vendor" type="Node2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="interactable" type="Node2D" parent="vendor"]
-script = ExtResource( 3 )
-description = "Quizzenator"
-verb = "Peruse wares"
+[node name="vendor_piece" parent="." instance=ExtResource( 4 )]
 active = false
 
 [node name="shift_detector" parent="." instance=ExtResource( 5 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="shift_detector"]
+[node name="hitbox" type="CollisionShape2D" parent="shift_detector"]
 position = Vector2( 0, -16 )
 shape = SubResource( 4 )
 
@@ -94,5 +88,4 @@ anims/reset = SubResource( 3 )
 next/reset = "idle"
 
 [connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]
-[connection signal="activated" from="vendor/interactable" to="vendor" method="_on_interactable_activated"]
 [connection signal="shifted" from="shift_detector" to="." method="get_shifted"]

@@ -128,7 +128,7 @@ func deactivate():
 
 func correct_answer():
 	Game.summon_popup("Sayeth Quizzenator", correct_answer_text, "Huzzah!", self)
-	$vendor/interactable.active = true
+	$vendor_piece.active = true
 	$interactable.active = false
 	
 	var new_dispenser = obj_emetic_dispenser.instance()

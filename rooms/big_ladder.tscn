@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://ui/map/images/big_ladder.png" type="Texture" id=4]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/interactables/vendor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://pieces/texture_haver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pieces/test_sprite.gd" type="Script" id=8]
 
 [node name="big_ladder" type="Node2D"]
 script = ExtResource( 2 )
@@ -29,3 +31,118 @@ tile_data = PoolIntArray( -1, 7, 131072, -65536, 7, 327682, -65535, 7, 327682, -
 [node name="ladder" parent="." instance=ExtResource( 3 )]
 position = Vector2( 256, 224 )
 length = 16
+
+[node name="texture_havers" type="Node2D" parent="."]
+z_index = 31
+
+[node name="texture_haver0" parent="texture_havers" instance=ExtResource( 7 )]
+position = Vector2( 424, 544 )
+size = Vector2( 13, 2 )
+texture_id = "splashes"
+
+[node name="texture_haver1" parent="texture_havers" instance=ExtResource( 7 )]
+position = Vector2( 512, 448 )
+size = Vector2( 2, 10 )
+texture_id = "splashes"
+
+[node name="texture_haver2" parent="texture_havers" instance=ExtResource( 7 )]
+position = Vector2( 512, 656 )
+size = Vector2( 2, 12 )
+texture_id = "splashes"
+
+[node name="texture_haver3" parent="texture_havers" instance=ExtResource( 7 )]
+position = Vector2( 384, 768 )
+size = Vector2( 18, 2 )
+texture_id = "splashes"
+
+[node name="texture_haver4" parent="texture_havers" instance=ExtResource( 7 )]
+position = Vector2( 144, 544 )
+size = Vector2( 6, 2 )
+texture_id = "splashes"
+
+[node name="stair_bit0" type="Node2D" parent="texture_havers"]
+
+[node name="interior0" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 488, 488 )
+texture_id = "splashes"
+
+[node name="interior1" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 480, 504 )
+size = Vector2( 2, 1 )
+texture_id = "splashes"
+
+[node name="interior2" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 472, 520 )
+size = Vector2( 3, 1 )
+texture_id = "splashes"
+
+[node name="exterior0" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 424, 520 )
+texture_id = "splashes"
+
+[node name="exterior1" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 440, 504 )
+texture_id = "splashes"
+
+[node name="exterior2" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 456, 488 )
+texture_id = "splashes"
+
+[node name="exterior3" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 472, 472 )
+texture_id = "splashes"
+
+[node name="exterior4" parent="texture_havers/stair_bit0" instance=ExtResource( 7 )]
+position = Vector2( 488, 456 )
+texture_id = "splashes"
+
+[node name="stair_bit1" type="Node2D" parent="texture_havers"]
+position = Vector2( 0, 224 )
+
+[node name="interior0" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 488, 488 )
+texture_id = "splashes"
+
+[node name="interior1" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 480, 504 )
+size = Vector2( 2, 1 )
+texture_id = "splashes"
+
+[node name="interior2" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 472, 520 )
+size = Vector2( 3, 1 )
+texture_id = "splashes"
+
+[node name="exterior0" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 424, 520 )
+texture_id = "splashes"
+
+[node name="exterior1" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 440, 504 )
+texture_id = "splashes"
+
+[node name="exterior2" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 456, 488 )
+texture_id = "splashes"
+
+[node name="exterior3" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 472, 472 )
+texture_id = "splashes"
+
+[node name="exterior4" parent="texture_havers/stair_bit1" instance=ExtResource( 7 )]
+position = Vector2( 488, 456 )
+texture_id = "splashes"
+
+[node name="test_sprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.270588 )
+position = Vector2( 240, 368 )
+centered = false
+script = ExtResource( 8 )
+
+[node name="timer" type="Timer" parent="test_sprite"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="test_sprite/timer" to="test_sprite" method="pick_texture"]

@@ -119,10 +119,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/vendor/vendor_ware_type.gd"
 }, {
+"base": "VendorWare",
+"class": "VendorWareHat",
+"language": "GDScript",
+"path": "res://ui/vendor/vendor_ware_hat.gd"
+}, {
 "base": "Resource",
 "class": "WorldMap",
 "language": "GDScript",
 "path": "res://rooms/map/world_map.gd"
+}, {
+"base": "ImageTexture",
+"class": "WorldTexture",
+"language": "GDScript",
+"path": "res://pieces/world_texture.gd"
 } ]
 _global_script_class_icons={
 "BGM": "",
@@ -147,7 +157,9 @@ _global_script_class_icons={
 "TextInteractable": "",
 "TileRandomiser": "",
 "VendorWare": "",
-"WorldMap": ""
+"VendorWareHat": "",
+"WorldMap": "",
+"WorldTexture": ""
 }
 
 [application]

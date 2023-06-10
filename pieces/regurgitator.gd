@@ -57,6 +57,7 @@ func vomit():
 	PlayerStats.velocity = vomit_velocity
 	Rooms.player_enter_room(target)
 	GlobalSound.play_random_sfx(GlobalSound.sfx_bleh)
+	Events.delayed_emit("vendor_vomited", .1)
 
 
 func _on_short_timer_timeout() -> void:

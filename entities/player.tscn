@@ -1057,6 +1057,10 @@ valign = 2
 
 [node name="tween" type="Tween" parent="."]
 
+[node name="timer_combhat" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
 [connection signal="damage_taken" from="." to="fsm/climb" method="_on_damage_taken"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
 [connection signal="entered" from="fsm/attacc" to="." method="_on_attacc_entered"]
@@ -1065,3 +1069,4 @@ valign = 2
 [connection signal="entered" from="fsm/fish" to="." method="_on_attacc_entered"]
 [connection signal="exited" from="fsm/fish" to="." method="_on_attacc_exited"]
 [connection signal="activated" from="fsm/shift" to="." method="_on_shift_activated"]
+[connection signal="timeout" from="timer_combhat" to="." method="_on_timer_combhat_timeout"]

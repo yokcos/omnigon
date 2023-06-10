@@ -74,16 +74,17 @@ func apply_preview():
 
 func create_preview_hat(what: Hat):
 	var slots = preview.get_child_count()
-	var new_tex = Sprite.new()
-	new_tex.texture = what.large_sprite
-	new_tex.hframes = what.large_frames
-	new_tex.centered = false
-	new_tex.set_script(scr_auto_sprite)
+	var new_sprite = Sprite.new()
+	new_sprite.texture = what.large_sprite
+	new_sprite.hframes = what.large_frames
+	new_sprite.centered = false
+	new_sprite.set_script(scr_auto_sprite)
 	
-	preview.add_child(new_tex)
+	preview.add_child(new_sprite)
 	
 	full_height += preview_spacing + (what.height * 4)
-	new_tex.position.y = -full_height + 10
+	new_sprite.position.y = -full_height + 10
+	return new_sprite
 
 func get_selected_hat() -> Hat:
 	return hats[selected_slot]

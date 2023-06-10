@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://pieces/texture_haver.gd" type="Script" id=1]
+[ext_resource path="res://pieces/area_visuals.tscn" type="PackedScene" id=2]
+
+[node name="texture_haver" type="Node2D" groups=["texture_havers"]]
+script = ExtResource( 1 )
+size = Vector2( 1, 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="visuals" parent="." instance=ExtResource( 2 )]
+colour = Color( 0.196078, 0.517647, 0.392157, 1 )
