@@ -342,8 +342,13 @@ func recall_bobber():
 func shoot_combhat():
 	if combhat_height >= 0:
 		var new_bullet = obj_bullet_combhat.instance()
+		var angle = $flippable/hats.rotation
 		new_bullet.velocity.x = flip_int * 100
-		Game.deploy_instance(new_bullet, global_position - Vector2(0, combhat_height))
+		new_bullet.velocity = new_bullet.velocity.rotated(angle)
+		
+		var pos = $flippable/hats.global_position
+		pos -= Vector2(0, combhat_height+2).rotated(angle)
+		Game.deploy_instance(new_bullet, pos)
 
 
 func _on_attacc_activated() -> void:

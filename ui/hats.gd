@@ -69,21 +69,35 @@ func clear_preview():
 func apply_preview():
 	clear_preview()
 	
-	for hat in PlayerStats.hats:
-		create_preview_hat(hat)
+	var anvil_crush_factor = 0.5
+	
+	var anvil_position: int = -1
+	for i in range(PlayerStats.hats.size()):
+		if PlayerStats.hats[i].id == "anvil":
+			anvil_position = i
+	
+	for i in range(PlayerStats.hats.size()):
+		var hat: Hat = PlayerStats.hats[i]
+		var this_scale: float = anvil_crush_factor if anvil_position > i else 1
+		var new_sprite = create_preview_hat(hat, this_scale)
 
-func create_preview_hat(what: Hat):
+func create_preview_hat(hat: Hat, this_scale: float = 1):
 	var slots = preview.get_child_count()
 	var new_sprite = Sprite.new()
-	new_sprite.texture = what.large_sprite
-	new_sprite.hframes = what.large_frames
+	new_sprite.texture = hat.large_sprite
+	new_sprite.hframes = hat.large_frames
 	new_sprite.centered = false
 	new_sprite.set_script(scr_auto_sprite)
 	
 	preview.add_child(new_sprite)
 	
-	full_height += preview_spacing + (what.height * 4)
+	full_height += (preview_spacing + hat.height * 4) * this_scale
 	new_sprite.position.y = -full_height + 10
+	
+	if this_scale != 1:
+		new_sprite.scale.y = this_scale
+		new_sprite.position.y += 32 * (1 - this_scale) / 2
+	
 	return new_sprite
 
 func get_selected_hat() -> Hat:
