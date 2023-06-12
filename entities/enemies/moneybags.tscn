@@ -511,9 +511,9 @@ recover_animation = "attacc2_post"
 
 [node name="attacc_b0" type="Node" parent="fsm"]
 script = ExtResource( 5 )
-animation = "attaccb0_pre"
+animation = "attacc_b0_pre"
 auto_proceed = "idle_u"
-recover_animation = "attaccb0_post"
+recover_animation = "attacc_b0_post"
 
 [node name="attacc_u0_pre" type="Node" parent="fsm"]
 script = ExtResource( 4 )
@@ -574,5 +574,7 @@ one_shot = true
 [connection signal="activated" from="fsm/attacc1" to="." method="_on_attacc1_activated"]
 [connection signal="activated" from="fsm/attacc1b" to="." method="_on_attacc1b_activated"]
 [connection signal="activated" from="fsm/attacc2" to="." method="_on_attacc2_activated"]
+[connection signal="activated" from="fsm/attacc_b0" to="." method="_on_attacc_b0_activated"]
+[connection signal="entered" from="fsm/attacc_u0_pre" to="." method="_on_attacc_u0_pre_entered"]
 [connection signal="exited" from="fsm/jump_pre" to="." method="_on_jump_pre_exited"]
 [connection signal="timeout" from="attacc_timer" to="." method="_on_attacc_timer_timeout"]

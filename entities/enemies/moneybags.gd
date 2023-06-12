@@ -2,11 +2,16 @@ extends "res://entities/enemies/enemy.gd"
 
 
 var attacks = ["attacc0", "attacc1", "attacc1b", "attacc2"]
+var armed_states = ["idle", "attacc0", "attacc1", "attacc1b", "attacc2", "jump_pre", "jump"]
+var unarmed_states = ["idle_b", "idle_u", "attacc_b0", "attacc_u0_pre", "attacc_u0", "attacc_u0_post"]
+
+var has_boomerang: bool = true
 
 const obj_rocket = preload("res://projectiles/rocket.tscn")
 const obj_stoppy = preload("res://projectiles/stoppy_rocket.tscn")
 const obj_explosion = preload("res://fx/explosion.tscn")
 const obj_explosion_wave = preload("res://projectiles/explosion_wave.tscn")
+const obj_boomerang = preload("res://projectiles/boomerang.tscn")
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
 
 
@@ -48,7 +53,6 @@ func random_attack():
 	var these_attacks = attacks.duplicate()
 	if hp > max_hp/2:
 		these_attacks.append("jump_pre")
-	these_attacks = ["attacc_u0_pre"]
 	
 	var index: int = randi() % these_attacks.size()
 	var this_attack: String = these_attacks[index]
@@ -61,6 +65,19 @@ func random_attack():
 func start_attack_timer(time: float = 0.75):
 	$attacc_timer.start(time)
 
+func face_player():
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		set_flip(player.global_position.x < global_position.x)
+		velocity.x = abs(velocity.x) * flip_int
+
+func get_shifted():
+	if $fsm.state_name in armed_states:
+		$fsm.set_state_string("idle_b")
+		has_boomerang = true
+	else:
+		$fsm.set_state_string("idle")
+
 
 func _on_attacc_timer_timeout() -> void:
 	random_attack()
@@ -72,7 +89,10 @@ func _on_idle_b_entered() -> void:
 	start_attack_timer()
 
 func _on_idle_u_entered() -> void:
-	start_attack_timer(3)
+	if has_boomerang:
+		$fsm.set_state_string("idle_b")
+	else:
+		start_attack_timer(3)
 
 func _on_attacc0_activated() -> void:
 	shoot()
@@ -98,6 +118,21 @@ func _on_attacc2_activated() -> void:
 		var new_explosion = obj_explosion.instance()
 		Game.deploy_instance(new_explosion, $flippable/wavesplosion.global_position)
 
+func _on_attacc_b0_activated() -> void:
+	var bspeed: float = 300
+	var new_boomerang = obj_boomerang.instance()
+	new_boomerang.connect("returned", self, "_on_boomerang_returned")
+	new_boomerang.father = self
+	Game.deploy_instance(new_boomerang, $flippable/barrel.global_position)
+	has_boomerang = false
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		var dir = (player.global_position - $flippable/barrel.global_position).normalized()
+		new_boomerang.velocity = dir * bspeed
+
+func _on_attacc_u0_pre_entered() -> void:
+	face_player()
+
 func _on_jump_pre_exited() -> void:
 	velocity.y -= 450
 	velocity.x += flip_int * 300
@@ -109,6 +144,11 @@ func _on_jump_pre_exited() -> void:
 	
 	var new_explosion = obj_explosion.instance()
 	Game.deploy_instance(new_explosion, $flippable/footsplosion.global_position)
+
+func _on_boomerang_returned():
+	has_boomerang = true
+	$fsm/idle_u.set_state("idle_b")
+
 
 
 
