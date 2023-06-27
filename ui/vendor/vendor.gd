@@ -74,6 +74,10 @@ func egress():
 	get_tree().paused = previously_paused
 	queue_free()
 
+func set_image(what: Texture):
+	if what != null:
+		$all/main/portrait.texture = what
+
 
 func _on_ware_purchased():
 	deploy_wares( get_selected_ware() )

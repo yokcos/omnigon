@@ -17,6 +17,7 @@ const eye_textures = [
 const lighter_textures = [
 	preload("res://entities/lighter_basic.png"),
 	preload("res://entities/lighter_sophisticated.png"),
+	preload("res://entities/lighter_fanciful.png"),
 ]
 
 const obj_level_name = preload("res://ui/level_name.tscn")
@@ -26,10 +27,12 @@ const obj_boss_bar = preload("res://ui/boss_bar.tscn")
 func _ready() -> void:
 	PlayerStats.connect("eyes_changed", self, "_on_eyes_changed")
 	PlayerStats.connect("lighters_changed", self, "_on_lighters_changed")
+	PlayerStats.connect("secrets_changed", self, "_on_secrets_changed")
 	Game.connect("world_changed", self, "_on_world_changed")
 	Game.connect("boss_changed", self, "_on_boss_changed")
 	Events.connect("teleported", self, "_on_teleported")
 	update_lighters()
+	update_secrets()
 	shaderify_tele_flash()
 
 func _process(delta: float) -> void:
@@ -93,6 +96,9 @@ func update_lighters():
 			new_rect.rect_min_size = Vector2(16, 16)
 			$bar_bottom/lighters.add_child(new_rect)
 
+func update_secrets():
+	$bar_top/secrets.text = "Secrets found: %s" % PlayerStats.secrets.size()
+
 func teleport():
 	$animator.play("tele_flash")
 	GlobalSound.play_random_sfx(GlobalSound.sfx_blap)
@@ -115,6 +121,9 @@ func _on_boss_changed(what: Being):
 
 func _on_lighters_changed():
 	update_lighters()
+
+func _on_secrets_changed():
+	update_secrets()
 
 func _on_teleported():
 	teleport()

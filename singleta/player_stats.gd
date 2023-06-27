@@ -9,6 +9,7 @@ enum {
 enum {
 	LIGHTER_PLAIN,
 	LIGHTER_SOPHISTICATED,
+	LIGHTER_FANCIFUL,
 }
 
 var save_id: int = 0
@@ -21,7 +22,8 @@ var velocity: Vector2 = Vector2()
 var eyes: int = EYES_BASIC setget set_eyes
 var check_pos: Vector2 = Vector2()
 var extra_data: Array = []
-var lighters: Array = [0, 0]
+var lighters: Array = [0, 0, 0]
+var used_lighters: Array = [0, 0, 0]
 var main_music: String = "ingress"
 var time: float = 0
 var flipped: bool = false
@@ -50,6 +52,7 @@ signal vertices_changed
 signal vertices_collected
 signal hats_changed
 signal lighters_changed
+signal secrets_changed
 signal hat_too_large
 
 
@@ -177,6 +180,7 @@ func gain_lighter(what: int):
 func consume_lighter(what: int) -> bool:
 	if lighters.size() > what and lighters[what] > 0:
 		lighters[what] -= 1
+		used_lighters[what] += 1
 		
 		emit_signal("lighters_changed")
 		return true
@@ -213,6 +217,7 @@ func get_enemy_deaths(what: EnemyData):
 func add_secret(what: String):
 	if !secrets.has(what):
 		secrets.append(what)
+		emit_signal("secrets_changed")
 
 func update_position():
 	var player = Game.get_player()
@@ -237,6 +242,7 @@ func compress_data() -> Dictionary:
 	var data = {
 		"id": save_id,
 		"lighters": lighters,
+		"used_lighters": used_lighters,
 		"hats": hat_ids,
 		"available_hats": available_hat_ids,
 		"upgrades": upgrades,
@@ -258,6 +264,8 @@ func compress_data() -> Dictionary:
 func uncompress_data(data: Dictionary):
 	if data.has("id"): save_id = data["id"]
 	lighters = data["lighters"]
+	if data.has("used_lighters"):
+		used_lighters = data["used_lighters"]
 	var hat_ids = data["hats"]
 	var available_hat_ids = data["available_hats"]
 	upgrades = data["upgrades"]
@@ -282,6 +290,11 @@ func uncompress_data(data: Dictionary):
 	
 	if data.has("secrets"):
 		secrets = data["secrets"]
+	
+	while lighters.size() < 3:
+		lighters.append(0)
+	while used_lighters.size() < 3:
+		used_lighters.append(0)
 
 
 func _on_vertex_collected(quantity: float):

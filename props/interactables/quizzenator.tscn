@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://props/interactables/quizzenator.png" type="Texture" id=1]
 [ext_resource path="res://props/interactables/quizzenator.gd" type="Script" id=2]
 [ext_resource path="res://props/interactables/interactable.gd" type="Script" id=3]
 [ext_resource path="res://pieces/vendor_piece.tscn" type="PackedScene" id=4]
 [ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/vendor/wares/anvil.tres" type="Resource" id=6]
+[ext_resource path="res://ui/vendor/wares/lighter_fanciful.tres" type="Resource" id=7]
+[ext_resource path="res://ui/vendor/wares/combhat.tres" type="Resource" id=8]
+[ext_resource path="res://ui/vendor/quizzenator.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 32 )
@@ -73,6 +77,8 @@ verb = "Get quizzed"
 
 [node name="vendor_piece" parent="." instance=ExtResource( 4 )]
 active = false
+image = ExtResource( 9 )
+wares = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ]
 
 [node name="shift_detector" parent="." instance=ExtResource( 5 )]
 
