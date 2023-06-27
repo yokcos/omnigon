@@ -10,6 +10,7 @@ enum {
 	LIGHTER_PLAIN,
 	LIGHTER_SOPHISTICATED,
 	LIGHTER_FANCIFUL,
+	LIGHTER_IMAGINARY,
 }
 
 var save_id: int = 0
@@ -22,8 +23,8 @@ var velocity: Vector2 = Vector2()
 var eyes: int = EYES_BASIC setget set_eyes
 var check_pos: Vector2 = Vector2()
 var extra_data: Array = []
-var lighters: Array = [0, 0, 0]
-var used_lighters: Array = [0, 0, 0]
+var lighters: Array = [0, 0, 0, 0]
+var used_lighters: Array = [0, 0, 0, 0]
 var main_music: String = "ingress"
 var time: float = 0
 var flipped: bool = false
@@ -291,9 +292,9 @@ func uncompress_data(data: Dictionary):
 	if data.has("secrets"):
 		secrets = data["secrets"]
 	
-	while lighters.size() < 3:
+	while lighters.size() < 4:
 		lighters.append(0)
-	while used_lighters.size() < 3:
+	while used_lighters.size() < 4:
 		used_lighters.append(0)
 
 

@@ -84,4 +84,4 @@ margin_right = 240.0
 margin_bottom = 206.0
 text = "Third Boss"
 destination = Vector2( -4022, 2105 )
-requirement = Vector2( -7, 5 )
+requirement = Vector2( -7, 4 )

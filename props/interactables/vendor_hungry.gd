@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 				$proceed_timer.start()
 				pulling = false
 				target.hide()
+				GlobalSound.play_random_sfx(GlobalSound.sfx_nom)
 	else:
 		identify_target()
 
@@ -32,6 +33,7 @@ func eat():
 func tongueify():
 	$tongue.show()
 	pulling = true
+	GlobalSound.play_random_sfx(GlobalSound.sfx_bleh)
 
 func untongueify():
 	$tongue.hide()

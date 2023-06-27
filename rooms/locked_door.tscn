@@ -11,7 +11,7 @@
 
 [node name="locked_door" type="Node2D"]
 script = ExtResource( 2 )
-title = "Firearm"
+title = "Locked Door"
 room_size = Vector2( 2, 1 )
 temp_music = "moneybagshalls"
 map_image = ExtResource( 4 )
