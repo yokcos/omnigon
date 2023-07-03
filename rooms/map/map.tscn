@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -100,6 +100,8 @@
 [ext_resource path="res://rooms/deathbutton_super.tscn" type="PackedScene" id=98]
 [ext_resource path="res://rooms/factory.tscn" type="PackedScene" id=99]
 [ext_resource path="res://rooms/platformer.tscn" type="PackedScene" id=100]
+[ext_resource path="res://rooms/longitudification.tscn" type="PackedScene" id=101]
+[ext_resource path="res://rooms/elevation.tscn" type="PackedScene" id=102]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -399,3 +401,9 @@ position = Vector2( -7168, 1792 )
 
 [node name="platformer" parent="." instance=ExtResource( 100 )]
 position = Vector2( -7168, 1280 )
+
+[node name="longitudification" parent="." instance=ExtResource( 101 )]
+position = Vector2( -6144, 1024 )
+
+[node name="elevation" parent="." instance=ExtResource( 102 )]
+position = Vector2( -6656, 768 )

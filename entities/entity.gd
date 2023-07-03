@@ -24,6 +24,7 @@ var age: float = 0
 var pre_freeze_velocity: Vector2 = Vector2()
 var timefreeze: float = 0
 var timefreeze_fx = null
+var prev_position: Vector2 = Vector2()
 
 
 export (bool) var can_flip_by_default = true
@@ -51,6 +52,7 @@ const fx_clock = preload("res://fx/clock.tscn")
 
 func _ready() -> void:
 	spawn_position = global_position
+	prev_position = global_position
 	add_to_group("entities")
 	set_flip(flipped)
 
@@ -75,6 +77,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if timefreeze <= 0:
+		prev_position = global_position
 		velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, PI/4, false)
 		
 		call_deferred("bounce_against_mattress")
@@ -113,6 +116,9 @@ func _physics_process(delta: float) -> void:
 			if is_instance_valid(timefreeze_fx):
 				timefreeze_fx.queue_free()
 				timefreeze_fx = null
+
+func get_actual_velocity():
+	return global_position - prev_position
 
 func collide_against(hit: KinematicCollision2D):
 	pass

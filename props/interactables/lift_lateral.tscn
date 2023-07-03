@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://props/interactables/button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/lift_bac.png" type="Texture" id=2]
 [ext_resource path="res://props/lift_fore.png" type="Texture" id=3]
 [ext_resource path="res://props/interactables/lift_lateral.gd" type="Script" id=4]
 [ext_resource path="res://pieces/wall_changer.tscn" type="PackedScene" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 48, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 48 )
@@ -115,6 +112,9 @@ tracks/3/keys = {
 }
 
 [node name="lift_lateral" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion/sync_to_physics = true
 script = ExtResource( 4 )
 
 [node name="bac" type="Sprite" parent="."]
@@ -125,9 +125,9 @@ texture = ExtResource( 2 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 3 )
 
-[node name="base" type="CollisionShape2D" parent="."]
+[node name="base" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 8 )
-shape = SubResource( 1 )
+polygon = PoolVector2Array( -40, 8, -40, -8, -32, -9, 32, -9, 40, -8, 40, 8 )
 
 [node name="roof" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -104 )
@@ -140,7 +140,7 @@ disabled = true
 
 [node name="wall_changer0" parent="." instance=ExtResource( 5 )]
 position = Vector2( -64, -48 )
-size = Vector2( 2, 8 )
+size = Vector2( 2, 6 )
 
 [node name="wall1" type="CollisionShape2D" parent="."]
 position = Vector2( 80, -48 )
@@ -149,7 +149,7 @@ disabled = true
 
 [node name="wall_changer1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 64, -48 )
-size = Vector2( 2, 8 )
+size = Vector2( 2, 6 )
 
 [node name="button" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, -16 )

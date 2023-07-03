@@ -51,6 +51,8 @@ func transition(player: Entity):
 	var global_pos: Vector2 = player.global_position + Rooms.current_room*Rooms.room_size
 	var target_subroom: Vector2 = Rooms.get_subroom_at(global_pos)
 	var target_room: Vector2 = Rooms.get_room_at(global_pos)
+	#print("Going from room %s to room %s" % [Rooms.current_room, target_room])
+	#print("Velocity is %s; actual velocity is %s" % [player.velocity, player.get_actual_velocity()])
 	
 	# If we're transitioning to a room other than this one
 	if target_room != Rooms.current_room:
@@ -65,7 +67,7 @@ func transition(player: Entity):
 		# Figure out the subroom we're moving from
 		while (current_in_this_room or !from_this_room) and player.velocity.length() > 1:
 			# Multiplying by 5 to lose some accuracy but gain speed
-			prev_pos -= 5 * player.velocity.normalized()
+			prev_pos -= 5 * player.get_actual_velocity().normalized()
 			current_subroom = Rooms.get_subroom_at(prev_pos)
 			current_room = Rooms.get_room_at(prev_pos)
 			i -= 1

@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		if longitude_change < 0:
 			$wall_changer0.activate()
 		if longitude_change > 0:
-			$wall_changer0.activate()
+			$wall_changer1.activate()
 		
 		move(delta)
 		var step = delta*speed
@@ -33,8 +33,7 @@ func _process(delta: float) -> void:
 			deactivate()
 
 func _physics_process(delta: float) -> void:
-	var relative = target_position - global_position
-	move_and_collide(relative)
+	global_position = global_position.linear_interpolate(target_position, delta*10)
 
 
 func move(delta: float):
