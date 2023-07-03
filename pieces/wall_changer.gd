@@ -17,7 +17,7 @@ var time_till_change: float = delay
 
 
 func _ready() -> void:
-	if has_node(target_tiles):
+	if target_tiles and has_node(target_tiles):
 		var these_tiles = get_node(target_tiles)
 		if these_tiles is TileMap:
 			tiles = get_node(target_tiles)
@@ -47,8 +47,9 @@ func activate():
 
 func change_tiles():
 	if tiles:
-		var start_pos = (global_position - tiles.global_position) / tile_size
+		var start_pos: Vector2 = (global_position - tiles.global_position) / tile_size
 		start_pos -= size/2
+		start_pos = start_pos.round()
 		
 		for x in range(size.x):
 			for y in range(size.y):

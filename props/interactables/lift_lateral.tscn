@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://props/interactables/button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/lift_bac.png" type="Texture" id=2]
+[ext_resource path="res://props/lift_fore.png" type="Texture" id=3]
+[ext_resource path="res://props/interactables/lift_lateral.gd" type="Script" id=4]
+[ext_resource path="res://pieces/wall_changer.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 48 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("wall0:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("wall1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("wall0:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -80, -48 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("wall1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 80, -48 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/path = NodePath("wall0:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("wall1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("wall0:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -80, -48 ), Vector2( -64, -48 ), Vector2( -40, -48 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("wall1:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 80, -48 ), Vector2( 64, -48 ), Vector2( 40, -48 ) ]
+}
+
+[node name="lift_lateral" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="bac" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+texture = ExtResource( 2 )
+
+[node name="fore" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+texture = ExtResource( 3 )
+
+[node name="base" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="roof" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -104 )
+polygon = PoolVector2Array( 0, -8, 32, 8, -32, 8 )
+
+[node name="wall0" type="CollisionShape2D" parent="."]
+position = Vector2( -80, -48 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="wall_changer0" parent="." instance=ExtResource( 5 )]
+position = Vector2( -64, -48 )
+size = Vector2( 2, 8 )
+
+[node name="wall1" type="CollisionShape2D" parent="."]
+position = Vector2( 80, -48 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="wall_changer1" parent="." instance=ExtResource( 5 )]
+position = Vector2( 64, -48 )
+size = Vector2( 2, 8 )
+
+[node name="button" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+description_button = "Button that moves the lift"
+description_plunger = "Plunger that moves the lift"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/activate = SubResource( 4 )
+
+[connection signal="activated" from="button" to="." method="_on_button_activated"]

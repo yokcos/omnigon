@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -96,6 +96,10 @@
 [ext_resource path="res://rooms/locked_door.tscn" type="PackedScene" id=94]
 [ext_resource path="res://rooms/lord.tscn" type="PackedScene" id=95]
 [ext_resource path="res://rooms/interior.tscn" type="PackedScene" id=96]
+[ext_resource path="res://rooms/intrusive_thoughts.tscn" type="PackedScene" id=97]
+[ext_resource path="res://rooms/deathbutton_super.tscn" type="PackedScene" id=98]
+[ext_resource path="res://rooms/factory.tscn" type="PackedScene" id=99]
+[ext_resource path="res://rooms/platformer.tscn" type="PackedScene" id=100]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -383,3 +387,15 @@ position = Vector2( -4608, 1536 )
 
 [node name="interior" parent="." instance=ExtResource( 96 )]
 position = Vector2( -12288, -2048 )
+
+[node name="intrusive_thoughts" parent="." instance=ExtResource( 97 )]
+position = Vector2( -6144, 1536 )
+
+[node name="deathbutton_super" parent="." instance=ExtResource( 98 )]
+position = Vector2( -6656, 1536 )
+
+[node name="factory" parent="." instance=ExtResource( 99 )]
+position = Vector2( -7168, 1792 )
+
+[node name="platformer" parent="." instance=ExtResource( 100 )]
+position = Vector2( -7168, 1280 )

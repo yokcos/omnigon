@@ -62,10 +62,12 @@ texture = ExtResource( 3 )
 hframes = 8
 
 [node name="interactable" type="Node2D" parent="."]
+position = Vector2( 0, 32 )
 script = ExtResource( 2 )
 highlight_distance = 64.0
 description = "Imaginary Barricade"
 verb = "Ignite"
+thru_walls = true
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
