@@ -3,7 +3,7 @@
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
 [ext_resource path="res://entities/enemies/moneybags.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/map/images/pristinity.png" type="Texture" id=4]
+[ext_resource path="res://ui/map/images/lord.png" type="Texture" id=4]
 [ext_resource path="res://props/mb_spectator.tscn" type="PackedScene" id=5]
 
 [node name="lord" type="Node2D"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/interactables/button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://rooms/room.gd" type="Script" id=3]
 [ext_resource path="res://pieces/save_destroyer.gd" type="Script" id=4]
+[ext_resource path="res://ui/map/images/deathbutton_super.png" type="Texture" id=5]
 [ext_resource path="res://props/spikewall.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=232]
@@ -53,6 +54,7 @@ tracks/3/keys = {
 [node name="deathbutton_super" type="Node2D"]
 script = ExtResource( 3 )
 title = "Final Test"
+map_image = ExtResource( 5 )
 background_colour = Color( 0.960784, 0.627451, 0.592157, 1 )
 
 [node name="tilemap" parent="." instance=ExtResource( 1 )]
