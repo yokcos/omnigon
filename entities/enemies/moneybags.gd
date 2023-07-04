@@ -54,11 +54,12 @@ func random_attack():
 	if hp > max_hp/2:
 		these_attacks.append("jump_pre")
 	
-	var index: int = randi() % these_attacks.size()
-	var this_attack: String = these_attacks[index]
-	$fsm/idle.set_state(this_attack)
+	these_attacks.shuffle()
+	$fsm/idle.set_state(these_attacks.pop_front())
 	
-	$fsm/idle_b.set_state("attacc_b0")
+	var attacks_b = ["attacc_b0", "attacc_b1"]
+	attacks_b.shuffle()
+	$fsm/idle_b.set_state(attacks_b.pop_front())
 	
 	$fsm/idle_u.set_state("attacc_u0_pre")
 
@@ -130,6 +131,9 @@ func _on_attacc_b0_activated() -> void:
 		var dir = (player.global_position - $flippable/barrel.global_position).normalized()
 		new_boomerang.velocity = dir * bspeed
 
+func _on_attacc_b1_activated() -> void:
+	$flippable/spin_hurtbox.pulse()
+
 func _on_attacc_u0_pre_entered() -> void:
 	face_player()
 
@@ -148,6 +152,7 @@ func _on_jump_pre_exited() -> void:
 func _on_boomerang_returned():
 	has_boomerang = true
 	$fsm/idle_u.set_state("idle_b")
+
 
 
 

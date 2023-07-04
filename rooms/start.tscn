@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://rooms/room.gd" type="Script" id=1]
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/block.tscn" type="PackedScene" id=3]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=4]
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/statue0000.png" type="Texture" id=6]
 [ext_resource path="res://ui/map/images/start.png" type="Texture" id=7]
+[ext_resource path="res://pieces/controls_label.gd" type="Script" id=8]
 
 [node name="start" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,3 +30,14 @@ position = Vector2( 344, 208 )
 
 [node name="block1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 48, 112 )
+
+[node name="aid" type="Label" parent="."]
+margin_left = 136.0
+margin_top = 32.0
+margin_right = 312.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.25098, 0.2, 0.32549, 1 )
+custom_fonts/font = ExtResource( 4 )
+autowrap = true
+script = ExtResource( 8 )
+base_text = "You can press {test} in order to skip around to various parts of this demo-version"
