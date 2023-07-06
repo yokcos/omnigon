@@ -14,6 +14,11 @@ export (float) var max_hp = 3
 var hp: float = -1 setget set_hp
 var poisoned: bool = false setget set_poisoned
 
+var must_breathe: bool = false
+var max_air: float = 10 # in seconds
+var air: float = max_air
+var drown_damage_interval: float = 2
+
 var invuln: float = 0
 export (float) var invuln_duration = 0.2
 
@@ -58,6 +63,16 @@ func _process(delta: float) -> void:
 	
 	if poisoned and randf() * 1000 < 1:
 		take_damage(1)
+	
+	if submerged and must_breathe:
+		var prev_air: float = air
+		air -= delta
+		
+		if air <= -drown_damage_interval:
+			if fposmod(air, drown_damage_interval) > fposmod(prev_air, drown_damage_interval):
+				take_damage(1)
+	else:
+		air = max_air
 
 
 func get_loaded(data):

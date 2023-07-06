@@ -18,6 +18,7 @@ var is_controlled: bool = false
 var air_time: float = 0
 export (bool) var submergable = true
 var submerged: bool = false
+var float_speed: float = .5
 var spawn_position: Vector2 = Vector2()
 var extra_data: Dictionary = {}
 var age: float = 0
@@ -151,7 +152,7 @@ func frictutate(delta: float):
 
 func gravitate(delta: float):
 	var this_gravity = gravity * delta
-	if submerged: this_gravity *= -.5
+	if submerged: this_gravity *= -float_speed
 	
 	if velocity.y > 0:
 		velocity.y += this_gravity * fall_multiplier

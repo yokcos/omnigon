@@ -25,6 +25,7 @@ signal sitting_complete
 
 func _ready() -> void:
 	Game.camera = $cam
+	must_breathe = true
 	
 	is_controlled = true
 	fall_multiplier = 1
@@ -41,6 +42,7 @@ func _ready() -> void:
 	
 	resolve_extra_data()
 	apply_hat_visuals()
+	apply_hats()
 	
 	var room_size = Rooms.get_room_size(Rooms.current_room)
 	$cam.limit_right  = room_size.x * Rooms.room_size.x
@@ -269,6 +271,7 @@ func apply_hat_visuals():
 		$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size * 1.25
 
 func apply_hats():
+	float_speed = .5
 	var this_knockback = Vector2(100, -45)
 	if PlayerStats.has_hat("yeet"):
 		this_knockback *= 4
@@ -276,6 +279,7 @@ func apply_hats():
 	
 	if PlayerStats.has_hat("anvil"):
 		jump_speed = 449.99
+		float_speed = -.5
 	else:
 		jump_speed = 450
 
