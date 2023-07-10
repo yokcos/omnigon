@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://ui/boss_bar.gd" type="Script" id=2]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=3]
 
-[node name="boss_bar" type="Control"]
+[node name="boss_bar" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 96.0
@@ -11,18 +12,67 @@ margin_right = -96.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="name" type="Label" parent="."]
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_right = -8.0
+[node name="title" type="VBoxContainer" parent="."]
+use_parent_material = true
+margin_right = 77.0
+margin_bottom = 288.0
+rect_min_size = Vector2( 0, 16 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.33
+custom_constants/separation = 1
+alignment = 1
+
+[node name="nameholder" type="Control" parent="title"]
+use_parent_material = true
+margin_top = 136.0
+margin_right = 77.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="name" type="Label" parent="title/nameholder"]
+use_parent_material = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -57.0
+margin_top = -7.0
+margin_bottom = 7.0
 custom_colors/font_color = Color( 0.87451, 0.243137, 0.137255, 1 )
-text = "EYESAAC, The Looker"
-align = 2
+text = "EYESAAC"
+align = 1
+valign = 1
+
+[node name="subnameholder" type="Control" parent="title"]
+use_parent_material = true
+margin_top = 145.0
+margin_right = 77.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 6 )
+
+[node name="subname" type="Label" parent="title/subnameholder"]
+use_parent_material = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -55.0
+margin_top = -4.5
+margin_bottom = 4.5
+custom_colors/font_color = Color( 0.87451, 0.243137, 0.137255, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Whomst Beholds"
+align = 1
 valign = 1
 
 [node name="bar" type="ProgressBar" parent="."]
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-value = 50.0
+use_parent_material = true
+margin_left = 85.0
+margin_right = 320.0
+margin_bottom = 288.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
 percent_visible = false

@@ -67,6 +67,11 @@ func deploy_boss_bar(what: Being):
 	
 	lower_component.target = what
 
+func get_boss_bar() -> Control:
+	if lower_type == lower_types.BOSS_BAR:
+		return lower_component
+	return null
+
 func deploy_level_name(what: String):
 	if lower_type != lower_types.LEVEL_NAME:
 		cull_lower_component()

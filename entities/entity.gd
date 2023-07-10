@@ -46,6 +46,7 @@ export (bool) var can_be_bounced = true
 export (bool) var can_bounce = true
 
 export (String) var title = ""
+export (String) var subtitle = ""
 
 const obj_part_bounce_stars = preload("res://fx/part_bounce_stars.tscn")
 const fx_clock = preload("res://fx/clock.tscn")

@@ -236,6 +236,7 @@ script/source = "extends State
 script = ExtResource( 4 )
 flip_path = NodePath("flippable")
 title = "The Bouncer"
+subtitle = "Highjump champion"
 max_hp = 18.0
 saving_enabled = false
 boss_theme = "entrydenied"

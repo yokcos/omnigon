@@ -151,7 +151,7 @@ margin_right = 256.0
 margin_bottom = 280.0
 custom_colors/font_color = Color( 0.890196, 0.901961, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "Demo v0038a"
+text = "Demo v0039a"
 align = 1
 valign = 1
 
@@ -180,7 +180,7 @@ anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 32.0
 margin_right = 200.0
-margin_bottom = 256.0
+margin_bottom = -32.0
 alignment = 1
 
 [node name="title" type="TextureRect" parent="column"]

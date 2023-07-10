@@ -1,8 +1,28 @@
-extends Control
+extends HBoxContainer
 
 
 var target: Being = null setget set_target
+var start_hp: float = 0 setget set_start_hp
+var extra_hp: float = 0 setget set_extra_hp
 
+signal filling_changed
+
+
+func hide_text():
+	$title.hide()
+
+func show_text():
+	$title.show()
+
+func update_hp():
+	if is_instance_valid(target):
+		var displayed_hp: float = clamp(target.hp, $bar.min_value, $bar.max_value) + extra_hp
+		$bar.value = displayed_hp
+		emit_signal("filling_changed", (displayed_hp - $bar.min_value) / ($bar.max_value - $bar.min_value))
+
+
+func get_bar():
+	return $bar
 
 func set_target(what: Being):
 	if is_instance_valid(target):
@@ -11,12 +31,23 @@ func set_target(what: Being):
 	target = what
 	
 	if is_instance_valid(target):
-		$bar.max_value = what.max_hp
-		$bar.value = what.hp
-		$name.text = what.title
+		$bar.max_value = what.max_hp + start_hp
+		update_hp()
+		$title/nameholder/name.text = what.title
+		$title/subnameholder/subname.text = what.subtitle
 		
 		target.connect("hp_changed", self, "_on_hp_changed")
 
+func set_start_hp(what: float):
+	start_hp = what
+	$bar.min_value = start_hp
+	if is_instance_valid(target):
+		$bar.max_value = start_hp + target.max_hp
+
+func set_extra_hp(what: float):
+	extra_hp = what
+	update_hp()
+
 
 func _on_hp_changed(what: float):
-	$bar.value = what
+	update_hp()

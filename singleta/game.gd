@@ -163,6 +163,11 @@ func get_player() -> KinematicBody2D:
 	else:
 		return null
 
+func get_ui() -> Control:
+	if is_instance_valid(gameholder):
+		return gameholder.get_node("ui/ui") as Control
+	return null
+
 func get_closest_tooltipable() -> Node2D:
 	var player = get_player()
 	if player:
@@ -440,8 +445,9 @@ func deploy_instance_instant(what: Node2D, where: Vector2):
 		print("Game error: Attempting to instantly deploy an instance with no world")
 
 func deploy_ui_instance(what: Control, where: Vector2):
-	if is_instance_valid(gameholder):
-		gameholder.get_node("ui/ui").add_child(what)
+	var ui = get_ui()
+	if is_instance_valid(ui):
+		ui.add_child(what)
 		what.rect_position = where
 
 

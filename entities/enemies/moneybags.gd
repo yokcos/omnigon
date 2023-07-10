@@ -12,6 +12,7 @@ const obj_stoppy = preload("res://projectiles/stoppy_rocket.tscn")
 const obj_explosion = preload("res://fx/explosion.tscn")
 const obj_explosion_wave = preload("res://projectiles/explosion_wave.tscn")
 const obj_boomerang = preload("res://projectiles/boomerang.tscn")
+const obj_extra_hp = preload("res://entities/extra_hp.tscn")
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
 
 
@@ -30,6 +31,10 @@ func _process(delta: float) -> void:
 		$fsm/idle_b.target = Game.get_player()
 		$fsm/idle_u.target = Game.get_player()
 		Game.set_boss(self)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		gain_hp()
 
 
 func take_damage(dmg: float, source: Being = null):
@@ -78,6 +83,34 @@ func get_shifted():
 		has_boomerang = true
 	else:
 		$fsm.set_state_string("idle")
+
+func gain_hp():
+	var ui = Game.get_ui()
+	if !is_instance_valid(ui):
+		print("Error: Attempting to spawn extra HP with no UI")
+		return false
+	
+	var base_bar = ui.get_boss_bar()
+	if !is_instance_valid(base_bar):
+		print("Error: Attempting to spawn extra HP with no boss bar")
+		return false
+	
+	base_bar = base_bar.get_bar()
+	var all_bars = []
+	
+	for i in range(20):
+		var new_bar = obj_extra_hp.instance()
+		new_bar.base_bar = base_bar
+		new_bar.target = self
+		new_bar.pos = i
+		all_bars.append(new_bar)
+		Game.deploy_instance(new_bar, Vector2())
+		new_bar.snap_to_base()
+		
+		set_hp( max_hp * (i + 2) )
+	
+	for this_bar in all_bars:
+		this_bar.all_bars = all_bars
 
 
 func _on_attacc_timer_timeout() -> void:

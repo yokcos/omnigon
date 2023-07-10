@@ -450,6 +450,7 @@ tracks/0/keys = {
 script = ExtResource( 3 )
 flip_path = NodePath("flippable")
 title = "Lord Moneybags"
+subtitle = "Richer than Rich"
 max_hp = 30.0
 saving_enabled = false
 boss_theme = "thepriceofwar"
