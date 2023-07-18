@@ -32,6 +32,7 @@ func set_file( what: Dictionary ):
 	var seconds = fmod(time, 60)
 	var minutes = fmod( (time - seconds)/60, 60 )
 	var hours = time - minutes*60 - seconds
+	hours /= 3600
 	$list/stats0/time.text = "Time: %02d:%02d:%02d" % [hours, minutes, seconds]
 	
 	$list/stats1/rooms.text = "Rooms visited: %s" % count_rooms(what)

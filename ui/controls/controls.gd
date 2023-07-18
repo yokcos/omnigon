@@ -8,6 +8,7 @@ var items = []
 func _ready() -> void:
 	$list/up.get_children()[1].grab_focus()
 	
+	fatherify_buttons()
 	connect_buttons()
 	arrive_animation()
 	catalogue_controls()
@@ -35,6 +36,11 @@ func get_connectable(what: Control):
 		return what.get_children()[1]
 	if what is Button:
 		return what
+
+func fatherify_buttons():
+	for i in $list.get_children():
+		if i is HBoxContainer:
+			i.father = self
 
 func connect_buttons():
 	var controllses: Array = []

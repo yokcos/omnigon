@@ -12,5 +12,6 @@ large_sprite = ExtResource( 3 )
 name = "Long Hat"
 description = "Grants the incredible ability to do nothing extra, while being incredibly fashionable."
 height = 168.0
+damage = 1.0
 small_frames = 1
 large_frames = 1

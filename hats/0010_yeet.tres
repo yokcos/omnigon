@@ -12,5 +12,6 @@ large_sprite = ExtResource( 2 )
 name = "Mug of Yeet"
 description = "By the power of Yeet, any enemy you strike will be knocked back slightly more than usual!"
 height = 8.0
+damage = 1.0
 small_frames = 2
 large_frames = 4

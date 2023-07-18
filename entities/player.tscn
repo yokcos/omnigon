@@ -916,12 +916,12 @@ shape = SubResource( 104 )
 use_parent_material = true
 
 [node name="shiftbox" type="Area2D" parent="flippable"]
+position = Vector2( 24, 0 )
 collision_layer = 8
 collision_mask = 15
 
 [node name="hitbox" type="CollisionShape2D" parent="flippable/shiftbox"]
 modulate = Color( 0.768627, 0.25098, 0.713726, 1 )
-position = Vector2( 24, 0 )
 shape = SubResource( 105 )
 
 [node name="fistbox" parent="flippable" instance=ExtResource( 8 )]

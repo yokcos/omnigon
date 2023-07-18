@@ -3,6 +3,8 @@ extends HBoxContainer
 
 export var action : String = "" setget set_action
 
+var father: Control = null
+
 const obj_button = preload("res://ui/controls/control_input.tscn")
 
 

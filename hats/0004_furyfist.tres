@@ -12,5 +12,6 @@ large_sprite = ExtResource( 3 )
 name = "Fury Fist"
 description = "Gain the ability to punch faster than ever before"
 height = 8.0
+damage = 1.0
 small_frames = 1
 large_frames = 1

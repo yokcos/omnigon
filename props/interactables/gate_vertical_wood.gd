@@ -21,6 +21,7 @@ func ignite():
 	WorldSaver.save_data(spawn_position, true)
 	burning = true
 	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_gate_burn, global_position)
+	$interactable.active = false
 
 func die():
 	for i in [-1, 0, 1]:

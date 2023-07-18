@@ -12,5 +12,6 @@ large_sprite = ExtResource( 3 )
 name = "Frayed Hat of Peace"
 description = "Gives off a weak aura of peace, which prevents Blademasters from attacking you."
 height = 8.0
+damage = 1.0
 small_frames = 1
 large_frames = 1

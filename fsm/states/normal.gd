@@ -62,6 +62,8 @@ func _handle_input(event: InputEvent) -> void:
 				Game.deploy_instance(arrow, father.global_position)
 				father.velocity.y = min(father.velocity.y, 0)
 				has_ladder = false
+			elif Input.is_action_pressed("move_down"):
+				father.throw_hat()
 			else:
 				if PlayerStats.eyes == PlayerStats.EYES_SHAPESHIFTER:
 					set_state("shift")

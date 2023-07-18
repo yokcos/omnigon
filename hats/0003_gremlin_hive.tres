@@ -13,5 +13,6 @@ name = "Gremlin Hive"
 description = "A hat infested with dozens of Mattress Gremlins.
 You can feel them crawling on your scalp."
 height = 8.0
+damage = 1.0
 small_frames = 1
 large_frames = 1

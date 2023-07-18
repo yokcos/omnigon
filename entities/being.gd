@@ -10,6 +10,7 @@ export (float) var jump_speed = 300
 # Knockback is divided by this number
 export (float) var knockback_resistance = 1
 
+export (bool) var hp_overflow = false
 export (float) var max_hp = 3
 var hp: float = -1 setget set_hp
 var poisoned: bool = false setget set_poisoned
@@ -99,9 +100,12 @@ func take_knockback(knock: Vector2):
 
 func take_damage(what: float, from: Being = null) -> float:
 	# Returns the actual amount of damage dealt
+	if !hp_overflow:
+		hp = min(hp, max_hp)
+	
+	set_hp(hp - what)
+	
 	if invuln <= 0 and what > 0:
-		set_hp(hp - what)
-		
 		invuln = invuln_duration
 		if flash_material:
 			material.set_shader_param( "factor", 1 )
@@ -118,6 +122,8 @@ func take_damage(what: float, from: Being = null) -> float:
 
 func set_hp(what: float):
 	hp = what
+	if !hp_overflow:
+		hp = min(hp, max_hp)
 	
 	emit_signal("hp_changed", what)
 	

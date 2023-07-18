@@ -6,6 +6,7 @@ var position : int = 0
 var input : InputEvent = null setget set_input
 var selecting: bool = false
 var had_focus: bool = false
+var grandfather: Control = null
 
 var pan_selected = preload("res://misc/selected_panel.tres")
 var pan_unselected = preload("res://misc/unselected_panel.tres")
@@ -39,6 +40,7 @@ signal created
 func _ready() -> void:
 	connect("focus_exited", self, "_on_focus_lost")
 	connect("focus_entered", self, "_on_focus_grabbed")
+	call_deferred("grandfatherify")
 
 func _gui_input(event: InputEvent) -> void:
 	if has_focus():
@@ -67,6 +69,10 @@ func _gui_input(event: InputEvent) -> void:
 func _pressed() -> void:
 	select()
 
+
+func grandfatherify():
+	if !is_instance_valid(grandfather):
+		grandfather = get_parent().father
 
 func inject_into_action(event):
 	var inputs : Array = InputMap.get_action_list(action)

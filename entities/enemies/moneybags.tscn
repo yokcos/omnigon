@@ -451,6 +451,7 @@ script = ExtResource( 3 )
 flip_path = NodePath("flippable")
 title = "Lord Moneybags"
 subtitle = "Richer than Rich"
+hp_overflow = true
 max_hp = 30.0
 saving_enabled = false
 boss_theme = "thepriceofwar"

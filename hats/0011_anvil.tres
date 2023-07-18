@@ -1,8 +1,18 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://hats/hat.gd" type="Script" id=1]
 [ext_resource path="res://hats/0011_anvil_large.png" type="Texture" id=2]
 [ext_resource path="res://hats/0011_anvil.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "var speed: float = 50
+var gravity: float = 50
+
+func modify(what):
+	var relative_velocity: Vector2 = what.velocity - what.father.velocity
+	relative_velocity = relative_velocity.normalized() * speed
+	what.velocity = what.father.velocity + relative_velocity
+	what.acceleration = Vector2(0, gravity)"
 
 [resource]
 script = ExtResource( 1 )
@@ -12,5 +22,7 @@ large_sprite = ExtResource( 2 )
 name = "Anvil of Mass"
 description = "All hats below this one will be compressed, but the wearer will have slightly reduced jump-power."
 height = 8.0
+damage = 6.0
+throw_script = SubResource( 1 )
 small_frames = 1
 large_frames = 1

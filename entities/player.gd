@@ -7,10 +7,13 @@ var base_animation_speed: float = 1
 var jet_power: float = 0
 var current_bobber: Node2D = null
 var combhat_height: float = -1
+var total_hat_height: float = 0
+var electromonocle_scale: float = 3
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
 const obj_bobber = preload("res://entities/fishing_bobber.tscn")
 const obj_bullet_combhat = preload("res://projectiles/bullet_combhat.tscn")
+const obj_thrown_hat = preload("res://projectiles/thrown_hat.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 const scr_effect_fished = preload("res://pieces/effects/effect_air_uncontrol.gd")
@@ -31,10 +34,8 @@ func _ready() -> void:
 	fall_multiplier = 1
 	gravity = base_gravity if Input.is_action_pressed("jump") else base_gravity*gravity_multiplier
 	
-	max_hp = PlayerStats.max_hp
-	hp = PlayerStats.hp
+	update_hp()
 	velocity = PlayerStats.velocity
-	poisoned = PlayerStats.poisoned
 	set_flip(PlayerStats.flipped)
 	
 	if PlayerStats.check_pos == Vector2():
@@ -90,6 +91,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			recall_bobber()
 
 
+func update_hp():
+	max_hp = PlayerStats.max_hp
+	hp = PlayerStats.hp
+	poisoned = PlayerStats.poisoned
+
 func is_submerged():
 	var subm = .is_submerged()
 	
@@ -124,7 +130,7 @@ func shift():
 	
 	if PlayerStats.has_hat("electromonocle"):
 		base_pitch -= 0.2
-		fx.scale = Vector2(1.25, 1.25)
+		fx.scale = Vector2(electromonocle_scale, electromonocle_scale)
 	
 	new_sfx.randomise_pitch(base_pitch, base_pitch + 0.4)
 	new_sfx.relative_volume = 0.6
@@ -266,17 +272,23 @@ func apply_hat_visuals():
 	$hitbox.shape.extents.y += hitbox_height/2
 	$hitbox.position.y -= hitbox_height/2
 	
+	$flippable/shiftbox.position.x = 24
 	$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size
 	if PlayerStats.has_hat("electromonocle"):
-		$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size * 1.25
+		$flippable/shiftbox.position.x = 8 + 16 * electromonocle_scale
+		$flippable/shiftbox/hitbox.shape.extents = base_shiftbox_size * electromonocle_scale
+	
+	total_hat_height = total_height
 
 func apply_hats():
 	float_speed = .5
+	# Apply hat Yeet
 	var this_knockback = Vector2(100, -45)
 	if PlayerStats.has_hat("yeet"):
 		this_knockback *= 4
 	$flippable/fistbox.knockback = this_knockback
 	
+	# Apply hat Anvil
 	if PlayerStats.has_hat("anvil"):
 		jump_speed = 449.99
 		float_speed = -.5
@@ -353,6 +365,23 @@ func shoot_combhat():
 		var pos = $flippable/hats.global_position
 		pos -= Vector2(0, combhat_height+2).rotated(angle)
 		Game.deploy_instance(new_bullet, pos)
+
+func throw_hat():
+	var hat_count = PlayerStats.hats.size()
+	if hat_count > 0:
+		var final_hat: Hat = PlayerStats.hats[ hat_count - 1 ]
+		
+		PlayerStats.doff_hat( final_hat )
+		
+		var new_thrown_hat = obj_thrown_hat.instance()
+		new_thrown_hat.hat = final_hat
+		new_thrown_hat.velocity = Vector2(300*flip_int + velocity.x, 0)
+		new_thrown_hat.acceleration = Vector2(0, 10)
+		new_thrown_hat.father = self
+		if final_hat.throw_script:
+			var thrower = final_hat.throw_script.new()
+			thrower.modify(new_thrown_hat)
+		Game.deploy_instance(new_thrown_hat, global_position - Vector2(0, total_hat_height+8))
 
 
 func _on_attacc_activated() -> void:

@@ -146,9 +146,7 @@ func don_hat(what: Hat):
 	if can_do:
 		if !hats.has(what):
 			hats.append(what)
-			if is_instance_valid(player):
-				player.apply_hat_visuals()
-				player.apply_hats()
+			apply_hats()
 	
 	if is_instance_valid(player):
 		player.pause_mode = PAUSE_MODE_INHERIT
@@ -160,10 +158,28 @@ func doff_hat(what: Hat):
 	if hats.has(what):
 		hats.erase(what)
 	
+	apply_hats()
+
+func apply_hats():
+	var player = Game.get_player()
 	if is_instance_valid(player):
 		player.pause_mode = PAUSE_MODE_PROCESS
 		player.apply_hat_visuals()
 		player.apply_hats()
+		
+		max_hp = base_max_hp
+		
+		# Apply hat Vitality
+		if has_hat("vitality"):
+			max_hp += 1
+		
+		# Apply hat Constitution
+		if has_hat("constitution"):
+			max_hp += 2
+		
+		set_hp(hp)
+		player.update_hp()
+		
 		player.pause_mode = PAUSE_MODE_INHERIT
 
 func gain_upgrade(what: String):

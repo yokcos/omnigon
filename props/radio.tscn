@@ -98,7 +98,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("list:rect_position")
+tracks/0/path = NodePath("list/upperbar/icon:rect_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -107,10 +107,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("list/upperbar/icon:rect_scale")
+tracks/1/path = NodePath("list/lore:percent_visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -119,10 +119,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("list/lore:percent_visible")
+tracks/2/path = NodePath("list/upperbar/title:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -134,7 +134,7 @@ tracks/2/keys = {
 "values": [ 1.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("list/upperbar/title:percent_visible")
+tracks/3/path = NodePath("list:margin_top")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -143,14 +143,26 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("list:margin_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=7]
 resource_name = "arrive"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("list:rect_position")
+tracks/0/path = NodePath("list/upperbar/icon:rect_scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -159,10 +171,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -16 ), Vector2( 0, -3.2 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.82, 0.82 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("list/upperbar/icon:rect_scale")
+tracks/1/path = NodePath("list/lore:percent_visible")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -171,10 +183,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.82, 0.82 ), Vector2( 1, 1 ) ]
+"values": [ 0.0, 0.8, 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("list/lore:percent_visible")
+tracks/2/path = NodePath("list/upperbar/title:percent_visible")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -186,7 +198,7 @@ tracks/2/keys = {
 "values": [ 0.0, 0.8, 1.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("list/upperbar/title:percent_visible")
+tracks/3/path = NodePath("list:margin_top")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -195,7 +207,19 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.8, 1.0 ]
+"values": [ -16.0, -3.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("list:margin_bottom")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -16.0, -3.0, 0.0 ]
 }
 
 [node name="radio" type="Area2D"]
@@ -235,8 +259,6 @@ theme = ExtResource( 2 )
 [node name="list" type="VBoxContainer" parent="deets"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 320.0
-margin_bottom = 120.0
 
 [node name="upperbar" type="HBoxContainer" parent="deets/list"]
 margin_right = 320.0
