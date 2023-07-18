@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/being.gd"
 }, {
+"base": "PanelContainer",
+"class": "ControlsInput",
+"language": "GDScript",
+"path": "res://ui/controls/control_input.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ControlsList",
+"language": "GDScript",
+"path": "res://ui/controls/control_list.gd"
+}, {
 "base": "Being",
 "class": "Enemy",
 "language": "GDScript",
@@ -137,6 +147,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BGM": "",
 "Being": "",
+"ControlsInput": "",
+"ControlsList": "",
 "Enemy": "",
 "EnemyData": "",
 "Entity": "",

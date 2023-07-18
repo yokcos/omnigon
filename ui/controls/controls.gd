@@ -3,18 +3,19 @@ extends Control
 
 var animation_duration = 0.5
 var items = []
+onready var list = $scroller/list
 
 
 func _ready() -> void:
-	$list/up.get_children()[1].grab_focus()
+	list.get_children()[0].get_children()[1].grab_focus()
 	
 	fatherify_buttons()
 	connect_buttons()
 	arrive_animation()
 	catalogue_controls()
 	
-	for i in $list.get_children():
-		if i is HBoxContainer:
+	for i in list.get_children():
+		if i is ControlsList:
 			i.connect("list_changed", self, "_on_list_changed")
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,26 +26,26 @@ func _unhandled_input(event: InputEvent) -> void:
 func catalogue_controls():
 	items = []
 	
-	for list in $list.get_children():
-		if list is HBoxContainer:
-			for item in list.get_children():
+	for this_list in list.get_children():
+		if this_list is ControlsList:
+			for item in this_list.get_children():
 				if item is PanelContainer:
 					items.append(item)
 
 func get_connectable(what: Control):
-	if what is HBoxContainer:
+	if what is ControlsList:
 		return what.get_children()[1]
 	if what is Button:
 		return what
 
 func fatherify_buttons():
-	for i in $list.get_children():
-		if i is HBoxContainer:
+	for i in list.get_children():
+		if i is ControlsList:
 			i.father = self
 
 func connect_buttons():
 	var controllses: Array = []
-	for i in $list.get_children():
+	for i in list.get_children():
 		if i is HBoxContainer or i is Button:
 			controllses.append(i)
 	
@@ -55,7 +56,7 @@ func connect_buttons():
 		var prev_index = posmod(i-1, controllses.size())
 		var prev_control: Control = controllses[prev_index]
 		
-		if this_control is HBoxContainer:
+		if this_control is ControlsList:
 			var these_items: Array = []
 			
 			for this_item in this_control.get_children():
@@ -87,13 +88,13 @@ func arrive_animation():
 	rect_global_position = Vector2()
 	
 	$tween.interpolate_property($bac, "rect_scale", Vector2(1, 0), Vector2(1, 1), animation_duration, Tween.TRANS_EXPO, Tween.EASE_OUT)
-	$tween.interpolate_property($list, "rect_position", Vector2(512, 0), Vector2(16, 0), animation_duration, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	$tween.interpolate_property(list, "rect_position", Vector2(512, 0), Vector2(16, 0), animation_duration, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	
 	$tween.start()
 
 func depart_animation():
 	$tween.interpolate_property($bac, "rect_scale", Vector2(1, 1), Vector2(1, 0), animation_duration, Tween.TRANS_EXPO, Tween.EASE_IN)
-	$tween.interpolate_property($list, "rect_position", Vector2(16, 0), Vector2(512, 0), animation_duration, Tween.TRANS_EXPO, Tween.EASE_IN)
+	$tween.interpolate_property(list, "rect_position", Vector2(16, 0), Vector2(512, 0), animation_duration, Tween.TRANS_EXPO, Tween.EASE_IN)
 	
 	$tween.start()
 	

@@ -1,3 +1,4 @@
+class_name ControlsInput
 extends PanelContainer
 
 
@@ -7,6 +8,10 @@ var input : InputEvent = null setget set_input
 var selecting: bool = false
 var had_focus: bool = false
 var grandfather: Control = null
+var duration: float = 8
+var velocity: Vector2 = Vector2()
+var acceleration: Vector2 = Vector2(0, 200)
+var rotation_speed: float = rand_range(-400, 400)
 
 var pan_selected = preload("res://misc/selected_panel.tres")
 var pan_unselected = preload("res://misc/unselected_panel.tres")
@@ -42,14 +47,22 @@ func _ready() -> void:
 	connect("focus_entered", self, "_on_focus_grabbed")
 	call_deferred("grandfatherify")
 
+func _process(delta: float) -> void:
+	if !(get_parent() is Container):
+		velocity += acceleration * delta
+		rect_position += velocity * delta
+		rect_rotation += rotation_speed * delta
+		duration -= delta
+		if duration <= 0:
+			queue_free()
+
 func _gui_input(event: InputEvent) -> void:
 	if has_focus():
 		if selecting:
 			if event.is_action_pressed("ui_cancel"):
 				unselect()
 			elif event.is_action_pressed("ui_backspace") and input and count_inputs() > 1:
-				inject_into_action(null)
-				queue_free()
+				get_culled()
 			elif (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:
 				if input == null:
 					emit_signal("created")
@@ -87,7 +100,7 @@ func inject_into_action(event):
 		
 		for i in range(pos+1, inputs.size()):
 			InputMap.action_add_event(action, inputs[i])
-	else:
+	elif event != null:
 		InputMap.action_add_event(action, event)
 
 func unselect():
@@ -116,6 +129,38 @@ func set_icon(what: int):
 func get_text():
 	return $text.text
 
+func exclusivify_input(what: InputEvent):
+	if what and is_instance_valid(grandfather):
+		for i in grandfather.items:
+			if !i.input:
+				continue
+			if i == self:
+				continue
+			if i.input.get_class() != what.get_class():
+				continue
+			
+			if what is InputEventKey:
+				if i.input.scancode == what.scancode:
+					cull_other_input(i)
+				
+			if what is InputEventJoypadButton:
+				if i.input.button_index == what.button_index:
+					cull_other_input(i)
+
+func cull_other_input(what: PanelContainer):
+	what.get_culled()
+
+func get_culled():
+	var pos: Vector2 = rect_global_position
+	rect_pivot_offset = rect_size / 2
+	velocity = Vector2(500, -150).rotated(rand_range(-.4, .4))
+	
+	inject_into_action(null)
+	get_parent().remove_child(self)
+	
+	grandfather.add_child(self)
+	rect_global_position = pos
+
 
 func count_inputs() -> int:
 	var inputs: Array = []
@@ -126,6 +171,7 @@ func count_inputs() -> int:
 
 func set_input(what: InputEvent):
 	input = what
+	exclusivify_input(what)
 	
 	if what == null:
 		set_text("+")
