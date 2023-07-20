@@ -47,42 +47,45 @@ func connect_buttons():
 	var controllses: Array = []
 	for i in list.get_children():
 		if i is HBoxContainer or i is Button:
-			controllses.append(i)
+			var these_controls: Array = []
+			if i is Button:
+				these_controls.append(i)
+			if i is HBoxContainer:
+				for j in i.get_children():
+					if j is PanelContainer:
+						these_controls.append(j)
+			
+			if these_controls.size() > 0:
+				controllses.append(these_controls)
 	
 	for i in range(controllses.size()):
-		var this_control: Control = controllses[i]
+		var these_controls: Array = controllses[i]
+		
 		var next_index = posmod(i+1, controllses.size())
-		var next_control: Control = controllses[next_index]
+		var next_list: Array = controllses[next_index]
 		var prev_index = posmod(i-1, controllses.size())
-		var prev_control: Control = controllses[prev_index]
+		var prev_list: Array = controllses[prev_index]
 		
-		if this_control is ControlsList:
-			var these_items: Array = []
+		for j in range(these_controls.size()):
+			var this_item: Control = these_controls[j]
+			var next_item: Control = next_list[ min(j, next_list.size()-1) ]
+			var prev_item: Control = prev_list[ min(j, prev_list.size()-1) ]
+			var left_item: Control = these_controls[ posmod(j-1, these_controls.size()) ]
+			var right_item:Control = these_controls[ posmod(j+1, these_controls.size()) ]
 			
-			for this_item in this_control.get_children():
-				if this_item is PanelContainer:
-					these_items.append(this_item)
+			var next_path: NodePath = this_item.get_path_to( next_item )
+			var prev_path: NodePath = this_item.get_path_to( prev_item )
+			var left_path: NodePath = this_item.get_path_to( left_item )
+			var right_path:NodePath = this_item.get_path_to( right_item)
 			
-			for j in range( these_items.size() ):
-				var this_item: PanelContainer = these_items[j]
-				var next_item: PanelContainer = these_items[posmod(j+1, these_items.size())]
-				var prev_item: PanelContainer = these_items[posmod(j-1, these_items.size())]
-				
-				this_item.focus_neighbour_bottom = this_item.get_path_to(get_connectable(next_control))
-				this_item.focus_next = this_item.get_path_to(get_connectable(next_control))
-				
-				this_item.focus_neighbour_top = this_item.get_path_to(get_connectable(prev_control))
-				this_item.focus_previous = this_item.get_path_to(get_connectable(prev_control))
-				
-				this_item.focus_neighbour_right = this_item.get_path_to(next_item)
-				this_item.focus_neighbour_left  = this_item.get_path_to(prev_item)
-		
-		if this_control is Button:
-			this_control.focus_neighbour_bottom = this_control.get_path_to(get_connectable(next_control))
-			this_control.focus_next = this_control.get_path_to(get_connectable(next_control))
+			this_item.focus_neighbour_bottom = next_path
+			this_item.focus_next = next_path
 			
-			this_control.focus_neighbour_top = this_control.get_path_to(get_connectable(prev_control))
-			this_control.focus_previous = this_control.get_path_to(get_connectable(prev_control))
+			this_item.focus_neighbour_top = prev_path
+			this_item.focus_previous = prev_path
+			
+			this_item.focus_neighbour_left = left_path
+			this_item.focus_neighbour_right= right_path
 
 func arrive_animation():
 	rect_global_position = Vector2()
@@ -100,6 +103,9 @@ func depart_animation():
 	
 	var timer: SceneTreeTimer = get_tree().create_timer(animation_duration)
 	timer.connect("timeout", self, "_on_depart_animation_concluded")
+
+func unbind_all():
+	pass
 
 
 func _on_egress_pressed() -> void:

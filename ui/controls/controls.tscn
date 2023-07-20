@@ -36,51 +36,68 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
+[node name="presets_label" type="Label" parent="scroller/list"]
+margin_top = 85.0
+margin_right = 480.0
+margin_bottom = 99.0
+text = "Presets"
+
+[node name="presets" type="HBoxContainer" parent="scroller/list"]
+margin_top = 103.0
+margin_right = 480.0
+margin_bottom = 103.0
+alignment = 1
+
+[node name="divider0" type="HSeparator" parent="scroller/list"]
+margin_top = 107.0
+margin_right = 480.0
+margin_bottom = 111.0
+
 [node name="up" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 98.0
+margin_top = 115.0
 margin_right = 480.0
-margin_bottom = 98.0
+margin_bottom = 115.0
 action = "move_up"
 
 [node name="down" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 102.0
+margin_top = 119.0
 margin_right = 480.0
-margin_bottom = 102.0
+margin_bottom = 119.0
 action = "move_down"
 
 [node name="left" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 106.0
+margin_top = 123.0
 margin_right = 480.0
-margin_bottom = 106.0
+margin_bottom = 123.0
 action = "move_left"
 
 [node name="right" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 110.0
+margin_top = 127.0
 margin_right = 480.0
-margin_bottom = 110.0
+margin_bottom = 127.0
 focus_neighbour_bottom = NodePath("../jump")
 focus_next = NodePath("../jump")
 action = "move_right"
 
-[node name="divider" type="HSeparator" parent="scroller/list"]
-margin_top = 114.0
+[node name="divider1" type="HSeparator" parent="scroller/list"]
+margin_top = 131.0
 margin_right = 480.0
-margin_bottom = 118.0
+margin_bottom = 135.0
 
 [node name="jump" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 122.0
+margin_top = 139.0
 margin_right = 480.0
-margin_bottom = 122.0
+margin_bottom = 139.0
 focus_neighbour_top = NodePath("../right")
 focus_previous = NodePath("../right")
 action = "jump"
@@ -88,40 +105,34 @@ action = "jump"
 [node name="punch" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 126.0
+margin_top = 143.0
 margin_right = 480.0
-margin_bottom = 126.0
+margin_bottom = 143.0
 action = "attack"
 
 [node name="interact" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 130.0
+margin_top = 147.0
 margin_right = 480.0
-margin_bottom = 130.0
+margin_bottom = 147.0
 action = "interact"
 
 [node name="special" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 134.0
+margin_top = 151.0
 margin_right = 480.0
-margin_bottom = 134.0
+margin_bottom = 151.0
 action = "shift"
 
 [node name="egress" type="Button" parent="scroller/list"]
 margin_left = 217.0
-margin_top = 138.0
+margin_top = 155.0
 margin_right = 262.0
-margin_bottom = 154.0
+margin_bottom = 171.0
 size_flags_horizontal = 4
 text = "Egress"
-
-[node name="presets" type="HBoxContainer" parent="scroller/list"]
-margin_top = 158.0
-margin_right = 480.0
-margin_bottom = 158.0
-alignment = 1
 
 [node name="tween" type="Tween" parent="."]
 

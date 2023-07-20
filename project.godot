@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/controls/control_list.gd"
 }, {
+"base": "Resource",
+"class": "ControlsPreset",
+"language": "GDScript",
+"path": "res://ui/controls/presets/preset.gd"
+}, {
 "base": "Being",
 "class": "Enemy",
 "language": "GDScript",
@@ -149,6 +154,7 @@ _global_script_class_icons={
 "Being": "",
 "ControlsInput": "",
 "ControlsList": "",
+"ControlsPreset": "",
 "Enemy": "",
 "EnemyData": "",
 "Entity": "",
