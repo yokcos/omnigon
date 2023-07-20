@@ -15,12 +15,23 @@ const actions = [
 	"interact",
 	"shift",
 ]
+var duplicate_actions: Dictionary = {
+	"move_up":    ["ui_up"],
+	"move_down":  ["ui_down"],
+	"move_left":  ["ui_left"],
+	"move_right": ["ui_right"],
+	"jump":       ["ui_accept"],
+}
+var default_actions: Dictionary = {
+	"ui_accept": ["Space", "Enter"]
+}
 
 const settings_file = "user://settings.sav"
 
 
 signal volume_music_changed
 signal volume_sfx_changed
+
 
 
 func set_volume_music(what: float):
@@ -47,6 +58,28 @@ func replace_input_actions(controlses: Dictionary):
 					var event = InputEventJoypadButton.new()
 					event.button_index = this_event["index"]
 					InputMap.action_add_event(action, event)
+
+func apply_duplicate_actions():
+	for this_action in duplicate_actions:
+		for this_target in duplicate_actions[this_action]:
+			InputMap.action_erase_events(this_target)
+			for this_event in InputMap.get_action_list(this_action):
+				InputMap.action_add_event(this_target, this_event)
+
+func add_default_actions():
+	for this_action in default_actions:
+		for this_code in default_actions[this_action]:
+			if this_code is String:
+				var new_event = InputEventKey.new()
+				var sc = OS.find_scancode_from_string(this_code)
+				new_event.pressed = true
+				new_event.scancode = sc
+				InputMap.action_add_event(this_action, new_event)
+			else:
+				var new_event = InputEventJoypadButton.new()
+				new_event.pressed = true
+				new_event.button_index = this_code
+				InputMap.action_add_event(this_action, new_event)
 
 
 func compress_settings() -> Dictionary:
@@ -79,6 +112,9 @@ func uncompress_settings(data: Dictionary):
 	if data.has("curses"): curses = data["curses"]
 
 func save_settings():
+	apply_duplicate_actions()
+	add_default_actions()
+	
 	var file = File.new()
 	file.open(settings_file, File.WRITE)
 	var dict = compress_settings()
@@ -92,4 +128,7 @@ func load_settings():
 		var setts = file.get_var()
 		uncompress_settings(setts)
 		file.close()
+	
 	Game.remove_cursed_files()
+	apply_duplicate_actions()
+	add_default_actions()

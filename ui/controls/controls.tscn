@@ -26,7 +26,6 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -16.0
-follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="list" type="VBoxContainer" parent="scroller"]
@@ -42,10 +41,17 @@ margin_right = 480.0
 margin_bottom = 99.0
 text = "Presets"
 
-[node name="presets" type="HBoxContainer" parent="scroller/list"]
+[node name="presets_scroller" type="ScrollContainer" parent="scroller/list"]
 margin_top = 103.0
 margin_right = 480.0
 margin_bottom = 103.0
+follow_focus = true
+scroll_vertical_enabled = false
+
+[node name="presets" type="HBoxContainer" parent="scroller/list/presets_scroller"]
+margin_right = 480.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 1
 
 [node name="divider0" type="HSeparator" parent="scroller/list"]
@@ -110,21 +116,21 @@ margin_right = 480.0
 margin_bottom = 143.0
 action = "attack"
 
-[node name="interact" parent="scroller/list" instance=ExtResource( 1 )]
+[node name="special" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 147.0
 margin_right = 480.0
 margin_bottom = 147.0
-action = "interact"
+action = "shift"
 
-[node name="special" parent="scroller/list" instance=ExtResource( 1 )]
+[node name="interact" parent="scroller/list" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 151.0
 margin_right = 480.0
 margin_bottom = 151.0
-action = "shift"
+action = "interact"
 
 [node name="egress" type="Button" parent="scroller/list"]
 margin_left = 217.0

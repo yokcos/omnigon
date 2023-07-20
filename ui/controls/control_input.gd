@@ -40,6 +40,7 @@ const sprites_xbox = [
 
 
 signal created
+signal slain_selected
 
 
 func _ready() -> void:
@@ -62,6 +63,7 @@ func _gui_input(event: InputEvent) -> void:
 			if event.is_action_pressed("ui_cancel"):
 				unselect()
 			elif event.is_action_pressed("ui_backspace") and input and count_inputs() > 1:
+				emit_signal("slain_selected")
 				get_culled()
 			elif (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:
 				if input == null:

@@ -32,6 +32,7 @@ func add_extra_button():
 	new_button.set_text("+")
 	new_button.connect("created", self, "_on_button_created")
 	new_button.connect("tree_exited", self, "_on_button_slain")
+	new_button.connect("slain_selected", self, "_on_selected_button_slain")
 	
 	add_child(new_button)
 
@@ -60,6 +61,7 @@ func populate_list():
 			new_button.position = i
 			new_button.connect("created", self, "_on_button_created")
 			new_button.connect("tree_exited", self, "_on_button_slain")
+			new_button.connect("slain_selected", self, "_on_selected_button_slain")
 			
 			add_child(new_button)
 	
@@ -75,6 +77,11 @@ func _on_button_created():
 
 func _on_button_slain():
 	if is_inside_tree():
-		rejiggle_list()
 		emit_signal("list_changed")
-		get_children()[1].grab_focus()
+		
+		if get_child_count() > 1:
+			rejiggle_list()
+			get_children()[1].grab_focus()
+
+func _on_selected_button_slain():
+	get_children()[1].grab_focus()
