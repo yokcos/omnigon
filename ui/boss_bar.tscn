@@ -33,16 +33,14 @@ rect_min_size = Vector2( 0, 8 )
 
 [node name="name" type="Label" parent="title/nameholder"]
 use_parent_material = true
-anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -57.0
 margin_top = -7.0
 margin_bottom = 7.0
-custom_colors/font_color = Color( 0.87451, 0.243137, 0.137255, 1 )
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
 text = "EYESAAC"
-align = 1
+align = 2
 valign = 1
 
 [node name="subnameholder" type="Control" parent="title"]
@@ -54,17 +52,15 @@ rect_min_size = Vector2( 0, 6 )
 
 [node name="subname" type="Label" parent="title/subnameholder"]
 use_parent_material = true
-anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -55.0
 margin_top = -4.5
 margin_bottom = 4.5
 custom_colors/font_color = Color( 0.87451, 0.243137, 0.137255, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Whomst Beholds"
-align = 1
+align = 2
 valign = 1
 
 [node name="bar" type="ProgressBar" parent="."]

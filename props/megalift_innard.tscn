@@ -211,10 +211,6 @@ script = ExtResource( 5 )
 [node name="destroyer" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="sprite" type="Sprite" parent="."]
-use_parent_material = true
-texture = ExtResource( 3 )
-
 [node name="darkness" type="Polygon2D" parent="."]
 visible = false
 z_index = 20
@@ -222,6 +218,10 @@ color = Color( 0.25098, 0.2, 0.32549, 1 )
 invert_enable = true
 invert_border = 1000.0
 polygon = PoolVector2Array( -120, -40, 120, -40, 120, 128, -120, 128 )
+
+[node name="sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 3 )
 
 [node name="walls" type="StaticBody2D" parent="."]
 collision_layer = 4

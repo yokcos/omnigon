@@ -7,7 +7,6 @@ export (Resource) var hat = null setget set_hat
 
 
 func check_availability():
-	print("Checking")
 	return !PlayerStats.available_hats.has(hat)
 
 func get_purchased():

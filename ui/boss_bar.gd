@@ -5,6 +5,8 @@ var target: Being = null setget set_target
 var start_hp: float = 0 setget set_start_hp
 var extra_hp: float = 0 setget set_extra_hp
 
+const default_theme: Theme = preload("res://misc/theme_main.tres")
+
 signal filling_changed
 
 
@@ -19,6 +21,12 @@ func update_hp():
 		var displayed_hp: float = clamp(target.hp, $bar.min_value, $bar.max_value) + extra_hp
 		$bar.value = displayed_hp
 		emit_signal("filling_changed", (displayed_hp - $bar.min_value) / ($bar.max_value - $bar.min_value))
+
+func adjust_title_width():
+	var name_width = Game.get_label_size($title/nameholder/name).x
+	var subname_width = Game.get_label_size($title/subnameholder/subname).x
+	var min_width = max( name_width, subname_width )
+	$title.rect_min_size.x = min_width
 
 
 func get_bar():
@@ -37,6 +45,7 @@ func set_target(what: Being):
 		$title/subnameholder/subname.text = what.subtitle
 		
 		target.connect("hp_changed", self, "_on_hp_changed")
+		call_deferred("adjust_title_width")
 
 func set_start_hp(what: float):
 	start_hp = what

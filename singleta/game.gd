@@ -250,6 +250,10 @@ func replace_input_string(text: String):
 	
 	return full_text
 
+func get_label_size(label: Label) -> Vector2:
+	var font: Font = label.get_font("font")
+	return font.get_string_size(label.text)
+
 # -------- -------- -------- -------- SAVING AND LOADING -------- -------- -------- --------
 
 func rename_old_save_file():

@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 image = ExtResource( 2 )
 name = "Anvil of Mass"
-description = "All hats below this one will be compressed, but the wearer will have reduced jump-power."
+description = "All hats below this one will be compressed, but the wearer will have slightly reduced jump-power."
 cost = 75
 hat = ExtResource( 3 )

@@ -8,9 +8,12 @@
 extents = Vector2( 8, 24 )
 
 [node name="googlyspring" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource( 3 )
 flip_path = NodePath("flippable")
-title = "Googly The Invincible"
+title = "Googly"
+subtitle = "The Invincible"
 max_hp = 1e+06
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
