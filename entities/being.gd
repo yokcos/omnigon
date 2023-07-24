@@ -103,22 +103,26 @@ func take_damage(what: float, from: Being = null) -> float:
 	if !hp_overflow:
 		hp = min(hp, max_hp)
 	
-	set_hp(hp - what)
-	
 	if invuln <= 0 and what > 0:
 		invuln = invuln_duration
+		
 		if flash_material:
 			material.set_shader_param( "factor", 1 )
 		
-		if is_instance_valid(Game.world):
-			var new_part_hit = obj_part_hit.instance()
-			Game.deploy_instance(new_part_hit, global_position + centre_offset)
-		
-		emit_signal("damage_taken", what)
+		take_unconditional_damage(what, from)
 		
 		return what
 	
 	return 0.0
+
+func take_unconditional_damage(what: float, from: Being = null):
+	set_hp(hp - what)
+	
+	if is_instance_valid(Game.world):
+		var new_part_hit = obj_part_hit.instance()
+		Game.deploy_instance(new_part_hit, global_position + centre_offset)
+	
+	emit_signal("damage_taken", what)
 
 func set_hp(what: float):
 	hp = what

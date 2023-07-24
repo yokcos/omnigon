@@ -67,6 +67,14 @@ func snap_to_base():
 
 func take_damage(what: float):
 	set_extra_damage(extra_damage + what)
+	if $boss_bar.filling <= 0:
+		if is_instance_valid(target):
+			var dmg = $boss_bar.true_filling
+			if dmg > 0:
+				print("Bar dies, dealing damage %s from %s to %s" % [dmg, target.hp, target.hp - dmg])
+				target.call_deferred("take_unconditional_damage", dmg)
+		
+		get_culled()
 
 func get_culled():
 	if !egressing:
@@ -77,9 +85,6 @@ func get_culled():
 					i.pos -= 1
 		
 		all_bars.erase(self)
-		
-		if is_instance_valid(target):
-			target.call_deferred("take_damage", target.max_hp)
 		
 		egressing = true
 

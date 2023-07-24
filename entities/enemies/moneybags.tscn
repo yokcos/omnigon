@@ -453,7 +453,7 @@ flip_path = NodePath("flippable")
 title = "Lord Moneybags"
 subtitle = "Richer than Rich"
 hp_overflow = true
-max_hp = 25.0
+max_hp = 10.0
 saving_enabled = false
 boss_theme = "thepriceofwar"
 
@@ -638,7 +638,6 @@ margin_right = 57.0
 margin_bottom = -60.0
 fsm_path = NodePath("../fsm")
 
-[connection signal="state_changed" from="fsm" to="." method="_on_fsm_state_changed"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="entered" from="fsm/idle_b" to="." method="_on_idle_b_entered"]
 [connection signal="entered" from="fsm/idle_u" to="." method="_on_idle_u_entered"]

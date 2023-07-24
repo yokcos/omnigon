@@ -4,6 +4,8 @@ extends HBoxContainer
 var target: Being = null setget set_target
 var start_hp: float = 0 setget set_start_hp
 var extra_hp: float = 0 setget set_extra_hp
+var true_filling: float = 0
+var filling: float = 0
 
 const default_theme: Theme = preload("res://misc/theme_main.tres")
 
@@ -18,9 +20,12 @@ func show_text():
 
 func update_hp():
 	if is_instance_valid(target):
+		true_filling = clamp(target.hp, $bar.min_value, $bar.max_value) - $bar.min_value
+		filling = true_filling + extra_hp
+		
 		var displayed_hp: float = clamp(target.hp, $bar.min_value, $bar.max_value) + extra_hp
 		$bar.value = displayed_hp
-		emit_signal("filling_changed", (displayed_hp - $bar.min_value) / ($bar.max_value - $bar.min_value))
+		emit_signal("filling_changed", filling)
 
 func adjust_title_width():
 	var name_width = Game.get_label_size($title/nameholder/name).x

@@ -40,7 +40,6 @@ func take_damage(dmg: float, source: Being = null):
 	
 	if phase > 0:
 		print("Damage taken: %s, new HP: %s" % [dmg, hp])
-		print_stack()
 	if phase == 0 and hp <= 2:
 		advance_phase()
 	
@@ -119,7 +118,6 @@ func gain_hp():
 func advance_phase():
 	match phase:
 		0:
-			print("Advance")
 			var player = Game.get_player()
 			if is_instance_valid(player):
 				player.long_stun()
@@ -132,6 +130,10 @@ func advance_phase():
 				current_popup.max_distance = 1000000
 				current_popup.world.father = self
 				current_popup.connect("world_slain", self, "_on_popup_slain")
+			
+			var cam = Game.camera
+			if is_instance_valid(cam):
+				cam.target_pos = Vector2(0, -60)
 	
 	phase += 1
 
@@ -216,14 +218,3 @@ func _on_popup_slain():
 		player.set_state("normal")
 
 
-
-
-
-
-
-
-func _on_fsm_state_changed(old, new) -> void:
-	if is_instance_valid(old):
-		if old.name.find("anim") >= 0:
-			print("%s ==> %s" % [old.name, new.name])
-			print_stack()

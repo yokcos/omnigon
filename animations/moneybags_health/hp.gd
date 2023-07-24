@@ -14,7 +14,7 @@ func _ready() -> void:
 	speed = rand_range(600, 1000)
 	homing_time = rand_range(.1, .25)
 	velocity = Vector2(speed, 0).rotated(randf() * 2*PI)
-	var size: float = rand_range(.1, .5)
+	var size: float = rand_range(.2, 1)
 	scale = Vector2(size, size)
 	rotation = rand_range(-.1, .1)
 
