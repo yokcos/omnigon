@@ -1,0 +1,1244 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://misc/fnt_yuge.tres" type="DynamicFont" id=1]
+[ext_resource path="res://animations/animation_scene.gd" type="Script" id=2]
+[ext_resource path="res://animations/moneybags_health/bac1.png" type="Texture" id=3]
+[ext_resource path="res://animations/moneybags_health/mb1_base.png" type="Texture" id=4]
+[ext_resource path="res://animations/moneybags_health/mb1_bag.png" type="Texture" id=5]
+[ext_resource path="res://animations/moneybags_health/vendor1.png" type="Texture" id=6]
+[ext_resource path="res://animations/moneybags_health/mb1_face0.png" type="Texture" id=7]
+[ext_resource path="res://animations/moneybags_health/vendor0.png" type="Texture" id=8]
+[ext_resource path="res://animations/moneybags_health/bac0.png" type="Texture" id=9]
+[ext_resource path="res://animations/moneybags_health/mb0_hat.png" type="Texture" id=10]
+[ext_resource path="res://animations/moneybags_health/mb0_head.png" type="Texture" id=11]
+[ext_resource path="res://animations/moneybags_health/mb0_face.png" type="Texture" id=12]
+[ext_resource path="res://animations/moneybags_health/mb0_body.png" type="Texture" id=13]
+[ext_resource path="res://animations/moneybags_health/mb2_head.png" type="Texture" id=14]
+[ext_resource path="res://animations/moneybags_health/mb2_face.png" type="Texture" id=15]
+[ext_resource path="res://animations/moneybags_health/mb2_body.png" type="Texture" id=16]
+[ext_resource path="res://animations/moneybags_health/mb2_hat.png" type="Texture" id=17]
+[ext_resource path="res://animations/moneybags_health/mb1_face1.png" type="Texture" id=18]
+[ext_resource path="res://animations/moneybags_health/glow_circumferences.png" type="Texture" id=19]
+[ext_resource path="res://animations/moneybags_health/glow_rays.png" type="Texture" id=20]
+[ext_resource path="res://animations/moneybags_health/hp_dispenser.gd" type="Script" id=21]
+[ext_resource path="res://animations/moneybags_health/moneybags_health.gd" type="Script" id=22]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("moneybags0/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("moneybags0/face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("moneybags0/hat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("caption:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("moneybags0:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("moneybags0:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("bac0:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("bac0:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "play"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("moneybags0/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("moneybags0/face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("moneybags0/hat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("caption:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("moneybags0:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("moneybags0:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.15, 1.15 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("bac0:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("bac0:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/vendor0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -88, -296 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/vendor0:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/moneybags/face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 32, -28.1564 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("stuff/moneybags/bag:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/moneybags/bag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -72, 16 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("caption:percent_visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("stuff:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("stuff:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("stuff:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "play"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/vendor0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -88, -296 ), Vector2( -88, -72 ), Vector2( -88, -40 ), Vector2( -88, 120 ), Vector2( -88, 112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/vendor0:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/moneybags/face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, -28.1564 ), Vector2( 32, -19.3575 ), Vector2( 32, -17.357 ), Vector2( 32, -8.7989 ), Vector2( 32, -10.799 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("stuff/moneybags/bag:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/moneybags/bag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2, 2.1, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -14.0782, 16 ), Vector2( -56.3127, 14.0782 ), Vector2( -72, 16 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("caption:percent_visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("stuff:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4, 1.5, 2, 2.2, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 264, 448 ), Vector2( 24, -40 ), Vector2( 0, -48 ), Vector2( -8, -32 ), Vector2( -8, -32 ), Vector2( -8, -32 ), Vector2( 0, -200 ), Vector2( -8, -208 ), Vector2( -383.923, -559.768 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("stuff:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4, 1.5, 2, 2.2, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.46419, -3.1435, -3.1435 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("stuff:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4, 1.5, 2, 2.2, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3.08638, 3.08638 ), Vector2( 1.77425, 1.77425 ), Vector2( 1.59978, 1.59978 ), Vector2( 1.14396, 1.14396 ), Vector2( 1.16284, 1.16284 ), Vector2( 1.16284, 1.16284 ), Vector2( 1.74924, 1.74924 ), Vector2( 1.77325, 1.77325 ), Vector2( 5.82685, 5.82685 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/moneybags/face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/moneybags/hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/moneybags/head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("caption:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/moneybags:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("stuff:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "play"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/moneybags/face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ), Vector2( 0, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/moneybags/hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/moneybags/head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 8 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("caption:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/moneybags:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.15, 1.15 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("stuff:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/vendor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -88, 104 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/glow0:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/glow0:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("stuff/glow0:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/glow1:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("stuff/glow1:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("stuff/glow1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("stuff:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("stuff:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("stuff:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "play"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("stuff/vendor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -88, 104 ), Vector2( -88, 112 ), Vector2( -88, 48 ), Vector2( -88, 32 ), Vector2( -88, 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("stuff/glow0:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("stuff/glow0:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 1.7, 1.8, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.35, 0.35 ), Vector2( 0.4, 0.4 ), Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("stuff/glow0:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1000.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("stuff/glow1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("stuff/glow1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3, 1.7, 1.8, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.35, 0.35 ), Vector2( 0.4, 0.4 ), Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("stuff/glow1:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.3, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1000.0 ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("stuff/vendor/hp_dispenser")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("stuff:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.3, 1.8, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 374.664, -497.588 ), Vector2( 41.6293, -77.5334 ), Vector2( 0, -25.0266 ), Vector2( 0, -3.41271 ), Vector2( 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("stuff:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.3, 1.8, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 0.0, 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("stuff:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3, 1.8, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4.4265, 4.4265 ), Vector2( 1.58611, 1.58611 ), Vector2( 1.23107, 1.23107 ), Vector2( 1.03151, 1.03151 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("scene0:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("scene1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("scene2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("scene3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "play"
+length = 14.0
+step = 1.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("scene0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("scene1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("scene2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("scene3")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("scene0:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("scene1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("scene2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 7, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("scene3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 10, 14 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 13, 14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "gain_hp"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="moneybags_health" type="Node2D"]
+script = ExtResource( 22 )
+
+[node name="scene0" type="Node2D" parent="."]
+visible = false
+position = Vector2( 272, 224 )
+script = ExtResource( 2 )
+
+[node name="bac0" type="Sprite" parent="scene0"]
+texture = ExtResource( 9 )
+
+[node name="moneybags0" type="Node2D" parent="scene0"]
+
+[node name="body" type="Sprite" parent="scene0/moneybags0"]
+texture = ExtResource( 13 )
+
+[node name="head" type="Sprite" parent="scene0/moneybags0"]
+position = Vector2( 0, 8 )
+texture = ExtResource( 11 )
+
+[node name="face" type="Sprite" parent="scene0/moneybags0"]
+position = Vector2( 0, 16 )
+texture = ExtResource( 12 )
+
+[node name="hat" type="Sprite" parent="scene0/moneybags0"]
+position = Vector2( 0, 8 )
+texture = ExtResource( 10 )
+
+[node name="caption" type="Label" parent="scene0"]
+margin_left = -272.0
+margin_top = 160.0
+margin_right = 272.0
+margin_bottom = 224.0
+custom_colors/font_color = Color( 0.976471, 0.639216, 0.105882, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "\"VENDOR!\""
+align = 1
+valign = 1
+percent_visible = 0.0
+
+[node name="animator" type="AnimationPlayer" parent="scene0"]
+anims/RESET = SubResource( 1 )
+anims/play = SubResource( 2 )
+
+[node name="scene1" type="Node2D" parent="."]
+visible = false
+position = Vector2( 272, 224 )
+script = ExtResource( 2 )
+
+[node name="colourbac" type="ColorRect" parent="scene1"]
+margin_left = -272.0
+margin_top = -224.0
+margin_right = 272.0
+margin_bottom = 224.0
+color = Color( 0.729412, 0.458824, 0.415686, 1 )
+
+[node name="stuff" type="Node2D" parent="scene1"]
+
+[node name="bac" type="Sprite" parent="scene1/stuff"]
+texture = ExtResource( 3 )
+
+[node name="moneybags" type="Node2D" parent="scene1/stuff"]
+position = Vector2( 64, 112 )
+scale = Vector2( 0.568255, 0.568255 )
+
+[node name="base" type="Sprite" parent="scene1/stuff/moneybags"]
+position = Vector2( 24, -8 )
+texture = ExtResource( 4 )
+
+[node name="face" type="Sprite" parent="scene1/stuff/moneybags"]
+position = Vector2( 32, -28.1564 )
+texture = ExtResource( 7 )
+
+[node name="bag" type="Sprite" parent="scene1/stuff/moneybags"]
+visible = false
+position = Vector2( -72, 16 )
+scale = Vector2( 0.633527, 0.633527 )
+texture = ExtResource( 5 )
+
+[node name="vendor0" type="Sprite" parent="scene1/stuff"]
+position = Vector2( -88, -296 )
+scale = Vector2( 0.559086, 0.559086 )
+texture = ExtResource( 8 )
+
+[node name="caption" type="Label" parent="scene1"]
+margin_left = -272.0
+margin_top = 112.0
+margin_right = 272.0
+margin_bottom = 224.0
+custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "\"Here's a million vertices.\""
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 0.0
+
+[node name="animator" type="AnimationPlayer" parent="scene1"]
+anims/RESET = SubResource( 3 )
+anims/play = SubResource( 4 )
+
+[node name="scene2" type="Node2D" parent="."]
+visible = false
+position = Vector2( 272, 224 )
+script = ExtResource( 2 )
+
+[node name="stuff" type="Node2D" parent="scene2"]
+
+[node name="bac" type="Sprite" parent="scene2/stuff"]
+texture = ExtResource( 9 )
+
+[node name="moneybags" type="Node2D" parent="scene2/stuff"]
+
+[node name="body" type="Sprite" parent="scene2/stuff/moneybags"]
+texture = ExtResource( 16 )
+
+[node name="head" type="Sprite" parent="scene2/stuff/moneybags"]
+texture = ExtResource( 14 )
+
+[node name="hat" type="Sprite" parent="scene2/stuff/moneybags"]
+texture = ExtResource( 17 )
+
+[node name="face" type="Sprite" parent="scene2/stuff/moneybags"]
+position = Vector2( 0, -16 )
+texture = ExtResource( 15 )
+
+[node name="caption" type="Label" parent="scene2"]
+margin_left = -272.0
+margin_top = 112.0
+margin_right = 272.0
+margin_bottom = 227.0
+custom_colors/font_color = Color( 0.976471, 0.639216, 0.105882, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "\"Give me more health.\""
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 0.0
+
+[node name="animator" type="AnimationPlayer" parent="scene2"]
+anims/RESET = SubResource( 6 )
+anims/play = SubResource( 5 )
+
+[node name="scene3" type="Node2D" parent="."]
+visible = false
+position = Vector2( 272, 224 )
+script = ExtResource( 2 )
+
+[node name="stuff" type="Node2D" parent="scene3"]
+
+[node name="bac" type="Sprite" parent="scene3/stuff"]
+texture = ExtResource( 3 )
+
+[node name="glow0" type="Node2D" parent="scene3/stuff"]
+visible = false
+position = Vector2( -88, 40 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="rays" type="Sprite" parent="scene3/stuff/glow0"]
+texture = ExtResource( 20 )
+
+[node name="circumferences" type="Sprite" parent="scene3/stuff/glow0"]
+texture = ExtResource( 19 )
+
+[node name="glow1" type="Node2D" parent="scene3/stuff"]
+visible = false
+position = Vector2( -88, 40 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="rays" type="Sprite" parent="scene3/stuff/glow1"]
+texture = ExtResource( 20 )
+
+[node name="circumferences" type="Sprite" parent="scene3/stuff/glow1"]
+texture = ExtResource( 19 )
+
+[node name="moneybags" type="Node2D" parent="scene3/stuff"]
+position = Vector2( 80, 104 )
+scale = Vector2( 0.569238, 0.569238 )
+
+[node name="base" type="Sprite" parent="scene3/stuff/moneybags"]
+texture = ExtResource( 4 )
+
+[node name="face" type="Sprite" parent="scene3/stuff/moneybags"]
+texture = ExtResource( 18 )
+
+[node name="vendor" type="Sprite" parent="scene3/stuff"]
+position = Vector2( -88, 104 )
+scale = Vector2( 0.591372, 0.591372 )
+texture = ExtResource( 6 )
+
+[node name="hp_dispenser" type="Node2D" parent="scene3/stuff/vendor"]
+script = ExtResource( 21 )
+destination = Vector2( 352, 352 )
+
+[node name="animator" type="AnimationPlayer" parent="scene3"]
+anims/RESET = SubResource( 8 )
+anims/play = SubResource( 7 )
+
+[node name="area" type="ColorRect" parent="."]
+visible = false
+margin_right = 544.0
+margin_bottom = 448.0
+color = Color( 1, 0, 0, 0.121569 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "play"
+anims/RESET = SubResource( 10 )
+anims/play = SubResource( 9 )

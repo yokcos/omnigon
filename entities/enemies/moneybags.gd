@@ -5,6 +5,7 @@ var attacks = ["attacc0", "attacc1", "attacc1b", "attacc2"]
 var armed_states = ["idle", "attacc0", "attacc1", "attacc1b", "attacc2", "jump_pre", "jump"]
 var unarmed_states = ["idle_b", "idle_u", "attacc_b0", "attacc_u0_pre", "attacc_u0", "attacc_u0_post"]
 
+var phase: int = 0
 var has_boomerang: bool = true
 
 const obj_rocket = preload("res://projectiles/rocket.tscn")
@@ -14,6 +15,7 @@ const obj_explosion_wave = preload("res://projectiles/explosion_wave.tscn")
 const obj_boomerang = preload("res://projectiles/boomerang.tscn")
 const obj_extra_hp = preload("res://entities/extra_hp.tscn")
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
+const anim_health = preload("res://animations/moneybags_health/moneybags_health.tscn")
 
 
 func _ready() -> void:
@@ -32,13 +34,15 @@ func _process(delta: float) -> void:
 		$fsm/idle_u.target = Game.get_player()
 		Game.set_boss(self)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		gain_hp()
-
 
 func take_damage(dmg: float, source: Being = null):
 	var actual_dmg = .take_damage(dmg, source)
+	
+	if phase > 0:
+		print("Damage taken: %s, new HP: %s" % [dmg, hp])
+		print_stack()
+	if phase == 0 and hp <= 2:
+		advance_phase()
 	
 	return actual_dmg
 
@@ -111,6 +115,25 @@ func gain_hp():
 	
 	for this_bar in all_bars:
 		this_bar.all_bars = all_bars
+
+func advance_phase():
+	match phase:
+		0:
+			print("Advance")
+			var player = Game.get_player()
+			if is_instance_valid(player):
+				player.long_stun()
+			
+			$fsm.set_state_string("anim_health")
+			
+			var current_popup = Game.summon_popup_world(anim_health, "Witness the purchasing")
+			if is_instance_valid(current_popup):
+				current_popup.anchor = self
+				current_popup.max_distance = 1000000
+				current_popup.world.father = self
+				current_popup.connect("world_slain", self, "_on_popup_slain")
+	
+	phase += 1
 
 
 func _on_attacc_timer_timeout() -> void:
@@ -187,8 +210,20 @@ func _on_boomerang_returned():
 	$fsm/idle_u.set_state("idle_b")
 
 
+func _on_popup_slain():
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		player.set_state("normal")
 
 
 
 
 
+
+
+
+func _on_fsm_state_changed(old, new) -> void:
+	if is_instance_valid(old):
+		if old.name.find("anim") >= 0:
+			print("%s ==> %s" % [old.name, new.name])
+			print_stack()
