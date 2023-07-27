@@ -19,6 +19,7 @@ margin_right = 200.0
 margin_bottom = 46.0
 text = "HATS"
 script = ExtResource( 2 )
+base_text = "HATS"
 
 [node name="egress" type="Button" parent="buttons"]
 margin_top = 50.0
@@ -26,6 +27,8 @@ margin_right = 200.0
 margin_bottom = 70.0
 text = "EGRESS"
 script = ExtResource( 2 )
+base_text = "EGRESS"
+action = "attack"
 
 [connection signal="pressed" from="buttons/hats" to="." method="_on_hats_pressed"]
 [connection signal="pressed" from="buttons/egress" to="." method="_on_egress_pressed"]

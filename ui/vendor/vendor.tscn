@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://ui/vendor/vendor.png" type="Texture" id=2]
 [ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/keyable_button.gd" type="Script" id=4]
 [ext_resource path="res://ui/vendor/vendor.gd" type="Script" id=5]
 [ext_resource path="res://ui/vendor/wares/rapiers.tres" type="Resource" id=6]
 [ext_resource path="res://ui/vendor/wares/moneybag.tres" type="Resource" id=7]
@@ -303,12 +304,17 @@ margin_left = 183.0
 margin_right = 244.0
 margin_bottom = 16.0
 text = "Purchase"
+script = ExtResource( 4 )
+base_text = "Purchase"
 
 [node name="egress" type="Button" parent="all/buttons"]
 margin_left = 252.0
 margin_right = 297.0
 margin_bottom = 16.0
 text = "Egress"
+script = ExtResource( 4 )
+base_text = "Egress"
+action = "attack"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "arrive"

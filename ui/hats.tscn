@@ -208,6 +208,8 @@ margin_right = 96.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 96, 0 )
 text = "DON"
+script = ExtResource( 1 )
+base_text = "DON"
 
 [node name="doff" type="Button" parent="underthings/buttons"]
 margin_top = 44.0
@@ -215,6 +217,8 @@ margin_right = 96.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 96, 0 )
 text = "DOFF"
+script = ExtResource( 1 )
+base_text = "DOFF"
 
 [node name="egress" type="Button" parent="underthings/buttons"]
 margin_top = 64.0
@@ -223,6 +227,8 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 96, 0 )
 text = "EGRESS"
 script = ExtResource( 1 )
+base_text = "EGRESS"
+action = "attack"
 
 [node name="too_large" type="Label" parent="."]
 visible = false

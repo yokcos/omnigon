@@ -15,10 +15,6 @@ func _ready() -> void:
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 
-func _gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		purchase()
-
 
 func purchase():
 	if ware.get_purchased():

@@ -48,14 +48,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		select_slot(selected_slot + 1)
 	
 	if active:
-		if event.is_action_pressed("jump"):
+		if event.is_action_pressed("jump") and false:
 			if get_button("don").has_focus() or get_button("doff").has_focus():
-				toggle_hat()
+				call_deferred("toggle_hat")
 			if get_button("egress").has_focus():
 				egress()
-		
-		if event.is_action_pressed("attack"):
-			egress()
 
 
 func clear_preview():
@@ -181,7 +178,7 @@ func _on_don_pressed() -> void:
 		$animator.play("warn")
 	
 	apply_preview()
-	update_buttons()
+	call_deferred("update_buttons")
 
 func _on_doff_pressed() -> void:
 	var this_hat = get_selected_hat()
@@ -189,7 +186,7 @@ func _on_doff_pressed() -> void:
 	PlayerStats.doff_hat(this_hat)
 	
 	apply_preview()
-	update_buttons()
+	call_deferred("update_buttons")
 
 func _on_egress_pressed() -> void:
 	egress()

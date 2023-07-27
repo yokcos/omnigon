@@ -16,13 +16,14 @@ func _ready() -> void:
 	deploy_wares()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("attack"):
+	if event.is_action_pressed("ui_cancel"):
 		depart()
 
 
 func clear_wares():
 	for i in ware_list.get_children():
 		i.queue_free()
+		ware_list.remove_child(i)
 	last_selected_ware = -1
 
 func deploy_wares(selection: int = 0):

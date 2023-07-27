@@ -12,10 +12,6 @@ func _ready() -> void:
 	seize_focus()
 	connect_list()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and active:
-		egress()
-
 
 func connect_list():
 	var buttons = $buttons.get_children()
@@ -44,11 +40,7 @@ func disable_buttons():
 	for i in $buttons.get_children():
 		i.disabled = true
 
-func egress():
-	emit_signal("quit")
-
-
-func _on_hats_pressed() -> void:
+func summon_hat_menu():
 	var new_hats = obj_hats.instance()
 	new_hats.connect("quit", self, "_on_overlayer_quit")
 	new_hats.pause_mode = PAUSE_MODE_PROCESS
@@ -57,8 +49,17 @@ func _on_hats_pressed() -> void:
 	get_parent().hide()
 	active = false
 
+func egress():
+	emit_signal("quit")
+
+
+func _on_hats_pressed() -> void:
+	if active:
+		call_deferred("summon_hat_menu")
+
 func _on_egress_pressed() -> void:
-	egress()
+	if active:
+		egress()
 
 func _on_overlayer_quit():
 	get_parent().show()
