@@ -12,6 +12,7 @@ var friction: float = 10
 var animation_duration: float = .5
 
 const scr_map_image = preload("res://ui/map/map_image.gd")
+const scr_art_image = preload("res://ui/map/art_image.gd")
 const tex_icon = preload("res://ui/map/map_icon.png")
 
 
@@ -21,6 +22,7 @@ signal slain
 func _ready() -> void:
 	arrive_animation()
 	deploy_images()
+	deploy_art_images()
 	deploy_player_icon()
 	apply_scale()
 	$stuff/egress.grab_focus()
@@ -108,6 +110,24 @@ func deploy_images():
 					borders.end.y = i.y
 				
 				borders.end += Vector2(1, 1)
+
+func deploy_art_images():
+	var objects: Dictionary = Rooms.objects
+	if objects.has("artistic_creations"):
+		var arts = objects["artistic_creations"]
+		for this_art in arts:
+			var this_room = this_art["room"]
+			var visits = WorldSaver.load_data_at(this_room, "visits")
+			if visits > 0:
+				var new_rect = Control.new()
+				new_rect.set_script(scr_art_image)
+				$stuff/image_holder/images.add_child(new_rect)
+				new_rect.set_texture(this_art["texture"])
+				new_rect.set_process(true)
+				new_rect.actual_position = this_art["position"] * (image_size / Rooms.room_size)
+				new_rect.rect_size = Vector2()
+				new_rect.actual_position -= new_rect.rect_size/2 + image_size/2
+				new_rect.holder = $stuff/image_holder
 
 func deploy_player_icon():
 	var player = Game.get_player()

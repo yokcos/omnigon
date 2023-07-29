@@ -1,3 +1,4 @@
+class_name PipeInteractable
 extends Interactable
 
 

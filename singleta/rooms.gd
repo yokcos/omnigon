@@ -32,6 +32,7 @@ var rooms: Dictionary = {
 	Vector2(-6, 1): Vector2(-6,-1),
 }
 var room_data: Dictionary = {}
+var objects: Dictionary = {}
 
 var map: Resource = null
 const room_size = Vector2(512, 256)
@@ -80,7 +81,45 @@ func load_rooms():
 			var new_room = rooms[i].instance()
 			room_data[i]["title"] = new_room.title
 			room_data[i]["image"] = new_room.map_image
+			
+			var room_descendents: Array = Game.get_all_descendents(new_room)
+			for this_thing in room_descendents:
+				log_object(i, new_room, this_thing)
+					
 			new_room.queue_free()
+
+func log_object(room_pos: Vector2, room_node: Node, what: Node):
+	if what is ArtisticCreation:
+		var this_ancestor = what
+		var artwork_position = Vector2()
+		
+		while this_ancestor != room_node and is_instance_valid(this_ancestor):
+			artwork_position += this_ancestor.position
+			this_ancestor = this_ancestor.get_parent()
+		
+		var tex: Texture = null
+		var art_descendents: Array = Game.get_all_descendents(what)
+		for potential_sprite in art_descendents:
+			if potential_sprite is Sprite:
+				tex = potential_sprite.texture
+		
+		artwork_position += room_pos * room_size
+		
+		if !objects.has("artistic_creations"):
+			objects["artistic_creations"] = []
+		objects["artistic_creations"].append( {
+			"position": artwork_position,
+			"texture": tex,
+			"room": room_pos,
+		} )
+	
+	if what is PipeInteractable:
+		var this_ancestor = what
+		var pipe_position = Vector2()
+		
+		while this_ancestor != room_node and is_instance_valid(this_ancestor):
+			pipe_position += this_ancestor.position
+			this_ancestor = this_ancestor.get_parent()
 
 func apply_fresh_map():
 	var fresh_path: String = "res://rooms/map/fresh_map.tres"

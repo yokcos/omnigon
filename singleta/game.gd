@@ -353,7 +353,7 @@ func unpause():
 func achieve_achievement(what: String):
 	pass
 
-func get_all_descendents(what: Node):
+func get_all_descendents(what: Node) -> Array:
 	var output: Array = [what]
 	
 	for i in what.get_children():

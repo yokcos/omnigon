@@ -12,8 +12,8 @@ script = ExtResource( 2 )
 description = "Workstation"
 verb = "Snoop"
 titles = PoolStringArray( "sayeth Lord Moneybags", "sayeth Lord Moneybags", "sayeth Lord Moneybags" )
-texts = [ "What are you doing Grobfund? There's an intruder and you haven't murdered it yet! Like all the rest, you're a pathetic excuse for a so-called blade 'master' who couldn't slay a slug!", "Hold on, you're not Grodfend. Where's Grobfond, the toilet? I didn't give it permission to use the toilet! And who are you, the intruder?", "Here to steal our secrets eh? Well good luck, the place is crawling with Masters of the Blade on my payroll, and many other classes of loyal employees! You'll be stealing no secrets from me nor my Emperor!" ]
-egresses = PoolStringArray( "Proceed", "Proceed", "Finish snooping" )
+texts = [ "What are you doing Grobfund? There's an intruder and you haven't murdered it yet! Like all the rest, you're a pathetic excuse for a so-called blade 'master' who couldn't slay a slug!", "Hold on, you're not Grodfend. Where's Grobfond, the toilet? I didn't give it permission to use the toilet! And who are you, Doctor Fakename or something?", "I know where you work, Fakename, and you do not work in this part of the facility! Get back to the work you're supposed to do or your head will be blown up and the walls painted with your blood!" ]
+egresses = PoolStringArray( "Proceed", "Proceed", "Do not reply" )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
