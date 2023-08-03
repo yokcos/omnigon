@@ -22,7 +22,9 @@ signal slain
 func _ready() -> void:
 	arrive_animation()
 	deploy_images()
-	deploy_art_images()
+	deploy_type_images("artistic_creations", true)
+	if PlayerStats.has_hat("moneybag"):
+		deploy_type_images("pipes", false)
 	deploy_player_icon()
 	apply_scale()
 	$stuff/egress.grab_focus()
@@ -111,16 +113,17 @@ func deploy_images():
 				
 				borders.end += Vector2(1, 1)
 
-func deploy_art_images():
+func deploy_type_images(type: String, edgebound: bool = true):
 	var objects: Dictionary = Rooms.objects
-	if objects.has("artistic_creations"):
-		var arts = objects["artistic_creations"]
+	if objects.has(type):
+		var arts = objects[type]
 		for this_art in arts:
 			var this_room = this_art["room"]
 			var visits = WorldSaver.load_data_at(this_room, "visits")
 			if visits > 0:
 				var new_rect = Control.new()
 				new_rect.set_script(scr_art_image)
+				new_rect.edgebound = edgebound
 				$stuff/image_holder/images.add_child(new_rect)
 				new_rect.set_texture(this_art["texture"])
 				new_rect.set_process(true)

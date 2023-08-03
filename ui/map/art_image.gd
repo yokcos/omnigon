@@ -8,17 +8,23 @@ var holder: Control = null
 var indicant_line: Line2D = null
 var image: TextureRect = null
 var base_image_scale: Vector2 = Vector2(1, 1)
+var target_size: Vector2 = Vector2(48, 48)
+var edgebound: bool = true
 
 
 func _ready():
-	deploy_indicant_line()
+	if edgebound:
+		deploy_indicant_line()
 
 func _process(delta: float) -> void:
 	age += delta
 	
 	transform_image()
-	go_to_edge()
-	update_indicant_line()
+	if edgebound:
+		go_to_edge()
+		update_indicant_line()
+	else:
+		rect_position = actual_position
 
 
 func transform_image():
@@ -56,7 +62,6 @@ func go_to_edge():
 			hide()
 
 func set_texture(what: Texture):
-	var target_size: Vector2 = Vector2(32, 32)
 	var new_image = TextureRect.new()
 	add_child(new_image)
 	new_image.set_process(true)

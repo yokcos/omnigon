@@ -33,6 +33,11 @@ var rooms: Dictionary = {
 }
 var room_data: Dictionary = {}
 var objects: Dictionary = {}
+var pipe_images = {
+	"res://props/interactables/pipe_vertices.gd": preload("res://ui/map/map_pipe_vertices.png"),
+	"res://props/interactables/pipe_hat.gd": preload("res://ui/map/map_pipe_hat.png"),
+	"res://props/interactables/pipe_lighter.gd": preload("res://ui/map/map_pipe_lighter.png"),
+}
 
 var map: Resource = null
 const room_size = Vector2(512, 256)
@@ -120,6 +125,19 @@ func log_object(room_pos: Vector2, room_node: Node, what: Node):
 		while this_ancestor != room_node and is_instance_valid(this_ancestor):
 			pipe_position += this_ancestor.position
 			this_ancestor = this_ancestor.get_parent()
+		var this_texture = null
+		var this_script = what.get_script().get_path()
+		if pipe_images.has(this_script):
+			this_texture = pipe_images[this_script]
+		
+		pipe_position += room_pos * room_size
+		if !objects.has("pipes"):
+			objects["pipes"] = []
+		objects["pipes"].append({
+			"position": pipe_position,
+			"texture": this_texture,
+			"room": room_pos,
+		})
 
 func apply_fresh_map():
 	var fresh_path: String = "res://rooms/map/fresh_map.tres"
