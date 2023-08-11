@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://pieces/wall_changer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://pieces/room_flag_setter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/map/images/ledge.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -328,6 +329,9 @@ position = Vector2( 32, 0 )
 size = Vector2( 6, 4 )
 target_tiles = NodePath("../../../tilemap")
 
+[node name="room_flag_setter" parent="openersR/opener22" instance=ExtResource( 6 )]
+room = Vector2( -13, 2 )
+
 [connection signal="activated" from="openersR/opener0/entity_detector" to="openersR/opener0/wall_changer" method="activate"]
 [connection signal="activated" from="openersR/opener1/entity_detector" to="openersR/opener1/wall_changer" method="activate"]
 [connection signal="activated" from="openersR/opener2/entity_detector" to="openersR/opener2/wall_changer" method="activate"]
@@ -351,3 +355,4 @@ target_tiles = NodePath("../../../tilemap")
 [connection signal="activated" from="openersR/opener20/entity_detector" to="openersR/opener20/wall_changer" method="activate"]
 [connection signal="activated" from="openersR/opener21/entity_detector" to="openersR/opener21/wall_changer" method="activate"]
 [connection signal="activated" from="openersR/opener22/entity_detector" to="openersR/opener22/wall_changer" method="activate"]
+[connection signal="activated" from="openersR/opener22/entity_detector" to="openersR/opener22/room_flag_setter" method="activate"]

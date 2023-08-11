@@ -48,7 +48,7 @@ length = 2
 
 [node name="ladder_right" parent="." instance=ExtResource( 3 )]
 position = Vector2( 896, 192 )
-length = 4
+length = 8
 
 [node name="spikes0" parent="." instance=ExtResource( 7 )]
 position = Vector2( 216, 192 )

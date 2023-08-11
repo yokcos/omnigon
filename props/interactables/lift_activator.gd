@@ -7,6 +7,7 @@ var active: bool = false
 
 
 signal activated
+signal come_to_life
 
 
 func _ready() -> void:

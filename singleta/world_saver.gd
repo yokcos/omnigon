@@ -165,3 +165,12 @@ func save_savers():
 					this_data["vertices_collected"] = ( i.count )
 		
 		save_data("savers", this_data)
+
+func visit_every_room():
+	var map = load("res://rooms/map/main_map.tres")
+	for i in map.map:
+		var this_room = map.map[i]
+		if !(this_room is Vector2):
+			var visits = load_data_at(i, "visits")
+			if visits < 1:
+				save_room_data("visits", 1, i)

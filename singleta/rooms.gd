@@ -83,15 +83,43 @@ func load_rooms():
 			room_data[i] = {}
 			rooms[i] = load(this_room)
 			
+			var id: String = this_room
+			var last_slash = id.find_last("/")
+			id = id.right(last_slash + 1)
+			var dot = id.find(".")
+			id = id.left(dot)
+			
 			var new_room = rooms[i].instance()
+			room_data[i]["id"] = id
 			room_data[i]["title"] = new_room.title
-			room_data[i]["image"] = new_room.map_image
+			apply_room_image(i)
 			
 			var room_descendents: Array = Game.get_all_descendents(new_room)
 			for this_thing in room_descendents:
 				log_object(i, new_room, this_thing)
 					
 			new_room.queue_free()
+
+func apply_room_image(room: Vector2):
+	var id = room_data[room]["id"]
+	var dir = Directory.new()
+	var variant: int = 0
+	var room_image_folder: String = "res://ui/map/images/"
+	
+	var flags = WorldSaver.load_data_at(room, "image_flags")
+	if flags is Array:
+		for i in range(flags.size()):
+			if flags[i]: variant += pow(2, i)
+	
+	var this_id = id
+	if variant > 0:
+		this_id = "%s_%s" % [this_id, variant]
+	
+	var image_file = "%s%s.png" % [room_image_folder, this_id]
+	if dir.file_exists(image_file):
+		room_data[room]["image"] = load(image_file)
+	else:
+		room_data[room]["image"] = null
 
 func log_object(room_pos: Vector2, room_node: Node, what: Node):
 	if what is ArtisticCreation:

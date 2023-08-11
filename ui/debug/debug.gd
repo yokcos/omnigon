@@ -74,3 +74,7 @@ func _on_gain_pressed() -> void:
 		PlayerStats.gain_hat(this_hat)
 	else:
 		show_output("No such hat")
+
+
+func _on_visitor_pressed() -> void:
+	WorldSaver.visit_every_room()

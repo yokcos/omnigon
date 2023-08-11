@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://pieces/destroyer_by_name.gd" type="Script" id=14]
 [ext_resource path="res://props/interactables/gob_putrid.tscn" type="PackedScene" id=15]
 [ext_resource path="res://props/interactables/gob_pristine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://pieces/room_flag_setter.tscn" type="PackedScene" id=17]
 
 [node name="firearm" type="Node2D"]
 script = ExtResource( 2 )
@@ -36,9 +37,9 @@ position = Vector2( 352, 112 )
 [node name="sign" parent="props" instance=ExtResource( 3 )]
 position = Vector2( 656, 240 )
 description = "Sign of Text"
-text = "Please be advised: Until further time research can be conducted, the Time Gun will function as a Normal Gun.
-Therefore, standing in front of it when it is firing will not send you into the past, but will instead kill you.
-Hopefully it will also kill the tower with all them fucking elves."
+text = "Please be advised: Shooting yourself out of the Time Gun is illegal. Anyone shot out of the Time Gun will go to jail.
+Please be further advised: Until further time research can be conducted, the Time Gun will function as a Normal Gun.
+Therefore, standing in front of it when it is firing will not send you into the past, but will instead kill you."
 
 [node name="button" parent="props" instance=ExtResource( 11 )]
 position = Vector2( 480, 224 )
@@ -88,8 +89,12 @@ position = Vector2( 136, 216 )
 
 [node name="visit_counter" parent="." instance=ExtResource( 12 )]
 
+[node name="room_flag_setter" parent="." instance=ExtResource( 17 )]
+room = Vector2( -5, 9 )
+
 [connection signal="activated" from="props/button" to="props/timegun" method="activate"]
 [connection signal="activated" from="props/button" to="wall_changer" method="activate"]
+[connection signal="activated" from="props/button" to="room_flag_setter" method="activate"]
 [connection signal="threshhold_met" from="visit_counter" to="destroyer" method="delayed_activate"]
 [connection signal="threshhold_met" from="visit_counter" to="props/live/visiblifier" method="hide"]
 [connection signal="threshhold_not_met" from="visit_counter" to="props/dead/visiblifier" method="hide"]

@@ -8,9 +8,10 @@ var max_speed: float = 800
 
 
 func _ready() -> void:
-	Game.gameholder.connect("screen_scale_changed", self, "_on_screen_scale_changed")
-	var screen_scale = 1/Game.gameholder.screen_scale
-	zoom = Vector2( screen_scale, screen_scale )
+	if is_instance_valid(Game.gameholder):
+		Game.gameholder.connect("screen_scale_changed", self, "_on_screen_scale_changed")
+		var screen_scale = 1/Game.gameholder.screen_scale
+		zoom = Vector2( screen_scale, screen_scale )
 
 func _process(delta: float) -> void:
 	if is_instance_valid(Game.get_player()):

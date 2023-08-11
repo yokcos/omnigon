@@ -80,10 +80,16 @@ margin_right = 171.0
 margin_bottom = 16.0
 text = "Gain"
 
-[node name="output" type="Label" parent="."]
+[node name="visitor" type="Button" parent="."]
 margin_top = 66.0
 margin_right = 512.0
-margin_bottom = 80.0
+margin_bottom = 82.0
+text = "Visit all rooms"
+
+[node name="output" type="Label" parent="."]
+margin_top = 86.0
+margin_right = 512.0
+margin_bottom = 100.0
 
 [connection signal="value_changed" from="room_teleporter/x" to="." method="_on_room_target_changed"]
 [connection signal="value_changed" from="room_teleporter/y" to="." method="_on_room_target_changed"]
@@ -91,3 +97,4 @@ margin_bottom = 80.0
 [connection signal="pressed" from="hats/don" to="." method="_on_don_pressed"]
 [connection signal="pressed" from="hats/doff" to="." method="_on_doff_pressed"]
 [connection signal="pressed" from="hats/gain" to="." method="_on_gain_pressed"]
+[connection signal="pressed" from="visitor" to="." method="_on_visitor_pressed"]

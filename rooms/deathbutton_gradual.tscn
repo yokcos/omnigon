@@ -8,7 +8,7 @@
 [ext_resource path="res://props/spikewall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://rooms/room.gd" type="Script" id=7]
 [ext_resource path="res://rooms/deathbutton_button.gd" type="Script" id=8]
-[ext_resource path="res://ui/map/images/slowdeath.png" type="Texture" id=9]
+[ext_resource path="res://ui/map/images/deathbutton_gradual.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=224]
 extents = Vector2( 8, 12 )

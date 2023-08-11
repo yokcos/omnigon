@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://hats/0006_jetfist.tres" type="Resource" id=10]
 [ext_resource path="res://ui/map/images/detonation.png" type="Texture" id=11]
 [ext_resource path="res://props/pot.tscn" type="PackedScene" id=12]
+[ext_resource path="res://pieces/room_flag_setter.tscn" type="PackedScene" id=13]
 
 [node name="detonation" type="Node2D"]
 script = ExtResource( 4 )
@@ -118,9 +119,13 @@ position = Vector2( 608, 192 )
 [node name="pot3" parent="." instance=ExtResource( 12 )]
 position = Vector2( 656, 160 )
 
+[node name="room_flag_setter" parent="." instance=ExtResource( 13 )]
+room = Vector2( 4, -2 )
+
 [connection signal="activated" from="button" to="changers/wall_changer0" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer1" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer2" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer3" method="activate"]
 [connection signal="activated" from="button" to="changers/wall_changer4" method="activate"]
 [connection signal="activated" from="button" to="bombs/bomb8" method="activate"]
+[connection signal="activated" from="button" to="room_flag_setter" method="activate"]

@@ -123,7 +123,7 @@ script = ExtResource( 5 )
 description = "Doctor Fakename"
 verb = "Listen"
 title = "sayeth Doctor Fakename:"
-text = "You would not believe how much 'time travel research' involves mopping up the blood of your colleagues."
+text = "You would not believe how much 'time travel research' involves mopping up the blood of your colleagues and deciding if it's worth using a Normal Gun against them fucking elves."
 egress = "Sounds stinky"
 
 [node name="interactable_robo" type="Node2D" parent="."]

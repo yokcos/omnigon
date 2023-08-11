@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/breakthrough.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=11]
 [ext_resource path="res://props/interactables/pipe_hat.gd" type="Script" id=12]
 [ext_resource path="res://hats/0002_revenge.tres" type="Resource" id=13]
+[ext_resource path="res://pieces/room_flag_setter.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 48 )
@@ -111,8 +112,12 @@ position = Vector2( 128, 232 )
 script = ExtResource( 12 )
 hat = ExtResource( 13 )
 
+[node name="room_flag_setter" parent="." instance=ExtResource( 14 )]
+room = Vector2( -5, -2 )
+
 [connection signal="updated" from="tile_detector" to="." method="_on_tile_detector_updated"]
 [connection signal="activated" from="anything_detector" to="." method="explode"]
 [connection signal="activated" from="anything_detector" to="wall_changer" method="activate"]
 [connection signal="activated" from="anything_detector" to="explosion/animator" method="activate"]
+[connection signal="activated" from="anything_detector" to="room_flag_setter" method="activate"]
 [connection signal="activated" from="button" to="sneezer" method="activate"]
