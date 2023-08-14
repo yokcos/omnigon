@@ -39,7 +39,7 @@ func take_damage(dmg: float, source: Being = null):
 	var actual_dmg = .take_damage(dmg, source)
 	
 	if phase > 0:
-		print("Damage taken: %s, new HP: %s" % [dmg, hp])
+		print("Moneybags taketh %s damage, down to %s HP" % [dmg, hp])
 	if phase == 0 and hp <= 2:
 		advance_phase()
 	
@@ -216,5 +216,6 @@ func _on_popup_slain():
 	var player = Game.get_player()
 	if is_instance_valid(player):
 		player.set_state("normal")
+	$fsm/anim_health.set_state($fsm/anim_health.auto_proceed)
 
 

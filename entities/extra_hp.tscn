@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/boss_bar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/extra_hp.gd" type="Script" id=2]
 [ext_resource path="res://pieces/punch_detector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -25,6 +26,11 @@ color = Color( 0.976471, 0.639216, 0.105882, 1 )
 [node name="hitbox" type="CollisionShape2D" parent="punch_detector"]
 shape = SubResource( 1 )
 
+[node name="shift_detector" parent="." instance=ExtResource( 4 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="shift_detector"]
+shape = SubResource( 1 )
+
 [node name="boss_bar" parent="." instance=ExtResource( 1 )]
 use_parent_material = true
 margin_left = -128.0
@@ -33,4 +39,5 @@ margin_right = 128.0
 margin_bottom = 8.0
 
 [connection signal="punched" from="punch_detector" to="." method="_on_punch_detector_punched"]
+[connection signal="shifted" from="shift_detector" to="." method="_on_shift"]
 [connection signal="filling_changed" from="boss_bar" to="." method="_on_boss_bar_filling_changed"]

@@ -38,7 +38,7 @@ func clear_hp():
 			i.queue_free()
 
 func deploy_hp():
-	for i in PlayerStats.max_hp:
+	for i in max(PlayerStats.max_hp, PlayerStats.hp):
 		var new_rect = TextureRect.new()
 		new_rect.rect_size = Vector2()
 		new_rect.size_flags_vertical = 4

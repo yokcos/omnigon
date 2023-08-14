@@ -25,6 +25,9 @@ var mode: int = 0
 
 func _ready() -> void:
 	add_to_group("saveables")
+	
+	if WorldSaver.load_data_at(Vector2(-3, 0), "bosses_defeated") > 0:
+		$interactable_aghastor.egress = "I punched it"
 
 
 func get_saved():

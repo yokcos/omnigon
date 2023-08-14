@@ -16,7 +16,7 @@ func _on_parent_slain():
 	get_parent().remove_child(self)
 	Game.deploy_instance_instant(self, pos)
 	emitting = false
-	$doom_timer.start(lifetime)
+	$doom_timer.call_deferred("start", lifetime)
 
 func _on_doom_timer_timeout() -> void:
 	queue_free()

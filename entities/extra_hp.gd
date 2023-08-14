@@ -12,6 +12,7 @@ var all_bars: Array = []
 var extra_velocity: Vector2 = Vector2()
 var egressing: bool = false
 var egress_duration: float = 10
+var obj_hp_pickup = load("res://entities/hp_pickup.tscn")
 
 var invuln: float = 0
 export (float) var invuln_duration = 0.2
@@ -19,6 +20,7 @@ export (float) var invuln_duration = 0.2
 
 func _ready() -> void:
 	$boss_bar.hide_text()
+	call_deferred("update_all_hp")
 
 func _process(delta: float) -> void:
 	if egressing:
@@ -89,6 +91,13 @@ func get_culled():
 		egressing = true
 
 
+func update_all_hp():
+	for i in all_bars:
+		i.update_hp()
+
+func update_hp():
+	$boss_bar.update_hp()
+
 func set_pos(what: int):
 	pos = what
 	
@@ -128,3 +137,17 @@ func _on_punch_detector_punched() -> void:
 func _on_boss_bar_filling_changed(what: float) -> void:
 	if what <= 0:
 		get_culled()
+
+func _on_shift() -> void:
+	var new_hp_pickup = obj_hp_pickup.instance()
+	get_culled()
+	
+	var dmg = $boss_bar.true_filling
+	if dmg > 0:
+		print("Bar shapeshifted, dealing damage %s from %s to %s" % [dmg, target.hp, target.hp - dmg])
+		target.call_deferred("take_unconditional_damage", dmg)
+		
+	new_hp_pickup.base_bar = base_bar
+	new_hp_pickup.target = target
+	new_hp_pickup.all_bars = all_bars
+	Game.replace_instance(self, new_hp_pickup)
