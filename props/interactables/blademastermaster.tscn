@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://props/interactables/text_interactable.gd" type="Script" id=1]
+[ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://props/interactables/blademastermaster.png" type="Texture" id=3]
+[ext_resource path="res://props/interactables/blademastermaster.gd" type="Script" id=4]
+
+[node name="blademastermaster" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="sprite" parent="." instance=ExtResource( 2 )]
+texture = ExtResource( 3 )
+hframes = 4
+
+[node name="interactables" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="interactables"]
+script = ExtResource( 1 )
+description = "The Blademastermaster"
+verb = "Hear"
+title = "Sayeth The Blademastermaster"
+text = "Here to inflict your presence on me, intruder? After lethally slaying my people to death? You're lucky I have a quarrel with another or I would begin a fight against you this instant."
+egress = "Oh ok"
+
+[node name="1" type="Node2D" parent="interactables"]
+script = ExtResource( 1 )
+description = "The Blademastermaster"
+verb = "Hear"
+title = "Sayeth The Blademastermaster"
+text = "Your motivations with my fellow Blademasters are inscrutible, young intruder.
+I am here to free them from the employment of Shitlord Moneybags. Do not oppose me, and we will have no trouble."
+
+[node name="2" type="Node2D" parent="interactables"]
+script = ExtResource( 1 )
+description = "The Blademastermaster"
+verb = "Hear"
+title = "Sayeth The Blademastermaster"
+text = "Another intruder. I am here to relieve the villain Moneybags over us Blademasters and all others. Keep to your business and do not oppose mine, and I will not have to introduce your pancreas to the business end of my blade, of which I am the mastermaster."
+egress = "How intimidating"
+
+[node name="3" type="Node2D" parent="interactables"]
+script = ExtResource( 1 )
+description = "The Blademastermaster"
+verb = "Hear"
+title = "Sayeth The Blademastermaster"
+text = "I see your aid, generously given to Blademasters one and all. I am here to sever the ties of authority between my people and the charlatan Moneybags.
+If you find this enemy opposing you in your journey, perhaps I could repay the favour that you gave us Blademasters."
+egress = "How exciting!"

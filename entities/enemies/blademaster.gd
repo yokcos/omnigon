@@ -60,10 +60,11 @@ func fall():
 
 func _on_entity_detector_activated() -> void:
 	# Apply hat Peace
-	if !PlayerStats.has_hat("peace"):
-		$fsm/patrol.perform_action("attacc")
-		$fsm/patrol_r.perform_action("attacc_r0")
+	if !PlayerStats.has_hat("peace"): # Check if the relevant hat is equipped
+		# Everything below pretty much means "Do an attack"
+		if $fsm/patrol.perform_action("attacc"):
+			var mattress_position: Vector2 = Vector2(16, 8)
+			mattress_position.x *= flip_int
+			Game.summon_mattress_gremlin(global_position + mattress_position)
 		
-		var mattress_position: Vector2 = Vector2(16, 8)
-		mattress_position.x *= flip_int
-		Game.summon_mattress_gremlin(global_position + mattress_position)
+		$fsm/patrol_r.perform_action("attacc_r0")

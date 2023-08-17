@@ -49,11 +49,13 @@ func _handle_input(event: InputEvent) -> void:
 				new_sfx.randomise_pitch(.4, .6)
 				new_sfx.relative_volume = rand_range(0.4, 0.5)
 		
-		if event.is_action_pressed("attack"):
-			if PlayerStats.has_hat("fishing"):
-				father.fish()
+		# Apply hat Fishing
+		if event.is_action_pressed("attack"): # If the attack button has been pressed
+			if PlayerStats.has_hat("fishing"): # Check if the fishing hat is equipped
+				father.fish() # Do fishing
 			else:
-				set_state("attacc")
+				set_state("attacc") # Punch normally
+		# Yes I added most of these comments for the sake of this video
 		
 		if event.is_action_pressed("shift"):
 			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder") and has_ladder:

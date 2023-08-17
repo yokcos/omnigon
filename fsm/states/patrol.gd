@@ -53,6 +53,8 @@ func update_flip():
 func perform_action(new_state: String):
 	if active:
 		set_state(new_state)
+		return true
+	return false
 
 func perform_action_random(new_states: Array):
 	if new_states.size() > 0:
