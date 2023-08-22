@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/moneybags.png" type="Texture" id=2]
@@ -12,9 +12,14 @@
 [ext_resource path="res://fsm/states/mb_hat_gun.gd" type="Script" id=10]
 [ext_resource path="res://fsm/state_revealer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://fsm/states/stunned.gd" type="Script" id=12]
+[ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=13]
+[ext_resource path="res://fsm/states/moneybags_prelude.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 20 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 256, 64 )
 
 [sub_resource type="CapsuleShape2D" id=23]
 height = 66.0
@@ -447,7 +452,7 @@ tracks/0/keys = {
 "values": [ 76, 77, 78, 79, 80, 81, 82, 83 ]
 }
 
-[node name="moneybags" type="KinematicBody2D"]
+[node name="moneybags" type="KinematicBody2D" groups=["moneybagses"]]
 script = ExtResource( 3 )
 flip_path = NodePath("flippable")
 title = "Lord Moneybags"
@@ -460,6 +465,13 @@ boss_theme = "thepriceofwar"
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 1 )
+
+[node name="entity_detector" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
+position = Vector2( 0, -40 )
+shape = SubResource( 25 )
 
 [node name="flippable" type="Node2D" parent="."]
 use_parent_material = true
@@ -516,6 +528,9 @@ shape = SubResource( 23 )
 [node name="fsm" type="Node" parent="."]
 script = ExtResource( 1 )
 animator_path = NodePath("../animator")
+
+[node name="prelude" type="Node" parent="fsm"]
+script = ExtResource( 14 )
 
 [node name="idle" type="Node" parent="fsm"]
 script = ExtResource( 6 )
@@ -638,6 +653,7 @@ margin_right = 57.0
 margin_bottom = -60.0
 fsm_path = NodePath("../fsm")
 
+[connection signal="activated" from="entity_detector" to="fsm/prelude" method="activate"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="entered" from="fsm/idle_b" to="." method="_on_idle_b_entered"]
 [connection signal="entered" from="fsm/idle_u" to="." method="_on_idle_u_entered"]

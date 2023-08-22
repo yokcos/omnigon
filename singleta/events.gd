@@ -4,6 +4,7 @@ extends Node
 signal megalift_created
 signal teleported
 signal vendor_vomited
+signal bmm_interrupted
 
 signal fishticuffs_score_gained
 

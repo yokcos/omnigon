@@ -1,16 +1,207 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://props/interactables/text_interactable.gd" type="Script" id=1]
 [ext_resource path="res://pieces/auto_sprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/interactables/blademastermaster.png" type="Texture" id=3]
 [ext_resource path="res://props/interactables/blademastermaster.gd" type="Script" id=4]
+[ext_resource path="res://fx/halo_blade.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("0:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -89.9999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("1:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -180.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("2:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 89.9999 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("3:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "play"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("0:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -89.9999, -810.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("1:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -180.0, -900.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("2:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 89.9999, -630.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("3:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -720.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [node name="blademastermaster" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="halo" type="Node2D" parent="."]
+position = Vector2( 16, 0 )
+scale = Vector2( 1, 1 )
+
+[node name="0" type="Sprite" parent="halo"]
+position = Vector2( 0, -24 )
+rotation = -1.57079
+texture = ExtResource( 5 )
+
+[node name="1" type="Sprite" parent="halo"]
+position = Vector2( -24, 0 )
+rotation = -3.14159
+texture = ExtResource( 5 )
+
+[node name="2" type="Sprite" parent="halo"]
+position = Vector2( 0, 24 )
+rotation = 1.57079
+texture = ExtResource( 5 )
+
+[node name="3" type="Sprite" parent="halo"]
+position = Vector2( 24, 0 )
+texture = ExtResource( 5 )
+
+[node name="animator" type="AnimationPlayer" parent="halo"]
+autoplay = "play"
+playback_speed = 0.5
+anims/RESET = SubResource( 2 )
+anims/play = SubResource( 1 )
+
 [node name="sprite" parent="." instance=ExtResource( 2 )]
 texture = ExtResource( 3 )
 hframes = 4
+script = null
 
 [node name="interactables" type="Node2D" parent="."]
 
@@ -46,3 +237,8 @@ title = "Sayeth The Blademastermaster"
 text = "I see your aid, generously given to Blademasters one and all. I am here to sever the ties of authority between my people and the charlatan Moneybags.
 If you find this enemy opposing you in your journey, perhaps I could repay the favour that you gave us Blademasters."
 egress = "How exciting!"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 3 )
+anims/idle = SubResource( 4 )

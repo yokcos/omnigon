@@ -7,6 +7,9 @@ var unarmed_states = ["idle_b", "idle_u", "attacc_b0", "attacc_u0_pre", "attacc_
 
 var phase: int = 0
 var has_boomerang: bool = true
+var restrainedness: float = 0
+var attacc_base_time: float = .75
+var attacc_extra_time: float = 4
 
 const obj_rocket = preload("res://projectiles/rocket.tscn")
 const obj_stoppy = preload("res://projectiles/stoppy_rocket.tscn")
@@ -71,8 +74,10 @@ func random_attack():
 	
 	$fsm/idle_u.set_state("attacc_u0_pre")
 
-func start_attack_timer(time: float = 0.75):
-	$attacc_timer.start(time)
+func start_attack_timer(time: float = 1):
+	var this_time = attacc_base_time + attacc_extra_time*restrainedness
+	this_time *= time
+	$attacc_timer.start(this_time)
 
 func face_player():
 	var player = Game.get_player()
@@ -143,6 +148,7 @@ func _on_attacc_timer_timeout() -> void:
 
 func _on_idle_entered() -> void:
 	start_attack_timer()
+	Events.emit_signal("bmm_interrupted")
 
 func _on_idle_b_entered() -> void:
 	start_attack_timer()
@@ -211,11 +217,9 @@ func _on_boomerang_returned():
 	has_boomerang = true
 	$fsm/idle_u.set_state("idle_b")
 
-
 func _on_popup_slain():
 	var player = Game.get_player()
 	if is_instance_valid(player):
 		player.set_state("normal")
 	$fsm/anim_health.set_state($fsm/anim_health.auto_proceed)
-
 
