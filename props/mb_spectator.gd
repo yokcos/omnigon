@@ -10,6 +10,9 @@ var textures: Array = [
 var frameses: Array = [2, 2, 2, 2]
 var seated: bool = true
 var inspired: bool = false
+var blademaster_height: float = 8
+
+const obj_blademaster = preload("res://props/blademaster_friendly.tscn")
 
 
 func _ready() -> void:
@@ -28,6 +31,14 @@ func _process(delta: float) -> void:
 func unseat():
 	seated = false
 	$animator.play("unseat")
+
+func deploy_blademaster():
+	if $floor_finder.is_colliding():
+		var pos: Vector2 = $floor_finder.get_collision_point()
+		pos.y -= blademaster_height
+		var new_blademaster = obj_blademaster.instance()
+		Game.deploy_instance(new_blademaster, pos)
+		$floor_finder.enabled = false
 
 
 func _on_bmm_interrupted():

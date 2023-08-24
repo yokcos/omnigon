@@ -7,9 +7,10 @@ var unarmed_states = ["idle_b", "idle_u", "attacc_b0", "attacc_u0_pre", "attacc_
 
 var phase: int = 0
 var has_boomerang: bool = true
-var restrainedness: float = 0
+var restrainedness: float = 0 setget set_restrainedness
 var attacc_base_time: float = .75
 var attacc_extra_time: float = 4
+var base_acceleration: float
 
 const obj_rocket = preload("res://projectiles/rocket.tscn")
 const obj_stoppy = preload("res://projectiles/stoppy_rocket.tscn")
@@ -17,12 +18,17 @@ const obj_explosion = preload("res://fx/explosion.tscn")
 const obj_explosion_wave = preload("res://projectiles/explosion_wave.tscn")
 const obj_boomerang = preload("res://projectiles/boomerang.tscn")
 const obj_extra_hp = preload("res://entities/extra_hp.tscn")
+const obj_self_thrown = preload("res://props/moneybags_thrown.tscn")
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
 const anim_health = preload("res://animations/moneybags_health/moneybags_health.tscn")
 
 
+signal incapacitated
+
+
 func _ready() -> void:
 	coyote_time = 0
+	base_acceleration = acceleration
 	
 	$fsm/attacc_u0.barrel_bac0  = $flippable/gun_barrels/bac0
 	$fsm/attacc_u0.barrel_bac1  = $flippable/gun_barrels/bac1
@@ -61,6 +67,9 @@ func shoot(what: PackedScene = obj_rocket):
 	return new_rocket
 
 func random_attack():
+	if restrainedness >= 1:
+		return false
+	
 	var these_attacks = attacks.duplicate()
 	if hp > max_hp/2:
 		these_attacks.append("jump_pre")
@@ -142,13 +151,26 @@ func advance_phase():
 	
 	phase += 1
 
+func set_restrainedness(what: float):
+	restrainedness = what
+	acceleration = base_acceleration * clamp( 1-what, 0, 1 )
+	if restrainedness >= 1:
+		$animator.play("idle_u")
+		emit_signal("incapacitated")
+
+func throw_self(at: Vector2 = Vector2(648, 496)):
+	var new_body = obj_self_thrown.instance()
+	new_body.start_position = global_position
+	new_body.end_position = at
+	Game.deploy_instance(new_body, global_position)
+	return new_body
+
 
 func _on_attacc_timer_timeout() -> void:
 	random_attack()
 
 func _on_idle_entered() -> void:
 	start_attack_timer()
-	Events.emit_signal("bmm_interrupted")
 
 func _on_idle_b_entered() -> void:
 	start_attack_timer()

@@ -107,6 +107,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deploy_blademaster"
+} ]
+}
 
 [node name="mb_spectator" type="Node2D"]
 script = ExtResource( 1 )
@@ -118,6 +132,11 @@ texture = ExtResource( 4 )
 texture = ExtResource( 2 )
 hframes = 2
 script = ExtResource( 3 )
+
+[node name="floor_finder" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 128 )
+collision_mask = 4
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )

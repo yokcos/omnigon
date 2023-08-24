@@ -8,12 +8,13 @@ func _ready() -> void:
 
 
 func activate():
-	show()
-	
-	for i in get_children():
-		if i.has_node("animator"):
-			var animator: AnimationPlayer = i.get_node("animator")
-			animator.play("arrive")
+	if !visible:
+		show()
+		
+		for i in get_children():
+			if i.has_node("animator"):
+				var animator: AnimationPlayer = i.get_node("animator")
+				animator.play("arrive")
 
 
 func _on_bmm_interrupted():
