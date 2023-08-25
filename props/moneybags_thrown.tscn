@@ -8,3 +8,7 @@ script = ExtResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="test" type="Line2D" parent="."]
+z_index = 50
+width = 1.0
