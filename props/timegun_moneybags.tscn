@@ -4,7 +4,7 @@
 [ext_resource path="res://props/timegun_turret.png" type="Texture" id=2]
 [ext_resource path="res://fx/timegun_shot.png" type="Texture" id=3]
 [ext_resource path="res://props/timegun_chassis.png" type="Texture" id=4]
-[ext_resource path="res://props/animator_haver.gd" type="Script" id=5]
+[ext_resource path="res://props/timegun_moneybags.gd" type="Script" id=5]
 [ext_resource path="res://props/moneybags_thrown.png" type="Texture" id=6]
 [ext_resource path="res://props/moneybags_head.png" type="Texture" id=7]
 
@@ -314,6 +314,9 @@ visible = false
 position = Vector2( -241, 2 )
 texture = ExtResource( 7 )
 flip_h = true
+
+[node name="focus" type="Position2D" parent="."]
+position = Vector2( -192, 0 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )

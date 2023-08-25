@@ -13,6 +13,7 @@ var exceptions: Array = []
  
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
+	add_to_group("projectiles")
  
 func _process(delta: float) -> void:
 	velocity += acceleration * delta

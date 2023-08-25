@@ -195,6 +195,20 @@ func shake_cam(amount: float, direction: float):
 	if camera:
 		camera.offset += Vector2(amount, 0).rotated(direction)
 
+func focus_cam(where: Vector2, weight: float = 1):
+	if is_instance_valid(camera):
+		camera.target_global_pos = where
+		camera.global_pos_weight = weight
+
+func unfocus_cam():
+	if is_instance_valid(camera):
+		camera.global_pos_weight = 0
+		camera.target_pos = Vector2()
+
+func zoom_cam(what: float = 1):
+	if is_instance_valid(camera):
+		camera.extra_zoom_target = what
+
 func is_instance_in_mattress(what: Node2D, activate: bool = true) -> bool:
 	var result: bool = false
 	

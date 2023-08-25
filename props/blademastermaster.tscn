@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://props/interactables/blademastermaster.png" type="Texture" id=1]
 [ext_resource path="res://fx/halo_blade.png" type="Texture" id=2]
+[ext_resource path="res://props/animator_haver.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -197,8 +198,37 @@ tracks/1/keys = {
 "values": [ Vector2( 18, 3 ), Vector2( 16, 8 ), Vector2( 16, 9 ), Vector2( 16, 8 ), Vector2( 8, -4 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enlightenment:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 18, 3 ), Vector2( 18, 2 ), Vector2( 19, 2 ), Vector2( 19, 3 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle_rage"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
@@ -238,6 +268,7 @@ tracks/2/keys = {
 }
 
 [node name="blademastermaster" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="enlightenment" type="Node2D" parent="."]
 position = Vector2( 18, 3 )
@@ -276,5 +307,6 @@ frame = 4
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/arrive = SubResource( 2 )
-anims/idle = SubResource( 3 )
-next/arrive = "idle"
+anims/idle = SubResource( 6 )
+anims/idle_rage = SubResource( 3 )
+next/arrive = "idle_rage"

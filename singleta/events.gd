@@ -5,6 +5,7 @@ signal megalift_created
 signal teleported
 signal vendor_vomited
 signal bmm_interrupted
+signal moneybags_incapacitated
 
 signal fishticuffs_score_gained
 

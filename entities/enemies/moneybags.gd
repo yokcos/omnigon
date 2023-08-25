@@ -19,6 +19,7 @@ const obj_explosion_wave = preload("res://projectiles/explosion_wave.tscn")
 const obj_boomerang = preload("res://projectiles/boomerang.tscn")
 const obj_extra_hp = preload("res://entities/extra_hp.tscn")
 const obj_self_thrown = preload("res://props/moneybags_thrown.tscn")
+const obj_blademastermaster = preload("res://props/blademastermaster.tscn")
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
 const anim_health = preload("res://animations/moneybags_health/moneybags_health.tscn")
 
@@ -135,6 +136,7 @@ func advance_phase():
 			var player = Game.get_player()
 			if is_instance_valid(player):
 				player.long_stun()
+			cull_projectiles()
 			
 			$fsm.set_state_string("anim_health")
 			
@@ -151,19 +153,34 @@ func advance_phase():
 	
 	phase += 1
 
+func cull_projectiles():
+	for i in get_tree().get_nodes_in_group("projectiles"):
+		i.queue_free()
+
 func set_restrainedness(what: float):
 	restrainedness = what
 	acceleration = base_acceleration * clamp( 1-what, 0, 1 )
 	if restrainedness >= 1:
 		$animator.play("idle_u")
 		emit_signal("incapacitated")
+		Events.emit_signal("moneybags_incapacitated")
 
 func throw_self(at: Vector2 = Vector2(648, 496)):
 	var new_body = obj_self_thrown.instance()
 	new_body.start_position = global_position
 	new_body.end_position = at
 	Game.deploy_instance(new_body, global_position)
+	WorldSaver.add_data("bosses_defeated", 1)
+	queue_free()
 	return new_body
+
+func deploy_blademastermaster(offset: float = 96):
+	var new_bmm = obj_blademastermaster.instance()
+	var relative_height: float = 8
+	
+	Game.deploy_instance( new_bmm, global_position + Vector2( offset*flip_int, relative_height ) )
+	new_bmm.scale.x = -flip_int
+	new_bmm.play_animation("idle")
 
 
 func _on_attacc_timer_timeout() -> void:
@@ -171,6 +188,7 @@ func _on_attacc_timer_timeout() -> void:
 
 func _on_idle_entered() -> void:
 	start_attack_timer()
+	Events.emit_signal("bmm_interrupted")
 
 func _on_idle_b_entered() -> void:
 	start_attack_timer()

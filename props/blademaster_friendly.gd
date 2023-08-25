@@ -70,6 +70,8 @@ func update_line():
 			this_downyness *= line_droopyness
 			points.append( Vector2() + relative_position/point_count * i + Vector2(0, this_downyness) )
 		$line.points = points
+	else:
+		$line.points = PoolVector2Array()
 
 func face_moneybags():
 	if identify_moneybags():

@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://props/animator_haver.gd"
 
 
 func _ready() -> void:

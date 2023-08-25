@@ -4,6 +4,11 @@ extends Camera2D
 var target_offset: Vector2 = Vector2()
 var target_pos: Vector2 = Vector2()
 var previous_pos: Vector2 = Vector2()
+var target_global_pos: Vector2 = Vector2()
+var global_pos_weight: float = 0
+var base_zoom: Vector2 = Vector2(.5, .5)
+var extra_zoom: float = 1
+var extra_zoom_target: float = 1
 var max_speed: float = 800
 
 
@@ -15,6 +20,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_instance_valid(Game.get_player()):
+		if global_pos_weight > 0:
+			var parent_pos = get_parent().global_position
+			target_pos = lerp(Vector2(), target_global_pos - parent_pos, global_pos_weight)
+		
 		var velocity: Vector2 = Vector2()
 		var this_target: Vector2 = position.linear_interpolate(target_pos, delta*5)
 		
@@ -30,6 +39,9 @@ func _process(delta: float) -> void:
 		
 		
 		offset = offset.linear_interpolate(target_offset, delta*2)
+	
+	if abs(extra_zoom - extra_zoom_target) > .1:
+		set_extra_zoom( lerp( extra_zoom, extra_zoom_target, delta*5 ) )
 
 
 func get_actual_position() -> Vector2:
@@ -55,6 +67,11 @@ func get_visible_rect():
 	if gh:
 		var actual_size = vp.size / gh.screen_scale
 		return Rect2(get_actual_position() - actual_size/2, actual_size)
+
+
+func set_extra_zoom(what: float):
+	extra_zoom = what
+	zoom = base_zoom * extra_zoom
 
 
 func _on_screen_scale_changed(what: float):
