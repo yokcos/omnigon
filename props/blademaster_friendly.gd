@@ -10,6 +10,7 @@ var binding_level: float = .08
 var bound: bool = false
 var line_droopyness: float = 10
 var line_offset: Vector2 = Vector2()
+var repel_range: float = 64
 
 
 func _ready() -> void:
@@ -25,10 +26,23 @@ func _process(delta: float) -> void:
 	
 	if bound:
 		update_line()
+	
+	get_repelled(delta)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide(velocity)
 
+
+func get_repelled(delta: float):
+	for i in get_tree().get_nodes_in_group("blademaster_repellants"):
+		var relative: Vector2 = global_position - i.global_position
+		
+		if relative.length_squared() <= repel_range*repel_range:
+			var ratio: float = relative.length() / repel_range
+			ratio = max(ratio, 1)
+			
+			var dir = relative.normalized()
+			velocity += dir * 300/ratio * delta
 
 func identify_moneybags():
 	if !is_instance_valid(moneybags):

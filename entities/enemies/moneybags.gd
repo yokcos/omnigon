@@ -11,6 +11,7 @@ var restrainedness: float = 0 setget set_restrainedness
 var attacc_base_time: float = .75
 var attacc_extra_time: float = 4
 var base_acceleration: float
+var blademastermaster: Node2D = null
 
 const obj_rocket = preload("res://projectiles/rocket.tscn")
 const obj_stoppy = preload("res://projectiles/stoppy_rocket.tscn")
@@ -46,10 +47,10 @@ func _process(delta: float) -> void:
 
 
 func take_damage(dmg: float, source: Being = null):
+	if restrainedness > 0 and hp <= 2:
+		dmg = 0
 	var actual_dmg = .take_damage(dmg, source)
 	
-	if phase > 0:
-		print("Moneybags taketh %s damage, down to %s HP" % [dmg, hp])
 	if phase == 0 and hp <= 2:
 		advance_phase()
 	
@@ -133,25 +134,31 @@ func gain_hp():
 func advance_phase():
 	match phase:
 		0:
-			var player = Game.get_player()
-			if is_instance_valid(player):
-				player.long_stun()
-			cull_projectiles()
-			
-			$fsm.set_state_string("anim_health")
-			
-			var current_popup = Game.summon_popup_world(anim_health, "Witness the purchasing")
-			if is_instance_valid(current_popup):
-				current_popup.anchor = self
-				current_popup.max_distance = 1000000
-				current_popup.world.father = self
-				current_popup.connect("world_slain", self, "_on_popup_slain")
-			
-			var cam = Game.camera
-			if is_instance_valid(cam):
-				cam.target_pos = Vector2(0, -60)
+			if restrainedness == 0:
+				deploy_purchase_animation()
+			else:
+				set_restrainedness(1)
 	
 	phase += 1
+
+func deploy_purchase_animation():
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		player.long_stun()
+	cull_projectiles()
+	
+	$fsm.set_state_string("anim_health")
+	
+	var current_popup = Game.summon_popup_world(anim_health, "Witness the purchasing")
+	if is_instance_valid(current_popup):
+		current_popup.anchor = self
+		current_popup.max_distance = 1000000
+		current_popup.world.father = self
+		current_popup.connect("world_slain", self, "_on_popup_slain")
+	
+	var cam = Game.camera
+	if is_instance_valid(cam):
+		cam.target_pos = Vector2(0, -60)
 
 func cull_projectiles():
 	for i in get_tree().get_nodes_in_group("projectiles"):
@@ -181,6 +188,15 @@ func deploy_blademastermaster(offset: float = 96):
 	Game.deploy_instance( new_bmm, global_position + Vector2( offset*flip_int, relative_height ) )
 	new_bmm.scale.x = -flip_int
 	new_bmm.play_animation("idle")
+	new_bmm.target = self
+	
+	blademastermaster = new_bmm
+
+func bmm_smack():
+	print("Moneybags requests a good smacking")
+	if is_instance_valid(blademastermaster):
+		print("Smacker found")
+		blademastermaster.smack_target()
 
 
 func _on_attacc_timer_timeout() -> void:

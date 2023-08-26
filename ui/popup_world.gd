@@ -23,7 +23,6 @@ func apply_world(this_world: PackedScene):
 	
 	world.connect("tree_exiting", self, "_on_world_slain")
 	
-	print(world.get_script().resource_path)
 	if world.has_method("_on_popup_hide"):
 		print("Popup hide connection")
 		connect("popup_hide", world, "_on_popup_hide")

@@ -39,7 +39,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "timegun_arrive"
 length = 20.0
-step = 1.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("props/timegun_moneybags")
 tracks/0/interp = 1
@@ -47,8 +46,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8.5, 10, 12, 15, 15.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 8.5, 10, 12, 15, 15.1, 15.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "move" ],
 "method": "play_animation"
@@ -67,6 +66,9 @@ tracks/0/keys = {
 }, {
 "args": [  ],
 "method": "unfocus"
+}, {
+"args": [  ],
+"method": "deploy_animation"
 } ]
 }
 tracks/1/type = "value"
@@ -88,35 +90,26 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 2, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2, 9.8, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deploy_blademastermaster"
 }, {
 "args": [  ],
+"method": "bmm_smack"
+}, {
+"args": [  ],
 "method": "throw_self"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("moneybags:visible")
+tracks/3/type = "method"
+tracks/3/path = NodePath("props/bmm_scene")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("props/bmm_scene")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {

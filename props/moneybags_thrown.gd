@@ -39,9 +39,16 @@ func calculate_y(x: float):
 	var y1 = end_position.y
 	var y2 = min(start_position.y, end_position.y) - 48
 	
+	# Preventing division by zero errors
+	if x0 == x1:
+		x0 += 1
+	
 	# ok listen, all this junk here generates the correct equation for the relevant parabola
-	var a: float = ( y2-y0 + (y0-y1)*(x0-x2) / (x0-x1) )/\
-	( x2*x2 - x0*x0 + (x1*x1 - x0*x0)*(x2-x0) / (x0-x1) )
+	var a_numerator  : float = y2-y0 + (y0-y1)*(x0-x2) / (x0-x1)
+	var a_denominator: float = x2*x2 - x0*x0 + (x1*x1 - x0*x0)*(x2-x0) / (x0-x1)
+	if a_denominator == 0: a_denominator = .01
+	
+	var a: float = a_numerator / a_denominator
 	var b: float = ( y0-y1 + a*(x1*x1 - x0*x0) )/(x0-x1)
 	var c: float = y0 - a*x0*x0 - b*x0
 	
