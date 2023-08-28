@@ -21,9 +21,14 @@ func deploy_animation():
 	new_popup.connect("tree_exiting", self, "_on_popup_slain")
 	current_popup = new_popup
 	
+	# TODO: maybe this is redundant? player should already be longstunned at this point
+	# maybe leave it here anyway, doesn't really do any harm I think
 	var player = Game.get_player()
 	if is_instance_valid(player):
 		player.long_stun()
+
+func play_sfx_shoot():
+	GlobalSound.play_random_sfx_2d( GlobalSound.sfx_blast_spacemine, global_position )
 
 
 func _on_popup_slain():

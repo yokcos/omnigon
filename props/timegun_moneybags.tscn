@@ -218,6 +218,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 0.0, -450.0 ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_sfx_shoot"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "load"

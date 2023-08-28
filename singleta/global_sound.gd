@@ -238,6 +238,8 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc3/0003_thepriceofwar.tres"))
 	add_music_entry(preload("res://music/disc3/0004_interioramusement.tres"))
 	
+	add_music_entry(preload("res://music/disc3/0006_theshootening.tres"))
+	
 	add_music_entry(preload("res://music/other/FC_ocean.tres"))
 
 

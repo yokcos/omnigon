@@ -193,9 +193,7 @@ func deploy_blademastermaster(offset: float = 96):
 	blademastermaster = new_bmm
 
 func bmm_smack():
-	print("Moneybags requests a good smacking")
 	if is_instance_valid(blademastermaster):
-		print("Smacker found")
 		blademastermaster.smack_target()
 
 

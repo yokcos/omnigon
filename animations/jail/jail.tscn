@@ -558,10 +558,10 @@ tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 6.9, 7.1, 8.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 6.9, 7.1, 8.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -513.194, 54.9759 ), Vector2( 71.6617, 54.9759 ), Vector2( 89.1177, 54.9759 ) ]
+"values": [ Vector2( -513.194, 54.9759 ), Vector2( -513.194, 54.9759 ), Vector2( 71.6617, 54.9759 ), Vector2( 89.1177, 54.9759 ) ]
 }
 tracks/19/type = "value"
 tracks/19/path = NodePath("scene/fore_city:position")
@@ -1015,10 +1015,11 @@ texture = ExtResource( 5 )
 
 [node name="bac_city" type="Sprite" parent="scene"]
 visible = false
+modulate = Color( 1, 1, 1, 0.74902 )
 position = Vector2( 0, 31.807 )
 texture = ExtResource( 13 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 1608, 253 )
+region_rect = Rect2( 0, 0, 1608, 325.566 )
 
 [node name="cliff" type="Node2D" parent="scene"]
 position = Vector2( 86, 48 )
