@@ -129,6 +129,7 @@ func _on_lighters_changed():
 
 func _on_secrets_changed():
 	update_secrets()
+	$bar_top/secrets/animator.play("pop")
 
 func _on_teleported():
 	teleport()

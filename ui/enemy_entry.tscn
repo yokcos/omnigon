@@ -252,11 +252,22 @@ margin_right = 496.0
 margin_bottom = 88.0
 mouse_filter = 2
 
-[node name="lore" type="Label" parent="bac/column"]
+[node name="sayeth" type="Label" parent="bac/column"]
 material = ExtResource( 7 )
 margin_top = 92.0
 margin_right = 496.0
-margin_bottom = 134.0
+margin_bottom = 104.0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.196078, 0.517647, 0.392157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "      So sayeth Pbot:"
+autowrap = true
+
+[node name="lore" type="Label" parent="bac/column"]
+material = ExtResource( 7 )
+margin_top = 108.0
+margin_right = 496.0
+margin_bottom = 150.0
 size_flags_vertical = 2
 custom_colors/font_color = Color( 0.196078, 0.517647, 0.392157, 1 )
 custom_fonts/font = ExtResource( 6 )
@@ -265,7 +276,7 @@ Under such unfitting and ghastly working conditions I too would give up and lay 
 autowrap = true
 
 [node name="stats" type="Label" parent="bac/column"]
-margin_top = 265.0
+margin_top = 263.0
 margin_right = 496.0
 margin_bottom = 272.0
 custom_colors/font_color = Color( 0.141176, 0.133333, 0.203922, 1 )

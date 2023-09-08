@@ -141,9 +141,10 @@ size_flags_vertical = 3
 margin_left = 208.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = -32.0
+margin_bottom = -8.0
 
 [node name="underbuttons" type="HBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 208.0

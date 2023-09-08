@@ -88,7 +88,8 @@ func _ready() -> void:
 	var base_size: Vector2 = Vector2( base_width, base_height )
 	
 	OS.window_size = base_size*screen_scale
-	OS.window_position = OS.get_screen_size()/2 - OS.window_size/2
+	#OS.window_position = OS.get_screen_size()/2 - OS.window_size/2
+	OS.center_window()
 	
 	#call_deferred("load_game")
 	Settings.call_deferred("load_settings")

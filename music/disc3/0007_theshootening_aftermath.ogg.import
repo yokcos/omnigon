@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0007_theshootening_aftermath.ogg-1f69de1844327b319b5414246581aac1.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0007_theshootening_aftermath.ogg"
+dest_files=[ "res://.import/0007_theshootening_aftermath.ogg-1f69de1844327b319b5414246581aac1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -37,6 +37,7 @@ var pipe_images = {
 	"res://props/interactables/pipe_vertices.gd": preload("res://ui/map/map_pipe_vertices.png"),
 	"res://props/interactables/pipe_hat.gd": preload("res://ui/map/map_pipe_hat.png"),
 	"res://props/interactables/pipe_lighter.gd": preload("res://ui/map/map_pipe_lighter.png"),
+	"res://props/interactables/pipe_upgrade.gd": preload("res://ui/map/map_pipe_upgrade.png"),
 }
 
 var map: Resource = null
@@ -157,6 +158,9 @@ func log_object(room_pos: Vector2, room_node: Node, what: Node):
 		var this_script = what.get_script().get_path()
 		if pipe_images.has(this_script):
 			this_texture = pipe_images[this_script]
+		
+		if this_texture == null:
+			print("ERROR: Invalid script on pipe in room %s; script is %s" % [room_pos, this_script])
 		
 		pipe_position += room_pos * room_size
 		if !objects.has("pipes"):

@@ -87,6 +87,7 @@ func deploy_images():
 		if this_room is PackedScene:
 			var visits = WorldSaver.load_data_at(i, "visits")
 			if visits > 0:
+				# TODO: This bit's redundant, consider destroying it
 				var new_room = this_room.instance()
 				var img: Texture = new_room.map_image
 				new_room.queue_free()
