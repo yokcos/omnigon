@@ -212,6 +212,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 flip_path = NodePath("flippable")
 title = "Alarm Crook"
+subtitle = "Bane of Sleep"
 acceleration = 1500.0
 speed = 150.0
 max_hp = 20.0

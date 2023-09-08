@@ -22,5 +22,5 @@ func set_hat(what: Hat):
 	hat = what
 	
 	image = what.large_sprite
-	name = what.name
+	name = "%s [hat]" % what.name
 	description = what.description

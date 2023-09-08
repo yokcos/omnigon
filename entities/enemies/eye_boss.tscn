@@ -53,6 +53,7 @@ gravity_active = false
 can_be_bounced = false
 can_bounce = false
 title = "Eyesaac"
+subtitle = "The One Whomst Sees"
 max_hp = 12.0
 saving_enabled = false
 boss_theme = "great_opposition"

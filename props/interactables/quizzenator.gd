@@ -134,6 +134,7 @@ func correct_answer():
 	var new_dispenser = obj_emetic_dispenser.instance()
 	Game.deploy_instance(new_dispenser, emetic_dispenser_location)
 	new_dispenser.regurgitator = get_node(regurgitator_path)
+	new_dispenser.connect("activated", self, "_on_dispenser_activated")
 
 
 func _on_answer_selected(which: int):
@@ -149,3 +150,7 @@ func _on_answer_selected(which: int):
 func _on_interactable_activated() -> void:
 	deploy_quiz()
 	deactivate()
+
+func _on_dispenser_activated():
+	$interactable.active = false
+	$vendor_piece.active = false

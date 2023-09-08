@@ -165,11 +165,12 @@ func log_object(room_pos: Vector2, room_node: Node, what: Node):
 		pipe_position += room_pos * room_size
 		if !objects.has("pipes"):
 			objects["pipes"] = []
-		objects["pipes"].append({
-			"position": pipe_position,
+		var dict = { "position": pipe_position,
 			"texture": this_texture,
-			"room": room_pos,
-		})
+			"room": room_pos, }
+		if this_script == "res://props/interactables/pipe_vertices.gd":
+			dict["vertices"] = what.vertices
+		objects["pipes"].append(dict)
 
 func apply_fresh_map():
 	var fresh_path: String = "res://rooms/map/fresh_map.tres"

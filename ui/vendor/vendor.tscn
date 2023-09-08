@@ -285,7 +285,15 @@ scroll_horizontal_enabled = false
 
 [node name="wares" type="VBoxContainer" parent="all/main/scroller"]
 margin_right = 218.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="warelessness" type="Label" parent="all/main/scroller/wares"]
+margin_right = 218.0
+margin_bottom = 14.0
+text = "Nothing is here for you to buy :("
+autowrap = true
 
 [node name="divider2" type="VSeparator" parent="all/main"]
 margin_left = 476.0
@@ -303,6 +311,8 @@ alignment = 1
 margin_left = 183.0
 margin_right = 244.0
 margin_bottom = 16.0
+focus_mode = 0
+button_mask = 0
 text = "Purchase"
 script = ExtResource( 4 )
 base_text = "Purchase"
@@ -311,6 +321,8 @@ base_text = "Purchase"
 margin_left = 252.0
 margin_right = 297.0
 margin_bottom = 16.0
+focus_mode = 0
+button_mask = 0
 text = "Egress"
 script = ExtResource( 4 )
 base_text = "Egress"

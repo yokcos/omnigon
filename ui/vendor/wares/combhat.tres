@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource( 1 )
 image = ExtResource( 2 )
-name = "Combhat"
+name = "Combhat [hat]"
 description = "LOOK OUT IT'S GOT A GUN!"
 cost = 75
 hat = ExtResource( 3 )

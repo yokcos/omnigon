@@ -241,6 +241,7 @@ tracks/0/keys = {
 script = ExtResource( 5 )
 flip_path = NodePath("flippable")
 title = "Blade Master"
+subtitle = "Most fearsome foe yet"
 boss_theme = "great_opposition"
 enemy_data = ExtResource( 12 )
 

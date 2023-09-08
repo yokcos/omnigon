@@ -29,6 +29,7 @@ func clear_wares():
 func deploy_wares(selection: int = 0):
 	clear_wares()
 	selection = int( min(selection, wares.size()-1) )
+	var selection_made: bool = false
 	for i in range(wares.size()):
 		var this_ware: VendorWare = wares[i]
 		if this_ware.check_availability():
@@ -38,13 +39,16 @@ func deploy_wares(selection: int = 0):
 			new_ware.connect("too_poor", self, "_on_too_poor")
 			new_ware.connect("focus_entered", self, "_on_ware_selected")
 			ware_list.add_child(new_ware)
+			$all/main/scroller/wares/warelessness.hide()
 			
-			if i == selection:
+			if i >= selection and !selection_made:
 				new_ware.grab_focus()
+				selection_made = true
 			else:
 				new_ware.call_deferred("get_deselected")
 	
 	display_selection()
+	connect_wares()
 
 func get_selected_ware():
 	for i in range(ware_list.get_child_count()):
@@ -78,6 +82,25 @@ func egress():
 func set_image(what: Texture):
 	if what != null:
 		$all/main/portrait.texture = what
+
+func connect_wares():
+	var wares: Array = $all/main/scroller/wares.get_children()
+	
+	for i in range(wares.size()):
+		var this_index = i
+		var next_index = posmod(i+1, wares.size())
+		
+		var this_node: Control = wares[this_index]
+		var next_node: Control = wares[next_index]
+		
+		var this_path = next_node.get_path_to(this_node)
+		var next_path = this_node.get_path_to(next_node)
+		
+		this_node.focus_neighbour_bottom = next_path
+		this_node.focus_next = next_path
+		
+		next_node.focus_neighbour_top = this_path
+		next_node.focus_previous = this_path
 
 
 func _on_ware_purchased():

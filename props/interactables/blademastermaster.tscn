@@ -171,7 +171,6 @@ script = ExtResource( 4 )
 
 [node name="halo" type="Node2D" parent="."]
 position = Vector2( 16, 0 )
-scale = Vector2( 1, 1 )
 
 [node name="0" type="Sprite" parent="halo"]
 position = Vector2( 0, -24 )
@@ -200,7 +199,7 @@ anims/play = SubResource( 1 )
 
 [node name="sprite" parent="." instance=ExtResource( 2 )]
 texture = ExtResource( 3 )
-hframes = 4
+hframes = 12
 script = null
 
 [node name="interactables" type="Node2D" parent="."]

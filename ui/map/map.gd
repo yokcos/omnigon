@@ -4,6 +4,7 @@ extends Control
 var map: Resource = load("res://rooms/map/main_map.tres")
 var default_image: Texture = preload("res://ui/map/images/base.png")
 var image_size: Vector2 = Vector2(32, 16)
+var room_base_size: Vector2 = Vector2(512, 256)
 var borders: Rect2 = Rect2()
 
 var velocity: Vector2 = Vector2()
@@ -119,9 +120,21 @@ func deploy_type_images(type: String, edgebound: bool = true):
 	if objects.has(type):
 		var arts = objects[type]
 		for this_art in arts:
+			var invalid: bool = false
 			var this_room = this_art["room"]
+			if WorldSaver.data.has(this_room):
+				var datums: Dictionary = WorldSaver.data[this_room]
+				if datums.size() > 1 and datums.size() < 10:
+					var this_pos = this_art["position"] - this_art["room"] * room_base_size
+					if datums.has(this_pos):
+						var this_datum = datums[this_pos]
+						if this_datum is float:
+							invalid = this_datum >= this_art["vertices"]
+						if this_datum is bool:
+							invalid = this_datum
+						
 			var visits = WorldSaver.load_data_at(this_room, "visits")
-			if visits > 0:
+			if !invalid and visits > 0:
 				var new_rect = Control.new()
 				new_rect.set_script(scr_art_image)
 				new_rect.edgebound = edgebound

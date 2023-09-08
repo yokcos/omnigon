@@ -5,6 +5,8 @@ var regurgitator: Node2D
 
 const obj_emetic = preload("res://fx/emetic.tscn")
 
+signal activated
+
 
 func get_shifted():
 	scale.x *= -1
@@ -14,3 +16,5 @@ func _on_interactable_activated() -> void:
 	Game.deploy_instance(new_emetic, $barrel.global_position)
 	new_emetic.linear_velocity = Vector2(-100, 0) * scale
 	new_emetic.connect("acided", regurgitator, "activate")
+	emit_signal("activated")
+	$interactable.active = false
