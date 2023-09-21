@@ -116,8 +116,6 @@ func spawn_hands():
 			hand_positions[i] = Vector2(64, 0)
 			hand_rotations[i] = PI/2
 			
-			print("Creating new hand. i: %s pos: %s" % [i, new_hand.float_offset])
-			
 			call_deferred("teleport_hand", i)
 
 func devalue_hand(what: Enemy):
@@ -172,7 +170,6 @@ func teleport_hand(which: int):
 		
 		var loc = this_hand.float_offset.round()
 		var glob = (global_position + this_hand.float_offset).round()
-		print("Teleporting hand to loc: %s, glob: %s" % [loc, glob])
 
 
 func cull_laser():

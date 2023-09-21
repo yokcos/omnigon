@@ -65,7 +65,6 @@ func _on_interactable_activated() -> void:
 
 func _on_shift() -> void:
 	var new_hand = obj_hand.instance()
-	print("Shapeshifted chest %s into a hand" % index)
 	new_hand.father = father
 	#new_hand.float_offset = float_offset
 	new_hand.spawn_position = spawn_position
@@ -80,3 +79,5 @@ func _on_shift() -> void:
 	
 	Game.replace_instance(self, new_hand)
 
+func _on_descendenator_timeout() -> void:
+	descend()

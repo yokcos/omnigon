@@ -65,7 +65,6 @@ func deploy_particles():
 
 func get_shifted():
 	var new_chest = obj_chest.instance()
-	print("Shapeshifted hand %s into chest" % index)
 	new_chest.father = father
 	new_chest.float_offset = float_offset
 	new_chest.spawn_position = spawn_position

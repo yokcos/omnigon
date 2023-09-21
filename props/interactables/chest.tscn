@@ -161,5 +161,11 @@ collision_mask = 4
 anims/RESET = SubResource( 1 )
 anims/open = SubResource( 2 )
 
+[node name="descendenator" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
 [connection signal="shifted" from="shift_detector" to="." method="_on_shift"]
 [connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]
+[connection signal="timeout" from="descendenator" to="." method="_on_descendenator_timeout"]
