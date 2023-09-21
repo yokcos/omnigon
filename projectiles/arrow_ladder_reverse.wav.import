@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/arrow_ladder_reverse.wav-b492ee3df6fe9fa387736761e0ef9d3d.sample"
+
+[deps]
+
+source_file="res://projectiles/arrow_ladder_reverse.wav"
+dest_files=[ "res://.import/arrow_ladder_reverse.wav-b492ee3df6fe9fa387736761e0ef9d3d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0006_greatopposition.ogg-daca2a98e3ff8e85d9aff3a2ae112559.oggstr"
+
+[deps]
+
+source_file="res://music/disc1/0006_greatopposition.ogg"
+dest_files=[ "res://.import/0006_greatopposition.ogg-daca2a98e3ff8e85d9aff3a2ae112559.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

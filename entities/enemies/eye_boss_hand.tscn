@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 12 )
 
-[node name="eye_boss_hand" type="KinematicBody2D"]
+[node name="eye_boss_hand" type="KinematicBody2D" groups=["eye_boss_hands"]]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource( 1 )
 can_flip_by_default = false
 flip_path = NodePath("flippable")
 can_be_bounced = false
 can_bounce = false
 max_hp = 6.0
+saving_enabled = false
 
 [node name="flippable" type="Node2D" parent="."]
 use_parent_material = true

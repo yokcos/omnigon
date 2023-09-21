@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/telescope.png" type="Texture" id=2]
 [ext_resource path="res://ui/wall.png" type="Texture" id=3]
+[ext_resource path="res://ui/wallhole.png" type="Texture" id=4]
+[ext_resource path="res://ui/wall.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.47451, 0.227451, 0.501961, 1 )
@@ -41,6 +43,7 @@ tracks/0/keys = {
 margin_right = 268.0
 margin_bottom = 220.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
 
 [node name="wall" type="TextureRect" parent="."]
 margin_right = 268.0
@@ -48,6 +51,13 @@ margin_bottom = 220.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
+
+[node name="wallhole" type="TextureRect" parent="."]
+margin_left = 40.0
+margin_top = 8.0
+margin_right = 232.0
+margin_bottom = 200.0
+texture = ExtResource( 4 )
 
 [node name="vignette" type="TextureRect" parent="."]
 margin_right = 268.0

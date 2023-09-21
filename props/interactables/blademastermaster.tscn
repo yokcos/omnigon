@@ -204,7 +204,7 @@ script = null
 
 [node name="interactables" type="Node2D" parent="."]
 
-[node name="0" type="Node2D" parent="interactables"]
+[node name="bad_bad" type="Node2D" parent="interactables"]
 script = ExtResource( 1 )
 description = "The Blademastermaster"
 verb = "Hear"
@@ -212,7 +212,7 @@ title = "Sayeth The Blademastermaster"
 text = "Here to inflict your presence on me, intruder? After lethally slaying my people to death? You're lucky I have a quarrel with another or I would begin a fight against you this instant."
 egress = "Oh ok"
 
-[node name="1" type="Node2D" parent="interactables"]
+[node name="good_bad" type="Node2D" parent="interactables"]
 script = ExtResource( 1 )
 description = "The Blademastermaster"
 verb = "Hear"
@@ -220,15 +220,15 @@ title = "Sayeth The Blademastermaster"
 text = "Your motivations with my fellow Blademasters are inscrutible, young intruder.
 I am here to free them from the employment of Shitlord Moneybags. Do not oppose me, and we will have no trouble."
 
-[node name="2" type="Node2D" parent="interactables"]
+[node name="bad_good" type="Node2D" parent="interactables"]
 script = ExtResource( 1 )
 description = "The Blademastermaster"
 verb = "Hear"
 title = "Sayeth The Blademastermaster"
-text = "Another intruder. I am here to relieve the villain Moneybags over us Blademasters and all others. Keep to your business and do not oppose mine, and I will not have to introduce your pancreas to the business end of my blade, of which I am the mastermaster."
+text = "Another intruder. I save us Blademasters and all others from the clutches of the villain Moneybags. Keep to your business and do not oppose mine, and I will not have to introduce your pancreas to the business end of my blade, of which I am the mastermaster."
 egress = "How intimidating"
 
-[node name="3" type="Node2D" parent="interactables"]
+[node name="good_good" type="Node2D" parent="interactables"]
 script = ExtResource( 1 )
 description = "The Blademastermaster"
 verb = "Hear"

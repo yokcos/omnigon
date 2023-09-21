@@ -28,8 +28,9 @@ func _process(delta: float) -> void:
 
 func attach_to_target(what: Being):
 	target = what
+	target.connect("tree_exiting", self, "_on_target_slain")
 	target_relative_position = global_position - target.global_position
-	what.take_damage(.75)
+	what.take_damage(.75, source)
 	what.take_knockback( -target_relative_position.normalized() * knockback )
 
 func follow_target():
@@ -100,3 +101,9 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if waters.has(area):
 		waters.erase(area)
+
+func _on_target_slain():
+	if is_instance_valid(source):
+		source.recall_bobber()
+	else:
+		queue_free()

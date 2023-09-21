@@ -313,7 +313,31 @@ func uncompress_data(data: Dictionary):
 	while used_lighters.size() < 4:
 		used_lighters.append(0)
 
+func reset_data():
+	save_id = randi()
+	lighters = [0, 0, 0, 0]
+	used_lighters = [0, 0, 0, 0]
+	hats = []
+	available_hats = [preload("res://hats/0001_vitality.tres")]
+	upgrades = {
+		"blademaster_recover": false,
+		"rapiers": false,
+		"arrow_ladder": false,
+		"fake_id": false,
+	}
+	eyes = EYES_BASIC
+	max_hp = base_max_hp
+	hp = base_max_hp
+	vertices = 0
+	check_pos = Vector2()
+	extra_data = []
+	position = Vector2()
+	main_music = "ingress"
+	time = 0
+	kills = {}
+	secrets = []
 
-func _on_vertex_collected(quantity: float):
-	set_vertices(vertices + int(quantity))
-	emit_signal("vertices_collected", quantity)
+
+func _on_vertex_collected(what):
+	set_vertices(vertices + int(what.value))
+	emit_signal("vertices_collected", what.value)

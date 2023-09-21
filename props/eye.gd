@@ -10,7 +10,7 @@ var velocity: Vector2 = Vector2()
 var acceleration: float = 100
 var friction: float = 5
 
-var default_value: float = 50
+var default_value: float = 1
 var value: float = default_value
 
 
@@ -88,10 +88,9 @@ func teleport():
 	position = final_position
 
 func get_shifted():
-	if value > 0:
+	if true or value > 0:
 		var eye_boss = load("res://entities/enemies/eye_boss.tscn")
 		var new_boss = eye_boss.instance()
-		new_boss.value = value
 		Game.replace_instance(self, new_boss)
 	else:
 		 queue_free()

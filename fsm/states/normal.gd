@@ -61,6 +61,7 @@ func _handle_input(event: InputEvent) -> void:
 			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder") and has_ladder:
 				var arrow: Projectile = load("res://projectiles/arrow_ladder.tscn").instance()
 				arrow.exceptions.append(father)
+				arrow.source = father
 				Game.deploy_instance(arrow, father.global_position)
 				father.velocity.y = min(father.velocity.y, 0)
 				has_ladder = false

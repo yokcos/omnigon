@@ -30,20 +30,21 @@ margin_left = 296.0
 margin_top = 16.0
 margin_right = -8.0
 margin_bottom = 32.0
-text = "\"Empaire Triumphant\""
+text = "\"The Emperor Stands Astride the Whole of Aketrex\""
 align = 1
 valign = 1
+autowrap = true
 
 [node name="desc" type="Label" parent="."]
 material = ExtResource( 3 )
 anchor_right = 1.0
-margin_left = 296.0
-margin_top = 40.0
+margin_left = 304.0
+margin_top = 56.0
 margin_right = -8.0
 margin_bottom = 176.0
 custom_fonts/font = ExtResource( 4 )
-text = "A famous grim rendition of the world falling into the shadow of the very Empaire you oppose. The Northerners, they look to this image with pride and hope.
-You see through this blatant propaganda, and will help your Kingdom oppose them every step of the way."
+text = "A grim fantasy of the world falling into the shadow of the very Empaire you oppose.
+Nobody knows what the Emperor looks like, and so this rendition is pure artistic license. along with the whole situation, obviously."
 align = 1
 autowrap = true
 
@@ -62,6 +63,7 @@ margin_top = 16.0
 margin_right = 288.0
 margin_bottom = 272.0
 texture = ExtResource( 2 )
+expand = true
 
 [node name="menu" parent="." instance=ExtResource( 5 )]
 margin_left = 304.0

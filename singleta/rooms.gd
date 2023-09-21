@@ -45,6 +45,9 @@ const room_size = Vector2(512, 256)
 const obj_player = preload("res://entities/player.tscn")
 
 
+signal room_entered
+
+
 func _ready() -> void:
 	load_rooms()
 
@@ -250,6 +253,8 @@ func enter_room(which: Vector2) -> bool:
 			current_room = which
 			Game.switch_room( target )
 			WorldSaver.add_data("visits", 1)
+			
+			emit_signal("room_entered")
 			return true
 	return false
 

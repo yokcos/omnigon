@@ -24,5 +24,3 @@ func activate():
 	if player:
 		player.connect("sitting_complete", self, "summon_popup")
 		player.sit_at_art(self)
-	
-	WorldSaver.unsave_beings()

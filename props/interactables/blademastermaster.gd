@@ -12,9 +12,9 @@ func select_interactable():
 	deactivate_all_interactables()
 	
 	var index: int = 0
-	if PlayerStats.upgrades.has("rapiers"):
+	if PlayerStats.check_upgrade("rapiers"):
 		index += 1
-	if PlayerStats.get_kills(foe_blademaster) > 0:
+	if PlayerStats.get_kills(foe_blademaster) <= 0:
 		index += 2
 	$interactables.get_child(index).active = true
 	

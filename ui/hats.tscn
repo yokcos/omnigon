@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ui/keyable_button.gd" type="Script" id=1]
+[ext_resource path="res://pieces/controls_label.gd" type="Script" id=2]
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=3]
 [ext_resource path="res://misc/fnt_yuge.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/hats.gd" type="Script" id=5]
@@ -243,6 +244,18 @@ custom_colors/font_color = Color( 0.976471, 0.639216, 0.105882, 1 )
 text = "/!\\ CEILING TOO LOW /!\\"
 align = 1
 valign = 1
+
+[node name="throw" type="Label" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 256.0
+margin_right = 488.0
+margin_bottom = 272.0
+align = 1
+valign = 1
+clip_text = true
+script = ExtResource( 2 )
+base_text = "{move_down} + {shift} will allow you to throw your hat!"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 6 )

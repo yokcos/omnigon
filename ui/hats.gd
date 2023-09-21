@@ -62,6 +62,7 @@ func clear_preview():
 		preview.remove_child(images[i])
 	
 	full_height = 0
+	$throw.hide()
 
 func apply_preview():
 	clear_preview()
@@ -77,6 +78,7 @@ func apply_preview():
 		var hat: Hat = PlayerStats.hats[i]
 		var this_scale: float = anvil_crush_factor if anvil_position > i else 1
 		var new_sprite = create_preview_hat(hat, this_scale)
+		$throw.show()
 
 func create_preview_hat(hat: Hat, this_scale: float = 1):
 	var slots = preview.get_child_count()

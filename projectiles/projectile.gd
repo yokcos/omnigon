@@ -8,6 +8,7 @@ var duration: float = 20
 var damage: float = 1
 var penetrations: float = 0
 var exceptions: Array = []
+var source: Node = null
  
  
  
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
  
 
 func hit(what: Being):
-	what.take_damage(damage)
+	what.take_damage(damage, source)
 	
 	penetrations -= 1
 	if penetrations < 0:

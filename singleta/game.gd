@@ -415,6 +415,8 @@ func exit_game():
 	gameholder = null
 	in_game = false
 	save_slot = -1
+	WorldSaver.data = {}
+	PlayerStats.reset_data()
 	get_tree().change_scene("res://ui/main_menu.tscn")
 
 func switch_room(which: PackedScene):

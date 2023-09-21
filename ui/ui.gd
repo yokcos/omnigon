@@ -8,6 +8,7 @@ enum lower_types {
 
 onready var lower_component: Control = $bar_bottom/level_name
 var lower_type: int = lower_types.LEVEL_NAME
+var eye_animation_position: float = 0
 
 const eye_textures = [
 	preload("res://ui/eyes0.png"),
@@ -31,6 +32,8 @@ func _ready() -> void:
 	Game.connect("world_changed", self, "_on_world_changed")
 	Game.connect("boss_changed", self, "_on_boss_changed")
 	Events.connect("teleported", self, "_on_teleported")
+	Rooms.connect("room_entered", self, "_on_room_entered")
+	update_eyes()
 	update_lighters()
 	update_secrets()
 	shaderify_tele_flash()
@@ -39,6 +42,11 @@ func _process(delta: float) -> void:
 	if Game.camera and is_instance_valid(Game.camera) and false:
 		rect_position = Game.camera.get_camera_screen_center() - rect_size/2
 
+
+func update_eyes():
+	var this_texture = eye_textures[PlayerStats.eyes]
+	$bar_bottom/eyes/left.texture = this_texture
+	$bar_bottom/eyes/right.texture = this_texture
 
 func blind():
 	$animator.play("blinding")
@@ -110,9 +118,7 @@ func teleport():
 
 
 func _on_eyes_changed(what: int):
-	var this_texture = eye_textures[what]
-	$bar_bottom/eyes/left.texture = this_texture
-	$bar_bottom/eyes/right.texture = this_texture
+	update_eyes()
 
 func _on_world_changed(what):
 	deploy_level_name(what.title)
@@ -133,3 +139,6 @@ func _on_secrets_changed():
 
 func _on_teleported():
 	teleport()
+
+func _on_room_entered():
+	$bar_bottom/eyes/blinker.play("blink")

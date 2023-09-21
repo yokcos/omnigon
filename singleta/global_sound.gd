@@ -137,6 +137,9 @@ const sfx_teleporter_buttons = [preload("res://props/teleporter_buttons.wav")]
 const sfx_teleporter_activate = [preload("res://props/teleporter_activate.wav")]
 const sfx_regurgitation = [preload("res://sfx/regurgitation.wav")]
 
+const sfx_arrow_ladder = [preload("res://projectiles/arrow_ladder.wav")]
+const sfx_arrow_ladder_reverse = [preload("res://projectiles/arrow_ladder_reverse.wav")]
+
 const sfx_fc_angler = [preload("res://fishticuffs/sfx/angler.wav")]
 const sfx_fc_bubblies = [preload("res://fishticuffs/sfx/bubblies.wav")]
 const sfx_fc_splash = [preload("res://fishticuffs/sfx/splash.wav")]

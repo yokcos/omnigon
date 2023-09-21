@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/save_files.gd" type="Script" id=1]
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=2]
+[ext_resource path="res://ui/keyable_button.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.141176, 0.133333, 0.203922, 1 )
@@ -50,5 +51,8 @@ margin_top = 264.0
 margin_right = 320.0
 margin_bottom = 280.0
 text = "Egress"
+script = ExtResource( 3 )
+base_text = "Egress"
+action = "attack"
 
 [connection signal="pressed" from="egress" to="." method="_on_egress_pressed"]

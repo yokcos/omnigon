@@ -60,7 +60,9 @@ func count_rooms( dict: Dictionary ) -> int:
 func activate():
 	if index >= 0:
 		Game.save_slot = index
-		if !new:
+		if new:
+			pass
+		else:
 			Game.apply_save_file( Game.load_game() )
 		get_tree().change_scene("res://gameholder.tscn")
 		PlayerStats.call_deferred("apply_position")

@@ -8,6 +8,7 @@ var max_length: int = 4
 
 func _ready() -> void:
 	velocity = Vector2(0, -512)
+	GlobalSound.play_random_sfx_2d( GlobalSound.sfx_arrow_ladder, global_position )
 
 
 func get_length() -> int:
@@ -26,6 +27,8 @@ func _on_body_entered(body):
 	._on_body_entered(body)
 	
 	if !body in exceptions:
+		GlobalSound.play_random_sfx_2d( GlobalSound.sfx_arrow_ladder_reverse, global_position )
+		
 		var langth = get_length()
 		var new_ladder = obj_ladder.instance()
 		var pos = $ray.global_position

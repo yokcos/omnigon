@@ -22,11 +22,13 @@ func _input(event: InputEvent) -> void:
 
 func clear_wares():
 	for i in ware_list.get_children():
-		i.queue_free()
-		ware_list.remove_child(i)
+		if !(i is Label):
+			i.queue_free()
+			ware_list.remove_child(i)
 	last_selected_ware = -1
 
 func deploy_wares(selection: int = 0):
+	$all/main/scroller/warelessness.show()
 	clear_wares()
 	selection = int( min(selection, wares.size()-1) )
 	var selection_made: bool = false
@@ -39,7 +41,7 @@ func deploy_wares(selection: int = 0):
 			new_ware.connect("too_poor", self, "_on_too_poor")
 			new_ware.connect("focus_entered", self, "_on_ware_selected")
 			ware_list.add_child(new_ware)
-			$all/main/scroller/wares/warelessness.hide()
+			$all/main/scroller/warelessness.hide()
 			
 			if i >= selection and !selection_made:
 				new_ware.grab_focus()

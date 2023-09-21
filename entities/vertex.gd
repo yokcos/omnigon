@@ -6,7 +6,8 @@ var can_be_collected: bool = false
 var flying: bool = false
 
 var tex_fx = preload("res://fx/coin_collect.png")
-var source: Node2D = null
+var source = null
+var source_save: bool = true
 
 var recent_vertices: float = 0
 
@@ -63,17 +64,22 @@ func get_shifted():
 func _on_entity_detector_activated() -> void:
 	if can_be_collected:
 		can_be_collected = false
-		emit_signal("collected", value)
+		emit_signal("collected", self)
 		Game.deploy_fx(tex_fx, global_position, 4)
 		var new_sfx: SFX = GlobalSound.play_random_sfx(GlobalSound.sfx_vertex_grab)
 		var extra_pitch = 0.2 * recent_vertices
 		new_sfx.randomise_pitch(0.8 + extra_pitch, 1.2 + extra_pitch)
 		
-		if source:
-			WorldSaver.add_data(source.spawn_position, value)
+		if source_save:
+			if source is Vector2:
+				WorldSaver.add_data(source, value)
+			elif source is Node2D and is_instance_valid(source):
+				WorldSaver.add_data(source.spawn_position, value)
 		
 		for i in get_tree().get_nodes_in_group("vertices"):
 			i.recent_vertices += 1
+		
+		Events.emit_signal("vertex_collected", self)
 		
 		queue_free()
 

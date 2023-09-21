@@ -152,7 +152,6 @@ shape = SubResource( 1 )
 
 [node name="particulation" type="CPUParticles2D" parent="."]
 material = SubResource( 4 )
-scale = Vector2( 1, 1 )
 emitting = false
 amount = 60
 lifetime = 3.0

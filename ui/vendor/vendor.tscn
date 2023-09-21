@@ -285,13 +285,14 @@ scroll_horizontal_enabled = false
 
 [node name="wares" type="VBoxContainer" parent="all/main/scroller"]
 margin_right = 218.0
-margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
 
-[node name="warelessness" type="Label" parent="all/main/scroller/wares"]
+[node name="warelessness" type="Label" parent="all/main/scroller"]
 margin_right = 218.0
 margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 text = "Nothing is here for you to buy :("
 autowrap = true
 

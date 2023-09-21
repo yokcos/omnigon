@@ -44,6 +44,7 @@ func _ready() -> void:
 	resolve_extra_data()
 	apply_hat_visuals()
 	apply_hats()
+	call_deferred( "cling_to_ladder", true )
 	
 	var room_size = Rooms.get_room_size(Rooms.current_room)
 	$cam.limit_right  = room_size.x * Rooms.room_size.x
@@ -383,6 +384,11 @@ func throw_hat():
 			thrower.modify(new_thrown_hat)
 		Game.deploy_instance(new_thrown_hat, global_position - Vector2(0, total_hat_height+8))
 
+func disable_jetfist():
+	gravity_active = true
+	$fsm/attacc.target_velocity.x = 0
+	$fsm/attacc.acceleration = 0
+
 
 func _on_attacc_activated() -> void:
 	velocity.x += -200 if flipped else 200
@@ -408,6 +414,10 @@ func _on_attacc_entered() -> void:
 		
 		$fsm/attacc.target_velocity.x = jet_speed * flip_int
 		$fsm/attacc.acceleration = acceleration
+		gravity_active = false
+		var new_timer = get_tree().create_timer(.3)
+		new_timer.connect("timeout", self, "disable_jetfist")
+		velocity.y = 0
 		velocity.x += jet_impulse * flip_int
 	else:
 		$fsm/attacc.target_velocity.x = 0

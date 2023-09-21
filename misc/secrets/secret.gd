@@ -3,6 +3,7 @@ extends Resource
 
 
 export (String) var id = ""
+export (Texture) var image = null
 export (String) var name = ""
 export (String, MULTILINE) var description = ""
 export (String, MULTILINE) var comments = ""
