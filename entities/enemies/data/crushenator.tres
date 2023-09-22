@@ -32,6 +32,7 @@ script = ExtResource( 1 )
 id = "crushenator"
 name = "Crushenator"
 desc = "Terrifying foes, you don't see their existence until they're upon you and all your organs from gizzard to appendix have become paste on the floor."
-lore = "I am lucky that the single crushenator in this facility is unwilling to do its only job. I wonder why."
+lore = "It doesn't want to do its job! Once I had a job I didn't want to do so I quit and joined the army.
+But I guess this guy is kind of already in the army?? Is that how it works?"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 32, 32 )

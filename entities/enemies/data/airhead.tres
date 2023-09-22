@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "airhead"
 name = "Airhead"
 desc = "They pose no harm to anyone except themselves. Gaze in awe as they float to the nearest ceiling and upon meeting it, instantly perish to death!"
-lore = "I can't tell if this is an actual living creature or a normal balloon with a face painted on it. Atomborn would probably think me a fool for not being able to tell the difference, but you know what we're not all experts at identifying this and that."
+lore = "........is this just a balloon that someone drew a face on?"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 0, 0 )

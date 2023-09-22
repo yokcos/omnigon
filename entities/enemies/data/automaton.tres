@@ -32,6 +32,8 @@ script = ExtResource( 1 )
 id = "automaton"
 name = "Automaton"
 desc = "A, what they call a 'Robot' that patrols the facility halls and shoots intruders"
-lore = "To build a whole fake person out of browny metal and clockwork? This horrid contraption is a monument to northern hubris, and I do the world a service to destroy each one I see."
+lore = "If they make a person out of metal like this then is it a real person?
+Probably maybe I can punch it I think without feeling guilty.
+Butttttt it is very hard and metalish and my hand hurts when I do that ;-;"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 32, 32 )

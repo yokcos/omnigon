@@ -20,6 +20,7 @@ script = ExtResource( 1 )
 id = "bell"
 name = "Bell"
 desc = "Annoying traps usually deployed against those who dare to attempt to remain in bed even a single second past their recommended awakening-time."
-lore = "In my homeland we are far more lax about letting people awaken at times that suit them. Certainly the idea of injuring people who try to stay in bed would be met with some controversy."
+lore = "Why would you attack people who sleep late, that's so cruel ;-; what if I'm tired?
+If I were the emperor I would send all of these bells to jail to think about what they've done!"
 frames = SubResource( 2 )
 sprite_rect = Rect2( 0, 0, 32, 32 )

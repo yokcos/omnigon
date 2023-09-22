@@ -1,6 +1,10 @@
 extends Enemy
 
 
+const obj_hat = preload("res://entities/hat.tscn")
+const hat_binlid = preload("res://hats/0014_binlid.tres")
+
+
 func _ready() -> void:
 	$fsm/chase.wall_detector = $flippable/wall_detector
 	assign_target()
@@ -44,6 +48,15 @@ func get_shifted():
 	else:
 		GlobalSound.cut_temp_music()
 		$fsm.set_state_string("hidden")
+
+func die():
+	if !PlayerStats.has_available_hat("binlid"):
+		var new_hat = obj_hat.instance()
+		new_hat.hat = hat_binlid
+		new_hat.apply_central_impulse(Vector2(0, -600).rotated(rand_range(-.1, .1)))
+		Game.deploy_instance(new_hat, global_position)
+	
+	.die()
 
 
 func _on_entity_detector0_activated() -> void:

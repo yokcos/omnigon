@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "grandfathercrook"
 name = "Grandfather Crook"
 desc = "A robotic grandfather clock who banks a considerable salary 'working' as a manager at this facility."
-lore = "Is this a person? It's getting paid like one and in ways it acts like one."
+lore = "Is this a person? What work does it do besides hitting me? Why is it paid so much? I think that this is very smelly and the smell is of nepotism somehow."
 frames = SubResource( 5 )
 sprite_rect = Rect2( 64, 64, 64, 64 )

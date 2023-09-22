@@ -48,6 +48,7 @@ script = ExtResource( 1 )
 id = "adept"
 name = "Adept"
 desc = "Hunchbacked minion of the enemy, equipped with the dangerous ability to launch its own head as a weapon."
-lore = "They've been trained well in the Blade Arts, and are able to deliver strikes without stumbling or falling. It's not known how they retrieve their head after launching it but the leading theory is magnets."
+lore = "They're good at swords for sure.
+But when they shoot their head how does it come back? IS IT MAGNETS??????"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 0, 32, 32, 32 )

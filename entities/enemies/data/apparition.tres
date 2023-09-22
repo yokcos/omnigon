@@ -32,6 +32,8 @@ script = ExtResource( 1 )
 id = "apparition"
 name = "Apparition"
 desc = "Ghostly spectre that ignores the existence of walls"
-lore = "It is unknown to us what gives these apparitions the power of flight, and through-wall movement. But it seems they are also given the power of Cowardice, since even a stern glare will have them quaking in fear."
+lore = "I don't get it. They can fly and they pop out of walls but they are super cowardly.
+I looked at one aggressively and I think it nearly shat itself it was so scared!
+They can spit deadly bullets why don't they just shoot instead of hiding??"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 32, 32 )

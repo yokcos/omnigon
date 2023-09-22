@@ -48,6 +48,7 @@ script = ExtResource( 1 )
 id = "grandchildcrook"
 name = "Grandchild Crook"
 desc = "Strange spider-clock abominations spewed out by the Grandfather Crook to distract its foes."
-lore = "I assume these are only metaphorically the grandchildren of the Grandfather Crook. Else they would have skipped a generation, and I certainly didn't see it performing the normal child-creation process in mid-battle."
+lore = "I hope that they are not really the grandchild of the big clock. If the grandfather is stopping and making children in the middle of a fight then that's just SHOWING OFF	and it's not very nice! And what about the parent?? What happened to that?
+No, definitely not real grandchild, nuh-uh, it's just a name I'm sure!"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 40, 32, 48, 48 )

@@ -37,8 +37,7 @@ description = "Statue"
 verb = "Read Plaque"
 title = "Zorp Statue"
 text = "\"Beloved memory of Zorp, who stood up against them fucking elves\"
-Looks like these DESPICABLE NORTHERNERS, despite their blasphemy and foolishness, have good respect for this heroic figure.
-Perhaps these people are redeemable after all."
+Oh they like Zorp up here too! Zorp was great, we should all try to be more like zorp I think."
 egress = "Hail Zorp!"
 
 [node name="adept" parent="." instance=ExtResource( 2 )]

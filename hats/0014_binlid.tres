@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://hats/hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0014_binlid_large.png" type="Texture" id=2]
+[ext_resource path="res://hats/0014_binlid.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "binlid"
+sprite = ExtResource( 3 )
+large_sprite = ExtResource( 2 )
+name = "Bin Lid"
+description = "A cunning disguise, able to deceive even the most sophisticated of people or automated systems into believing that you are completely unnoteworthy. a simple ordinary bin running to and fro."
+height = 4.0
+damage = 1.0
+small_frames = 1
+large_frames = 1

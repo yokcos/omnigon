@@ -44,10 +44,12 @@ tile_data = PoolIntArray( 65535, 7, 131072, 0, 7, 327682, 1, 7, 327682, 2, 7, 32
 [node name="shooter0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 664, 472 )
 rotation = -3.14159
+interval = 4.0
 
 [node name="shooter1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 696, 424 )
 rotation = -3.14159
+interval = 4.0
 phase = 0.5
 
 [node name="shooter2" parent="." instance=ExtResource( 5 )]

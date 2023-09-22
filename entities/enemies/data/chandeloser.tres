@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "chandeloser"
 name = "Chandeloser"
 desc = "This person seems to be a chandelier."
-lore = "I wonder how it gets to and from work. It's probably too wide to get into a bus."
+lore = "How do you get to work if you're a chandelier?? How do you fit in the bus?"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 32, 16, 32, 32 )

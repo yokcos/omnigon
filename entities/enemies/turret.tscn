@@ -140,7 +140,7 @@ anims/turn = SubResource( 4 )
 next/shoot = "idle"
 
 [node name="shoot_timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 
 [connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
 [connection signal="entered" from="fsm/normal" to="." method="_on_normal_entered"]

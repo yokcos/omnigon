@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "sawhead"
 name = "Sawhead"
 desc = "These terrifying people have stapled a giant saw to their head, which makes their attacks very hard to avoid indeed. Fortunately their sloth makes them vulnerable to the power of punching."
-lore = "Do these 'Sawheads' have lives outside of faceplanting at their enemies? Do they go home to their parents and children and sleep in their several-metre-long bed? Maybe they unstaple the saw from their head at the end of the working day."
+lore = "What do they do for the rest of their life outside work? Is their bed really long to hold the big saw? Do they have really high ceilings?"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 0, 96, 32, 32 )

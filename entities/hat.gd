@@ -1,7 +1,7 @@
 extends "res://entities/pickup.gd"
 
 
-var hat: Hat = null
+var hat: Hat = null setget set_hat
 
 
 signal collected

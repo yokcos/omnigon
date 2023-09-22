@@ -131,6 +131,12 @@ func has_hat(id: String) -> bool:
 			return true
 	return false
 
+func has_available_hat(id: String) -> bool:
+	for i in available_hats:
+		if i.id == id:
+			return true
+	return false
+
 func gain_hat(what: Hat):
 	if !available_hats.has(what):
 		available_hats.append(what)

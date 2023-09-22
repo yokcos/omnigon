@@ -32,7 +32,7 @@ script = ExtResource( 1 )
 id = "blademaster"
 name = "Blademaster"
 desc = "Dexterous hands, long learned and mastered in the Art of the Blade."
-lore = "Skilled they may be, but they've been given swords that are too large for their strength to withstand.
-Under such unfitting and ghastly working conditions I too would give up and lay on the floor at the first sign of an obstacle."
+lore = "The big swords they got given are way too big and heavy for them too handle, poor guys.
+When they fall over they don't even try to get up hahahahaha"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 48, 48 )

@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "pestilent"
 name = "Pestilent"
 desc = "Disgusting but harmless fly, that sails around getting in everyone's way."
-lore = "Perhaps we should have sent not an infiltrator or a warrior, but a pest exterminator."
+lore = "Eeeeeeww I don't want flies crawling all over me licking my sweat and breeding under my hat!"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 0, 0, 16, 16 )

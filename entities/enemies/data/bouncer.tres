@@ -32,7 +32,7 @@ script = ExtResource( 1 )
 id = "bouncer"
 name = "The Bouncer"
 desc = "A guardian who has sawed off its own legs, and replaced them with springs in order to bounce higher"
-lore = "The most formidable guard that this facility has to offer so far, and the first to give more than a token defense.
-What kind of culture do they have up here in this fetid northern Empaire, where people decide voluntarily to un-leg themselves?"
+lore = "Ow cutting off your legs sounds like it hurts. Even if you do get to boing boing like that, it's not worth it.
+They do that kind of thing a lot in the north D: many people scooping out their eyes and replacing them, or their tongue or something."
 frames = SubResource( 5 )
 sprite_rect = Rect2( 8, 0, 48, 48 )

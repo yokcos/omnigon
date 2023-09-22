@@ -48,6 +48,7 @@ script = ExtResource( 1 )
 id = "gigamanner"
 name = "Gigamanner"
 desc = "A citizen of the Empaire who has joined the great network of partly shared minds."
-lore = "The one thing everyone knows about these so-called 'Gigamanners' is that the name is a lie: There's not even a billion of them! But yeah they're pretty creepy, apparently they can see each others' thoughts."
+lore = "Their name is a lie! There's supposed to be a billion of them, that's where the Giga- name comes from. But there's not quiiiiite that many of them yet I think.
+I definitely don't want to join. You have to get brain surgery and share a bit of your mind with everyone else ;-; why would they sign up for that?"
 frames = SubResource( 9 )
 sprite_rect = Rect2( -8, 0, 48, 48 )

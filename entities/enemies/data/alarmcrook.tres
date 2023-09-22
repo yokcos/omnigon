@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "alarmcrook"
 name = "Alarm Crook"
 desc = "Strong believer in the idea that folks should be physically attacked in order to wake them up on time"
-lore = "Never have I heard a sound as terrible and grotesque as the one produced by this harrowing robotic clock. I will be happy if I never again have to see another copy of this abomination."
+lore = "Gah it's so loud and annoying! Why is it even ringing? I'm already awake!"
 frames = SubResource( 5 )
 sprite_rect = Rect2( 48, 64, 32, 32 )

@@ -48,6 +48,8 @@ script = ExtResource( 1 )
 id = "turret"
 name = "Turret"
 desc = "Guns that operate themselves, aiming at wherever the nearest intruder is."
-lore = "One has to wonder, how often does this facility get broken into, that they feel the need to have all these guardians and guns? Are there a lot of teleporting espionagists in the Empaire?"
+lore = "Imagine trying to work in a place where they put automatic guns everywhere ;-;
+Oh wait I don't have to imagine. They do this where I work as well, it's annoying when someone accidentally turns them on.
+I think that the ones here are always on though?!"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 0, 0, 32, 32 )

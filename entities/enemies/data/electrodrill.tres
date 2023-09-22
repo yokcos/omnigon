@@ -32,6 +32,6 @@ script = ExtResource( 1 )
 id = "electrodrill"
 name = "Electro-Drill"
 desc = "Strange ceilingbound contraptions that can bring down a deadly portcullis at a moment's notice."
-lore = "Do they need to do a lot of digging here?"
+lore = "The lab is underground so MAYBE these are just the things that they used to dig it in the first place."
 frames = SubResource( 5 )
 sprite_rect = Rect2( -8, 0, 48, 48 )

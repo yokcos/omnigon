@@ -48,6 +48,6 @@ script = ExtResource( 1 )
 id = "floater"
 name = "Floater"
 desc = "These little shits have hidden axes on their person! Takes them a while to swing it though, feel free to make yourself a sandwich while it gradually attacks you."
-lore = "Where do they keep their axe? Is it within one of their orifices? Did you know that their wings don't provide enough upward force to rise into the air? They have an orifice specifically for expelling gas to float higher."
+lore = "Where do they keep their axe? Is it in one of their orifices? I bet it's in their axehole!"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 40, 40, 40, 40 )

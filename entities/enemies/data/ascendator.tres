@@ -48,6 +48,7 @@ script = ExtResource( 1 )
 id = "ascendator"
 name = "Ascendator"
 desc = "Those who stand on it shall be launched skyward at an unimpressive speed."
-lore = "It is lost on me why this creature exists. It's a spring. The same function could be achieved by an entity that is not alive. Is it conscious? The mysteries never cease."
+lore = "Why does the spring have a face??? Is it alive?
+Oh no does it hurt when I step on it? Poor spring, I'm so sorry!"
 frames = SubResource( 9 )
 sprite_rect = Rect2( 0, 0, 0, 0 )
