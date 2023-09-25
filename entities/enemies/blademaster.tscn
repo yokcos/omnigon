@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://entities/enemies/blademaster_fumble.gd" type="Script" id=10]
 [ext_resource path="res://fsm/states/state.gd" type="Script" id=11]
 [ext_resource path="res://entities/enemies/data/blademaster.tres" type="Resource" id=12]
+[ext_resource path="res://props/interactables/interactable.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8, 8 )
@@ -284,6 +285,12 @@ texture = ExtResource( 9 )
 hframes = 8
 vframes = 7
 
+[node name="headpat" type="Node2D" parent="."]
+script = ExtResource( 13 )
+description = "Blademaster"
+verb = "Pet"
+active = false
+
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 1 )
@@ -342,6 +349,9 @@ duration = 0.8
 [connection signal="updated" from="flippable/walledge_detector" to="fsm/patrol" method="_on_walledge_detector_updated"]
 [connection signal="updated" from="flippable/walledge_detector" to="fsm/patrol_r" method="_on_walledge_detector_updated"]
 [connection signal="activated" from="flippable/entity_detector" to="." method="_on_entity_detector_activated"]
+[connection signal="activated" from="headpat" to="." method="_on_headpat_activated"]
 [connection signal="state_changed" from="fsm" to="." method="_on_state_changed"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
 [connection signal="activated" from="fsm/attacc_r0" to="." method="_on_attacc_r_activated"]
+[connection signal="entered" from="fsm/fumble" to="." method="_on_fumble_entered"]
+[connection signal="exited" from="fsm/fumble" to="." method="_on_fumble_exited"]

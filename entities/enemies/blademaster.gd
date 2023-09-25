@@ -68,3 +68,14 @@ func _on_entity_detector_activated() -> void:
 			Game.summon_mattress_gremlin(global_position + mattress_position)
 		
 		$fsm/patrol_r.perform_action("attacc_r0")
+
+func _on_fumble_entered() -> void:
+	$headpat.active = true
+
+func _on_fumble_exited() -> void:
+	$headpat.active = true
+
+func _on_headpat_activated() -> void:
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		player.pat_blademaster(self)

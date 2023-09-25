@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://entities/player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player.png" type="Texture" id=2]
@@ -424,6 +424,34 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0.0, -17.6589, -167.707 ]
+}
+
+[sub_resource type="Animation" id=133]
+resource_name = "headpat"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 76, 77, 78, 79, 80, 81, 82, 83 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flippable/hats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, -14 ), Vector2( 2, -14 ), Vector2( 2, -12 ), Vector2( 2, -11 ), Vector2( 1, -14 ) ]
 }
 
 [sub_resource type="Animation" id=121]
@@ -937,7 +965,7 @@ shape = SubResource( 108 )
 use_parent_material = true
 texture = ExtResource( 2 )
 hframes = 8
-vframes = 10
+vframes = 11
 frame = 9
 
 [node name="fishing_pole" type="Sprite" parent="flippable"]
@@ -1018,6 +1046,11 @@ script = ExtResource( 12 )
 animation = "tip"
 auto_proceed = "normal"
 
+[node name="headpat" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+animation = "headpat"
+auto_proceed = "normal"
+
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 116 )
@@ -1027,6 +1060,7 @@ anims/climb = SubResource( 118 )
 anims/climb_down = SubResource( 119 )
 anims/climb_up = SubResource( 120 )
 anims/fish = SubResource( 131 )
+anims/headpat = SubResource( 133 )
 anims/idle = SubResource( 121 )
 anims/postattacc = SubResource( 122 )
 anims/postfish = SubResource( 132 )

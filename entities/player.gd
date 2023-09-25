@@ -389,6 +389,12 @@ func disable_jetfist():
 	$fsm/attacc.target_velocity.x = 0
 	$fsm/attacc.acceleration = 0
 
+func pat_blademaster(what: Enemy):
+	var head_x = what.global_position.x + 5*what.flip_int
+	var target_x = head_x - 16*flip_int
+	global_position.x = target_x
+	$fsm.set_state_string("headpat")
+
 
 func _on_attacc_activated() -> void:
 	velocity.x += -200 if flipped else 200
