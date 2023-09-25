@@ -12,7 +12,7 @@
 [ext_resource path="res://pieces/tile_detector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://props/interactables/pipe.tscn" type="PackedScene" id=11]
 [ext_resource path="res://props/interactables/pipe_hat.gd" type="Script" id=12]
-[ext_resource path="res://hats/0002_revenge.tres" type="Resource" id=13]
+[ext_resource path="res://hats/0008_fishing.tres" type="Resource" id=13]
 [ext_resource path="res://pieces/room_flag_setter.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]

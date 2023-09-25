@@ -49,6 +49,7 @@ error_message = "You fail to hold enough IMAGINARY LIGHTERS to pass through this
 lighter_type = 3
 
 [node name="entity_detector" parent="." instance=ExtResource( 1 )]
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
 visible = false

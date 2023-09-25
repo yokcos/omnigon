@@ -85,12 +85,14 @@ position = Vector2( 256, 112 )
 
 [node name="entity_detector0" parent="." instance=ExtResource( 9 )]
 position = Vector2( 16, 96 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector0"]
 shape = SubResource( 4 )
 
 [node name="entity_detector1" parent="." instance=ExtResource( 9 )]
 position = Vector2( 496, 96 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector1"]
 shape = SubResource( 4 )

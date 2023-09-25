@@ -15,6 +15,7 @@ script = ExtResource( 2 )
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

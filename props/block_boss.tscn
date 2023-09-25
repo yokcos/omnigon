@@ -22,6 +22,7 @@ hframes = 2
 frame = 1
 
 [node name="entity_detector" parent="." instance=ExtResource( 3 )]
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
 visible = false

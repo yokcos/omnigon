@@ -27,6 +27,7 @@ polygon = PoolVector2Array( -8, -4, -8, 4, -4, 8, 4, 8, 8, 4, 8, -4, 4, -8, -4, 
 
 [node name="entity_detector" parent="." instance=ExtResource( 2 )]
 visible = false
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
 shape = SubResource( 2 )

@@ -12,7 +12,8 @@ func shoot():
 	for i in range(4):
 		var new_bullet = obj_bullet.instance()
 		Game.deploy_instance(new_bullet, $flippable/barrel.global_position)
-		new_bullet.velocity = Vector2(40 + i*20, 0) * flip_node.scale
+		#new_bullet.velocity = Vector2(40 + i*20, 0) * flip_node.scale
+		new_bullet.acceleration = Vector2(40 + i*20, 0) * flip_node.scale
 	
 	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_DT, global_position)
 

@@ -3,6 +3,7 @@ extends Node
 
 var volume_music: float = 0.7 setget set_volume_music
 var volume_sfx: float = 0.7 setget set_volume_sfx
+var fullscreen: bool = false setget set_fullscreen
 var curses = []
 
 const actions = [
@@ -102,6 +103,7 @@ func compress_settings() -> Dictionary:
 				controlses[action].append(dict)
 	data["controls"] = controlses
 	data["curses"] = curses
+	data["fullscreen"] = fullscreen
 	
 	return data
 
@@ -110,6 +112,7 @@ func uncompress_settings(data: Dictionary):
 	set_volume_sfx( data["volume_sfx"] )
 	replace_input_actions( data["controls"] )
 	if data.has("curses"): curses = data["curses"]
+	if data.has("fullscreen"): set_fullscreen(data["fullscreen"])
 
 func save_settings():
 	apply_duplicate_actions()
@@ -132,3 +135,7 @@ func load_settings():
 	Game.remove_cursed_files()
 	apply_duplicate_actions()
 	add_default_actions()
+
+func set_fullscreen(what: bool):
+	OS.window_fullscreen = what
+	fullscreen = what

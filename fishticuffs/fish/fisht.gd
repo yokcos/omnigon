@@ -14,10 +14,12 @@ func _process(delta: float) -> void:
 
 func identify_target():
 	var hooks = get_tree().get_nodes_in_group("hooks")
-	if hooks.size() > 0:
+	if hooks.size() > 0 and !PlayerStats.has_hat("binlid"):
 		target = hooks[0]
+		homeostatify_velocity = false
 	else:
 		target = null
+		homeostatify_velocity = true
 
 func follow_target(delta: float):
 	if is_instance_valid(target):

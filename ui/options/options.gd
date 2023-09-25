@@ -151,7 +151,7 @@ func _on_continue_pressed() -> void:
 	depart_animation()
 
 func _on_fullscreen_pressed() -> void:
-	OS.window_fullscreen = !OS.window_fullscreen
+	Settings.fullscreen = !Settings.fullscreen
 
 func _on_unsave_pressed() -> void:
 	var dir = Directory.new()

@@ -23,6 +23,7 @@ func _ready() -> void:
 	
 	var new_detector = obj_detector.instance()
 	new_detector.connect("activated", self, "_on_entity_detector_activated")
+	new_detector.override_binlid = true
 	add_child(new_detector)
 	
 	var new_cs = CollisionShape2D.new()

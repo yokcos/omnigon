@@ -2,6 +2,7 @@ extends Area2D
 
 
 export (Array, int) var target_teams = [0]
+export (bool) var override_binlid = false
 
 var overlapping_entities = []
 
@@ -28,7 +29,7 @@ func _on_body_entered(body: Node) -> void:
 	if !overlapping_entities.has(body) and body is Entity and target_teams.has(body.team):
 		# Apply hat Bin Lid
 		var exception: bool = false
-		if PlayerStats.has_hat("binlid"):
+		if !override_binlid and PlayerStats.has_hat("binlid"):
 			if body.team == 0:
 				exception = true
 		

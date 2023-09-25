@@ -23,11 +23,17 @@ func _process(delta: float) -> void:
 			
 			var least_margin = margins.min()
 			if least_margin < 32:
-				GlobalSound.play_temp_music("suddenmimic")
-				$fsm/hidden.set_state("chase")
+				activate()
 	else:
 		assign_target()
 
+
+
+func take_damage(dmg: float, source: Being = null):
+	if $fsm.state_name == "hidden":
+		activate()
+	
+	return .take_damage(dmg, source)
 
 func assign_target():
 	if !is_instance_valid($fsm/chase.target):
@@ -43,11 +49,18 @@ func perform_attacc1() -> void:
 
 func get_shifted():
 	if $fsm.state_name == "hidden":
+		activate()
+	else:
+		deactivate()
+
+func activate():
+	if !PlayerStats.has_hat("binlid"):
 		GlobalSound.play_temp_music("suddenmimic")
 		$fsm.set_state_string("chase")
-	else:
-		GlobalSound.cut_temp_music()
-		$fsm.set_state_string("hidden")
+
+func deactivate():
+	GlobalSound.cut_temp_music()
+	$fsm.set_state_string("hidden")
 
 func die():
 	if !PlayerStats.has_available_hat("binlid"):

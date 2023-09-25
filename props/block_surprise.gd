@@ -16,6 +16,10 @@ func _ready() -> void:
 	hide()
 
 
+func appear():
+	show()
+	$hitbox.disabled = false
+
 func get_punched():
 	if injured:
 		die()
@@ -56,4 +60,4 @@ func get_shifted():
 		Game.deploy_instance(new_particulation, global_position)
 
 func _on_entity_detector_activated() -> void:
-	show()
+	appear()

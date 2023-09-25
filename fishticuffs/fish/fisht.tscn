@@ -90,6 +90,7 @@ knockback_resistance = 5.0
 max_hp = 4.0
 value = 4.0
 corpse_sprite = ExtResource( 1 )
+target_velocity = Vector2( 30, 0 )
 homeostatify_velocity = false
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

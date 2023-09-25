@@ -74,6 +74,7 @@ position = Vector2( 768, 624 )
 
 [node name="entity_detector0" parent="." instance=ExtResource( 6 )]
 position = Vector2( 336, 672 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector0"]
 shape = SubResource( 4 )
@@ -84,6 +85,7 @@ music = "facilitymechanism"
 
 [node name="entity_detector1" parent="." instance=ExtResource( 6 )]
 position = Vector2( 400, 672 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector1"]
 shape = SubResource( 4 )

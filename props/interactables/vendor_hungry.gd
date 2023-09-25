@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 
 
 func eat():
-	$animator.play("eat_pre")
+	if !PlayerStats.has_hat("binlid"):
+		$animator.play("eat_pre")
 
 func tongueify():
 	$tongue.show()

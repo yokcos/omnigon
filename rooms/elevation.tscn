@@ -38,6 +38,7 @@ loactions = PoolVector2Array( 960, 64, 960, 192 )
 
 [node name="entity_detector0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 16, 144 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector0"]
 shape = SubResource( 1 )
@@ -52,6 +53,7 @@ room = Vector2( -15, 3 )
 
 [node name="entity_detector1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 496, 144 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector1"]
 shape = SubResource( 1 )

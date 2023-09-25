@@ -31,6 +31,7 @@ target_tiles = NodePath("../tilemap")
 
 [node name="entity_detector" parent="." instance=ExtResource( 5 )]
 position = Vector2( -88, 176 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
 position = Vector2( 120, 0 )

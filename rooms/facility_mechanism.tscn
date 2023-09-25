@@ -105,6 +105,7 @@ anims/arrive = SubResource( 3 )
 
 [node name="entity_detector" parent="." instance=ExtResource( 7 )]
 position = Vector2( 16, 384 )
+override_binlid = true
 
 [node name="hitbox" type="CollisionShape2D" parent="entity_detector"]
 shape = SubResource( 4 )

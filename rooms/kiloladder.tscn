@@ -6,7 +6,7 @@
 [ext_resource path="res://rooms/room.gd" type="Script" id=4]
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/platform_clockwork.tscn" type="PackedScene" id=6]
-[ext_resource path="res://hats/0008_fishing.tres" type="Resource" id=7]
+[ext_resource path="res://hats/0002_revenge.tres" type="Resource" id=7]
 [ext_resource path="res://props/interactables/pipe_hat.gd" type="Script" id=8]
 
 [node name="kiloladder" type="Node2D"]
