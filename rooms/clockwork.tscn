@@ -26,5 +26,11 @@ position = Vector2( 448, 184 )
 [node name="hitbox" type="CollisionShape2D" parent="invis_floor"]
 shape = SubResource( 1 )
 
+[node name="invis_floor2" type="StaticBody2D" parent="."]
+position = Vector2( 448, 40 )
+
+[node name="hitbox" type="CollisionShape2D" parent="invis_floor2"]
+shape = SubResource( 1 )
+
 [node name="rotator" parent="." instance=ExtResource( 5 )]
 position = Vector2( 160, 104 )

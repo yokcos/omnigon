@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://props/interactables/terminal.png" type="Texture" id=1]
 [ext_resource path="res://props/interactables/terminal.gd" type="Script" id=2]
 [ext_resource path="res://props/interactables/interactable.gd" type="Script" id=3]
 [ext_resource path="res://misc/secrets/mushroom.tres" type="Resource" id=4]
+[ext_resource path="res://pieces/shift_detector.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 24 )
 
 [node name="terminal" type="Node2D"]
 script = ExtResource( 2 )
@@ -11,10 +15,17 @@ secret = ExtResource( 4 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+hframes = 2
 
 [node name="interactable" type="Node2D" parent="."]
 script = ExtResource( 3 )
 description = "Terminal of Secrets"
 verb = "Snoop"
 
+[node name="shift_detector" parent="." instance=ExtResource( 5 )]
+
+[node name="hitbox" type="CollisionShape2D" parent="shift_detector"]
+shape = SubResource( 1 )
+
 [connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]
+[connection signal="shifted" from="shift_detector" to="." method="_on_shift"]

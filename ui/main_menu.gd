@@ -17,7 +17,7 @@ var texts = [
 	"Made you look!",
 	"Made with Godot",
 	"Boing Boing!",
-	"Merely a demo",
+	"No longer a demo",
 	"Vertices in pipes",
 	"Deepest lore in the industry",
 	"Default text here",
@@ -47,11 +47,18 @@ var texts = [
 	"Sailing through space",
 	"Not a smelly game",
 	"Canonically zero nipples",
+	"Pbot has one syllable",
+	"No time travel!",
+	"Arbitrary text",
+	"Default text here",
+	"A hundred rooms",
+	"Moneybags is stinky",
 ]
 var current_texts = {}
 var lore = "Your enemies in the NORTH are working out the secrets of TIME TRAVEL! This cannot be allowed, but fortunately your people in the SOUTH have the secrets of SPACE TRAVEL. By which I mean TELEPORTATION, which you have used to enter the very bowels of their research base! Now all that's left is to locate and steal their SECRETS!"
 
 var background_colour = Color("e3e6ff")
+var previously_selected: Control = null
 
 const obj_text = preload("res://ui/mainmenu_text.tscn")
 const obj_options = preload("res://ui/options/options.tscn")
@@ -75,7 +82,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if randf()*120 < 1:
 		deploy_text()
+	watch_links()
 
+
+func watch_links():
+	var this_element: Control = get_focus_owner()
+	if this_element != previously_selected:
+		previously_selected = this_element
+		if this_element.get_parent() == $column/links:
+			$column/link_name.text = this_element.title
+		else:
+			$column/link_name.text = ""
 
 func link_pieces():
 	var links = $column/links.get_children()
@@ -134,6 +151,7 @@ func _on_begin_pressed() -> void:
 func _on_options_pressed() -> void:
 	var new_options = obj_options.instance()
 	new_options.cull_egress_buton()
+	new_options.rename_continue_button()
 	$overlay.add_child(new_options)
 	new_options.rect_position = Vector2(448, 136)
 	

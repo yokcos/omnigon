@@ -6,7 +6,7 @@ var prev_paused: bool = false
 var score: float = 0
 var age: float = 0
 var bubble_sfx: SFX = null
-var score_threshholds = [0, 15, 90, 200, 1000]
+var score_threshholds = [0, 15, 30, 80, 150]
 
 const obj_thermometer = preload("res://ui/ovation_thermometer.tscn")
 

@@ -5,6 +5,7 @@ export (String) var still_animation = "idle"
 export (String) var run_animation = "run"
 
 var has_ladder: bool = true
+var ladder_jump_speed: float = 160
 var time_since_movement: float = 0
 
 
@@ -58,13 +59,15 @@ func _handle_input(event: InputEvent) -> void:
 		# Yes I added most of these comments for the sake of this video
 		
 		if event.is_action_pressed("shift"):
-			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder") and has_ladder:
-				var arrow: Projectile = load("res://projectiles/arrow_ladder.tscn").instance()
-				arrow.exceptions.append(father)
-				arrow.source = father
-				Game.deploy_instance(arrow, father.global_position)
-				father.velocity.y = min(father.velocity.y, 0)
-				has_ladder = false
+			if Input.is_action_pressed("move_up") and PlayerStats.check_upgrade("arrow_ladder"):
+				if has_ladder:
+					var arrow: Projectile = load("res://projectiles/arrow_ladder.tscn").instance()
+					arrow.exceptions.append(father)
+					arrow.source = father
+					Game.deploy_instance(arrow, father.global_position)
+					if !father.is_grounded():
+						father.velocity.y = min(father.velocity.y, -ladder_jump_speed)
+						has_ladder = false
 			elif Input.is_action_pressed("move_down"):
 				father.throw_hat()
 			else:

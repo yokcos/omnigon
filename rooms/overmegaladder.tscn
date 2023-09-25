@@ -58,6 +58,12 @@ position = Vector2( 64, 184 )
 [node name="hitbox" type="CollisionShape2D" parent="invis_floor"]
 shape = SubResource( 1 )
 
+[node name="invis_ceiling" type="StaticBody2D" parent="."]
+position = Vector2( 64, 40 )
+
+[node name="hitbox" type="CollisionShape2D" parent="invis_ceiling"]
+shape = SubResource( 1 )
+
 [node name="child" parent="." instance=ExtResource( 9 )]
 position = Vector2( 232, 224 )
 z_index = -20

@@ -58,6 +58,20 @@ collision_layer = 4
 [node name="hitbox" type="CollisionShape2D" parent="block1"]
 shape = SubResource( 3 )
 
+[node name="block2" type="StaticBody2D" parent="."]
+position = Vector2( 504, 16 )
+collision_layer = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="block2"]
+shape = SubResource( 3 )
+
+[node name="block3" type="StaticBody2D" parent="."]
+position = Vector2( 8, 16 )
+collision_layer = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="block3"]
+shape = SubResource( 3 )
+
 [node name="bouncycastle" parent="." instance=ExtResource( 3 )]
 position = Vector2( 80, 232 )
 

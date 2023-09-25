@@ -114,6 +114,9 @@ func cull_egress_buton():
 	$fulcra.remove_child(egress_button)
 	egress_button.queue_free()
 
+func rename_continue_button():
+	$fulcra/continue/button.text = "Return"
+
 func show_save():
 	$saved.rect_global_position.x = 0
 	$saved.rect_global_position.y = 288 - $saved.rect_size.y

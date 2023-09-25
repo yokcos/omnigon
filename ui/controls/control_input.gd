@@ -62,6 +62,7 @@ func _gui_input(event: InputEvent) -> void:
 		if selecting:
 			if event.is_action_pressed("ui_cancel"):
 				unselect()
+				get_viewport().set_input_as_handled()
 			elif event.is_action_pressed("ui_backspace") and input and count_inputs() > 1:
 				emit_signal("slain_selected")
 				get_culled()
