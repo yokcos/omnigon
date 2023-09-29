@@ -6,6 +6,7 @@ signal teleported
 signal vendor_vomited
 signal bmm_interrupted
 signal moneybags_incapacitated
+signal moneybags_ended
 signal instant_money_change
 signal vertex_collected
 

@@ -56,6 +56,11 @@ func take_damage(dmg: float, source: Being = null):
 	
 	return actual_dmg
 
+func die():
+	.die()
+	
+	Events.emit_signal("moneybags_ended")
+
 func shoot(what: PackedScene = obj_rocket):
 	var dir: Vector2 = $flippable/barrel.global_transform.x.normalized()
 	var rocket_speed: float = 40

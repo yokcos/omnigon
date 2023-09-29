@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://rooms/second.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/junction1.tscn" type="PackedScene" id=2]
@@ -104,6 +104,7 @@
 [ext_resource path="res://rooms/elevation.tscn" type="PackedScene" id=102]
 [ext_resource path="res://rooms/enlightenment.tscn" type="PackedScene" id=103]
 [ext_resource path="res://rooms/cosmogenesis.tscn" type="PackedScene" id=104]
+[ext_resource path="res://rooms/end.tscn" type="PackedScene" id=105]
 
 [node name="map" type="Node2D"]
 script = ExtResource( 20 )
@@ -415,3 +416,6 @@ position = Vector2( -512, 2304 )
 
 [node name="cosmogenesis" parent="." instance=ExtResource( 104 )]
 position = Vector2( -4096, 1280 )
+
+[node name="end" parent="." instance=ExtResource( 105 )]
+position = Vector2( -5120, 1280 )

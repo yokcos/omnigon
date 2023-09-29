@@ -86,14 +86,14 @@ func set_image(what: Texture):
 		$all/main/portrait.texture = what
 
 func connect_wares():
-	var wares: Array = $all/main/scroller/wares.get_children()
+	var these_wares: Array = $all/main/scroller/wares.get_children()
 	
-	for i in range(wares.size()):
+	for i in range(these_wares.size()):
 		var this_index = i
-		var next_index = posmod(i+1, wares.size())
+		var next_index = posmod(i+1, these_wares.size())
 		
-		var this_node: Control = wares[this_index]
-		var next_node: Control = wares[next_index]
+		var this_node: Control = these_wares[this_index]
+		var next_node: Control = these_wares[next_index]
 		
 		var this_path = next_node.get_path_to(this_node)
 		var next_path = this_node.get_path_to(next_node)

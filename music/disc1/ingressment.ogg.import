@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ingressment.ogg-a0b153fccf550006733c98a26eea9892.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

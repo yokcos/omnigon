@@ -110,7 +110,7 @@ func update_lighters():
 			$bar_bottom/lighters.add_child(new_rect)
 
 func update_secrets():
-	$bar_top/secrets.text = "Secrets found: %s" % PlayerStats.secrets.size()
+	$bar_top/secrets.text = "Secrets stolen: %s" % PlayerStats.secrets.size()
 
 func teleport():
 	$animator.play("tele_flash")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/room.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/map/images/factory.png" type="Texture" id=4]
 [ext_resource path="res://entities/enemies/gigamanner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/crate_small.png" type="Texture" id=6]
+[ext_resource path="res://props/space_machine_bac.png" type="Texture" id=7]
 [ext_resource path="res://props/ladder.tscn" type="PackedScene" id=10]
 
 [node name="factory" type="Node2D"]
@@ -76,6 +77,26 @@ texture = ExtResource( 6 )
 [node name="crate_small8" type="Sprite" parent="props"]
 position = Vector2( 824, 128 )
 texture = ExtResource( 6 )
+
+[node name="spacemachine0" type="Sprite" parent="props"]
+position = Vector2( 496, 152 )
+texture = ExtResource( 7 )
+
+[node name="spacemachine1" type="Sprite" parent="props"]
+position = Vector2( 424, 88 )
+texture = ExtResource( 7 )
+
+[node name="spacemachine2" type="Sprite" parent="props"]
+position = Vector2( 792, 120 )
+texture = ExtResource( 7 )
+
+[node name="spacemachine3" type="Sprite" parent="props"]
+position = Vector2( 992, 152 )
+texture = ExtResource( 7 )
+
+[node name="spacemachine4" type="Sprite" parent="props"]
+position = Vector2( 88, 152 )
+texture = ExtResource( 7 )
 
 [node name="ladder" parent="props" instance=ExtResource( 10 )]
 position = Vector2( 48, -32 )

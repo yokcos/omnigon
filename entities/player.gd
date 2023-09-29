@@ -17,6 +17,7 @@ const obj_thrown_hat = preload("res://projectiles/thrown_hat.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 const scr_effect_fished = preload("res://pieces/effects/effect_air_uncontrol.gd")
+const fx_glow = preload("res://fx/glow_fx.tscn")
 
 const base_hitbox_height: float = 12.0
 const base_hitbox_position: float = 4.0
@@ -395,6 +396,10 @@ func pat_blademaster(what: Enemy):
 	global_position.x = target_x
 	$fsm.set_state_string("headpat")
 
+func deploy_glow():
+	var new_glow = fx_glow.instance()
+	add_child(new_glow)
+
 
 func _on_attacc_activated() -> void:
 	velocity.x += -200 if flipped else 200
@@ -445,3 +450,12 @@ func _on_hats_changed(new_hats: Array):
 
 func _on_timer_combhat_timeout() -> void:
 	shoot_combhat()
+
+func _on_teleport_fast_entered() -> void:
+	deploy_glow()
+	
+	$tween.interpolate_property($animator, "playback_speed", 1, 4, 4)
+	$tween.start()
+
+func _on_teleport_fast_exited() -> void:
+	$animator.playback_speed = 1
