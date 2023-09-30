@@ -93,9 +93,6 @@ func deploy_images():
 				var img: Texture = new_room.map_image
 				new_room.queue_free()
 				
-				if !img:
-					img = default_image
-				
 				var new_rect = TextureRect.new()
 				new_rect.texture = img
 				new_rect.set_script(scr_map_image)

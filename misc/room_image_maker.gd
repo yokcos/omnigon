@@ -78,6 +78,10 @@ func evaluate_room(what: Node2D):
 	var tex = ImageTexture.new()
 	tex.create_from_image(image, 0)
 	what.map_image = tex
+	var pck = PackedScene.new()
+	pck.pack(what)
+	var room_folder: String = "res://rooms/"
+	ResourceSaver.save("%s%s.tscn" % [room_folder, id], pck)
 
 
 func add_tile_pixels(image: Image, tilemap: TileMap, this_colour: Color):

@@ -14,5 +14,5 @@ func _gui_input(event: InputEvent) -> void:
 
 func set_room_position(what: Vector2):
 	room_position = what
-	texture = Rooms.room_data[what]["image"]
+	#texture = Rooms.room_data[what]["image"]
 	hint_tooltip = Rooms.room_data[what]["title"]

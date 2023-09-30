@@ -75,17 +75,6 @@ func enter_game():
 	Game.in_game = true
 
 func load_rooms():
-	print_stack()
-	print("Checking rooms")
-	var dir0 = Directory.new()
-	dir0.open("res://ui/map/images/")
-	dir0.list_dir_begin()
-	var fname = dir0.get_next()
-	while fname != "":
-		print(fname)
-		fname = dir0.get_next()
-	print("checking done")
-	
 	apply_fresh_map()
 	
 	rooms = {}
@@ -110,7 +99,7 @@ func load_rooms():
 			var new_room = rooms[i].instance()
 			room_data[i]["id"] = id
 			room_data[i]["title"] = new_room.title
-			apply_room_image(i)
+			#apply_room_image(i)
 			
 			var room_descendents: Array = Game.get_all_descendents(new_room)
 			for this_thing in room_descendents:

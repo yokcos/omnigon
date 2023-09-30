@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	
 	# Look sometimes the guy gets stuck in an attack state and I don't know why
 	# So this'll just forcibly unstuck it after a bit
-	if $fsm.state_name in all_attacks and $fsm.current_state.age > 6:
+	if $fsm.state_name in all_attacks and $fsm.current_state.age > 6 and restrainedness < 1:
 		if $fsm.state_name in armed_states:
 			$fsm.set_state_string("idle_b")
 			has_boomerang = true
