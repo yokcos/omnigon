@@ -18,6 +18,8 @@ func select_interactable():
 		index += 2
 	$interactables.get_child(index).active = true
 	
+	if index == 3:
+		PlayerStats.gain_upgrade("bmm_blessing")
 
 func deactivate_all_interactables():
 	for i in $interactables.get_children():

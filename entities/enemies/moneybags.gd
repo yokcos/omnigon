@@ -4,6 +4,8 @@ extends "res://entities/enemies/enemy.gd"
 var attacks = ["attacc0", "attacc1", "attacc1b", "attacc2"]
 var armed_states = ["idle", "attacc0", "attacc1", "attacc1b", "attacc2", "jump_pre", "jump"]
 var unarmed_states = ["idle_b", "idle_u", "attacc_b0", "attacc_u0_pre", "attacc_u0", "attacc_u0_post"]
+var all_attacks = ["attacc0", "attacc1", "attacc1b", "attacc2", "attacc_b0", "attaccb1",
+"attacc_u0_pre", "attacc_u0", "attacc_u0_post", "jump_pre", "jump"]
 
 var phase: int = 0
 var has_boomerang: bool = true
@@ -21,8 +23,12 @@ const obj_boomerang = preload("res://projectiles/boomerang.tscn")
 const obj_extra_hp = preload("res://entities/extra_hp.tscn")
 const obj_self_thrown = preload("res://props/moneybags_thrown.tscn")
 const obj_blademastermaster = preload("res://props/blademastermaster.tscn")
+const obj_hat = preload("res://entities/hat.tscn")
+
 const scr_effect_uncontrol = preload("res://pieces/effects/effect_air_uncontrol.gd")
 const anim_health = preload("res://animations/moneybags_health/moneybags_health.tscn")
+const hat_mb = preload("res://hats/0013_moneybag.tres")
+const foe_blademaster = preload("res://entities/enemies/data/blademaster.tres")
 
 
 signal incapacitated
@@ -44,6 +50,15 @@ func _process(delta: float) -> void:
 		$fsm/idle_b.target = Game.get_player()
 		$fsm/idle_u.target = Game.get_player()
 		Game.set_boss(self)
+	
+	# Look sometimes the guy gets stuck in an attack state and I don't know why
+	# So this'll just forcibly unstuck it after a bit
+	if $fsm.state_name in all_attacks and $fsm.current_state.age > 6:
+		if $fsm.state_name in armed_states:
+			$fsm.set_state_string("idle_b")
+			has_boomerang = true
+		else:
+			$fsm.set_state_string("idle")
 
 
 func take_damage(dmg: float, source: Being = null):
@@ -58,6 +73,12 @@ func take_damage(dmg: float, source: Being = null):
 
 func die():
 	.die()
+	
+	if !PlayerStats.has_available_hat("moneybag"):
+		var new_hat = obj_hat.instance()
+		new_hat.hat = hat_mb
+		Game.deploy_instance(new_hat, global_position)
+		new_hat.apply_central_impulse( Vector2(0, -600).rotated(rand_range(-.5, .5)) )
 	
 	Events.emit_signal("moneybags_ended")
 
@@ -152,7 +173,8 @@ func deploy_purchase_animation():
 		player.long_stun()
 	cull_projectiles()
 	
-	$fsm.set_state_string("anim_health")
+	if $fsm.current_state != $fsm/prelude:
+		$fsm.set_state_string("anim_health")
 	
 	var current_popup = Game.summon_popup_world(anim_health, "Witness the purchasing")
 	if is_instance_valid(current_popup):
@@ -207,7 +229,13 @@ func _on_attacc_timer_timeout() -> void:
 
 func _on_idle_entered() -> void:
 	start_attack_timer()
-	Events.emit_signal("bmm_interrupted")
+	
+	var blessing: bool = PlayerStats.check_upgrade("bmm_blessing")
+	var rapiers: bool = PlayerStats.check_upgrade("rapiers")
+	var peace: bool = PlayerStats.get_kills(foe_blademaster) <= 0
+	
+	if blessing or ( rapiers and peace ):
+		Events.emit_signal("bmm_interrupted")
 
 func _on_idle_b_entered() -> void:
 	start_attack_timer()

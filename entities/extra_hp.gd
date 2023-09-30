@@ -73,7 +73,6 @@ func take_damage(what: float):
 		if is_instance_valid(target):
 			var dmg = $boss_bar.true_filling
 			if dmg > 0:
-				print("Bar dies, dealing damage %s from %s to %s" % [dmg, target.hp, target.hp - dmg])
 				target.call_deferred("take_unconditional_damage", dmg)
 		
 		get_culled()
@@ -144,7 +143,6 @@ func _on_shift() -> void:
 	
 	var dmg = $boss_bar.true_filling
 	if dmg > 0:
-		print("Bar shapeshifted, dealing damage %s from %s to %s" % [dmg, target.hp, target.hp - dmg])
 		target.call_deferred("take_unconditional_damage", dmg)
 		
 	new_hp_pickup.base_bar = base_bar

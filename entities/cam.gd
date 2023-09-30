@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 		
 		offset = offset.linear_interpolate(target_offset, delta*2)
 	
-	if abs(extra_zoom - extra_zoom_target) > .1:
+	if abs(extra_zoom - extra_zoom_target) > .001:
 		set_extra_zoom( lerp( extra_zoom, extra_zoom_target, delta*5 ) )
 
 

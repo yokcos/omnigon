@@ -296,6 +296,8 @@ texture = ExtResource( 9 )
 
 [node name="ladder" parent="props" instance=ExtResource( 12 )]
 position = Vector2( 768, -16 )
+z_index = 0
+length = 2
 
 [node name="ladder_extender" parent="props/ladder" instance=ExtResource( 13 )]
 target_length = 19

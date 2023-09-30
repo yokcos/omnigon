@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://fsm/fsm.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/moneybags.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://pieces/hurtbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://fsm/states/flee_target.gd" type="Script" id=9]
 [ext_resource path="res://fsm/states/mb_hat_gun.gd" type="Script" id=10]
-[ext_resource path="res://fsm/state_revealer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://fsm/states/stunned.gd" type="Script" id=12]
 [ext_resource path="res://pieces/entity_detector.tscn" type="PackedScene" id=13]
 [ext_resource path="res://fsm/states/moneybags_prelude.gd" type="Script" id=14]
@@ -470,7 +469,7 @@ flip_path = NodePath("flippable")
 title = "Lord Moneybags"
 subtitle = "Chief Execution Officer"
 hp_overflow = true
-max_hp = 10.0
+max_hp = 13.0
 saving_enabled = false
 boss_theme = "thepriceofwar"
 
@@ -657,13 +656,6 @@ anims/walk_u = SubResource( 19 )
 [node name="attacc_timer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
-
-[node name="state_revealer" parent="." instance=ExtResource( 11 )]
-margin_left = -71.0
-margin_top = -74.0
-margin_right = 57.0
-margin_bottom = -60.0
-fsm_path = NodePath("../fsm")
 
 [connection signal="activated" from="entity_detector" to="fsm/prelude" method="activate"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
