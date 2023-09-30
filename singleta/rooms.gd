@@ -75,6 +75,17 @@ func enter_game():
 	Game.in_game = true
 
 func load_rooms():
+	print_stack()
+	print("Checking rooms")
+	var dir0 = Directory.new()
+	dir0.open("res://ui/map/images/")
+	dir0.list_dir_begin()
+	var fname = dir0.get_next()
+	while fname != "":
+		print(fname)
+		fname = dir0.get_next()
+	print("checking done")
+	
 	apply_fresh_map()
 	
 	rooms = {}

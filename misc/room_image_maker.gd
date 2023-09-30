@@ -72,7 +72,12 @@ func evaluate_room(what: Node2D):
 	var dir = Directory.new()
 	if !dir.dir_exists(image_folder):
 		dir.make_dir_recursive(image_folder)
-	image.save_png("%s%s.png" % [image_folder, id])
+	var image_path = "%s%s.png" % [image_folder, id]
+	image.save_png(image_path)
+	
+	var tex = ImageTexture.new()
+	tex.create_from_image(image, 0)
+	what.map_image = tex
 
 
 func add_tile_pixels(image: Image, tilemap: TileMap, this_colour: Color):

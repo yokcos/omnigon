@@ -7,7 +7,7 @@ func _ready() -> void:
 			i.connect("pressed", self, "_on_button_pressed")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
+	if OS.is_debug_build() and event.is_action_pressed("test"):
 		visible = !visible
 		if visible:
 			$list/start.grab_focus()
