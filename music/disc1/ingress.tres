@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "ingress"
 title = "Ingress"
-lore = "It would have made sense on paper, to try to sneak through this facility and to rifle through their data without leaving a trace. But alas the place is teeming with the empaire's staff, and not a vent nor cubby to be found. Evading detection does not seem to be an option. Fortunately most of the staff... don't really seem to care that I'm here. Nobody's sounding the alarm, most of everyone is just halfheartedly waving a sword at me in a flimsy facsimile of defense."
+lore = "Isn't is weird that nobody is calling the alarm? A lot of the staff see me but they just sit around or wave a sword at me or something. Good because there's nowhere to hide really, they don't have vents here like we do. Maybe they like breathing stale air!"
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

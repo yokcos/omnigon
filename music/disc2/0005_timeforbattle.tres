@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "timeforbattle"
 title = "Time for Battle"
-lore = "Even in my homeland it is common for ordinary devices to have clocks on them for some reason. Ovens, toilets, weighing scales, trains, etc. Apparently the trend has gone even further here and even their murder-robots have such great clocks upon them, that they entirely become clocks."
+lore = "Clocks are really common so we get them on everything. Ovens, toilets, weighing scales, trains, all kinds of stuff! Apparently it's also true in the Empaire because this big murder robot has a clock on it too! Or maybe they took a clock and made it into a murder robot?"
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

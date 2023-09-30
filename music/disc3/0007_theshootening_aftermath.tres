@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://music/music.gd" type="Script" id=1]
 [ext_resource path="res://music/disc3/0007_theshootening_aftermath.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/disc3/0007_theshootening_aftermath.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )
 id = "theshootening_aftermath"
 title = "The Shootening (Aftermath)"
-lore = ""
+lore = "Blademastermaster for some reason wants to beat Moneybags, but all day was sitting in the corner not fighting. is it scaaaaaaaared!?!? or is it planning something else like sabotage? these mysteries will never end! all it wants to talk to me about is blademasters."
 audio = ExtResource( 2 )
+icon = ExtResource( 3 )

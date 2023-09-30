@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "entrydenied"
 title = "Entry Denied"
-lore = "This 'Bouncer' is an odd one, whomst appears to have no legs but instead springs. Body modification like this is common across the empaire of course, but it's one thing to read of a thing on screens and paper, and much more strange to witness it in person."
+lore = "Bouncer has springs instead of legs! I think they do this a lot in the Empaire, chop off body bits and replace them. It's creepy and weird and gives me the heebie jeebies, especially seeing it in person. Doesn't it hurt? What if the springs get rusty? Sounds like it would be hard to use stairs."
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

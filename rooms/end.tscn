@@ -16,6 +16,7 @@
 script = ExtResource( 2 )
 title = "Endeth Omnigon"
 room_size = Vector2( 2, 1 )
+temp_music = "theshootening_aftermath"
 background_colour = Color( 0.960784, 0.627451, 0.592157, 1 )
 
 [node name="props" type="Node2D" parent="."]

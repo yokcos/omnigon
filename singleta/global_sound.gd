@@ -169,25 +169,7 @@ const sfx_fc_shoot = [
 const sfx_DT = [preload("res://ui/DT_Shoot3.wav")]
 const sfx_introduce = [preload("res://ui/DT_hurt.wav")]
 
-var musics: Dictionary = {
-	"the_first_disc_begins": preload("res://music/disc1/the_first_disc_begins.ogg"),
-	"prelude": preload("res://music/disc1/prelude.ogg"),
-	"ingress": preload("res://music/disc1/ingress.ogg"),
-	"notweird": preload("res://music/disc1/notweird.ogg"),
-	"entrydenied": preload("res://music/disc1/entrydenied.ogg"),
-	"behold": preload("res://music/disc1/behold.ogg"),
-	"great_opposition": preload("res://music/disc1/great_opposition.ogg"),
-	"shut_down": preload("res://music/disc1/shut_down.ogg"),
-	"ingressment": preload("res://music/disc1/ingressment.ogg"),
-	"the_first_disc_ends": preload("res://music/disc1/the_first_disc_ends.ogg"),
-	
-	"facilitymechanism": preload("res://music/disc2/0001_facilitymechanism.ogg"),
-	"suddenmimic": preload("res://music/disc2/0002_suddenmimic.ogg"),
-	"imperialsecrets": preload("res://music/disc2/0003_imperialsecrets.ogg"),
-	"hallwayforeboding": preload("res://music/disc2/0004_hallwayforeboding.ogg"),
-	"timeforbattle": preload("res://music/disc2/0005_timeforbattle.ogg"),
-	"calamitymarch": preload("res://music/disc2/0006_calamitymarch.ogg"),
-}
+var musics: Dictionary = {}
 var discs = [
 	[
 		"the_first_disc_begins",
@@ -214,6 +196,11 @@ func _ready() -> void:
 	ear.make_current()
 	add_child(ear)
 	
+	if musics.size() == 0:
+		add_music_entries()
+
+
+func add_music_entries():
 	add_music_entry(preload("res://music/disc1/the_first_disc_begins.tres"))
 	add_music_entry(preload("res://music/disc1/prelude.tres"))
 	add_music_entry(preload("res://music/disc1/ingress.tres"))
@@ -236,15 +223,18 @@ func _ready() -> void:
 	add_music_entry(preload("res://music/disc2/0008_gearsandclockwork.tres"))
 	add_music_entry(preload("res://music/disc2/0009_the_second_disc_ends.tres"))
 	
+	add_music_entry(preload("res://music/disc3/0000_the_third_disc_begins.tres"))
 	add_music_entry(preload("res://music/disc3/0001_deepingress.tres"))
 	add_music_entry(preload("res://music/disc3/0002_moneybagshalls.tres"))
 	add_music_entry(preload("res://music/disc3/0003_thepriceofwar.tres"))
 	add_music_entry(preload("res://music/disc3/0004_interioramusement.tres"))
-	
+	add_music_entry(preload("res://music/disc3/0005_soullessadvertisement.tres"))
 	add_music_entry(preload("res://music/disc3/0006_theshootening.tres"))
+	add_music_entry(preload("res://music/disc3/0007_theshootening_aftermath.tres"))
+	add_music_entry(preload("res://music/disc3/0008_ingressitude.tres"))
+	add_music_entry(preload("res://music/disc3/0009_the_third_disc_ends.tres"))
 	
 	add_music_entry(preload("res://music/other/FC_ocean.tres"))
-
 
 func add_music_entry(what: Music):
 	var dict = {

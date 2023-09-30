@@ -49,6 +49,9 @@ signal room_entered
 
 
 func _ready() -> void:
+	if GlobalSound.musics.size() == 0:
+		GlobalSound.add_music_entries()
+	
 	load_rooms()
 
 func _input(event: InputEvent) -> void:

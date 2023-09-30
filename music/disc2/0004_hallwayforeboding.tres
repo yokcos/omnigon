@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "hallwayforeboding"
 title = "Hallway Foreboding"
-lore = "NARRATOR: Because you lack a TIME-DETECTING-NOSE, you do not sense the disturbance in time that encircles you in this area. Therefore you are in no way tipped off to the existence of a terrible clock-themed foe ahead. Apart from the giant painting of said foe, from which a canny detective would have been able to discern the presence and appearance of the enemy ahead."
+lore = "So sayeth the narrator: Because you lack a TIME-DETECTING-NOSE, you do not sense the disturbance in time that encircles you in this area. Therefore you are in no way tipped off to the existence of a terrible clock-themed foe ahead. Apart from the giant painting of said foe, from which a canny detective would have been able to discern the presence and appearance of the enemy ahead."
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

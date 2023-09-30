@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "shut_down"
 title = "Shut Down"
-lore = "Ah. It would seem that we, all of us, are opposed by a rather major problem indeed."
+lore = "[TRANSMISSION BLOCKED: BLINDNESS EMBARGO]"
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

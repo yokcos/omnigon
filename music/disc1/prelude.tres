@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "prelude"
 title = "Prelude"
-lore = "Years we have endured of northern teleporters, passing by our defenses to sabotage or steal our supplies. And they dare to try to learn to pass not only through space, but time too? This cannot be allowed, and fortunately we now have a rudimentary teleportation machine. Now those imperial craps can find themselves on the receiving end of sabotage and of theft."
+lore = "Imperial Space Travellers from the North have been bugging us for years! It's really annoying when they steal stuff or sabotage. Now they want to be Time Travellers too! No! But luckily now WE have a Space Machine as well, and I'm going in to steal their secrets! If they know about time travel then so will we!"
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

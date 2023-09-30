@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc3/0009_the_third_disc_ends.png" type="Texture" id=2]
+[ext_resource path="res://music/disc3/0009_the_third_disc_ends.ogg" type="AudioStream" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "the_third_disc_ends"
+title = "The Third Disc Ends"
+lore = "There is no Fourth Disc. If you want one you will have to make it yourself."
+audio = ExtResource( 3 )
+icon = ExtResource( 2 )

@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "facilitymechanism"
 title = "Facility Mechanism"
-lore = "One of the first things that you learn when investigating time travel, is that you need some damn good timekeeping devices. Around here there's gears and clockwork hanging from the walls left right and centre. But I've no idea what it's all for. Wouldn't surprise me if this whole wing of the building was just a giant clock, keeping track of the time to an absurd level of precision."
+lore = "I guess if they want time travel they need good clocks and clockwork. Clockwork is really useful, but some people say that this new stuff called Electronics is even better. I think they have some Electronics here in the north, but I don't know what it looks like and everything is weird-looking here. I saw a person with springs for legs, now I don't know what to think about anything!"
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

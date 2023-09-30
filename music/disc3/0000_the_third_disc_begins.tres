@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://music/music.gd" type="Script" id=1]
+[ext_resource path="res://music/disc3/0000_the_third_disc_begins.png" type="Texture" id=2]
+[ext_resource path="res://music/disc3/0000_the_third_disc_begins.ogg" type="AudioStream" id=3]
+
+[resource]
+script = ExtResource( 1 )
+id = "the_third_disc_begins"
+title = "The Third Disc Begins"
+lore = "Thank you for beholding the third disc of OMNIGON OST"
+audio = ExtResource( 3 )
+icon = ExtResource( 2 )

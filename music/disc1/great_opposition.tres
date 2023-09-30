@@ -8,6 +8,6 @@
 script = ExtResource( 1 )
 id = "great_opposition"
 title = "Great Opposition"
-lore = "I was not prepared for a fight."
+lore = "I mean sometimes there's one or two staff who actually try to stop me bigtime. And I have to fight them :( Why can't they just let me steal secrets, it's harmless I promise."
 audio = ExtResource( 2 )
 icon = ExtResource( 3 )

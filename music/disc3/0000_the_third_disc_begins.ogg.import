@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/0000_the_third_disc_begins.ogg-ca40d53440e3f9b737287905c13ba4fa.oggstr"
+
+[deps]
+
+source_file="res://music/disc3/0000_the_third_disc_begins.ogg"
+dest_files=[ "res://.import/0000_the_third_disc_begins.ogg-ca40d53440e3f9b737287905c13ba4fa.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
