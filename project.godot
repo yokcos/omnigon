@@ -196,6 +196,8 @@ _global_script_class_icons={
 
 config/name="omnigon"
 run/main_scene="res://ui/intro.tscn"
+boot_splash/image="res://ui/splash_screen.png"
+boot_splash/bg_color=Color( 0.25098, 0.2, 0.32549, 1 )
 config/icon="res://icon.png"
 
 [audio]

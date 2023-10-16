@@ -340,22 +340,23 @@ func cast_bobber():
 		new_bobber.knockback *= 4
 
 func recall_bobber():
-	if is_instance_valid(current_bobber.target):
-		var relative = global_position - current_bobber.target.global_position
-		var this_dir = sign(relative.x)
-		var this_knockback: Vector2 = Vector2( 900*this_dir, -300 )
-		if PlayerStats.has_hat("yeet"):
-			this_knockback.x *= 2
+	if current_bobber:
+		if is_instance_valid(current_bobber.target):
+			var relative = global_position - current_bobber.target.global_position
+			var this_dir = sign(relative.x)
+			var this_knockback: Vector2 = Vector2( 900*this_dir, -300 )
+			if PlayerStats.has_hat("yeet"):
+				this_knockback.x *= 2
+			
+			current_bobber.target.take_damage(.75)
+			current_bobber.target.take_knockback( this_knockback )
+			current_bobber.target.air_time += 1
+			
+			var new_effect = scr_effect_fished.new()
+			current_bobber.target.add_child(new_effect)
 		
-		current_bobber.target.take_damage(.75)
-		current_bobber.target.take_knockback( this_knockback )
-		current_bobber.target.air_time += 1
-		
-		var new_effect = scr_effect_fished.new()
-		current_bobber.target.add_child(new_effect)
-	
-	current_bobber.queue_free()
-	current_bobber = null
+		current_bobber.queue_free()
+		current_bobber = null
 
 func shoot_combhat():
 	if combhat_height >= 0:

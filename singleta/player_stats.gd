@@ -45,6 +45,7 @@ var hats: Array = []
 var kills: Dictionary = {}
 var enemy_deaths: Dictionary = {}
 var secrets: Array = []
+var hatswapping: int = 0
 
 
 signal eyes_changed
@@ -67,6 +68,27 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Game.in_game:
 		time += delta
+	
+	if fmod(time, .25) < delta:
+		if hatswapping == 1:
+			for i in hats:
+				doff_hat(i)
+			var these_hats = all_hats.values()
+			these_hats.shuffle()
+			don_hat(these_hats[0])
+		if hatswapping == 2:
+			for i in hats:
+				doff_hat(i)
+			
+			var these_hats = all_hats.values()
+			var hat_count = randi() % these_hats.size()
+			these_hats.shuffle()
+			for i in range(hat_count):
+				don_hat(these_hats.pop_front())
+
+func _input(event: InputEvent) -> void:
+	if false and event.is_action_pressed("test"):
+		hatswapping += 1
 
 
 func load_all_hats():

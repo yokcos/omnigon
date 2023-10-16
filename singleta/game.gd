@@ -61,6 +61,13 @@ var camera: Camera2D = null
 var background_colour: Color = Color("e3e6ff")
 var current_popup: Control = null
 var controllering: bool = false
+var controller_strings: Array = [
+	"[A]", "[B]", "[X]", "[Y]",
+	"[L1]", "[R1]", "[L2]", "[R2]",
+	"[SELECT]", "[START]",
+	"[L3]", "[R3]",
+	"[UP]", "[DOWN]", "[LEFT]", "[RIGHT]"
+]
 
 var closest_tooltipable: Node2D = null
 var current_boss: Being = null setget set_boss
@@ -105,6 +112,12 @@ func _process(delta: float) -> void:
 			set_boss(null)
 			
 			GlobalSound.resume_music()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		controllering = false
+	if event is InputEventJoypadButton:
+		controllering = true
 
 
 func load_rsoo():
@@ -243,7 +256,10 @@ func summon_mattress_gremlin(where: Vector2):
 func get_input_string(action: String):
 	var actions = InputMap.get_action_list(action)
 	for this_action in actions:
-		if this_action is InputEventKey:
+		if controllering and this_action is InputEventJoypadButton:
+			if this_action.button_index <= 15:
+				return controller_strings[this_action.button_index]
+		if !controllering and this_action is InputEventKey:
 			return OS.get_scancode_string(this_action.scancode)
 	return "??"
 

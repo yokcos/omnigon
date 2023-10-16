@@ -181,7 +181,7 @@ anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 32.0
 margin_right = 200.0
-margin_bottom = -32.0
+margin_bottom = 256.0
 alignment = 1
 
 [node name="title" type="TextureRect" parent="column"]
