@@ -68,6 +68,7 @@ var controller_strings: Array = [
 	"[L3]", "[R3]",
 	"[UP]", "[DOWN]", "[LEFT]", "[RIGHT]"
 ]
+var cheeves = {}
 
 var closest_tooltipable: Node2D = null
 var current_boss: Being = null setget set_boss
@@ -76,6 +77,7 @@ var in_game: bool = false
 
 
 const obj_fx = preload("res://fx/fx_transient.tscn")
+const obj_cheeve_announcement = preload("res://ui/cheeve_announcement.tscn")
 
 var obj_mattress: PackedScene = load("res://props/mattress.tscn")
 var obj_mattress_gremlin: PackedScene = load("res://props/mattress_gremlin.tscn")
@@ -101,6 +103,7 @@ func _ready() -> void:
 	#call_deferred("load_game")
 	Settings.call_deferred("load_settings")
 	
+	load_cheeves()
 	rename_old_save_file()
 	apply_default_controls()
 
@@ -119,6 +122,22 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
 		controllering = true
 
+
+func load_cheeves():
+	var dir = Directory.new()
+	var folder = "res://cheeves/"
+	
+	dir.open(folder)
+	dir.list_dir_begin()
+	var fname = dir.get_next()
+	while fname != "":
+		if fname.ends_with(".tres"):
+			var full_file = folder + fname
+			var this_cheeve = load(full_file)
+			if this_cheeve is Cheeve:
+				cheeves[this_cheeve.id] = this_cheeve
+		
+		fname = dir.get_next()
 
 func load_rsoo():
 	if !rsoo_loaded:
@@ -381,9 +400,6 @@ func pause():
 func unpause():
 	get_tree().paused = false
 
-func achieve_achievement(what: String):
-	pass
-
 func get_all_descendents(what: Node) -> Array:
 	var output: Array = [what]
 	
@@ -403,7 +419,7 @@ func set_boss(what: Being):
 		GlobalSound.reset_music()
 
 func summon_popup(title: String, text: String, egress: String = "Alrighty", anchor: Node2D = null):
-	if gameholder and !is_instance_valid(current_popup):
+	if gameholder:
 		gameholder.add_popup(title, text, egress, anchor)
 
 func summon_popup_world(this_world: PackedScene, title = "Witness"):
@@ -422,6 +438,12 @@ func summon_popup_secret(what: Secret):
 		return current_popup
 	else:
 		return null
+
+func cull_popups():
+	if is_instance_valid(gameholder):
+		gameholder.popup_queue = []
+	if is_instance_valid(current_popup):
+		current_popup.queue_free()
 
 func popup_exists() -> bool:
 	return gameholder and gameholder.count_popups() > 0
@@ -486,6 +508,20 @@ func deploy_ui_instance(what: Control, where: Vector2):
 	if is_instance_valid(ui):
 		ui.add_child(what)
 		what.rect_position = where
+
+func achieve_cheeve(what: String):
+	if !PlayerStats.cheeves.has(what) and cheeves.has(what):
+		PlayerStats.cheeves.append(what)
+		
+		var player = get_player()
+		if is_instance_valid(player) and Settings.cheeve_popups:
+			var new_announcement = obj_cheeve_announcement.instance()
+			new_announcement.cheeve = cheeves[what]
+			var pos = get_player().global_position
+			deploy_instance(new_announcement, pos - new_announcement.get_child(0).rect_size/2)
+		
+		if Steamer.active:
+			Steamer.achieve_cheeve(what)
 
 
 func _on_popup_slain():

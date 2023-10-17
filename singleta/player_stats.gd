@@ -29,6 +29,7 @@ var main_music: String = "ingress"
 var time: float = 0
 var flipped: bool = false
 var poisoned: bool = false
+var punches: int = 0
 
 var upgrades: Dictionary = {
 	"blademaster_recover": false,
@@ -45,6 +46,7 @@ var hats: Array = []
 var kills: Dictionary = {}
 var enemy_deaths: Dictionary = {}
 var secrets: Array = []
+var cheeves: Array = []
 var hatswapping: int = 0
 
 
@@ -302,6 +304,8 @@ func compress_data() -> Dictionary:
 		"time": time,
 		"kills": kills,
 		"secrets": secrets,
+		"cheeves": cheeves,
+		"punches": punches,
 	}
 	
 	return data
@@ -335,6 +339,10 @@ func uncompress_data(data: Dictionary):
 	
 	if data.has("secrets"):
 		secrets = data["secrets"]
+	if data.has("cheeves"):
+		cheeves = data["cheeves"]
+	if data.has("punches"):
+		punches = data["punches"]
 	
 	while lighters.size() < 4:
 		lighters.append(0)

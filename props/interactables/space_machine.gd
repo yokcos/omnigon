@@ -25,6 +25,14 @@ func begin_teleport():
 	
 	if is_instance_valid(Game.camera):
 		Game.camera.extra_zoom_target = .5
+	
+	Game.achieve_cheeve("end")
+	if PlayerStats.punches <= 0:
+		Game.achieve_cheeve("no_punches")
+	if PlayerStats.kills == {}:
+		Game.achieve_cheeve("no_kills")
+	if PlayerStats.time <= 3600:
+		Game.achieve_cheeve("speed")
 
 
 func _on_interactable_activated() -> void:

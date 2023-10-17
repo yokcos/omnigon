@@ -16,9 +16,10 @@ func initialise():
 	if Engine.has_singleton("Steam"):
 		var dict = Steam.steamInit()
 		if dict["status"] != 1:
+			print("Steam did not connect well")
 			print(dict)
 		else:
-			print("Connected well")
+			print("Steam connected well")
 			Steam.connect("current_stats_received", self, "_on_stats_received")
 			Steam.connect("user_stats_received", self, "_on_stats_received")
 			active = true
@@ -28,6 +29,10 @@ func initialise():
 func save_data(where: String, what: PoolByteArray):
 	if active and false:
 		Steam.fileWriteAsync(where, what)
+
+func achieve_cheeve(what: String):
+	Steam.setAchievement(what)
+	Steam.storeStats()
 
 
 func _on_stats_received(game: int, result: int, user: int):

@@ -18,7 +18,7 @@
 extents = Vector2( 8, 20 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 256, 64 )
+extents = Vector2( 160, 64 )
 
 [sub_resource type="CapsuleShape2D" id=23]
 height = 66.0
@@ -542,6 +542,7 @@ animator_path = NodePath("../animator")
 
 [node name="prelude" type="Node" parent="fsm"]
 script = ExtResource( 14 )
+auto_proceed = "idle"
 
 [node name="idle" type="Node" parent="fsm"]
 script = ExtResource( 6 )
@@ -657,6 +658,7 @@ anims/walk_u = SubResource( 19 )
 wait_time = 0.75
 one_shot = true
 
+[connection signal="damage_taken" from="." to="fsm/prelude" method="_on_damage_taken"]
 [connection signal="activated" from="entity_detector" to="fsm/prelude" method="activate"]
 [connection signal="entered" from="fsm/idle" to="." method="_on_idle_entered"]
 [connection signal="entered" from="fsm/idle_b" to="." method="_on_idle_b_entered"]

@@ -80,6 +80,11 @@ func die():
 		Game.deploy_instance(new_hat, global_position)
 		new_hat.apply_central_impulse( Vector2(0, -600).rotated(rand_range(-.5, .5)) )
 	
+	var player = Game.get_player()
+	if is_instance_valid(player):
+		if player.get_state() == "stunned":
+			player.set_state("normal")
+	
 	Events.emit_signal("moneybags_ended")
 
 func shoot(what: PackedScene = obj_rocket):

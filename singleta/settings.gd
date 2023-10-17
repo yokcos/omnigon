@@ -4,6 +4,7 @@ extends Node
 var volume_music: float = 0.7 setget set_volume_music
 var volume_sfx: float = 0.7 setget set_volume_sfx
 var fullscreen: bool = false setget set_fullscreen
+var cheeve_popups: bool = false setget set_cheeve_popups
 var curses = []
 
 const actions = [
@@ -104,6 +105,7 @@ func compress_settings() -> Dictionary:
 	data["controls"] = controlses
 	data["curses"] = curses
 	data["fullscreen"] = fullscreen
+	data["cheeve_popups"] = cheeve_popups
 	
 	return data
 
@@ -113,6 +115,7 @@ func uncompress_settings(data: Dictionary):
 	replace_input_actions( data["controls"] )
 	if data.has("curses"): curses = data["curses"]
 	if data.has("fullscreen"): set_fullscreen(data["fullscreen"])
+	if data.has("cheeve_popups"): set_cheeve_popups(data["cheeve_popups"])
 
 func save_settings():
 	apply_duplicate_actions()
@@ -139,3 +142,6 @@ func load_settings():
 func set_fullscreen(what: bool):
 	OS.window_fullscreen = what
 	fullscreen = what
+
+func set_cheeve_popups(what: bool):
+	cheeve_popups = what

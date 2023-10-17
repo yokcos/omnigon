@@ -3,12 +3,14 @@ extends Control
 
 const obj_map = preload("res://ui/map/map.tscn")
 const obj_bestiary = preload("res://ui/bestiary.tscn")
+const obj_cheeves = preload("res://ui/cheeve_viewer.tscn")
 
 var current_overlay = 0
 var overlay_object: Control = null
 var overlays = [
 	obj_map,
 	obj_bestiary,
+	obj_cheeves
 ]
 
 

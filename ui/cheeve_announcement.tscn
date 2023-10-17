@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://misc/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://misc/fnt_tiny.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/cheeve_announcement.gd" type="Script" id=3]
+[ext_resource path="res://cheeves/begin_unachieved.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.47451, 0.227451, 0.501961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.141176, 0.133333, 0.203922, 1 )
+
+[node name="cheeve_announcement" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="panel" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = -72.0
+margin_right = 88.0
+margin_bottom = 72.0
+theme = ExtResource( 1 )
+
+[node name="bac" type="Panel" parent="panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="list" type="VBoxContainer" parent="panel/bac"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="titlebac" type="Panel" parent="panel/bac/list"]
+margin_right = 176.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="upperbar" type="HBoxContainer" parent="panel/bac/list/titlebac"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="title" type="Label" parent="panel/bac/list/titlebac/upperbar"]
+margin_top = 9.0
+margin_right = 136.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+text = "NAME OF CHEEVE"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="icon" type="TextureRect" parent="panel/bac/list/titlebac/upperbar"]
+margin_left = 144.0
+margin_right = 176.0
+margin_bottom = 32.0
+texture = ExtResource( 4 )
+
+[node name="achieved" type="Label" parent="panel/bac/list"]
+margin_top = 36.0
+margin_right = 176.0
+margin_bottom = 45.0
+size_flags_vertical = 5
+custom_colors/font_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "ACHIEVEMENT ACHIEVED"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="description" type="Label" parent="panel/bac/list"]
+margin_top = 49.0
+margin_right = 176.0
+margin_bottom = 118.0
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
+text = "Describe it please"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="separator" type="HSeparator" parent="panel/bac/list"]
+margin_top = 122.0
+margin_right = 176.0
+margin_bottom = 126.0
+
+[node name="timer" type="ProgressBar" parent="panel/bac/list"]
+margin_top = 130.0
+margin_right = 176.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 0, 6 )
+max_value = 5.0
+value = 5.0
+percent_visible = false
+
+[node name="separator2" type="HSeparator" parent="panel/bac/list"]
+margin_top = 140.0
+margin_right = 176.0
+margin_bottom = 144.0

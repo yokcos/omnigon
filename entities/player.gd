@@ -60,6 +60,7 @@ func _ready() -> void:
 	add_to_group("players")
 	
 	PlayerStats.connect("hats_changed", self, "_on_hats_changed")
+	Game.call_deferred("achieve_cheeve", "begin")
 
 func _process(delta: float) -> void:
 	var travel_direction: float = 0
@@ -299,6 +300,9 @@ func apply_hats():
 
 func finish_sitting():
 	emit_signal("sitting_complete")
+
+func get_state() -> String:
+	return $fsm.state_name
 
 func set_state(what: String):
 	$fsm.set_state_string(what)

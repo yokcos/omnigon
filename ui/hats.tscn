@@ -237,16 +237,15 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 32.0
-margin_top = -40.0
+margin_top = -48.0
 margin_right = -32.0
-margin_bottom = -16.0
+margin_bottom = -24.0
 custom_colors/font_color = Color( 0.976471, 0.639216, 0.105882, 1 )
 text = "/!\\ CEILING TOO LOW /!\\"
 align = 1
 valign = 1
 
 [node name="throw" type="Label" parent="."]
-visible = false
 margin_left = 24.0
 margin_top = 256.0
 margin_right = 488.0

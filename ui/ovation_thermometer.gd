@@ -16,6 +16,10 @@ func _ready() -> void:
 		player.set_stun_duration(1)
 		player.set_state("stunned")
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		$link.activate()
+
 
 func set_level(what: int):
 	$auto_sprite.texture = textures[what]

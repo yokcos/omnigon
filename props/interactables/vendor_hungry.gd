@@ -40,7 +40,10 @@ func untongueify():
 	$tongue.hide()
 
 func proceed():
-	Rooms.player_enter_room( destination )
+	var actual_destination: Vector2 = destination
+	for i in PlayerStats.hats:
+		actual_destination.y += i.height
+	Rooms.player_enter_room( actual_destination )
 
 func track_target():
 	$tongue.points[1] = target.global_position - $tongue.global_position

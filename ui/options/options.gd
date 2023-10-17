@@ -17,6 +17,7 @@ var icons: Array = [
 	preload("res://ui/options/pause_icons3.png"),
 	preload("res://ui/options/pause_icons7.png"),
 	#preload("res://ui/options/pause_icons6.png"),
+	preload("res://ui/options/pause_icons8.png"),
 	preload("res://ui/options/pause_icons5.png"),
 ]
 
@@ -37,9 +38,11 @@ func _ready() -> void:
 	arrive_animation()
 	prev_lowpass = AudioServer.is_bus_effect_enabled(1, 0)
 	AudioServer.set_bus_effect_enabled(1, 0, true)
+	
+	update_cheeve_status()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("attack"):
 		depart_animation()
 
 func _exit_tree() -> void:
@@ -122,6 +125,9 @@ func show_save():
 	$saved.rect_global_position.y = 288 - $saved.rect_size.y
 	$animator.play("saved")
 
+func update_cheeve_status():
+	$fulcra/cheeve/status.text = "Active" if Settings.cheeve_popups else "Inactive"
+
 
 func _on_fulcrum_selected(which: int):
 	var fulcra = get_fulcra(true)
@@ -153,6 +159,10 @@ func _on_continue_pressed() -> void:
 func _on_fullscreen_pressed() -> void:
 	Settings.fullscreen = !Settings.fullscreen
 
+func _on_cheeve_pressed() -> void:
+	Settings.cheeve_popups = !Settings.cheeve_popups
+	update_cheeve_status()
+
 func _on_unsave_pressed() -> void:
 	var dir = Directory.new()
 	dir.remove(Game.save_file)
@@ -172,6 +182,8 @@ func _on_controls_slain():
 func _on_depart_animation_concluded():
 	remove_effects()
 	queue_free()
+
+
 
 
 

@@ -4,6 +4,7 @@ extends Node2D
 var popup_queue: Array = []
 var current_popup: Control = null
 var current_pause_block: Control = null
+var current_overlay: Control = null
 var tex: ViewportTexture
 var screen_scale: float = 1 setget set_screen_scale
 var base_screen_size: Vector2
@@ -54,9 +55,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			new_options.show_save()
 	
 	if event.is_action_pressed("map"):
-		if !check_for_pause_blockers():
+		var can_overlay: bool = true
+		
+		if check_for_pause_blockers():
+			can_overlay = false
+		if is_instance_valid(current_overlay):
+			can_overlay = false
+		
+		if can_overlay:
 			var new_overlay = obj_overlay.instance()
 			$ui/ui.add_child(new_overlay)
+			current_overlay = new_overlay
 
 
 func calculate_screen_size():

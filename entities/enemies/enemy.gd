@@ -23,6 +23,7 @@ func take_damage(dmg: float, source: Being = null):
 	if source == Game.get_player():
 		hits += 1
 		most_recent_hit = OS.get_ticks_msec()
+		PlayerStats.punches += 1
 	
 	var actual_dmg = .take_damage(dmg, source)
 	
