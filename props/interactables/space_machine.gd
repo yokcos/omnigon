@@ -28,11 +28,15 @@ func begin_teleport():
 	
 	Game.achieve_cheeve("end")
 	if PlayerStats.punches <= 0:
-		Game.achieve_cheeve("no_punches")
-	if PlayerStats.kills == {}:
+		Game.achieve_cheeve("no_hits")
+	if PlayerStats.kills.keys().size() <= 0:
 		Game.achieve_cheeve("no_kills")
 	if PlayerStats.time <= 3600:
 		Game.achieve_cheeve("speed")
+	if !PlayerStats.sucker:
+		Game.achieve_cheeve("threebuttons")
+	
+	Game.save_game(Vector2(128, 32))
 
 
 func _on_interactable_activated() -> void:

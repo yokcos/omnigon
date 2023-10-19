@@ -30,6 +30,7 @@ var time: float = 0
 var flipped: bool = false
 var poisoned: bool = false
 var punches: int = 0
+var sucker: bool = false
 
 var upgrades: Dictionary = {
 	"blademaster_recover": false,
@@ -178,6 +179,9 @@ func don_hat(what: Hat):
 			hats.append(what)
 			apply_hats()
 	
+	if hats.size() >= 5:
+		Game.achieve_cheeve("hatstack")
+	
 	if is_instance_valid(player):
 		player.pause_mode = PAUSE_MODE_INHERIT
 	return can_do
@@ -264,6 +268,12 @@ func get_enemy_deaths(what: EnemyData):
 func add_secret(what: String):
 	if !secrets.has(what):
 		secrets.append(what)
+		
+		if secrets.size() >= 3:
+			Game.achieve_cheeve("secrets0")
+		if secrets.size() >= 6:
+			Game.achieve_cheeve("secrets1")
+		
 		emit_signal("secrets_changed")
 
 func update_position():
@@ -306,6 +316,7 @@ func compress_data() -> Dictionary:
 		"secrets": secrets,
 		"cheeves": cheeves,
 		"punches": punches,
+		"sucker": sucker,
 	}
 	
 	return data
@@ -343,6 +354,8 @@ func uncompress_data(data: Dictionary):
 		cheeves = data["cheeves"]
 	if data.has("punches"):
 		punches = data["punches"]
+	if data.has("sucker"):
+		sucker = data["sucker"]
 	
 	while lighters.size() < 4:
 		lighters.append(0)
@@ -372,6 +385,9 @@ func reset_data():
 	time = 0
 	kills = {}
 	secrets = []
+	cheeves = []
+	punches = 0
+	sucker = false
 
 
 func _on_vertex_collected(what):

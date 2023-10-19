@@ -23,6 +23,9 @@ func _input(event: InputEvent) -> void:
 
 func set_level(what: int):
 	$auto_sprite.texture = textures[what]
+	
+	if what >= 4:
+		Game.achieve_cheeve("levitation")
 
 func set_score(what: float):
 	var i_score = int(what)

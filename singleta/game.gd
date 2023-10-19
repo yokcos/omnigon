@@ -338,11 +338,12 @@ func save_file_exists(slot: int) -> bool:
 	var dir = Directory.new()
 	return dir.file_exists(file_name)
 
-func save_game():
+func save_game(position_offset: Vector2 = Vector2()):
 	if save_slot < 0:
 		return false
 	
 	PlayerStats.update_position()
+	PlayerStats.position += position_offset
 	var file = File.new()
 	file.open(get_save_file_name(), File.WRITE)
 	var data = {

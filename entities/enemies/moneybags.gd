@@ -85,6 +85,9 @@ func die():
 		if player.get_state() == "stunned":
 			player.set_state("normal")
 	
+	if $fsm.state == $fsm/anim_health:
+		Game.achieve_cheeve("interruption")
+	
 	Events.emit_signal("moneybags_ended")
 
 func shoot(what: PackedScene = obj_rocket):

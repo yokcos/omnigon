@@ -12,3 +12,5 @@ func poison():
 		if i is Being:
 			i.poisoned = true
 			i.take_damage(0)
+			if i == Game.get_player():
+				PlayerStats.hp = i.hp

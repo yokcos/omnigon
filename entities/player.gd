@@ -229,6 +229,9 @@ func check_hat_viability(hat: Hat):
 	var obstruction: bool = false
 	obstruction = test_move(transform, Vector2(0, -hat.height))
 	
+	if obstruction:
+		Game.achieve_cheeve("bonk")
+	
 	return !obstruction
 
 func reset_hat_visuals():

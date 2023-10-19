@@ -9,6 +9,8 @@ func _ready() -> void:
 
 func activate():
 	if !visible:
+		Game.achieve_cheeve("bmm")
+		
 		show()
 		
 		for i in get_children():
