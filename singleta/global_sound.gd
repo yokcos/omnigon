@@ -135,6 +135,7 @@ const sfx_splash = [preload("res://sfx/splash.wav")]
 
 const sfx_teleporter_buttons = [preload("res://props/teleporter_buttons.wav")]
 const sfx_teleporter_activate = [preload("res://props/teleporter_activate.wav")]
+const sfx_space_machine = [preload("res://props/interactables/space_machine.wav")]
 const sfx_regurgitation = [preload("res://sfx/regurgitation.wav")]
 
 const sfx_arrow_ladder = [preload("res://projectiles/arrow_ladder.wav")]

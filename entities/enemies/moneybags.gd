@@ -55,10 +55,10 @@ func _process(delta: float) -> void:
 	# So this'll just forcibly unstuck it after a bit
 	if $fsm.state_name in all_attacks and $fsm.current_state.age > 6 and restrainedness < 1:
 		if $fsm.state_name in armed_states:
+			$fsm.set_state_string("idle")
+		else:
 			$fsm.set_state_string("idle_b")
 			has_boomerang = true
-		else:
-			$fsm.set_state_string("idle")
 
 
 func take_damage(dmg: float, source: Being = null):
@@ -85,7 +85,7 @@ func die():
 		if player.get_state() == "stunned":
 			player.set_state("normal")
 	
-	if $fsm.state == $fsm/anim_health:
+	if $fsm.current_state == $fsm/anim_health:
 		Game.achieve_cheeve("interruption")
 	
 	Events.emit_signal("moneybags_ended")

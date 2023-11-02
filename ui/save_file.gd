@@ -24,7 +24,9 @@ func set_index( what: int ):
 
 func set_file( what: Dictionary ):
 	var room_location = Rooms.get_room_at( what["player"]["position"] )
-	var room_name = Rooms.room_data[room_location]["title"]
+	var room_name = ""
+	if Rooms.room_data.has(room_location):
+		room_name = Rooms.room_data[room_location]["title"]
 	$list/room.text = "Room: %s" % room_name
 	
 	$list/stats0/vertices.text = "Vertices: %04d" % what["player"]["vertices"]

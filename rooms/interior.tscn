@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://tiles/tilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/interactables/quizzenator.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://pieces/visiblifier.gd" type="Script" id=12]
 [ext_resource path="res://pieces/regurgitator.gd" type="Script" id=13]
 [ext_resource path="res://misc/theme_main.tres" type="Theme" id=14]
+[ext_resource path="res://pieces/saver.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -240,6 +241,8 @@ one_shot = true
 [node name="timer" type="Timer" parent="regurgitator"]
 wait_time = 6.0
 one_shot = true
+
+[node name="saver" parent="." instance=ExtResource( 15 )]
 
 [connection signal="wrong" from="props/quizzenator" to="regurgitator" method="get_wronged"]
 [connection signal="activated" from="props/entity_detector" to="props/quiz_activator" method="activate"]

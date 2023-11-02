@@ -29,6 +29,7 @@ func _on_interactable_activated() -> void:
 	
 	var new_fx = obj_fx.instance()
 	Game.deploy_instance(new_fx, global_position)
+	GlobalSound.play_random_sfx_2d(GlobalSound.sfx_vertex_grab, global_position)
 	
 	WorldSaver.save_data(spawn_position, true)
 	queue_free()

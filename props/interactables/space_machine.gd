@@ -26,6 +26,8 @@ func begin_teleport():
 	if is_instance_valid(Game.camera):
 		Game.camera.extra_zoom_target = .5
 	
+	GlobalSound.play_random_sfx(GlobalSound.sfx_space_machine)
+	
 	Game.achieve_cheeve("end")
 	if PlayerStats.punches <= 0:
 		Game.achieve_cheeve("no_hits")
