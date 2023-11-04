@@ -240,6 +240,8 @@ func get_room_size(where: Vector2) -> Vector2:
 	return (maximum-where) + Vector2(1, 1)
 
 func enter_room(which: Vector2) -> bool:
+	GlobalSound.cull_sfx()
+	
 	which = which.floor()
 	if rooms.has(which):
 		var target = rooms[which]

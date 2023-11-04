@@ -12,6 +12,7 @@ func _ready() -> void:
 
 
 func summon_popup():
-	Game.summon_popup(title, text, egress, self)
+	if !is_instance_valid(Game.current_popup):
+		Game.summon_popup(title, text, egress, self)
 
 

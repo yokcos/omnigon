@@ -4,6 +4,9 @@ extends AudioStreamPlayer
 
 export var relative_volume : float = 1 setget set_relative_volume
 
+var persistent: bool = false
+
+
 func _ready() -> void:
 	volumify()
 	connect("finished", self, "_on_finished")

@@ -188,6 +188,7 @@ func apply_default_controls():
 
 func set_world(what: Node2D):
 	world = what
+	GlobalSound.cull_sfx()
 
 func get_player() -> KinematicBody2D:
 	var players = get_tree().get_nodes_in_group("players")

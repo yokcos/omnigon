@@ -1,6 +1,10 @@
 extends AudioStreamPlayer
 
+
 export var relative_volume : float = 1 setget set_relative_volume
+
+var transient: bool = false
+
 
 func _ready():
 	volumify()

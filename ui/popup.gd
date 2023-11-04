@@ -21,7 +21,7 @@ func _ready():
 func _process(delta: float) -> void:
 	var players = get_tree().get_nodes_in_group("players")
 	if players.size() > 0:
-		if anchor:
+		if is_instance_valid(anchor):
 			var dist = anchor.global_position.distance_squared_to( players[0].global_position )
 			if dist > max_distance*max_distance:
 				egress()

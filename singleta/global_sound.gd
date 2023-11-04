@@ -344,3 +344,9 @@ func play_sfx_2d(what: AudioStream, where: Vector2):
 	add_child(new_sfx)
 	
 	return new_sfx
+
+func cull_sfx():
+	for i in get_children():
+		if i is SFX or i is SFX2D:
+			if !i.persistent:
+				i.queue_free()
