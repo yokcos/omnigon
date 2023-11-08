@@ -14,6 +14,7 @@ export (bool) var hp_overflow = false
 export (float) var max_hp = 3
 var hp: float = -1 setget set_hp
 var poisoned: bool = false setget set_poisoned
+var cancer: bool = false
 
 var must_breathe: bool = false
 var max_air: float = 10 # in seconds

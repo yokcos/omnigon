@@ -64,8 +64,8 @@ var controllering: bool = false
 var controller_strings: Array = [
 	"[A]", "[B]", "[X]", "[Y]",
 	"[L1]", "[R1]", "[L2]", "[R2]",
-	"[SELECT]", "[START]",
 	"[L3]", "[R3]",
+	"[SELECT]", "[START]",
 	"[UP]", "[DOWN]", "[LEFT]", "[RIGHT]"
 ]
 var cheeves = {}

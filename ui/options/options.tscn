@@ -63,6 +63,7 @@ margin_bottom = 32.0
 [node name="fulcra" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="title" type="Control" parent="fulcra"]
 margin_right = 40.0

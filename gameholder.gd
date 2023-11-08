@@ -5,6 +5,7 @@ var popup_queue: Array = []
 var current_popup: Control = null
 var current_pause_block: Control = null
 var current_overlay: Control = null
+var current_options: Control = null
 var tex: ViewportTexture
 var screen_scale: float = 1 setget set_screen_scale
 var base_screen_size: Vector2
@@ -48,11 +49,12 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if !check_for_pause_blockers():
+		if !check_for_pause_blockers() and !is_instance_valid(current_options):
 			var new_options = obj_options.instance()
 			$ui/ui.add_child(new_options)
 			new_options.rect_position = Vector2(448, 136)
 			new_options.show_save()
+			current_options = new_options
 	
 	if event.is_action_pressed("map"):
 		var can_overlay: bool = true

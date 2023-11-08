@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://ui/vendor/vendor_ware_hat.gd" type="Script" id=1]
+[ext_resource path="res://hats/0015_asbestos_large.png" type="Texture" id=2]
+[ext_resource path="res://hats/0015_asbestos.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Asbestos Fist [hat]"
+description = "The wearer's punches will release a cloud of asbestos. Enemies caught in the cloud will be inflicted with a disease called cancer, which will kill them later."
+cost = 75
+hat = ExtResource( 3 )

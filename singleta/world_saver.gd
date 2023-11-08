@@ -61,7 +61,7 @@ func save_all_beings():
 	
 	var beings = get_tree().get_nodes_in_group("beings")
 	for being in beings:
-		if being.saving_enabled:
+		if being.saving_enabled and !being.cancer:
 			var this_being: Dictionary = save_being(being)
 			all_beings.append(this_being)
 	

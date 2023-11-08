@@ -14,6 +14,7 @@ const obj_fx = preload("res://fx/fx_transient.tscn")
 const obj_bobber = preload("res://entities/fishing_bobber.tscn")
 const obj_bullet_combhat = preload("res://projectiles/bullet_combhat.tscn")
 const obj_thrown_hat = preload("res://projectiles/thrown_hat.tscn")
+const obj_asbestos_cloud = preload("res://fx/asbestos_cloud.tscn")
 const tex_shift = preload("res://fx/shift.png")
 const scr_auto_sprite = preload("res://pieces/auto_sprite.gd")
 const scr_effect_fished = preload("res://pieces/effects/effect_air_uncontrol.gd")
@@ -147,6 +148,7 @@ func take_damage(what: float, from: Being = null) -> float:
 		from.take_knockback(relative.normalized() * 200)
 	
 	GlobalSound.play_random_sfx(GlobalSound.sfx_player_hit)
+	PlayerStats.damage_taken += what
 	
 	return actual_damage
 
@@ -169,6 +171,7 @@ func die():
 	
 	GlobalSound.play_random_sfx(GlobalSound.sfx_player_death)
 	PlayerStats.poisoned = false
+	PlayerStats.deaths += 1
 
 func land():
 	.land()
@@ -467,3 +470,9 @@ func _on_teleport_fast_entered() -> void:
 
 func _on_teleport_fast_exited() -> void:
 	$animator.playback_speed = 1
+
+func _on_hit_dealt(what: Being) -> void:
+	# Apply hat Asbestos
+	if PlayerStats.has_hat("asbestos"):
+		var new_asbestos_cloud = obj_asbestos_cloud.instance()
+		Game.deploy_instance(new_asbestos_cloud, $flippable/fistbox.global_position)

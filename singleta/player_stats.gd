@@ -18,6 +18,7 @@ var base_max_hp: float = 3
 var max_hp: float = base_max_hp
 var hp: float = base_max_hp setget set_hp
 var vertices: int = 0 setget set_vertices
+var vertices_gained: int = 0
 var position: Vector2 = Vector2()
 var velocity: Vector2 = Vector2()
 var eyes: int = EYES_BASIC setget set_eyes
@@ -30,6 +31,8 @@ var time: float = 0
 var flipped: bool = false
 var poisoned: bool = false
 var punches: int = 0
+var deaths: int = 0
+var damage_taken: float = 0
 var sucker: bool = false
 
 var upgrades: Dictionary = {
@@ -317,6 +320,9 @@ func compress_data() -> Dictionary:
 		"cheeves": cheeves,
 		"punches": punches,
 		"sucker": sucker,
+		"vertices_gained": vertices_gained,
+		"deaths": deaths,
+		"damage_taken": damage_taken,
 	}
 	
 	return data
@@ -356,6 +362,12 @@ func uncompress_data(data: Dictionary):
 		punches = data["punches"]
 	if data.has("sucker"):
 		sucker = data["sucker"]
+	if data.has("vertices_gained"):
+		vertices_gained = data["vertices_gained"]
+	if data.has("deaths"):
+		deaths = data["deaths"]
+	if data.has("damage_taken"):
+		damage_taken = data["damage_taken"]
 	
 	while lighters.size() < 4:
 		lighters.append(0)
@@ -392,4 +404,8 @@ func reset_data():
 
 func _on_vertex_collected(what):
 	set_vertices(vertices + int(what.value))
+	vertices_gained += int(what.value)
 	emit_signal("vertices_collected", what.value)
+	
+	if vertices_gained >= 300:
+		Game.achieve_cheeve("wealth")

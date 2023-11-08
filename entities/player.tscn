@@ -1168,6 +1168,7 @@ wait_time = 6.0
 autostart = true
 
 [connection signal="damage_taken" from="." to="fsm/climb" method="_on_damage_taken"]
+[connection signal="hit_dealt" from="flippable/fistbox" to="." method="_on_hit_dealt"]
 [connection signal="activated" from="fsm/attacc" to="." method="_on_attacc_activated"]
 [connection signal="entered" from="fsm/attacc" to="." method="_on_attacc_entered"]
 [connection signal="exited" from="fsm/attacc" to="." method="_on_attacc_exited"]

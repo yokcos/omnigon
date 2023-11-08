@@ -17,6 +17,8 @@ export (Vector2) var knockback = Vector2()
 export (float) var radial_knockback = 0
 export (bool) var active = false
 
+signal hit_dealt
+
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
@@ -67,6 +69,8 @@ func hit_enemy(what: Being):
 		what.add_child(new_effect)
 	
 	hit_bodies[what] = hit_rate
+	
+	emit_signal("hit_dealt", what)
 
 func decay_hits(delta: float):
 	var keys = hit_bodies.keys()

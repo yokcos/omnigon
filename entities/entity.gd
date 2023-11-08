@@ -37,6 +37,7 @@ var flipped: bool = false setget set_flip
 var flip_int: int = 1
 onready var flip_node: Node2D = get_node(flip_path)
 var bounce_speed: float = 300
+export (float) var bounce_power_other: float = 1
 
 export (int) var team = teams.ENEMIES
 export (float) var inertia = 20
@@ -97,7 +98,7 @@ func _physics_process(delta: float) -> void:
 					var other_thing = hit.collider
 					if other_thing.can_be_bounced and can_bounce:
 						if velocity.y >= 0:
-							velocity.y = -bounce_speed
+							velocity.y = -bounce_speed * other_thing.bounce_power_other
 							
 							var new_part = obj_part_bounce_stars.instance()
 							Game.deploy_instance(new_part, hit.position)

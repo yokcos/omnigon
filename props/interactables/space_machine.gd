@@ -37,6 +37,10 @@ func begin_teleport():
 		Game.achieve_cheeve("speed")
 	if !PlayerStats.sucker:
 		Game.achieve_cheeve("threebuttons")
+	if PlayerStats.deaths <= 0:
+		Game.achieve_cheeve("deathless")
+	if PlayerStats.damage_taken <= 0:
+		Game.achieve_cheeve("hitless")
 	
 	Game.save_game(Vector2(128, 32))
 

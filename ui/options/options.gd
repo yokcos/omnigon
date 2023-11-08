@@ -6,6 +6,7 @@ var spacing: float = 15
 var bar_size: float = 100
 var animation_duration: float = 0.5
 var prev_lowpass: bool = false
+var current_fulcrum: int = 0
 # Look, I apologise for these being out of order
 # I could go in and rename them but that's boring and I'm too lazy for that
 # and ultimately nobody is going to care
@@ -44,10 +45,21 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("attack"):
 		depart_animation()
+	
+	if false and event is InputEventMouseButton and event.pressed:
+		if event.button_index == BUTTON_WHEEL_UP:
+			shift_selection(1)
+		if event.button_index == BUTTON_WHEEL_DOWN:
+			shift_selection(-1)
 
 func _exit_tree() -> void:
 	Settings.save_settings()
 
+
+func shift_selection(what: int):
+	var new_pos: int = current_fulcrum + what
+	new_pos = posmod( new_pos, $fulcra.get_child_count() - 1 )
+	$fulcra.get_child(new_pos).grab_focus()
 
 func order_fulcra():
 	var fulcra = get_fulcra(true)
@@ -137,6 +149,7 @@ func _on_fulcrum_selected(which: int):
 		fulcra[i].target_rotation = relative*spacing
 		fulcra[i].target_size = 1 - abs(relative)*0.1
 	
+	current_fulcrum = which
 	$icon.texture = icons[which]
 
 func _on_music_value_changed(value: float) -> void:

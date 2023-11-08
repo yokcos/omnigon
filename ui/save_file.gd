@@ -17,6 +17,10 @@ func _ready() -> void:
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		activate()
+
 
 func set_index( what: int ):
 	index = what
@@ -46,7 +50,7 @@ func make_new():
 	$list/stats0.hide()
 	$list/stats1.hide()
 	$list/delete_save.hide()
-	$list/index.text = "+"
+	$list/index.text = ">"
 	new = true
 
 func count_rooms( dict: Dictionary ) -> int:
